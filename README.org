@@ -1,0 +1,3 @@
+#+TITLE: Emacs 24.5
+
+This is a full copy of Emacs 24.5 for Windows. It is intended to be used as a submodule in [[https://github.com/jkitchin/jmax]].
