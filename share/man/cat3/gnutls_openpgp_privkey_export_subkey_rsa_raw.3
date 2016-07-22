@@ -1,0 +1,70 @@
+gnutls_openpgp_privkey_export_sugbnkuetyl_gsrn_suoatp_lersnapwg(p3_)privkey_export_subkey_rsa_raw(3)
+
+
+
+NNAAMMEE
+       gnutls_openpgp_privkey_export_subkey_rsa_raw - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ooppeennppggpp..hh>>
+
+       iinntt                                  ggnnuuttllss__ooppeennppggpp__pprriivvkkeeyy__eexxppoorrtt__ssuubb--
+       kkeeyy__rrssaa__rraaww((ggnnuuttllss__ooppeennppggpp__pprriivvkkeeyy__tt   _p_k_e_y,,    uunnssiiggnneedd    iinntt    _i_d_x,,
+       ggnnuuttllss__ddaattuumm__tt   **   _m,,   ggnnuuttllss__ddaattuumm__tt   **  _e,,  ggnnuuttllss__ddaattuumm__tt  **  _d,,
+       ggnnuuttllss__ddaattuumm__tt ** _p,, ggnnuuttllss__ddaattuumm__tt ** _q,, ggnnuuttllss__ddaattuumm__tt ** _u));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_openpgp_privkey_t pkey
+                   Holds the certificate
+
+       unsigned int idx
+                   Is the subkey index
+
+       gnutls_datum_t * m
+                   will hold the modulus
+
+       gnutls_datum_t * e
+                   will hold the public exponent
+
+       gnutls_datum_t * d
+                   will hold the private exponent
+
+       gnutls_datum_t * p
+                   will hold the first prime (p)
+
+       gnutls_datum_t * q
+                   will hold the second prime (q)
+
+       gnutls_datum_t * u
+                   will hold the coefficient
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will export the RSA private key's parameters found in the
+       given   structure.    The   new  parameters  will  be  allocated  using
+       ggnnuuttllss__mmaalllloocc(()) and will be stored in the appropriate datum.
+
+RREETTUURRNNSS
+       GGNNUUTTLLSS__EE__SSUUCCCCEESSSS on success, otherwise a negative error code.
+
+SSIINNCCEE
+       2.4.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                         gnutl3s._3o.p1e0npgp_privkey_export_subkey_rsa_raw(3)

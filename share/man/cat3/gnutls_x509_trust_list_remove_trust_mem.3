@@ -1,0 +1,54 @@
+gnutls_x509_trust_list_remove_trust_mggennmuu(tt3ll)ss_x509_trust_list_remove_trust_mem(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_trust_list_remove_trust_mem - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt    ggnnuuttllss__xx550099__ttrruusstt__lliisstt__rreemmoovvee__ttrruusstt__mmeemm((ggnnuuttllss__xx550099__ttrruusstt__lliisstt__tt
+       _l_i_s_t,, ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _c_a_s,, ggnnuuttllss__xx550099__ccrrtt__ffmmtt__tt _t_y_p_e));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_trust_list_t list
+                   The structure of the list
+
+       const gnutls_datum_t * cas
+                   A buffer containing a list of CAs (optional)
+
+       gnutls_x509_crt_fmt_t type
+                   The format of the certificates
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will remove the provided certificate authorities from the
+       trusted list, and add them into a black list when needed.
+
+       See also ggnnuuttllss__xx550099__ttrruusstt__lliisstt__rreemmoovvee__ccaass(()).
+
+RREETTUURRNNSS
+       The number of removed elements is returned.
+
+SSIINNCCEE
+       3.1.10
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3g.n3u.t1l0s_x509_trust_list_remove_trust_mem(3)

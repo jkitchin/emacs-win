@@ -1,0 +1,59 @@
+gnutls_pubkey_verify_hash(3)        gnutls        gnutls_pubkey_verify_hash(3)
+
+
+
+NNAAMMEE
+       gnutls_pubkey_verify_hash - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//aabbssttrraacctt..hh>>
+
+       iinntt  ggnnuuttllss__ppuubbkkeeyy__vveerriiffyy__hhaasshh((ggnnuuttllss__ppuubbkkeeyy__tt _k_e_y,, uunnssiiggnneedd iinntt _f_l_a_g_s,,
+       ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _h_a_s_h,, ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _s_i_g_n_a_t_u_r_e));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_pubkey_t key
+                   Holds the public key
+
+       unsigned int flags
+                   Zero or one of ggnnuuttllss__ppuubbkkeeyy__ffllaaggss__tt
+
+       const gnutls_datum_t * hash
+                   holds the hash digest to be verified
+
+       const gnutls_datum_t * signature
+                   contains the signature
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will verify the given signed digest, using the parameters
+       from the public key.
+
+       Deprecated.   This  function  cannot  be  easily  used  securely.   Use
+       ggnnuuttllss__ppuubbkkeeyy__vveerriiffyy__hhaasshh22(()) instead.
+
+RREETTUURRNNSS
+       In case of  a  verification  failure  GGNNUUTTLLSS__EE__PPKK__SSIIGG__VVEERRIIFFYY__FFAAIILLEEDD  is
+       returned, and zero or positive code on success.
+
+SSIINNCCEE
+       2.12.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10        gnutls_pubkey_verify_hash(3)

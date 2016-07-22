@@ -1,0 +1,81 @@
+gnutls_verify_stored_pubkey(3)      gnutls      gnutls_verify_stored_pubkey(3)
+
+
+
+NNAAMMEE
+       gnutls_verify_stored_pubkey - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       iinntt ggnnuuttllss__vveerriiffyy__ssttoorreedd__ppuubbkkeeyy((ccoonnsstt cchhaarr ** _d_b___n_a_m_e,, ggnnuuttllss__ttddbb__tt _t_d_b,,
+       ccoonnsstt cchhaarr ** _h_o_s_t,,  ccoonnsstt  cchhaarr  **  _s_e_r_v_i_c_e,,  ggnnuuttllss__cceerrttiiffiiccaattee__ttyyppee__tt
+       _c_e_r_t___t_y_p_e,, ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _c_e_r_t,, uunnssiiggnneedd iinntt _f_l_a_g_s));;
+
+AARRGGUUMMEENNTTSS
+       const char * db_name
+                   A  file  specifying  the  stored  keys  (use  NULL  for the
+                   default)
+
+       gnutls_tdb_t tdb
+                   A storage structure or NULL to use the default
+
+       const char * host
+                   The peer's name
+
+       const char * service
+                   non-NULL if this key is specific to a service (e.g. http)
+
+       gnutls_certificate_type_t cert_type
+                   The type of the certificate
+
+       const gnutls_datum_t * cert
+                   The raw (der) data of the certificate
+
+       unsigned int flags
+                   should be 0.
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will try to verify the provided (raw or DER-encoded) cer-
+       tificate  using  a  list  of stored public keys.  The  _s_e_r_v_i_c_e field if
+       non-NULL should be a port number.
+
+       The  _r_e_t_r_i_e_v_e variable if non-null specifies a custom backend  for  the
+       retrieval  of entries. If it is NULL then the default file backend will
+       be  used.  In  POSIX-like   systems   the   file   backend   uses   the
+       $HOME/.gnutls/known_hosts file.
+
+       Note that if the custom storage backend is provided the retrieval func-
+       tion should return GGNNUUTTLLSS__EE__CCEERRTTIIFFIICCAATTEE__KKEEYY__MMIISSMMAATTCCHH if  the  host/ser-
+       vice pair is found but key doesn't match, GGNNUUTTLLSS__EE__NNOO__CCEERRTTIIFFIICCAATTEE__FFOOUUNNDD
+       if no such host/service with the given key is found, and 0  if  it  was
+       found. The storage function should return 0 on success.
+
+RREETTUURRNNSS
+       If no associated public key is found then GGNNUUTTLLSS__EE__NNOO__CCEERRTTIIFFIICCAATTEE__FFOOUUNNDD
+       will be returned. If a key is found but does  not  match  GGNNUUTTLLSS__EE__CCEERR--
+       TTIIFFIICCAATTEE__KKEEYY__MMIISSMMAATTCCHH  is returned. On success, GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0) is
+       returned, or a negative error value on other errors.
+
+SSIINNCCEE
+       3.0.13
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10      gnutls_verify_stored_pubkey(3)

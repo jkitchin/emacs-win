@@ -1,0 +1,60 @@
+gnutls_x509_crt_get_preferred_hagsnhu_tallgsgn_ouxrt5il0ts9h_mc(r3t)_get_preferred_hash_algorithm(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_crt_get_preferred_hash_algorithm - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ccoommppaatt..hh>>
+
+       iinntt ggnnuuttllss__xx550099__ccrrtt__ggeett__pprreeffeerrrreedd__hhaasshh__aallggoorriitthhmm((ggnnuuttllss__xx550099__ccrrtt__tt _c_r_t,,
+       ggnnuuttllss__ddiiggeesstt__aallggoorriitthhmm__tt **           _h_a_s_h,, uunnssiiggnneedd iinntt ** _m_a_n_d));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_crt_t crt
+                   Holds the certificate
+
+       gnutls_digest_algorithm_t *           hash
+                   The result of the call with the  hash  algorithm  used  for
+                   signature
+
+       unsigned int * mand
+                   If non-zero it means that the algorithm MUST use this hash.
+                   May be NULL.
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will read  the  certifcate  and  return  the  appropriate
+       digest  algorithm  to  use for signing with this certificate. Some cer-
+       tificates (i.e.  DSA might not be able to sign  without  the  preferred
+       algorithm).
+
+DDEEPPRREECCAATTEEDD
+       Please use ggnnuuttllss__ppuubbkkeeyy__ggeett__pprreeffeerrrreedd__hhaasshh__aallggoorriitthhmm(()).
+
+RREETTUURRNNSS
+       the 0 if the hash algorithm is found. A negative error code is returned
+       on error.
+
+SSIINNCCEE
+       2.12.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                         gnutl3s._3x.51009_crt_get_preferred_hash_algorithm(3)

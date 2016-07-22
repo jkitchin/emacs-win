@@ -1,0 +1,56 @@
+gnutls_transport_set_pull_timeout_gfnuungtcnltusit_oltnsr(a3n)sport_set_pull_timeout_function(3)
+
+
+
+NNAAMMEE
+       gnutls_transport_set_pull_timeout_function - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       vvooiidd  ggnnuuttllss__ttrraannssppoorrtt__sseett__ppuullll__ttiimmeeoouutt__ffuunnccttiioonn((ggnnuuttllss__sseessssiioonn__tt  _s_e_s_-
+       _s_i_o_n,, ggnnuuttllss__ppuullll__ttiimmeeoouutt__ffuunncc _f_u_n_c));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a ggnnuuttllss__sseessssiioonn__tt structure.
+
+       gnutls_pull_timeout_func func
+                   a callback function
+
+DDEESSCCRRIIPPTTIIOONN
+       This is the function where you  set  a  function  for  gnutls  to  know
+       whether  data are ready to be received. It should wait for data a given
+       time frame in milliseconds. The callback should return 0 on timeout,  a
+       positive  number if data can be received, and -1 on error.  You'll need
+       to override this function if sseelleecctt(()) is not suitable for the  provided
+       transport calls.
+
+       As  with  sseelleecctt(()),  if  the  timeout value is zero the callback should
+       return zero if no data are immediately available.
+
+        _g_n_u_t_l_s___p_u_l_l___t_i_m_e_o_u_t___f_u_n_c  is  of  the  form,  int  (*gnutls_pull_time-
+       out_func)(gnutls_transport_ptr_t, unsigned int ms);
+
+SSIINNCCEE
+       3.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                           gnu3t.l3s._1t0ransport_set_pull_timeout_function(3)

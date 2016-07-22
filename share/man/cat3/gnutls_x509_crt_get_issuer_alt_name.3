@@ -1,0 +1,75 @@
+gnutls_x509_crt_get_issuer_alt_name(3g)nutlgsnutls_x509_crt_get_issuer_alt_name(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_crt_get_issuer_alt_name - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt     ggnnuuttllss__xx550099__ccrrtt__ggeett__iissssuueerr__aalltt__nnaammee((ggnnuuttllss__xx550099__ccrrtt__tt     _c_e_r_t,,
+       uunnssiiggnneedd iinntt _s_e_q,, vvooiidd ** _i_a_n,, ssiizzee__tt ** _i_a_n___s_i_z_e,, uunnssiiggnneedd iinntt **  _c_r_i_t_i_-
+       _c_a_l));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_crt_t cert
+                   should contain a ggnnuuttllss__xx550099__ccrrtt__tt structure
+
+       unsigned int seq
+                   specifies  the  sequence  number of the alt name (0 for the
+                   first one, 1 for the second etc.)
+
+       void * ian  is the place where the alternative name will be copied to
+
+       size_t * ian_size
+                   holds the size of ian.
+
+       unsigned int * critical
+                   will be non-zero if the extension  is  marked  as  critical
+                   (may be null)
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function  retrieves the Issuer Alternative Name (2.5.29.18), con-
+       tained in the given certificate in the X509v3 Certificate Extensions.
+
+       When the SAN type is otherName, it will extract the data in the  other-
+       Name's  value field, and GGNNUUTTLLSS__SSAANN__OOTTHHEERRNNAAMMEE is returned.  You may use
+       ggnnuuttllss__xx550099__ccrrtt__ggeett__ssuubbjjeecctt__aalltt__ootthheerrnnaammee__ooiidd(()) to get the  correspond-
+       ing OID and the "virtual" SAN types (e.g., GGNNUUTTLLSS__SSAANN__OOTTHHEERRNNAAMMEE__XXMMPPPP).
+
+       If  an otherName OID is known, the data will be decoded.  Otherwise the
+       returned data will be DER encoded, and you will have to decode it your-
+       self.   Currently,  only  the RFC 3920 id-on-xmppAddr Issuer AltName is
+       recognized.
+
+RREETTUURRNNSS
+       the alternative issuer name type on  success,  one  of  the  enumerated
+       ggnnuuttllss__xx550099__ssuubbjjeecctt__aalltt__nnaammee__tt.   It  will  return  GGNNUUTTLLSS__EE__SSHHOORRTT__MMEEMM--
+       OORRYY__BBUUFFFFEERR if  _i_a_n___s_i_z_e is not large enough to hold the value.  In that
+       case  _i_a_n___s_i_z_e will be updated with the required size.  If the certifi-
+       cate does not have an Alternative name with the specified sequence num-
+       ber then GGNNUUTTLLSS__EE__RREEQQUUEESSTTEEDD__DDAATTAA__NNOOTT__AAVVAAIILLAABBLLEE is returned.
+
+SSIINNCCEE
+       2.10.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.1g0nutls_x509_crt_get_issuer_alt_name(3)

@@ -1,0 +1,58 @@
+gnutls_x509_crt_set_authority_info_gancgucnteulstssl_(sx35)09_crt_set_authority_info_access(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_crt_set_authority_info_access - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt   ggnnuuttllss__xx550099__ccrrtt__sseett__aauutthhoorriittyy__iinnffoo__aacccceessss((ggnnuuttllss__xx550099__ccrrtt__tt  _c_r_t,,
+       iinntt _w_h_a_t,, ggnnuuttllss__ddaattuumm__tt ** _d_a_t_a));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_crt_t crt
+                   Holds the certificate
+
+       int what    what data to get, a ggnnuuttllss__iinnffoo__aacccceessss__wwhhaatt__tt type.
+
+       gnutls_datum_t * data
+                   output data to be freed with ggnnuuttllss__ffrreeee(()).
+
+DDEESSCCRRIIPPTTIIOONN
+       This function sets the Authority Information  Access  (AIA)  extension,
+       see RFC 5280 section 4.2.2.1 for more information.
+
+       The type of data stored in  _d_a_t_a is specified via  _w_h_a_t which should be
+       ggnnuuttllss__iinnffoo__aacccceessss__wwhhaatt__tt values.
+
+       If  _w_h_a_t is GGNNUUTTLLSS__IIAA__OOCCSSPP__UURRII,  _d_a_t_a will hold the OCSP URI.  If  _w_h_a_t
+       is GGNNUUTTLLSS__IIAA__CCAAIISSSSUUEERRSS__UURRII,  _d_a_t_a will hold the caIssuers URI.
+
+RREETTUURRNNSS
+       On  success,  GGNNUUTTLLSS__EE__SSUUCCCCEESSSS  (0)  is  returned, otherwise a negative
+       error value.
+
+SSIINNCCEE
+       3.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                            gn3u.t3l.s1_0x509_crt_set_authority_info_access(3)

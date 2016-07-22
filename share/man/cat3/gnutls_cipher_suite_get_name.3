@@ -1,0 +1,51 @@
+gnutls_cipher_suite_get_name(3)     gnutls     gnutls_cipher_suite_get_name(3)
+
+
+
+NNAAMMEE
+       gnutls_cipher_suite_get_name - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       ccoonnsstt    cchhaarr    **   ggnnuuttllss__cciipphheerr__ssuuiittee__ggeett__nnaammee((ggnnuuttllss__kkxx__aallggoorriitthhmm__tt
+       _k_x___a_l_g_o_r_i_t_h_m,,     ggnnuuttllss__cciipphheerr__aallggoorriitthhmm__tt           _c_i_p_h_e_r___a_l_g_o_r_i_t_h_m,,
+       ggnnuuttllss__mmaacc__aallggoorriitthhmm__tt       _m_a_c___a_l_g_o_r_i_t_h_m));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_kx_algorithm_t       kx_algorithm
+                   is a Key exchange algorithm
+
+       gnutls_cipher_algorithm_t       cipher_algorithm
+                   is a cipher algorithm
+
+       gnutls_mac_algorithm_t       mac_algorithm
+                   is a MAC algorithm
+
+DDEESSCCRRIIPPTTIIOONN
+       Note  that  the  full cipher suite name must be prepended by TLS or SSL
+       depending of the protocol in use.
+
+RREETTUURRNNSS
+       a string that contains the name of a TLS cipher suite, specified by the
+       given algorithms, or NNUULLLL.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10     gnutls_cipher_suite_get_name(3)

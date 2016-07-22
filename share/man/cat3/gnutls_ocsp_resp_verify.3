@@ -1,0 +1,70 @@
+gnutls_ocsp_resp_verify(3)          gnutls          gnutls_ocsp_resp_verify(3)
+
+
+
+NNAAMMEE
+       gnutls_ocsp_resp_verify - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ooccsspp..hh>>
+
+       iinntt           ggnnuuttllss__ooccsspp__rreesspp__vveerriiffyy((ggnnuuttllss__ooccsspp__rreesspp__tt          _r_e_s_p,,
+       ggnnuuttllss__xx550099__ttrruusstt__lliisstt__tt _t_r_u_s_t_l_i_s_t,, uunnssiiggnneedd iinntt ** _v_e_r_i_f_y,, uunnssiiggnneedd iinntt
+       _f_l_a_g_s));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_ocsp_resp_t resp
+                   should contain a ggnnuuttllss__ooccsspp__rreesspp__tt structure
+
+       gnutls_x509_trust_list_t trustlist
+                   trust anchors as a ggnnuuttllss__xx550099__ttrruusstt__lliisstt__tt structure
+
+       unsigned int * verify
+                   output    variable    with    verification    status,    an
+                   ggnnuuttllss__ooccsspp__cceerrtt__ssttaattuuss__tt
+
+       unsigned int flags
+                   verification flags, 0 for now.
+
+DDEESSCCRRIIPPTTIIOONN
+       Verify signature of the Basic OCSP Response against the public  key  in
+       the  certificate  of  a trusted signer.  The  _t_r_u_s_t_l_i_s_t should be popu-
+       lated with trust anchors.  The function will extract  the  signer  cer-
+       tificate  from  the  Basic OCSP Response and will verify it against the
+       _t_r_u_s_t_l_i_s_t .  A trusted signer  is  a  certificate  that  is  either  in
+       _t_r_u_s_t_l_i_s_t , or it is signed directly by a certificate in
+        _t_r_u_s_t_l_i_s_t and has the id-ad-ocspSigning Extended Key Usage bit set.
+
+       The  output  _v_e_r_i_f_y variable will hold verification status codes (e.g.,
+       GGNNUUTTLLSS__OOCCSSPP__VVEERRIIFFYY__SSIIGGNNEERR__NNOOTT__FFOOUUNNDD,  GGNNUUTTLLSS__OOCCSSPP__VVEERRIIFFYY__IINNSSEECCUURREE__AALLGGOO--
+       RRIITTHHMM) which are only valid if the function returned GGNNUUTTLLSS__EE__SSUUCCCCEESSSS.
+
+       Note  that the function returns GGNNUUTTLLSS__EE__SSUUCCCCEESSSS even when verification
+       failed.  The caller must always inspect the  _v_e_r_i_f_y  variable  to  find
+       out the verification status.
+
+       The  _f_l_a_g_s variable should be 0 for now.
+
+RREETTUURRNNSS
+       On  success,  GGNNUUTTLLSS__EE__SSUUCCCCEESSSS  (0)  is  returned, otherwise a negative
+       error value.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10          gnutls_ocsp_resp_verify(3)

@@ -1,0 +1,59 @@
+gnutls_x509_name_constraints_check_crgtng(un3tu)ltsls_x509_name_constraints_check_crt(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_name_constraints_check_crt - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       uunnssiiggnneedd   ggnnuuttllss__xx550099__nnaammee__ccoonnssttrraaiinnttss__cchheecckk__ccrrtt((ggnnuuttllss__xx550099__nnaammee__ccoonn--
+       ssttrraaiinnttss__tt _n_c,, ggnnuuttllss__xx550099__ssuubbjjeecctt__aalltt__nnaammee__tt  _t_y_p_e,,  ggnnuuttllss__xx550099__ccrrtt__tt
+       _c_e_r_t));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_name_constraints_t nc
+                   the extracted name constraints structure
+
+       gnutls_x509_subject_alt_name_t type
+                   the   type   of   the   constraint   to   check   (of  type
+                   gnutls_x509_subject_alt_name_t)
+
+       gnutls_x509_crt_t cert
+                   the certificate to be checked
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will check the provided  certificate  names  against  the
+       constraints in
+        _n_c  using  the  RFC5280  rules. It will traverse all the certificate's
+       names and alternative names.
+
+       Currently this function is limited to DNS names  and  emails  (of  type
+       GGNNUUTTLLSS__SSAANN__DDNNSSNNAAMMEE and GGNNUUTTLLSS__SSAANN__RRFFCC882222NNAAMMEE).
+
+RREETTUURRNNSS
+       zero if the provided name is not acceptable, and non-zero otherwise.
+
+SSIINNCCEE
+       3.3.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.g3n.u1t0ls_x509_name_constraints_check_crt(3)
