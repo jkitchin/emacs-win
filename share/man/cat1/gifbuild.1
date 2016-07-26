@@ -1,0 +1,154 @@
+GIFBUILD(1)                  GIFLIB Documentation                  GIFBUILD(1)
+
+
+
+NNAAMMEE
+       gifbuild - dump GIF data in a textual format, or undump it to a GIF
+
+SSYYNNOOPPSSIISS
+       ggiiffbbuuiilldd [-v] [-a] [-d] [-t _t_r_a_n_s_l_a_t_i_o_n_-_t_a_b_l_e] [-h] [_g_i_f_-_f_i_l_e]
+
+OOPPTTIIOONNSS
+       A program to convert a series of editable text GIF icon specifications
+       and named GIF files into a multi-image GIF, usable as a graphic
+       resource file. It can also dump existing GIFs in this format.
+
+       If no GIF file is given, gifbuild will try to read a text input from
+       stdin.
+
+SSPPEECCIIFFIICCAATTIIOONN SSYYNNTTAAXX
+       Here is a syntax summary in informal BNF. The token `NL' represents a
+       required newline.
+
+           <gif-spec> ::= <header-block> <image-block>...
+
+           <header-block> ::= <header-declaration>...
+
+           <header-declaration ::=
+                     | screen width <digits> NL
+                     | screen height <digits> NL
+                     | screen colors <digits> NL
+                     | screen background <digits> NL
+                     | pixel aspect byte <digits> NL
+                     | screen map <color-table> NL
+
+           <color-table> ::= <color-declaration>... end NL
+
+           <color-declaration> ::= rgb <digits> <digits> <digits> [ is <key>] NL
+                           | sort flag {on|off} NL
+
+           <image-block> ::= include <file-name> NL
+                     | image NL
+                          <image-declaration>...
+                          <raster-picture>
+                          [ <extension> ]
+
+           <image-declarations> ::= image top <digits> NL
+                          | image left <digits> NL
+                          | image interlaced NL
+                          | image map <color-table> NL
+                          | image bits <digits> by <digits> [hex|ascii] NL <raster-block>
+
+           <extension> := <comment> NL <extension-block> NL end NL
+                     | <plaintext> NL <extension-block> NL end NL
+                           | graphics control NL <GCB-part> NL end NL
+                           | netscape loop  <digits> NL
+                     | extension <hex-digits> NL <extension-block> NL end NL
+
+           <GCB-part> ::= disposal mode <digits> NL
+                           | user input flag {on|off} NL
+                           | delay <digits> NL
+                           | transparent index <digits> NL
+
+
+       If the data types of the "screen height", "screen width", "screen
+       background", "image top", and "image left" declarations aren't obvious
+       to you, what are you doing with this software?
+
+       The "pixel aspect byte" declaration sets an integer denominator for a
+       fraction expressing the puxel aspect ratio. See the GIF standard for
+       details; this field is actually long obsolete.
+
+       A color table declares color indices (in ascending order from 0) and
+       may associate them with key characters (these associations are absent
+       when the map is more than 94 colors lang and raster blocks using it
+       must use hex pairs). These characters can later be used in raster
+       blocks. As these must be printable and non-whitespace, you can only
+       specify 94 colors per icon. Life is like that sometimes.
+
+       A color table declaration can also set the table's sort flag with "sort
+       flag on" or "sort flag off" on any line before the end.
+
+       An "ascii" raster block is just a block of key characters (used for a
+       color map of 94 or fewer colors). A "hex" raster block uses hex digit
+       pairs instead (used for a color map with more than 94 colors). The
+       default is ASCII. It should be sized correctly for the "image bits"
+       declaration that leads it. Raster blocks from interlaced GIFs are
+       dumped with the lines in non-interlaced order.
+
+       The "comment" or "plaintext" keywords lead defined GIF89 extension
+       record data (the other two GIF89 types, graphics control and
+       application block, are not yet supported). You can also say "extension"
+       followed by a hexadecimal record type. All of these extension
+       declarations must be followed by an extension block, which is
+       terminated by the keyword "end" on its own line.
+
+       An extension block is a series of text lines, each interpreted as a
+       string of bytes to fill an extension block (the terminating newline is
+       stripped). Text may include standard C-style octal and hex escapes
+       preceded by a backslash.
+
+       A graphics control block declaration creates a graphics control
+       extension block; for the field semantics see the GIF89 standard, part
+       23.
+
+       A netscape loop declaration creates an application extension block
+       containing a NETSCAPE 2.0 animation loop control with a specified
+       repeat count (repeat count 0 means loop forever). This must be
+       immediately after the header declaration. These loop blocks are
+       interpreted by the Netscape/Mozilla/Firefox line of browsers.
+
+       All <digits> tokens are interpreted as decimal numerals; <hex-digits>
+       tokens are interpreted as two hex digits (a byte). All coordinates are
+       zero-origin with the top left corner (0,0). Range checking is weak and
+       signedness checking nonexistent; caveat hacker!
+
+       In general, the amount of whitespace and order of declarations within a
+       header or image block is not significant, except that a raster picture
+       must immediately follow its "image bits" bits declaration.
+
+       The "include" declaration includes a named GIF as the next image. The
+       global color maps of included GIFs are merged with the base table
+       defined by any "screen color" declaration. All images of an included
+       multi-image GIF will be included in order.
+
+       Comments may be preceded with "#" and will be ignored.
+
+OOPPTTIIOONNSS
+       -v
+           Verbose mode (show progress). Enables printout of running scan
+           lines.
+
+       -d
+           Dump the input GIF file(s) into the text form described above.
+
+       -t
+           Specify name characters to use when dumping raster blocks. Only
+           valid with -d option.
+
+       -h
+           Print one line of command line help, similar to Usage above.
+
+BBUUGGSS
+       Error checking is rudimentary.
+
+EEXXAAMMPPLLEE::
+       A sample icon file called sample.ico is included in the pic directory
+       of the GIFLIB source distribution.
+
+AAUUTTHHOORR
+       Eric S. Raymond <esr@thyrsus.com>
+
+
+
+GIFLIB                            2 May 2012                       GIFBUILD(1)

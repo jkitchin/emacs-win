@@ -1,0 +1,53 @@
+GIFTEXT(1)                   GIFLIB Documentation                   GIFTEXT(1)
+
+
+
+NNAAMMEE
+       giftext - dump GIF pixels and metadata as text
+
+SSYYNNOOPPSSIISS
+       ggiifftteexxtt [-v] [-c] [-e] [-z] [-p] [-r] [-h] [_g_i_f_-_f_i_l_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       A program to dump (text only) general information about GIF file.
+
+       If no GIF file is given, giftext will try to read a GIF file from
+       stdin.
+
+OOPPTTIIOONNSS
+       -v
+           Verbose mode (show progress). Enables printout of running scan
+           lines.
+
+       -c
+           Dumps the color maps.
+
+       -e
+           Dumps encoded bytes - the pixels after compressed using LZ
+           algorithm and chained to form bytes. This is the form the data is
+           saved in the GIF file. Dumps in hex - 2 digit per byte.
+
+       -z
+           Dumps the LZ codes of the image. Dumps in hex - 3 digits per code
+           (as we are limited to 12 bits).
+
+       -p
+           Dumps the pixels of the image. Dumps in hex - 2 digit per pixel
+           (<=byte).
+
+       -r
+           Dumps raw pixels as one byte per pixel. This option inhibits all
+           other options and only the pixels are dumped. This option may be
+           used to convert GIF files into raw data. Note: the color map can be
+           extracted by gifclrmp utility. If more than one image is included
+           in the file, all images will be dumped in order.
+
+       -h
+           Print one line of command line help, similar to Usage above.
+
+AAUUTTHHOORR
+       Gershon Elber.
+
+
+
+GIFLIB                            2 May 2012                        GIFTEXT(1)

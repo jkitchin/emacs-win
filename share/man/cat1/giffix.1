@@ -1,0 +1,32 @@
+GIFFIX(1)                    GIFLIB Documentation                    GIFFIX(1)
+
+
+
+NNAAMMEE
+       giffix - attempt to fix up broken GIFs
+
+SSYYNNOOPPSSIISS
+       ggiiffffiixx [-v] [-h] [_g_i_f_-_f_i_l_e]
+
+DDEESSCCRRIIPPTTIIOONN
+       A program that attempts to fix broken GIF images. Currently will "fix"
+       images terminated prematurely by filling the rest of the image with the
+       darkest color found in the image.
+
+       If no GIF file is given, giffix will try to read a GIF file from stdin.
+       The fixed file is dumped to stdout.
+
+OOPPTTIIOONNSS
+       -t
+           Verbose mode (show progress). Enables printout of running scan
+           lines.
+
+       -h
+           Print one line of command line help, similar to Usage above.
+
+AAUUTTHHOORR
+       Gershon Elber.
+
+
+
+GIFLIB                            2 May 2012                         GIFFIX(1)

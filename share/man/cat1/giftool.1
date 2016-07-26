@@ -1,0 +1,134 @@
+GIFTOOL(1)                   GIFLIB Documentation                   GIFTOOL(1)
+
+
+
+NNAAMMEE
+       giftool - GIF transformation tool
+
+SSYYNNOOPPSSIISS
+       ggiiffttooooll [-a _a_s_p_e_c_t] [-b _b_g_c_o_l_o_r] [-d _d_e_l_a_y_t_i_m_e] [-i _i_n_t_e_r_l_a_c_i_n_g]
+               [-n _i_m_a_g_e_l_i_s_t] [-p _l_e_f_t_,_t_o_p] [-s _w_i_d_t_h_,_h_e_i_g_h_t] [-t _t_r_a_n_s_c_o_l_o_r]
+               [-u _s_o_r_t_-_f_l_a_g] [-x _d_i_s_p_o_s_a_l] [-z _s_o_r_t_-_f_l_a_g]
+
+DDEESSCCRRIIPPTTIIOONN
+       A filter for transforming GIFS. With no options, it's an expensive copy
+       of a GIF in standard input to standard output. Options specify
+       filtering operations and are performed in the order specified on the
+       command line.
+
+       The -n option selects images, allowing the tool to act on a subset of
+       images in a multi-image GIF. This option takes a comma-separated list
+       of decimal integers which are interpreted as 1-origin image indices;
+       these are the images that will be acted on. If no -n option is
+       specified, the tool will select and transform all images.
+
+       The -b option takes a decimal integer argument and uses it to set the
+       (0-origin) screen background color index.
+
+       The -f option accepts a printf-style format string and substitutes into
+       it the values of image-descriptor and graphics-control fields. The
+       string is formatted and output once for each selected image. Normal
+       C-style escapes \b, \f, \n, \r, \t. \v, and \xNN are interpreted; also
+       \e produces ESC (ASCII 0x1b). The following format cookies are
+       substituted:
+
+       %a
+           Pixel aspect byte.
+
+       %b
+           Screen background color.
+
+       %d
+           Image delay time
+
+       %h
+           Image height (y dimension)
+
+       %n
+           Image index
+
+       %p
+           Image position (as an x,y pair)
+
+       %s
+           Screen size (as an x,y pair)
+
+       %t
+           Image transparent-color index
+
+       %u
+           Image user-input flag (boolean)
+
+       %v
+           GIF version string
+
+       %w
+           Image width (x dimension)
+
+       %x
+           Image GIF89 disposal mode
+
+       %z
+           Image's color table sort flag (boolean, false if no local color
+           map)
+
+       Boolean substitutions may take a prefix to modify how they are
+       displayed:
+
+       1
+           "1" or "0"
+
+       o
+           "on" or "off"
+
+       t
+           "t" or "f"
+
+       y
+           "yes" or "no"
+
+       Thus, for example, "%oz" displays image sort flags using the strings
+       "on" and "off". The default with no prefix is numeric.
+
+       The -a option takes an unsigned decimal integer argument and uses it to
+       set the aspect-ratio bye in the logical screen descriptor block.
+
+       The -b option takes an unsigned decimal integer argument and uses it to
+       set the background color index in the logical screen descriptor block.
+
+       The -d option takes a decimal integer argument and uses it to set a
+       delay time, in hundredths of a second, on selected images.
+
+       The -i option sets or clears interlaccing in selected images.
+       Acceptable arguments are "1", "0", "yes", "no", "on", "off", "t", "f"
+
+       The -p option takes a (0-origin) x,y coordinate-pair and sets it as the
+       preferred upper-left-corner coordinates of selected images.
+
+       The -s option takes a (0-origin) x,y coordinate-pair and sets it as the
+       expected display screen size.
+
+       The -t option takes a decimal integer argument and uses it to set the
+       (0-origin) index of the transparency color in selected images.
+
+       The -u option sets or clears the user-input flag in selected images.
+       Acceptable arguments are "1", "0", "yes", "no", "on", "off", "t", "f".
+
+       The -x option takes a decimal integer argument and uses it to set the
+       GIF89 disposal mode in selected images.
+
+       The -z option sets or clears the color-table sort flag in selected
+       images. Acceptable arguments are "1", "0", "yes", "no", "on", "off",
+       "t", "f".
+
+       Note that the -a, -b, -p, -s, and -z options are included to complete
+       the ability to modify all fields defined in the GIF standard, but
+       should have no effect on how an image renders on browsers or modern
+       viewers.
+
+AAUUTTHHOORR
+       Eric S. Raymond.
+
+
+
+GIFLIB                            3 June 2012                       GIFTOOL(1)
