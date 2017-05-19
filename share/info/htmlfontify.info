@@ -1,10 +1,10 @@
-This is htmlfontify.info, produced by makeinfo version 5.2 from
+This is htmlfontify.info, produced by makeinfo version 6.3 from
 htmlfontify.texi.
 
 This manual documents Htmlfontify, a source code -> crosslinked +
 formatted + syntax colorized html transformer.
 
-   Copyright © 2002-2003, 2013-2015 Free Software Foundation, Inc.
+   Copyright © 2002-2003, 2013-2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -30,7 +30,7 @@ Htmlfontify
 This manual documents Htmlfontify, a source code -> crosslinked +
 formatted + syntax colorized html transformer.
 
-   Copyright © 2002-2003, 2013-2015 Free Software Foundation, Inc.
+   Copyright © 2002-2003, 2013-2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -632,8 +632,8 @@ provides the following non-interactive ones:
 
           (hfy-face-at P)
 
-     Find face in effect at point P. If overlays are to be considered
-     (see *note hfy-optimisations::) then this may return a ‘defface’
+     Find face in effect at point P.  If overlays are to be considered
+     (see *note hfy-optimizations::) then this may return a ‘defface’
      style list of face properties instead of a face symbol.
 
 ‘hfy-bgcol’
@@ -649,7 +649,7 @@ provides the following non-interactive ones:
           (hfy-kludge-cperl-mode)
 
      cperl mode does its best to not do some of its fontification when
-     not in a windowing system—we try to trick it…
+     not in a windowing system—we try to trick it...
 
 ‘hfy-href’
 
@@ -710,7 +710,7 @@ provides the following non-interactive ones:
 
           (hfy-opt SYMBOL)
 
-     Is *note hfy-optimisations:: member SYMBOL set or not?
+     Is *note hfy-optimizations:: member SYMBOL set or not?
 
 ‘hfy-dirname’
 
@@ -787,11 +787,11 @@ Important variables that are not customization items:
 
      This is an alist of the form:
 
-          (("/src/dir/0" . tag-hash0) ("/src/dir/1" tag-hash1) … )
+          (("/src/dir/0" . tag-hash0) ("/src/dir/1" tag-hash1) ... )
 
      Each tag hash entry then contains entries of the form:
 
-          "tag_string" => (("file/name.ext" line char) … )
+          "tag_string" => (("file/name.ext" line char) ... )
 
      i.e., an alist mapping (relative) file paths to line and character
      offsets.
@@ -816,7 +816,7 @@ Important variables that are not customization items:
 
      ‘hfy-tags-sortl’ is an alist of the form:
 
-          (("/src/dir" . (tag0 tag1 tag2)) … )
+          (("/src/dir" . (tag0 tag1 tag2)) ... )
 
      Where the tags are stored in descending order of length.
 
@@ -866,8 +866,8 @@ here:
      style-string)’.  The actual stylesheet for each page is derived
      from one of these.
 
-          '((default       "default" . "{ background: black; color: white}")
-            (font-lock-string-face "string"  . "{ color: rgb(64,224,208) }"))
+          ((default       "default" . "{ background: black; color: white}")
+           (font-lock-string-face "string"  . "{ color: rgb(64,224,208) }"))
 
 ‘hfy-facemap-assoc’
 
@@ -881,24 +881,24 @@ here:
      we have already dealt with (and therefore no longer care about)
      will be invalid at any time.
 
-          '((64820 . end)
-            (64744 . font-lock-comment-face)
-            (64736 . end)
-            (64722 . font-lock-string-face)
-            (64630 . end)
-            (64623 . font-lock-string-face)
-            (64449 . end)
-            ;; Big similar section elided.  You get the idea.
-            (5459 . end)
-            (5431 . (:inherit font-lock-keyword-face :background "7e7e7e"))
-            (5431 . end)
-            (4285 . font-lock-constant-face)
-            (4285 . end)
-            (4221 . font-lock-comment-face)
-            (4221 . end)
-            (4197 . font-lock-constant-face)
-            (4197 . end)
-            (1 . font-lock-comment-face))
+          ((64820 . end)
+           (64744 . font-lock-comment-face)
+           (64736 . end)
+           (64722 . font-lock-string-face)
+           (64630 . end)
+           (64623 . font-lock-string-face)
+           (64449 . end)
+           ;; Big similar section elided.  You get the idea.
+           (5459 . end)
+           (5431 . (:inherit font-lock-keyword-face :background "7e7e7e"))
+           (5431 . end)
+           (4285 . font-lock-constant-face)
+           (4285 . end)
+           (4221 . font-lock-comment-face)
+           (4221 . end)
+           (4197 . font-lock-constant-face)
+           (4197 . end)
+           (1 . font-lock-comment-face))
 
 
 File: htmlfontify.info,  Node: Examples,  Prev: Data Structures,  Up: Usage & Examples
@@ -970,7 +970,7 @@ Htmlfontify provides the following variable and customization entries:
 ‘hfy-link-style-fun’
 
      Set this to a function, which will be called with one argument (a
-     ‘{ foo: bar; …}’ CSS style-string)—it should return a copy of its
+     ‘{ foo: bar; ...}’ CSS style-string)—it should return a copy of its
      argument, altered so as to make any changes you want made for text
      which is a hyperlink, in addition to being in the class to which
      that style would normally be applied.
@@ -996,33 +996,32 @@ Htmlfontify provides the following variable and customization entries:
 
      Some valid class specification elements are:
 
-            '(class      color)
-            '(class      grayscale)
-            '(background dark)
-            '(background light)
-            '(type       x-toolkit)
-            '(type       tty)
-            '(type       motif)
-            '(type       lucid)
+            (class      color)
+            (class      grayscale)
+            (background dark)
+            (background light)
+            (type       x-toolkit)
+            (type       tty)
+            (type       motif)
+            (type       lucid)
 
      Multiple values for a tag may be combined, to indicate that any one
      or more of these values in the specification key constitutes a
-     match, eg:
+     match.  For example, ‘((class color grayscale) (type tty))’ would
+     match any of:
 
-     ’((class color grayscale) (type tty)) would match any of:
-            '((class color))
-            '((class grayscale))
-            '((class color grayscale)))
-            '((class color foo))
-            '((type  tty))
-            '((type  tty) (class color))
-     and so on.
+            ((class color))
+            ((class grayscale))
+            ((class color grayscale)))
+            ((class color foo))
+            ((type  tty))
+            ((type  tty) (class color))
 
 ‘hfy-page-header’
 
      Function called with two arguments (the filename relative to the
-     top level source directory being etag’d and fontified), and a
-     string containing the ‘<style>…</style>’ text to embed in the
+     top level source directory being etagged and fontified), and a
+     string containing the ‘<style>...</style>’ text to embed in the
      document—the string returned will be used as the header for the
      htmlfontified version of the source file.
 
@@ -1042,7 +1041,7 @@ Htmlfontify provides the following variable and customization entries:
 
 ‘hfy-find-cmd’
 
-     “find” command used to harvest a list of files to attempt to
+     The “find” command used to harvest a list of files to attempt to
      fontify.
 
 ‘hfy-extn’
@@ -1073,7 +1072,7 @@ Htmlfontify provides the following variable and customization entries:
      Currently this is only required/used when using GNU etags, see
      *note hfy-etags-cmd-alist:: for details.
 
-‘hfy-optimisations’
+‘hfy-optimizations’
 
      Optimizations to turn on.  So far, the following have been
      implemented:
@@ -1096,10 +1095,10 @@ Htmlfontify provides the following variable and customization entries:
           code.)
 
      ‘keep-overlays’
-          Preserve overlay highlighting (c.f.  ‘ediff’ or
-          ‘goo-font-lock’) as well as basic faces.  Can result in
-          extremely verbose highlighting if there are many overlays (as
-          is the case with ‘goo-font-lock’).
+          Preserve overlay highlighting (cf. ‘ediff’ or ‘goo-font-lock’)
+          as well as basic faces.  Can result in extremely verbose
+          highlighting if there are many overlays (as is the case with
+          ‘goo-font-lock’).
 
      And the following are planned but not yet available:
 
@@ -1231,7 +1230,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1681,7 +1680,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1801,29 +1800,29 @@ VARIABLES & CUSTOMIZATION
  [index ]
 * Menu:
 
-*      hfy-default-face-def:             Customization.       (line  91)
+*      hfy-default-face-def:             Customization.       (line  90)
 *      hfy-display-class:                Customization.       (line  28)
-*      hfy-etag-regex:                   Customization.       (line 200)
-*      hfy-etags-bin:                    Customization.       (line 180)
-*      hfy-etags-cmd:                    Customization.       (line 191)
-*      hfy-etags-cmd-alist:              Customization.       (line 174)
-*      hfy-extn:                         Customization.       (line  87)
-*      hfy-find-cmd:                     Customization.       (line  82)
-*      hfy-html-quote-map:               Customization.       (line 219)
+*      hfy-etag-regex:                   Customization.       (line 199)
+*      hfy-etags-bin:                    Customization.       (line 179)
+*      hfy-etags-cmd:                    Customization.       (line 190)
+*      hfy-etags-cmd-alist:              Customization.       (line 173)
+*      hfy-extn:                         Customization.       (line  86)
+*      hfy-find-cmd:                     Customization.       (line  81)
+*      hfy-html-quote-map:               Customization.       (line 218)
 *      hfy-html-quote-regex:             Customization.       (line  17)
-*      hfy-index-file:                   Customization.       (line 209)
-*      hfy-init-kludge-hooks:            Customization.       (line 102)
-*      hfy-instance-file:                Customization.       (line 214)
-*      hfy-istext-command:               Customization.       (line 167)
-*      hfy-link-extn:                    Customization.       (line 160)
+*      hfy-index-file:                   Customization.       (line 208)
+*      hfy-init-kludge-hooks:            Customization.       (line 101)
+*      hfy-instance-file:                Customization.       (line 213)
+*      hfy-istext-command:               Customization.       (line 166)
+*      hfy-link-extn:                    Customization.       (line 159)
 *      hfy-link-style-fun:               Customization.       (line   9)
-*      hfy-optimisations:                Customization.       (line 115)
+*      hfy-optimizations:                Customization.       (line 114)
 *      hfy-page-footer:                  Customization.       (line  23)
-*      hfy-page-header:                  Customization.       (line  60)
-*      hfy-shell-file-name:              Customization.       (line 108)
-*      hfy-split-index:                  Customization.       (line  75)
-*      hfy-src-doc-link-style:           Customization.       (line  70)
-*      hfy-src-doc-link-unstyle:         Customization.       (line 155)
+*      hfy-page-header:                  Customization.       (line  59)
+*      hfy-shell-file-name:              Customization.       (line 107)
+*      hfy-split-index:                  Customization.       (line  74)
+*      hfy-src-doc-link-style:           Customization.       (line  69)
+*      hfy-src-doc-link-unstyle:         Customization.       (line 154)
 *      hfy-tags-cache:                   Variables.           (line   9)
 *      hfy-tags-rmap:                    Variables.           (line  24)
 *      hfy-tags-sortl:                   Variables.           (line  38)
@@ -1888,58 +1887,58 @@ Ref: hfy-p-to-face17827
 Ref: hfy-box-to-border-assoc17996
 Ref: hfy-face-attr-for-class18122
 Ref: hfy-face-at19068
-Ref: hfy-bgcol19319
-Ref: hfy-kludge-cperl-mode19436
-Ref: hfy-href19615
-Ref: hfy-shell20034
-Ref: hfy-load-tags-cache20248
-Ref: hfy-parse-tags-buffer20422
-Ref: hfy-interq20633
-Ref: hfy-text-p20747
-Ref: hfy-opt20883
-Ref: hfy-dirname20992
-Ref: hfy-html-dekludge-buffer21291
-Ref: hfy-copy-and-fontify-file21530
-Ref: hfy-decor21847
-Ref: hfy-slant21981
-Ref: hfy-tags-for-file22208
-Ref: hfy-width22411
-Node: Variables22526
-Ref: hfy-tags-cache22746
-Ref: hfy-tags-rmap23122
-Ref: hfy-tags-sortl23487
-Node: Data Structures23693
-Ref: hfy-style-assoc23943
-Ref: hfy-sheet-assoc25119
-Ref: hfy-facemap-assoc25463
-Node: Examples26757
-Node: Customization29024
-Ref: hfy-link-style-fun29258
-Ref: hfy-html-quote-regex29622
-Ref: hfy-page-footer29836
-Ref: hfy-display-class29975
-Ref: hfy-page-header31071
-Ref: hfy-src-doc-link-style31472
-Ref: hfy-split-index31580
-Ref: hfy-find-cmd31834
-Ref: hfy-extn31935
-Ref: hfy-default-face-def32007
-Ref: hfy-init-kludge-hooks32419
-Ref: hfy-shell-file-name32644
-Ref: hfy-optimisations32923
-Ref: hfy-src-doc-link-unstyle34441
-Ref: hfy-link-extn34551
-Ref: hfy-istext-command34831
-Ref: hfy-etags-cmd-alist35103
-Ref: hfy-etags-bin35287
-Ref: hfy-etags-cmd35618
-Ref: hfy-etag-regex35959
-Ref: hfy-index-file36172
-Ref: hfy-instance-file36296
-Ref: hfy-html-quote-map36431
-Node: Requirements36517
-Node: GNU Free Documentation License37604
-Node: Index62955
+Ref: hfy-bgcol19320
+Ref: hfy-kludge-cperl-mode19437
+Ref: hfy-href19616
+Ref: hfy-shell20035
+Ref: hfy-load-tags-cache20249
+Ref: hfy-parse-tags-buffer20423
+Ref: hfy-interq20634
+Ref: hfy-text-p20748
+Ref: hfy-opt20884
+Ref: hfy-dirname20993
+Ref: hfy-html-dekludge-buffer21292
+Ref: hfy-copy-and-fontify-file21531
+Ref: hfy-decor21848
+Ref: hfy-slant21982
+Ref: hfy-tags-for-file22209
+Ref: hfy-width22412
+Node: Variables22527
+Ref: hfy-tags-cache22747
+Ref: hfy-tags-rmap23123
+Ref: hfy-tags-sortl23488
+Node: Data Structures23694
+Ref: hfy-style-assoc23944
+Ref: hfy-sheet-assoc25120
+Ref: hfy-facemap-assoc25462
+Node: Examples26738
+Node: Customization29005
+Ref: hfy-link-style-fun29239
+Ref: hfy-html-quote-regex29603
+Ref: hfy-page-footer29817
+Ref: hfy-display-class29956
+Ref: hfy-page-header31035
+Ref: hfy-src-doc-link-style31435
+Ref: hfy-split-index31543
+Ref: hfy-find-cmd31797
+Ref: hfy-extn31902
+Ref: hfy-default-face-def31974
+Ref: hfy-init-kludge-hooks32386
+Ref: hfy-shell-file-name32611
+Ref: hfy-optimizations32890
+Ref: hfy-src-doc-link-unstyle34406
+Ref: hfy-link-extn34516
+Ref: hfy-istext-command34796
+Ref: hfy-etags-cmd-alist35068
+Ref: hfy-etags-bin35252
+Ref: hfy-etags-cmd35583
+Ref: hfy-etag-regex35924
+Ref: hfy-index-file36137
+Ref: hfy-instance-file36261
+Ref: hfy-html-quote-map36396
+Node: Requirements36482
+Node: GNU Free Documentation License37569
+Node: Index62924
 
 End Tag Table
 

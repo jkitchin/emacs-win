@@ -1,7 +1,7 @@
-This is todo-mode.info, produced by makeinfo version 5.2 from
+This is todo-mode.info, produced by makeinfo version 6.3 from
 todo-mode.texi.
 
-Copyright © 2013-2015 Free Software Foundation, Inc.
+Copyright © 2013-2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,7 +27,7 @@ Todo Mode User Manual
 This manual describes the version of Todo mode first appearing in Emacs
 24.4.
 
-   Copyright © 2013-2015 Free Software Foundation, Inc.
+   Copyright © 2013-2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -681,11 +681,11 @@ the remaining possible keys and their associated parameters, grouped and
 ordered in accordance with the above list.  The initial prompt, after
 typing ‘i’ to invoke ‘todo-insert-item’, looks like this:
 
-     Press a key (so far `i'):  { i=>default p=>copy } { y=>diary k=>nonmarking } { c=>calendar d=>date n=>dayname } t=>time { h=>here r=>region }
+     Press a key (so far i):  { i=>default p=>copy } { y=>diary k=>nonmarking } { c=>calendar d=>date n=>dayname } t=>time { h=>here r=>region }
 
 If you now type ‘y’, the prompt changes to this:
 
-     Press a key (so far `i y'):  y=>diary:GO! { c=>calendar d=>date n=>dayname } t=>time { h=>here r=>region }
+     Press a key (so far i y):  y=>diary:GO! { c=>calendar d=>date n=>dayname } t=>time { h=>here r=>region }
 
 Notice that the pair ‘k=>nonmarking’ is now absent, since it belongs to
 the same group as the selected pair ‘y=>diary’, hence is no longer
@@ -825,7 +825,7 @@ or retroactively add a comment, by passing either of these parameters.
 not done and done todo items.  If you type ‘e’ when point is on a done
 item, this displays the following prompt in the echo area:
 
-     Press a key (so far `e'): c=>add/edit comment d=>delete comment
+     Press a key (so far e): c=>add/edit comment d=>delete comment
 
 Only by typing ‘c’ or ‘d’ in response to this prompt can you complete
 the invocation.  In contrast, if you type ‘e’ when point is on a
@@ -833,13 +833,13 @@ non-done todo item, this displays the following prompt in the echo area,
 and you can continue or complete the invocation only by typing one of
 the listed keys:
 
-     Press a key (so far `e'): e=>edit h=>header m=>multiline y=>diary k=>nonmarking d=>date t=>time
+     Press a key (so far e): e=>edit h=>header m=>multiline y=>diary k=>nonmarking d=>date t=>time
 
    As noted above, passing the ‘date’ parameter does not complete the
 invocation of ‘todo-edit-item’; rather, it displays the following
 prompt, and typing any of these keys does complete the invocation:
 
-     Press a key (so far `e d'): f=>full c=>calendar a=>today n=>dayname y=>year m=>month d=>daynum
+     Press a key (so far e d): f=>full c=>calendar a=>today n=>dayname y=>year m=>month d=>daynum
 
    In addition to the item-level invocations ‘e y’, to change the
 current item’s diary inclusion status, and ‘e k’, to change the current
@@ -1323,7 +1323,7 @@ Faces::).
 ‘S-<TAB>’
      Put point on the previous button.
 
-   These commands are cyclic, e.g.  when point is on the last button,
+   These commands are cyclic, e.g., when point is on the last button,
 pressing ‘n’ moves it to the first button.
 
    Typing ‘q’ exits Todo Categories mode, killing the buffer and
@@ -1686,7 +1686,7 @@ current file:
 ‘F h’
 ‘h’
      Hide the item headers if visible, or show them if they are hidden.
-     With done items, only the done header (i.e.  the done tag and
+     With done items, only the done header (i.e., the done tag and
      date-time string inserted when the item was marked done) is hidden,
      the original date-time string is not.  With filtered items, the
      category (or category-file) tag is not hidden.
@@ -1829,7 +1829,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2279,7 +2279,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2314,36 +2314,36 @@ Node: Category Editing20531
 Ref: Category Editing-Footnote-122835
 Node: Item Editing23011
 Node: Inserting New Items23511
-Ref: Inserting New Items-Footnote-132545
-Ref: Inserting New Items-Footnote-232672
-Node: Editing Item Headers and Text32843
-Ref: Editing Item Headers and Text-Footnote-140195
-Node: Relocating and Removing Items40468
-Node: Reprioritizing Items41078
-Node: Moving and Deleting Items42217
-Node: Done Items44464
-Ref: todo-item-done45200
-Node: Todo Archives48191
-Node: Creating and Visiting Archives48854
-Node: Todo Archive Mode52498
-Node: Marked Items55260
-Node: Todo Categories Mode57619
-Node: Table of Item Counts59254
-Node: Reordering Categories61563
-Node: Searching for Items64077
-Node: Todo Filtered Items Mode65301
-Node: Filtering Items65841
-Ref: Filtering Items-Footnote-169131
-Node: Todo Filtered Items Mode Commands69356
-Node: Files of Filtered Items71934
-Node: Todo Display Features74557
-Node: Faces74884
-Node: Item Prefix76095
-Node: Other Display Commands and Options78097
-Node: Printing Todo Buffers81022
-Node: Legacy Todo Mode Files81904
-Ref: Legacy Todo Mode Files-Footnote-184534
-Node: GNU Free Documentation License84763
+Ref: Inserting New Items-Footnote-132541
+Ref: Inserting New Items-Footnote-232668
+Node: Editing Item Headers and Text32839
+Ref: Editing Item Headers and Text-Footnote-140185
+Node: Relocating and Removing Items40458
+Node: Reprioritizing Items41068
+Node: Moving and Deleting Items42207
+Node: Done Items44454
+Ref: todo-item-done45190
+Node: Todo Archives48181
+Node: Creating and Visiting Archives48844
+Node: Todo Archive Mode52488
+Node: Marked Items55250
+Node: Todo Categories Mode57609
+Node: Table of Item Counts59244
+Node: Reordering Categories61553
+Node: Searching for Items64067
+Node: Todo Filtered Items Mode65291
+Node: Filtering Items65831
+Ref: Filtering Items-Footnote-169121
+Node: Todo Filtered Items Mode Commands69346
+Node: Files of Filtered Items71924
+Node: Todo Display Features74547
+Node: Faces74874
+Node: Item Prefix76085
+Node: Other Display Commands and Options78087
+Node: Printing Todo Buffers81012
+Node: Legacy Todo Mode Files81894
+Ref: Legacy Todo Mode Files-Footnote-184524
+Node: GNU Free Documentation License84753
 
 End Tag Table
 

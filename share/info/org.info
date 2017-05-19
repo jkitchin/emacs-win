@@ -1,8 +1,8 @@
-This is org.info, produced by makeinfo version 5.2 from org.texi.
+This is org.info, produced by makeinfo version 6.3 from org.texi.
 
 This manual is for Org version 8.2.9.
 
-   Copyright © 2004–2015 Free Software Foundation, Inc.
+   Copyright © 2004–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,7 +27,7 @@ Org Mode Manual
 
 This manual is for Org version 8.2.9.
 
-   Copyright © 2004–2015 Free Software Foundation, Inc.
+   Copyright © 2004–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -618,7 +618,7 @@ install Elisp libraries.  You can install Org with ‘M-x package-install
 RET org’.
 
 Important: you need to do this in a session where no ‘.org’ file has
-been visited, i.e.  where no Org built-in function have been loaded.
+been visited, i.e., where no Org built-in function have been loaded.
 Otherwise autoload Org functions will mess up the installation.
 
    Then, to make sure your Org configuration is taken into account,
@@ -758,7 +758,7 @@ minimal setup is not necessary.  In that case it is sufficient to start
 Emacs as ‘emacs -Q’.  The ‘minimal-org.el’ setup file can have contents
 as shown below.
 
-     ;;; Minimal setup to load latest `org-mode'
+     ;;; Minimal setup to load latest 'org-mode'
 
      ;; activate debugging
      (setq debug-on-error t
@@ -1759,7 +1759,7 @@ unpredictable for you, configure the options ‘org-enable-table-editor’
 and ‘org-table-auto-blank-field’.
 
      Creation and conversion
-............................
+     .......................
 
 ‘C-c |     (org-table-create-or-convert-from-region)’
      Convert the active region to table.  If every line contains at
@@ -1775,7 +1775,7 @@ and ‘org-table-auto-blank-field’.
      ‘|Name|Phone|Age <RET> |- <TAB>’.
 
      Re-aligning and field motion
-.................................
+     ............................
 
 ‘C-c C-c     (org-table-align)’
      Re-align the table and don’t move to another field.
@@ -1795,7 +1795,7 @@ and ‘org-table-auto-blank-field’.
      Move to end of the current table field, or on to the next field.
 
      Column and row editing
-...........................
+     ......................
 
 ‘M-<left>     (org-table-move-column-left)’
 ‘M-<right>     (org-table-move-column-right)’
@@ -1831,7 +1831,7 @@ and ‘org-table-auto-blank-field’.
      sorting will be case-sensitive.
 
      Regions
-............
+     .......
 
 ‘C-c C-x M-w     (org-table-copy-region)’
      Copy a rectangular region from a table to a special clipboard.
@@ -1858,7 +1858,7 @@ and ‘org-table-auto-blank-field’.
      above.
 
      Calculations
-.................
+     ............
 
 ‘C-c +     (org-table-sum)’
      Sum the numbers in the current column, or in the rectangle defined
@@ -1874,7 +1874,7 @@ and ‘org-table-auto-blank-field’.
      by shift-selection and related modes (*note Conflicts::).
 
      Miscellaneous
-..................
+     .............
 
 ‘C-c `     (org-table-edit-field)’
      Edit the current field in a separate window.  This is useful for
@@ -1952,8 +1952,8 @@ Fields that are wider become clipped and end in the string ‘=>’.  Note
 that the full text is still in the buffer but is hidden.  To see the
 full text, hold the mouse over the field—a tool-tip window will show the
 full content.  To edit such a field, use the command ‘C-c `’ (that is
-‘C-c’ followed by the backquote).  This will open a new window with the
-full field.  Edit it and finish with ‘C-c C-c’.
+‘C-c’ followed by the grave accent).  This will open a new window with
+the full field.  Edit it and finish with ‘C-c C-c’.
 
    When visiting a file containing a table with narrowed columns, the
 necessary character hiding has not yet happened, and the table needs to
@@ -2341,7 +2341,7 @@ It is also possible to write a formula in Emacs Lisp.  This can be
 useful for string manipulation and control structures, if Calc’s
 functionality is not enough.
 
-   If a formula starts with a single-quote followed by an opening
+   If a formula starts with an apostrophe followed by an opening
 parenthesis, then it is evaluated as a Lisp form.  The evaluation should
 return either a string or a number.  Just as with ‘calc’ formulas, you
 can specify modes and a printf format after a semicolon.
@@ -4903,7 +4903,7 @@ File: org.info,  Node: Using column view,  Next: Capturing column view,  Prev: D
 -----------------------
 
      Turning column view on and off
-...................................
+     ..............................
 
 ‘C-c C-x C-c     (org-columns)’
      Turn on column view.  If the cursor is before the first headline in
@@ -4925,7 +4925,7 @@ File: org.info,  Node: Using column view,  Next: Capturing column view,  Prev: D
      Exit column view.
 
      Editing values
-...................
+     ..............
 
 ‘<left> <right> <up> <down>’
      Move through the column view from field to field.
@@ -4954,7 +4954,7 @@ File: org.info,  Node: Using column view,  Next: Capturing column view,  Prev: D
      part of the current column view.
 
      Modifying the table structure
-..................................
+     .............................
 
 ‘<     (org-columns-narrow)’
 ‘>     (org-columns-widen)’
@@ -5245,7 +5245,7 @@ in bold.
      feb 15        ⇒ 2007-02-15
      sep 12 9      ⇒ 2009-09-12
      12:45         ⇒ 2006-06-13 12:45
-     22 sept 0:34  ⇒ 2006-09-22 0:34
+     22 sept 0:34  ⇒ 2006-09-22 00:34
      w4            ⇒ ISO week for of the current year 2006
      2012 w4 fri   ⇒ Friday of ISO week 4 in 2012
      2012-w04-5    ⇒ Same as above
@@ -5930,7 +5930,7 @@ arguments with ‘org-clock-in’ and two ‘C-u C-u’ with
 
    ---------- Footnotes ----------
 
-   (1) On computers using Mac OS X, idleness is based on actual user
+   (1) On computers using macOS, idleness is based on actual user
 idleness, not just Emacs’ idle time.  For X11, you can install a utility
 program ‘x11idle.c’, available in the ‘contrib/scripts’ directory of the
 Org git distribution, or install the ‘xprintidle’ package and set it to
@@ -7278,8 +7278,8 @@ written:
      assumed to be date/time specifications in the standard Org way, and
      the comparison will be done accordingly.  Special values that will
      be recognized are ‘"<now>"’ for now (including time), and
-     ‘"<today>"’, and ‘"<tomorrow>"’ for these days at 0:00 hours, i.e.,
-     without a time specification.  Also strings like ‘"<+5d>"’ or
+     ‘"<today>"’, and ‘"<tomorrow>"’ for these days at 00:00 hours,
+     i.e., without a time specification.  Also strings like ‘"<+5d>"’ or
      ‘"<-2m>"’ with units ‘d’, ‘w’, ‘m’, and ‘y’ for day, week, month,
      and year, respectively, can be used.
    − If the comparison value is enclosed in curly braces, a regexp match
@@ -7730,7 +7730,7 @@ removing the risk that your agenda and note files may diverge.
 the other commands, the cursor needs to be in the desired line.
 
      Motion
-...........
+     ......
 
 ‘n     (org-agenda-next-line)’
      Next line (same as <down> and ‘C-n’).
@@ -7738,7 +7738,7 @@ the other commands, the cursor needs to be in the desired line.
      Previous line (same as <up> and ‘C-p’).
 
      View/Go to Org file
-........................
+     ...................
 
 ‘<SPC>  or  mouse-3     (org-agenda-show-and-scroll-up)’
      Display the original location of the item in another window.  With
@@ -7769,7 +7769,7 @@ the other commands, the cursor needs to be in the desired line.
      is only one link, it will be followed without a selection prompt.
 
      Change display
-...................
+     ..............
 
 ‘A’
      Interactively select another agenda view and append it to the
@@ -7881,7 +7881,7 @@ the other commands, the cursor needs to be in the desired line.
      restricted to a file or subtree (*note Agenda files::).
 
      Secondary filtering and query editing
-..........................................
+     .....................................
 
      For a detailed description of these commands, see *note
      Filtering/limiting agenda items::.
@@ -7916,7 +7916,7 @@ the other commands, the cursor needs to be in the desired line.
      Remove all filters in the current agenda view.
 
      Remote editing
-...................
+     ..............
 
 ‘0--9’
      Digit argument.
@@ -8013,7 +8013,7 @@ the other commands, the cursor needs to be in the desired line.
      make this the default behavior of ‘org-capture’.
 
      Dragging agenda lines forward/backward
-...........................................
+     ......................................
 
 ‘M-<up>     (org-agenda-drag-line-backward)’
      Drag the line at point backward one line(2).  With a numeric prefix
@@ -8024,7 +8024,7 @@ the other commands, the cursor needs to be in the desired line.
      argument, drag forward by that many lines.
 
      Bulk remote editing selected entries
-.........................................
+     ....................................
 
 ‘m     (org-agenda-bulk-mark)’
      Mark the entry at point for bulk action.  With numeric prefix
@@ -8097,7 +8097,7 @@ the other commands, the cursor needs to be in the desired line.
                          (org-set-property "CATEGORY" "web"))))))
 
      Calendar commands
-......................
+     .................
 
 ‘c     (org-agenda-goto-calendar)’
      Open the Emacs calendar and move to the date at the agenda cursor.
@@ -8141,7 +8141,7 @@ the other commands, the cursor needs to be in the desired line.
      the agenda menu.
 
      Exporting to a file
-........................
+     ...................
 
 ‘C-x C-w     (org-agenda-write)’
      Write the agenda view to a file.  Depending on the extension of the
@@ -8155,7 +8155,7 @@ the other commands, the cursor needs to be in the desired line.
      for ‘htmlize’ to be used during export.
 
      Quit and Exit
-..................
+     .............
 
 ‘q     (org-agenda-quit)’
      Quit agenda, remove the agenda buffer.
@@ -9237,14 +9237,14 @@ more details see the documentation of CDLaTeX mode):
      move out of the braces, and if the braces surround only a single
      character or macro, they are removed again (depending on the
      variable ‘cdlatex-simplify-sub-super-scripts’).
-   • Pressing the backquote ‘`’ followed by a character inserts math
+   • Pressing the grave accent ‘`’ followed by a character inserts math
      macros, also outside LaTeX fragments.  If you wait more than 1.5
-     seconds after the backquote, a help window will pop up.
-   • Pressing the single-quote ‘'’ followed by another character
-     modifies the symbol before point with an accent or a font.  If you
-     wait more than 1.5 seconds after the single-quote, a help window
-     will pop up.  Character modification will work only inside LaTeX
-     fragments; outside the quote is normal.
+     seconds after the grave accent, a help window will pop up.
+   • Pressing the apostrophe ‘'’ followed by another character modifies
+     the symbol before point with an accent or a font.  If you wait more
+     than 1.5 seconds after the apostrophe, a help window will pop up.
+     Character modification will work only inside LaTeX fragments;
+     outside the quote is normal.
 
    ---------- Footnotes ----------
 
@@ -9369,7 +9369,7 @@ the export dispatcher with the following key combinations:
 
 ‘C-v’
      Toggle visible-only export.  Only export the text that is currently
-     visible, i.e.  not hidden by outline visibility in the buffer.
+     visible, i.e., not hidden by outline visibility in the buffer.
 
    With the exception of asynchronous export, a successful export
 process writes its output to the kill-ring.  You can configure this
@@ -10860,7 +10860,7 @@ creates Internet-style links for all other links.
 outline heading is replaced with a cross-reference and section number of
 the heading.
 
-   A ‘\ref{label}’-style reference to an image, table etc.  is replaced
+   A ‘\ref{label}’-style reference to an image, table etc. is replaced
 with a cross-reference and sequence number of the labeled entity.  *Note
 Labels and captions in ODT export::.
 
@@ -11243,7 +11243,7 @@ by the variable ‘org-odt-styles-dir’.  The two files are:
 
      This file contributes to the ‘content.xml’ file of the final ‘ODT’
      document.  The contents of the Org outline are inserted between the
-     ‘<office:text>’…‘</office:text>’ elements of this file.
+     ‘<office:text>’...‘</office:text>’ elements of this file.
 
      Apart from serving as a template file for the final ‘content.xml’,
      the file serves the following purposes:
@@ -11251,7 +11251,7 @@ by the variable ‘org-odt-styles-dir’.  The two files are:
        1. It contains automatic styles for formatting of tables which
           are referenced by the exporter.
 
-       2. It contains ‘<text:sequence-decl>’…‘</text:sequence-decl>’
+       2. It contains ‘<text:sequence-decl>’...‘</text:sequence-decl>’
           elements that control how various entities—tables, images,
           equations, etc.—are numbered.
 
@@ -11343,7 +11343,7 @@ examples.
   3. Embedding a block of OpenDocument XML
 
      You can add a large block of OpenDocument XML using the
-     ‘#+BEGIN_ODT’…‘#+END_ODT’ construct.
+     ‘#+BEGIN_ODT’...‘#+END_ODT’ construct.
 
      For example, to create a one-off paragraph that uses bold text, do
      the following:
@@ -11582,9 +11582,9 @@ File: org.info,  Node: Document preamble,  Next: Headings and sectioning structu
 When processing a document, ‘texinfo’ back-end generates a minimal file
 header along with a title page, a copyright page, and a menu.  You
 control the latter through the structure of the document (*note Headings
-and sectioning structure::).  Various keywords allow to tweak the other
-parts.  It is also possible to give directions to install the document
-in the ‘Top’ node.
+and sectioning structure::).  Various keywords allow you to tweak the
+other parts.  It is also possible to give directions to install the
+document in the ‘Top’ node.
 
 File header
 ...........
@@ -11637,7 +11637,7 @@ not appear in the structure of the document.
 
        This is a short example of a complete Texinfo file, version 1.0.
 
-       Copyright \copy 2015 Free Software Foundation, Inc.
+       Copyright \copy 2017 Free Software Foundation, Inc.
 
 The Top node
 ............
@@ -12014,9 +12014,9 @@ spaces in the Org buffer and get them translated into LaTeX without
 using the ‘\nbsp’ macro (where ‘_’ stands for the non-breaking space):
 
      (defun my-latex-filter-nobreaks (text backend info)
-       "Ensure \" \" are properly handled in LaTeX export."
+       "Ensure \"_\" are properly handled in LaTeX export."
        (when (org-export-derived-backend-p backend 'latex)
-             (replace-regexp-in-string " " "~" text)))
+             (replace-regexp-in-string "_" "~" text)))
 
      (add-to-list 'org-export-filter-plain-text-functions
                   'my-latex-filter-nobreaks)
@@ -12033,7 +12033,7 @@ Extending an existing back-end
 
 This is obviously the most powerful customization, since the changes
 happen at the parser level.  Indeed, some export back-ends are built as
-extensions of other ones (e.g.  Markdown back-end an extension of HTML
+extensions of other ones (e.g., Markdown back-end an extension of HTML
 back-end).
 
    Extending a back-end means that if an element type is not transcoded
@@ -12571,7 +12571,7 @@ e.g.:
    Org mode provides a number of features for working with live source
 code, including editing of code blocks in their native major-mode,
 evaluation of code blocks, converting code blocks into source files
-(known as "tangling" in literate programming), and exporting code blocks
+(known as “tangling” in literate programming), and exporting code blocks
 and their results in several formats.  This functionality was
 contributed by Eric Schulte and Dan Davison, and was originally named
 Org-babel.
@@ -13251,7 +13251,7 @@ results of evaluating another code block.
 
    Here are examples of passing values by reference:
 
-"table"
+“table”
      an Org mode table named with either a ‘#+NAME:’ line
 
           #+NAME: example-table
@@ -13268,7 +13268,7 @@ results of evaluating another code block.
           #+RESULTS: table-length
           : 4
 
-"list"
+“list”
      a simple list named with a ‘#+NAME:’ line (note that nesting is not
      carried through to the source code block)
 
@@ -13285,7 +13285,7 @@ results of evaluating another code block.
           #+RESULTS:
           | simple | list |
 
-"code block without arguments"
+“code block without arguments”
      a code block name (from the example above), as assigned by
      ‘#+NAME:’, optionally followed by parentheses
 
@@ -13296,7 +13296,7 @@ results of evaluating another code block.
           #+RESULTS:
           : 8
 
-"code block with arguments"
+“code block with arguments”
      a code block name, as assigned by ‘#+NAME:’, followed by
      parentheses and optional arguments passed within the parentheses
      following the code block name using standard function call syntax
@@ -13317,7 +13317,7 @@ results of evaluating another code block.
           #+RESULTS: squared
           : 4
 
-"literal example"
+“literal example”
      a literal example block named with a ‘#+NAME:’ line
 
           #+NAME: literal-example
@@ -14285,7 +14285,7 @@ external process.  For example, compare the following two blocks:
      : hello
      : bye
 
-   In non-session mode, the ‘2’ is not printed and does not appear.
+   In non-session mode, the “2” is not printed and does not appear.
 
      #+BEGIN_SRC python :results output :session
       print "hello"
@@ -14299,7 +14299,7 @@ external process.  For example, compare the following two blocks:
      : bye
 
    But in ‘:session’ mode, the interactive interpreter receives input
-‘2’ and prints out its value, ‘2’.  (Indeed, the other print statements
+“2” and prints out its value, “2”.  (Indeed, the other print statements
 are unnecessary here).
 
 
@@ -14887,6 +14887,7 @@ cleaner:
      *** 3rd level                    |        * 3rd level
      more text                        |          more text
      * Another top level headline     |    * Another top level headline
+
 
    If you are using at least Emacs 23.2(1) and version 6.29 of Org, this
 kind of view can be achieved dynamically at display time using
@@ -15806,7 +15807,7 @@ The corresponding block writer function could look like this:
      (defun org-dblock-write:block-update-time (params)
        (let ((fmt (or (plist-get params :format) "%d. %m. %Y")))
          (insert "Last block update at: "
-                 (format-time-string fmt (current-time)))))
+                 (format-time-string fmt))))
 
    If you want to make sure that all dynamic blocks are always
 up-to-date, you could add the function ‘org-update-all-dblocks’ to a
@@ -16674,7 +16675,7 @@ Appendix D GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -17124,7 +17125,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -17325,7 +17326,7 @@ Concept index
 * agenda, pipe:                          Extracting agenda information.
                                                               (line   6)
 * agenda, with block views:              Block agenda.        (line   6)
-* ‘align’, STARTUP keyword:              In-buffer settings.  (line  84)
+* align, STARTUP keyword:                In-buffer settings.  (line  84)
 * alignment in tables:                   Column width and alignment.
                                                               (line   6)
 * anniversaries, from BBDB:              Weekly/daily agenda. (line  73)
@@ -17337,7 +17338,7 @@ Concept index
 * appointment:                           Timestamps.          (line  14)
 * appointment <1>:                       Weekly/daily agenda. (line 107)
 * appointment reminders:                 Weekly/daily agenda. (line 107)
-* ‘appt.el’:                             Weekly/daily agenda. (line 107)
+* appt.el:                               Weekly/daily agenda. (line 107)
 * archive locations:                     Moving subtrees.     (line  19)
 * archiving:                             Archiving.           (line   6)
 * ASCII export:                          ASCII/Latin-1/UTF-8 export.
@@ -17363,8 +17364,8 @@ Concept index
 * bug reports:                           Feedback.            (line   6)
 * C-c C-c, overview:                     The very busy C-c C-c key.
                                                               (line   6)
-* ‘calc’ package:                        The spreadsheet.     (line   6)
-* ‘calc.el’:                             Cooperation.         (line   6)
+* calc package:                          The spreadsheet.     (line   6)
+* calc.el:                               Cooperation.         (line   6)
 * calculations, in tables:               Built-in table editor.
                                                               (line 140)
 * calculations, in tables <1>:           The spreadsheet.     (line   6)
@@ -17382,7 +17383,7 @@ Concept index
 * category, require for tags/property match: Matching tags and properties.
                                                               (line  66)
 * CDLaTeX:                               CDLaTeX mode.        (line   6)
-* ‘cdlatex.el’:                          Cooperation.         (line  26)
+* cdlatex.el:                            Cooperation.         (line  26)
 * checkbox blocking:                     Checkboxes.          (line  46)
 * checkbox statistics:                   Checkboxes.          (line  30)
 * checkboxes:                            Checkboxes.          (line   6)
@@ -17434,11 +17435,11 @@ Concept index
 * completion, of TODO keywords <1>:      Completion.          (line   6)
 * constants, in calculations:            References.          (line 102)
 * constants, in calculations <1>:        References.          (line 123)
-* ‘constants.el’:                        Cooperation.         (line  16)
-* ‘constcgs’, STARTUP keyword:           In-buffer settings.  (line 143)
-* ‘constSI’, STARTUP keyword:            In-buffer settings.  (line 143)
-* ‘content’, STARTUP keyword:            Initial visibility.  (line   6)
-* ‘content’, STARTUP keyword <1>:        In-buffer settings.  (line  70)
+* constants.el:                          Cooperation.         (line  16)
+* constcgs, STARTUP keyword:             In-buffer settings.  (line 143)
+* constSI, STARTUP keyword:              In-buffer settings.  (line 143)
+* content, STARTUP keyword:              Initial visibility.  (line   6)
+* content, STARTUP keyword <1>:          In-buffer settings.  (line  70)
 * contents, global visibility state:     Global and local cycling.
                                                               (line  22)
 * context-sensitive commands, hooks:     Context-sensitive commands.
@@ -17454,12 +17455,12 @@ Concept index
 * Countdown timer:                       Countdown timer.     (line   6)
 * creating timestamps:                   Creating timestamps. (line   6)
 * CSS, for HTML export:                  CSS support.         (line   6)
-* ‘CUA.el’:                              Conflicts.           (line  19)
+* CUA.el:                                Conflicts.           (line  19)
 * custom agenda views:                   Custom agenda views. (line   6)
 * custom date/time format:               Custom time format.  (line   6)
 * custom search strings:                 Custom searches.     (line   6)
 * customization:                         Customization.       (line   6)
-* ‘customtime’, STARTUP keyword:         In-buffer settings.  (line 139)
+* customtime, STARTUP keyword:           In-buffer settings.  (line 139)
 * cutting, of subtrees:                  Structure editing.   (line   6)
 * cycling, in plain lists:               Plain lists.         (line  67)
 * cycling, of agenda files:              Agenda files.        (line  21)
@@ -17510,7 +17511,7 @@ Concept index
                                                               (line  44)
 * dynamic blocks:                        Dynamic blocks.      (line   6)
 * dynamic indentation:                   Clean view.          (line   6)
-* ‘ecomplete.el’:                        Conflicts.           (line  39)
+* ecomplete.el:                          Conflicts.           (line  39)
 * editing tables:                        Tables.              (line   6)
 * editing, of table formulas:            Editing and debugging formulas.
                                                               (line   6)
@@ -17524,11 +17525,11 @@ Concept index
 * emacsserver:                           Protocols.           (line   6)
 * embedding images in ODT:               Images in ODT export.
                                                               (line   6)
-* ‘entitiesplain’, STARTUP keyword:      In-buffer settings.  (line 166)
-* ‘entitiespretty’, STARTUP keyword:     Special symbols.     (line  31)
-* ‘entitiespretty’, STARTUP keyword <1>: In-buffer settings.  (line 166)
+* entitiesplain, STARTUP keyword:        In-buffer settings.  (line 166)
+* entitiespretty, STARTUP keyword:       Special symbols.     (line  31)
+* entitiespretty, STARTUP keyword <1>:   In-buffer settings.  (line 166)
 * evaluate time range:                   Creating timestamps. (line  52)
-* ‘even’, STARTUP keyword:               In-buffer settings.  (line 129)
+* even, STARTUP keyword:                 In-buffer settings.  (line 129)
 * export back-ends, built-in:            Other built-in back-ends.
                                                               (line   6)
 * Export, back-ends:                     Export back-ends.    (line   6)
@@ -17563,24 +17564,24 @@ Concept index
 * files for agenda:                      Agenda files.        (line   6)
 * files, adding to agenda list:          Agenda files.        (line  15)
 * files, selecting for publishing:       Selecting files.     (line   6)
-* ‘filladapt.el’:                        Conflicts.           (line  51)
+* filladapt.el:                          Conflicts.           (line  51)
 * filtering, by tag, category, top headline and effort, in agenda: Filtering/limiting agenda items.
                                                               (line  17)
 * Filters, exporting:                    Advanced configuration.
                                                               (line  32)
-* ‘fnadjust’, STARTUP keyword:           In-buffer settings.  (line 149)
-* ‘fnauto’, STARTUP keyword:             In-buffer settings.  (line 149)
-* ‘fnconfirm’, STARTUP keyword:          In-buffer settings.  (line 149)
-* ‘fninline’, STARTUP keyword:           In-buffer settings.  (line 149)
-* ‘fnlocal’, STARTUP keyword:            In-buffer settings.  (line 149)
-* ‘fnplain’, STARTUP keyword:            In-buffer settings.  (line 149)
-* ‘fnprompt’, STARTUP keyword:           In-buffer settings.  (line 149)
+* fnadjust, STARTUP keyword:             In-buffer settings.  (line 149)
+* fnauto, STARTUP keyword:               In-buffer settings.  (line 149)
+* fnconfirm, STARTUP keyword:            In-buffer settings.  (line 149)
+* fninline, STARTUP keyword:             In-buffer settings.  (line 149)
+* fnlocal, STARTUP keyword:              In-buffer settings.  (line 149)
+* fnplain, STARTUP keyword:              In-buffer settings.  (line 149)
+* fnprompt, STARTUP keyword:             In-buffer settings.  (line 149)
 * folded, subtree visibility state:      Global and local cycling.
                                                               (line  10)
 * folding, sparse trees:                 Sparse trees.        (line   6)
 * following links:                       Handling links.      (line  98)
-* ‘footnote.el’:                         Footnote markup.     (line   6)
-* ‘footnote.el’ <1>:                     Cooperation.         (line  66)
+* footnote.el:                           Footnote markup.     (line   6)
+* footnote.el <1>:                       Cooperation.         (line  66)
 * footnotes:                             Footnotes.           (line   6)
 * footnotes, markup rules:               Footnote markup.     (line   6)
 * format specifier:                      Formula syntax for Calc.
@@ -17625,9 +17626,9 @@ Concept index
 * headline, promotion and demotion:      Structure editing.   (line   6)
 * headlines:                             Headlines.           (line   6)
 * hide text:                             Visibility cycling.  (line   6)
-* ‘hideblocks’, STARTUP keyword:         Blocks.              (line  13)
-* ‘hideblocks’, STARTUP keyword <1>:     In-buffer settings.  (line 161)
-* ‘hidestars’, STARTUP keyword:          In-buffer settings.  (line 129)
+* hideblocks, STARTUP keyword:           Blocks.              (line  13)
+* hideblocks, STARTUP keyword <1>:       In-buffer settings.  (line 161)
+* hidestars, STARTUP keyword:            In-buffer settings.  (line 129)
 * hiding leading stars:                  Clean view.          (line   6)
 * history:                               History and Acknowledgments.
                                                               (line   6)
@@ -17660,11 +17661,11 @@ Concept index
 * images, inline in LaTeX:               LaTeX specific attributes.
                                                               (line  93)
 * images, inlining:                      Handling links.      (line 129)
-* ‘imenu.el’:                            Cooperation.         (line  29)
+* imenu.el:                              Cooperation.         (line  29)
 * in-buffer settings:                    In-buffer settings.  (line   6)
 * inactive timestamp:                    Timestamps.          (line  51)
 * include files, markup rules:           Include files.       (line   6)
-* ‘indent’, STARTUP keyword:             In-buffer settings.  (line  76)
+* indent, STARTUP keyword:               In-buffer settings.  (line  76)
 * index entries, for publishing:         Index entries.       (line   6)
 * index, in a publishing project:        Generating an index. (line   6)
 * Info links:                            External links.      (line   6)
@@ -17672,8 +17673,8 @@ Concept index
                                                               (line   6)
 * inheritance, of tags:                  Tag inheritance.     (line   6)
 * inlined images, markup rules:          Images and tables.   (line  22)
-* ‘inlineimages’, STARTUP keyword:       Handling links.      (line 129)
-* ‘inlineimages’, STARTUP keyword <1>:   In-buffer settings.  (line  90)
+* inlineimages, STARTUP keyword:         Handling links.      (line 129)
+* inlineimages, STARTUP keyword <1>:     In-buffer settings.  (line  90)
 * inlining images:                       Handling links.      (line 129)
 * inlining images in HTML:               Images in HTML export.
                                                               (line   6)
@@ -17708,7 +17709,7 @@ Concept index
 * LaTeX sectioning structure:            Header and sectioning.
                                                               (line   6)
 * LaTeX, and Orgtbl mode:                A LaTeX example.     (line   6)
-* ‘latexpreview’, STARTUP keyword:       In-buffer settings.  (line  97)
+* latexpreview, STARTUP keyword:         In-buffer settings.  (line  97)
 * Latin-1 export:                        ASCII/Latin-1/UTF-8 export.
                                                               (line   6)
 * level, require for tags/property match: Matching tags and properties.
@@ -17741,20 +17742,20 @@ Concept index
 * lists, ordered:                        Plain lists.         (line   6)
 * lists, plain:                          Plain lists.         (line   6)
 * literal examples, markup rules:        Literal examples.    (line   6)
-* ‘logdone’, STARTUP keyword:            In-buffer settings.  (line 103)
-* ‘logdrawer’, STARTUP keyword:          In-buffer settings.  (line 103)
+* logdone, STARTUP keyword:              In-buffer settings.  (line 103)
+* logdrawer, STARTUP keyword:            In-buffer settings.  (line 103)
 * logging, of progress:                  Progress logging.    (line   6)
-* ‘lognoteclock-out’, STARTUP keyword:   In-buffer settings.  (line 103)
-* ‘lognotedone’, STARTUP keyword:        In-buffer settings.  (line 103)
-* ‘lognoteredeadline’, STARTUP keyword:  In-buffer settings.  (line 103)
-* ‘lognoterefile’, STARTUP keyword:      In-buffer settings.  (line 103)
-* ‘lognoterepeat’, STARTUP keyword:      In-buffer settings.  (line 103)
-* ‘lognotereschedule’, STARTUP keyword:  In-buffer settings.  (line 103)
-* ‘logredeadline’, STARTUP keyword:      In-buffer settings.  (line 103)
-* ‘logrefile’, STARTUP keyword:          In-buffer settings.  (line 103)
-* ‘logrepeat’, STARTUP keyword:          In-buffer settings.  (line 103)
-* ‘logreschedule’, STARTUP keyword:      In-buffer settings.  (line 103)
-* ‘logstatesreversed’, STARTUP keyword:  In-buffer settings.  (line 103)
+* lognoteclock-out, STARTUP keyword:     In-buffer settings.  (line 103)
+* lognotedone, STARTUP keyword:          In-buffer settings.  (line 103)
+* lognoteredeadline, STARTUP keyword:    In-buffer settings.  (line 103)
+* lognoterefile, STARTUP keyword:        In-buffer settings.  (line 103)
+* lognoterepeat, STARTUP keyword:        In-buffer settings.  (line 103)
+* lognotereschedule, STARTUP keyword:    In-buffer settings.  (line 103)
+* logredeadline, STARTUP keyword:        In-buffer settings.  (line 103)
+* logrefile, STARTUP keyword:            In-buffer settings.  (line 103)
+* logrepeat, STARTUP keyword:            In-buffer settings.  (line 103)
+* logreschedule, STARTUP keyword:        In-buffer settings.  (line 103)
+* logstatesreversed, STARTUP keyword:    In-buffer settings.  (line 103)
 * lookup functions in tables:            Lookup functions.    (line   6)
 * Ludlam, Eric M.:                       Cooperation.         (line  39)
 * macro replacement, during export:      Macro replacement.   (line   6)
@@ -17780,7 +17781,7 @@ Concept index
 * minor mode for structure editing:      Orgstruct mode.      (line   6)
 * minor mode for tables:                 Orgtbl mode.         (line   6)
 * MobileOrg:                             MobileOrg.           (line   6)
-* mode, for ‘calc’:                      Formula syntax for Calc.
+* mode, for calc:                        Formula syntax for Calc.
                                                               (line  14)
 * motion commands in agenda:             Agenda commands.     (line  19)
 * motion, between headlines:             Motion.              (line   6)
@@ -17790,26 +17791,26 @@ Concept index
 * names as TODO keywords:                TODO types.          (line   6)
 * narrow columns in tables:              Column width and alignment.
                                                               (line   6)
-* ‘noalign’, STARTUP keyword:            In-buffer settings.  (line  84)
-* ‘nofnadjust’, STARTUP keyword:         In-buffer settings.  (line 149)
-* ‘nofninline’, STARTUP keyword:         In-buffer settings.  (line 149)
-* ‘nohideblocks’, STARTUP keyword:       Blocks.              (line  13)
-* ‘nohideblocks’, STARTUP keyword <1>:   In-buffer settings.  (line 161)
-* ‘noindent’, STARTUP keyword:           In-buffer settings.  (line  76)
-* ‘noinlineimages’, STARTUP keyword:     Handling links.      (line 129)
-* ‘noinlineimages’, STARTUP keyword <1>: In-buffer settings.  (line  90)
-* ‘nolatexpreview’, STARTUP keyword:     In-buffer settings.  (line  97)
-* ‘nologdone’, STARTUP keyword:          In-buffer settings.  (line 103)
-* ‘nologdrawer’, STARTUP keyword:        In-buffer settings.  (line 103)
-* ‘nolognoteclock-out’, STARTUP keyword: In-buffer settings.  (line 103)
-* ‘nologredeadline’, STARTUP keyword:    In-buffer settings.  (line 103)
-* ‘nologrefile’, STARTUP keyword:        In-buffer settings.  (line 103)
-* ‘nologrepeat’, STARTUP keyword:        In-buffer settings.  (line 103)
-* ‘nologreschedule’, STARTUP keyword:    In-buffer settings.  (line 103)
-* ‘nologstatesreversed’, STARTUP keyword: In-buffer settings. (line 103)
+* noalign, STARTUP keyword:              In-buffer settings.  (line  84)
+* nofnadjust, STARTUP keyword:           In-buffer settings.  (line 149)
+* nofninline, STARTUP keyword:           In-buffer settings.  (line 149)
+* nohideblocks, STARTUP keyword:         Blocks.              (line  13)
+* nohideblocks, STARTUP keyword <1>:     In-buffer settings.  (line 161)
+* noindent, STARTUP keyword:             In-buffer settings.  (line  76)
+* noinlineimages, STARTUP keyword:       Handling links.      (line 129)
+* noinlineimages, STARTUP keyword <1>:   In-buffer settings.  (line  90)
+* nolatexpreview, STARTUP keyword:       In-buffer settings.  (line  97)
+* nologdone, STARTUP keyword:            In-buffer settings.  (line 103)
+* nologdrawer, STARTUP keyword:          In-buffer settings.  (line 103)
+* nolognoteclock-out, STARTUP keyword:   In-buffer settings.  (line 103)
+* nologredeadline, STARTUP keyword:      In-buffer settings.  (line 103)
+* nologrefile, STARTUP keyword:          In-buffer settings.  (line 103)
+* nologrepeat, STARTUP keyword:          In-buffer settings.  (line 103)
+* nologreschedule, STARTUP keyword:      In-buffer settings.  (line 103)
+* nologstatesreversed, STARTUP keyword:  In-buffer settings.  (line 103)
 * occur, command:                        Sparse trees.        (line   6)
 * occur-tree:                            Storing searches.    (line   9)
-* ‘odd’, STARTUP keyword:                In-buffer settings.  (line 129)
+* odd, STARTUP keyword:                  In-buffer settings.  (line 129)
 * odd-levels-only outlines:              Clean view.          (line   6)
 * ODT:                                   OpenDocument Text export.
                                                               (line   6)
@@ -17825,8 +17826,8 @@ Concept index
 * Org syntax:                            Org syntax.          (line   6)
 * org-agenda, command:                   Weekly/daily agenda. (line   9)
 * org-capture-last-stored:               Using capture.       (line  48)
-* ‘org-crypt.el’:                        org-crypt.           (line   6)
-* ‘org-decrypt-entry’:                   org-crypt.           (line   6)
+* org-crypt.el:                          org-crypt.           (line   6)
+* org-decrypt-entry:                     org-crypt.           (line   6)
 * org-hide-block-startup:                In-buffer settings.  (line 160)
 * org-insert-drawer:                     Drawers.             (line   6)
 * org-insert-drawer <1>:                 Property syntax.     (line  85)
@@ -17843,8 +17844,8 @@ Concept index
 * outlines:                              Outlines.            (line   6)
 * overview, global visibility state:     Global and local cycling.
                                                               (line  22)
-* ‘overview’, STARTUP keyword:           Initial visibility.  (line   6)
-* ‘overview’, STARTUP keyword <1>:       In-buffer settings.  (line  70)
+* overview, STARTUP keyword:             Initial visibility.  (line   6)
+* overview, STARTUP keyword <1>:         In-buffer settings.  (line  70)
 * packages, interaction with other:      Interaction.         (line   6)
 * paragraphs, markup rules:              Paragraphs.          (line   6)
 * pasting, of subtrees:                  Structure editing.   (line   6)
@@ -17982,7 +17983,7 @@ Concept index
 * regular expressions, with tags search: Matching tags and properties.
                                                               (line  56)
 * relative timer:                        Relative timer.      (line   6)
-* ‘remember.el’:                         Cooperation.         (line  37)
+* remember.el:                           Cooperation.         (line  37)
 * reminders:                             Weekly/daily agenda. (line 107)
 * remote editing, bulk, from agenda:     Agenda commands.     (line 313)
 * remote editing, from agenda:           Agenda commands.     (line 205)
@@ -18018,7 +18019,7 @@ Concept index
 * setting tags:                          Setting tags.        (line   6)
 * SHELL links:                           External links.      (line   6)
 * shift-selection-mode:                  Plain lists.         (line  90)
-* ‘shift-selection-mode’:                Conflicts.           (line   6)
+* shift-selection-mode <1>:              Conflicts.           (line   6)
 * show all, command:                     Global and local cycling.
                                                               (line  35)
 * show all, global visibility state:     Global and local cycling.
@@ -18028,11 +18029,11 @@ Concept index
 * show children, command:                Global and local cycling.
                                                               (line  48)
 * show hidden text:                      Visibility cycling.  (line   6)
-* ‘showall’, STARTUP keyword:            Initial visibility.  (line   6)
-* ‘showall’, STARTUP keyword <1>:        In-buffer settings.  (line  70)
-* ‘showeverything’, STARTUP keyword:     Initial visibility.  (line   6)
-* ‘showeverything’, STARTUP keyword <1>: In-buffer settings.  (line  70)
-* ‘showstars’, STARTUP keyword:          In-buffer settings.  (line 129)
+* showall, STARTUP keyword:              Initial visibility.  (line   6)
+* showall, STARTUP keyword <1>:          In-buffer settings.  (line  70)
+* showeverything, STARTUP keyword:       Initial visibility.  (line   6)
+* showeverything, STARTUP keyword <1>:   In-buffer settings.  (line  70)
+* showstars, STARTUP keyword:            In-buffer settings.  (line 129)
 * sitemap, of published pages:           Sitemap.             (line   6)
 * sorting, of agenda items:              Sorting agenda items.
                                                               (line   6)
@@ -18076,7 +18077,7 @@ Concept index
 * special keywords:                      In-buffer settings.  (line   6)
 * special symbols:                       Special symbols.     (line   6)
 * speed keys:                            Speed keys.          (line   6)
-* ‘speedbar.el’:                         Cooperation.         (line  39)
+* speedbar.el:                           Cooperation.         (line  39)
 * spreadsheet capabilities:              The spreadsheet.     (line   6)
 * square brackets, around links:         External links.      (line  70)
 * statistics, for checkboxes:            Checkboxes.          (line  30)
@@ -18112,11 +18113,11 @@ Concept index
                                                               (line   6)
 * table editor, built-in:                Built-in table editor.
                                                               (line   6)
-* table editor, ‘table.el’:              Cooperation.         (line  45)
+* table editor, table.el:                Cooperation.         (line  45)
 * table lookup functions:                Lookup functions.    (line   6)
 * table of contents, markup rules:       Table of contents.   (line   6)
-* ‘table.el’:                            Cooperation.         (line  43)
-* ‘table.el’ <1>:                        Cooperation.         (line  45)
+* table.el:                              Cooperation.         (line  43)
+* table.el <1>:                          Cooperation.         (line  45)
 * tables:                                Tables.              (line   6)
 * tables, in HTML:                       Tables in HTML export.
                                                               (line   6)
@@ -18212,7 +18213,7 @@ Concept index
                                                               (line   6)
 * undoing remote-editing events:         Agenda commands.     (line 206)
 * unison:                                Uploading files.     (line   6)
-* ‘unoconv’:                             Extending ODT export.
+* unoconv:                               Extending ODT export.
                                                               (line  11)
 * updating, table:                       Updating the table.  (line   6)
 * URL links:                             External links.      (line   6)
@@ -18224,7 +18225,7 @@ Concept index
                                                               (line  11)
 * verbatim text, markup rules:           Emphasis and monospace.
                                                               (line   6)
-* ‘viper.el’:                            Conflicts.           (line  99)
+* viper.el:                              Conflicts.           (line  99)
 * visibility cycling:                    Visibility cycling.  (line   6)
 * visibility cycling, drawers:           Drawers.             (line   6)
 * visibility, initialize:                Initial visibility.  (line   6)
@@ -18233,10 +18234,10 @@ Concept index
 * WANDERLUST links:                      External links.      (line  43)
 * weekly agenda:                         Weekly/daily agenda. (line   6)
 * Wiegley, John:                         Cooperation.         (line  37)
-* ‘windmove.el’:                         Conflicts.           (line  86)
+* windmove.el:                           Conflicts.           (line  86)
 * workflow states as TODO keywords:      Workflow states.     (line   6)
 * XEmacs:                                Installation.        (line   6)
-* ‘yasnippet.el’:                        Conflicts.           (line  60)
+* yasnippet.el:                          Conflicts.           (line  60)
 * zip:                                   Pre-requisites for ODT export.
                                                               (line   6)
 
@@ -18332,7 +18333,7 @@ Key index
 * C-c * <2>:                             Updating the table.  (line  13)
 * C-c +:                                 Built-in table editor.
                                                               (line 140)
-* ‘C-c ,’:                               Priorities.          (line  24)
+* C-c ,:                                 Priorities.          (line  24)
 * C-c -:                                 Plain lists.         (line 119)
 * C-c - <1>:                             Built-in table editor.
                                                               (line  91)
@@ -18718,7 +18719,7 @@ Key index
                                                               (line  25)
 * C-S-<right> <1>:                       Agenda commands.     (line 212)
 * C-S-<up/down>:                         Clocking commands.   (line  52)
-* C-‘TAB’:                               Internal archiving.  (line  41)
+* C-TAB:                                 Internal archiving.  (line  41)
 * C-u C-c !:                             Creating timestamps. (line  17)
 * C-u C-c *:                             Updating the table.  (line  16)
 * C-u C-c .:                             Creating timestamps. (line  17)
@@ -19507,7 +19508,7 @@ org-customize <RET>’ and then click yourself through the tree.
 * htmlize-output-type:                   Exporting Agenda Views.
                                                               (line  20)
 * LaTeX-verbatim-environments:           A LaTeX example.     (line  21)
-* org-adapt-indentation:                 Clean view.          (line  46)
+* org-adapt-indentation:                 Clean view.          (line  47)
 * org-agenda-add-entry-text-maxlines:    Exporting Agenda Views.
                                                               (line  20)
 * org-agenda-bulk-custom-functions:      Agenda commands.     (line 313)
@@ -19809,10 +19810,10 @@ org-customize <RET>’ and then click yourself through the tree.
 * org-goto-auto-isearch:                 Motion.              (line  21)
 * org-goto-interface:                    Motion.              (line  32)
 * org-group-tags:                        Tag groups.          (line  34)
-* org-hide (face):                       Clean view.          (line  66)
+* org-hide (face):                       Clean view.          (line  67)
 * org-hide-block-startup:                Blocks.              (line   6)
 * org-hide-leading-stars:                In-buffer settings.  (line 126)
-* org-hide-leading-stars <1>:            Clean view.          (line  50)
+* org-hide-leading-stars <1>:            Clean view.          (line  51)
 * org-hierarchical-todo-statistics:      Breaking down tasks. (line  25)
 * org-highest-priority:                  Priorities.          (line  37)
 * org-highest-priority <1>:              In-buffer settings.  (line  47)
@@ -19931,7 +19932,7 @@ org-customize <RET>’ and then click yourself through the tree.
 * org-odd-levels-only:                   Matching tags and properties.
                                                               (line  66)
 * org-odd-levels-only <1>:               In-buffer settings.  (line 126)
-* org-odd-levels-only <2>:               Clean view.          (line  74)
+* org-odd-levels-only <2>:               Clean view.          (line  75)
 * org-odd-levels-only <3>:               Special agenda views.
                                                               (line  48)
 * org-odt-category-map-alist:            Labels and captions in ODT export.
@@ -20161,138 +20162,138 @@ Node: Tables77129
 Node: Built-in table editor77779
 Ref: Built-in table editor-Footnote-187449
 Node: Column width and alignment87557
-Ref: Column width and alignment-Footnote-190167
-Ref: Column width and alignment-Footnote-290213
-Node: Column groups90310
-Node: Orgtbl mode91883
-Node: The spreadsheet92701
-Node: References94172
-Ref: References-Footnote-1100489
-Ref: References-Footnote-2100719
-Ref: References-Footnote-3101000
-Ref: References-Footnote-4101103
-Node: Formula syntax for Calc101421
-Ref: Formula syntax for Calc-Footnote-1106756
-Node: Formula syntax for Lisp107100
-Node: Durations and time values108886
-Node: Field and range formulas109998
-Node: Column formulas112481
-Node: Lookup functions114613
-Node: Editing and debugging formulas116659
-Ref: Using multiple #+TBLFM lines121001
-Node: Updating the table122250
-Node: Advanced features123623
-Ref: Advanced features-Footnote-1128240
-Node: Org-Plot128346
-Node: Hyperlinks131342
-Node: Link format132104
-Node: Internal links133427
-Ref: Internal links-Footnote-1135770
-Ref: Internal links-Footnote-2136014
-Node: Radio targets136160
-Node: External links136867
-Ref: External links-Footnote-1140950
-Node: Handling links141352
-Ref: Handling links-Footnote-1149422
-Ref: Handling links-Footnote-2149582
-Ref: Handling links-Footnote-3149781
-Ref: Handling links-Footnote-4150078
-Ref: Handling links-Footnote-5150336
-Ref: Handling links-Footnote-6150417
-Ref: Handling links-Footnote-7150493
-Node: Using links outside Org150589
-Node: Link abbreviations151079
-Node: Search options153831
-Ref: Search options-Footnote-1155778
-Node: Custom searches155859
-Node: TODO Items156894
-Ref: TODO Items-Footnote-1158007
-Node: TODO basics158121
-Node: TODO extensions161050
-Node: Workflow states162089
-Ref: Workflow states-Footnote-1163433
-Node: TODO types163526
-Ref: TODO types-Footnote-1165159
-Node: Multiple sets in one file165245
-Node: Fast access to TODO states167211
-Ref: Fast access to TODO states-Footnote-1168097
-Ref: Fast access to TODO states-Footnote-2168185
-Node: Per-file keywords168482
-Ref: Per-file keywords-Footnote-1169900
-Node: Faces for TODO keywords170109
-Node: TODO dependencies171170
-Node: Progress logging173368
-Node: Closing items174085
-Ref: Closing items-Footnote-1175344
-Ref: Closing items-Footnote-2175417
-Node: Tracking TODO state changes175495
-Ref: Tracking TODO state changes-Footnote-1178588
-Ref: Tracking TODO state changes-Footnote-2178647
-Ref: Tracking TODO state changes-Footnote-3178792
-Node: Tracking your habits179089
-Node: Priorities183419
-Ref: Priorities-Footnote-1185483
-Node: Breaking down tasks185556
-Ref: Breaking down tasks-Footnote-1187576
-Node: Checkboxes187676
-Ref: Checkboxes-Footnote-1192298
-Ref: Checkboxes-Footnote-2192426
-Ref: Checkboxes-Footnote-3192604
-Node: Tags192722
-Node: Tag inheritance193815
-Ref: Tag inheritance-Footnote-1195690
-Ref: Tag inheritance-Footnote-2195794
-Node: Setting tags195920
-Ref: Setting tags-Footnote-1202409
-Node: Tag groups202492
-Node: Tag searches203987
-Node: Properties and Columns205320
-Node: Property syntax206781
-Node: Special properties211048
-Node: Property searches212899
-Node: Property inheritance214349
-Node: Column view216215
-Node: Defining columns217464
-Node: Scope of column definitions217867
-Node: Column attributes218810
-Ref: Column attributes-Footnote-1223728
-Node: Using column view223862
-Node: Capturing column view226798
-Ref: Capturing column view-Footnote-1229862
-Node: Property API229998
-Node: Dates and Times230357
-Node: Timestamps231341
-Ref: Timestamps-Footnote-1233799
-Ref: Timestamps-Footnote-2233985
-Ref: Timestamps-Footnote-3234116
-Node: Creating timestamps234921
-Node: The date/time prompt237771
-Ref: The date/time prompt-Footnote-1242351
-Ref: The date/time prompt-Footnote-2242522
-Ref: The date/time prompt-Footnote-3242634
-Node: Custom time format242732
-Node: Deadlines and scheduling244488
-Ref: Deadlines and scheduling-Footnote-1247908
-Node: Inserting deadline/schedule248069
-Ref: Inserting deadline/schedule-Footnote-1250432
-Ref: Inserting deadline/schedule-Footnote-2250594
-Ref: Inserting deadline/schedule-Footnote-3250718
-Node: Repeated tasks250842
-Ref: Repeated tasks-Footnote-1254629
-Ref: Repeated tasks-Footnote-2254886
-Node: Clocking work time255109
-Ref: Clocking work time-Footnote-1256302
-Ref: Clocking work time-Footnote-2256454
-Node: Clocking commands256596
-Ref: Clocking commands-Footnote-1261680
-Ref: Clocking commands-Footnote-2261795
-Ref: Clocking commands-Footnote-3261849
-Ref: Clocking commands-Footnote-4261911
-Node: The clock table261993
-Ref: The clock table-Footnote-1269375
-Ref: The clock table-Footnote-2269473
-Node: Resolving idle time269599
-Ref: Resolving idle time-Footnote-1273533
+Ref: Column width and alignment-Footnote-190170
+Ref: Column width and alignment-Footnote-290216
+Node: Column groups90313
+Node: Orgtbl mode91886
+Node: The spreadsheet92704
+Node: References94175
+Ref: References-Footnote-1100492
+Ref: References-Footnote-2100722
+Ref: References-Footnote-3101003
+Ref: References-Footnote-4101106
+Node: Formula syntax for Calc101424
+Ref: Formula syntax for Calc-Footnote-1106759
+Node: Formula syntax for Lisp107103
+Node: Durations and time values108888
+Node: Field and range formulas110000
+Node: Column formulas112483
+Node: Lookup functions114615
+Node: Editing and debugging formulas116661
+Ref: Using multiple #+TBLFM lines121003
+Node: Updating the table122252
+Node: Advanced features123625
+Ref: Advanced features-Footnote-1128242
+Node: Org-Plot128348
+Node: Hyperlinks131344
+Node: Link format132106
+Node: Internal links133429
+Ref: Internal links-Footnote-1135772
+Ref: Internal links-Footnote-2136016
+Node: Radio targets136162
+Node: External links136869
+Ref: External links-Footnote-1140952
+Node: Handling links141354
+Ref: Handling links-Footnote-1149424
+Ref: Handling links-Footnote-2149584
+Ref: Handling links-Footnote-3149783
+Ref: Handling links-Footnote-4150080
+Ref: Handling links-Footnote-5150338
+Ref: Handling links-Footnote-6150419
+Ref: Handling links-Footnote-7150495
+Node: Using links outside Org150591
+Node: Link abbreviations151081
+Node: Search options153833
+Ref: Search options-Footnote-1155780
+Node: Custom searches155861
+Node: TODO Items156896
+Ref: TODO Items-Footnote-1158009
+Node: TODO basics158123
+Node: TODO extensions161052
+Node: Workflow states162091
+Ref: Workflow states-Footnote-1163435
+Node: TODO types163528
+Ref: TODO types-Footnote-1165161
+Node: Multiple sets in one file165247
+Node: Fast access to TODO states167213
+Ref: Fast access to TODO states-Footnote-1168099
+Ref: Fast access to TODO states-Footnote-2168187
+Node: Per-file keywords168484
+Ref: Per-file keywords-Footnote-1169902
+Node: Faces for TODO keywords170111
+Node: TODO dependencies171172
+Node: Progress logging173370
+Node: Closing items174087
+Ref: Closing items-Footnote-1175346
+Ref: Closing items-Footnote-2175419
+Node: Tracking TODO state changes175497
+Ref: Tracking TODO state changes-Footnote-1178590
+Ref: Tracking TODO state changes-Footnote-2178649
+Ref: Tracking TODO state changes-Footnote-3178794
+Node: Tracking your habits179091
+Node: Priorities183421
+Ref: Priorities-Footnote-1185485
+Node: Breaking down tasks185558
+Ref: Breaking down tasks-Footnote-1187578
+Node: Checkboxes187678
+Ref: Checkboxes-Footnote-1192300
+Ref: Checkboxes-Footnote-2192428
+Ref: Checkboxes-Footnote-3192606
+Node: Tags192724
+Node: Tag inheritance193817
+Ref: Tag inheritance-Footnote-1195692
+Ref: Tag inheritance-Footnote-2195796
+Node: Setting tags195922
+Ref: Setting tags-Footnote-1202411
+Node: Tag groups202494
+Node: Tag searches203989
+Node: Properties and Columns205322
+Node: Property syntax206783
+Node: Special properties211050
+Node: Property searches212901
+Node: Property inheritance214351
+Node: Column view216217
+Node: Defining columns217466
+Node: Scope of column definitions217869
+Node: Column attributes218812
+Ref: Column attributes-Footnote-1223730
+Node: Using column view223864
+Node: Capturing column view226800
+Ref: Capturing column view-Footnote-1229864
+Node: Property API230000
+Node: Dates and Times230359
+Node: Timestamps231343
+Ref: Timestamps-Footnote-1233801
+Ref: Timestamps-Footnote-2233987
+Ref: Timestamps-Footnote-3234118
+Node: Creating timestamps234923
+Node: The date/time prompt237773
+Ref: The date/time prompt-Footnote-1242354
+Ref: The date/time prompt-Footnote-2242525
+Ref: The date/time prompt-Footnote-3242637
+Node: Custom time format242735
+Node: Deadlines and scheduling244491
+Ref: Deadlines and scheduling-Footnote-1247911
+Node: Inserting deadline/schedule248072
+Ref: Inserting deadline/schedule-Footnote-1250435
+Ref: Inserting deadline/schedule-Footnote-2250597
+Ref: Inserting deadline/schedule-Footnote-3250721
+Node: Repeated tasks250845
+Ref: Repeated tasks-Footnote-1254632
+Ref: Repeated tasks-Footnote-2254889
+Node: Clocking work time255112
+Ref: Clocking work time-Footnote-1256305
+Ref: Clocking work time-Footnote-2256457
+Node: Clocking commands256599
+Ref: Clocking commands-Footnote-1261683
+Ref: Clocking commands-Footnote-2261798
+Ref: Clocking commands-Footnote-3261852
+Ref: Clocking commands-Footnote-4261914
+Node: The clock table261996
+Ref: The clock table-Footnote-1269378
+Ref: The clock table-Footnote-2269476
+Node: Resolving idle time269602
+Ref: Resolving idle time-Footnote-1273536
 Node: Effort estimates274020
 Ref: Effort estimates-Footnote-1276828
 Ref: Effort estimates-Footnote-2276920
@@ -20334,304 +20335,304 @@ Ref: Weekly/daily agenda-Footnote-1326701
 Ref: Weekly/daily agenda-Footnote-2326932
 Node: Global TODO list327119
 Node: Matching tags and properties329700
-Ref: Matching tags and properties-Footnote-1337427
-Node: Timeline337507
-Node: Search view338210
-Node: Stuck projects339554
-Ref: Stuck projects-Footnote-1341640
-Node: Presentation and sorting341670
-Node: Categories342640
-Ref: Categories-Footnote-1343454
-Node: Time-of-day specifications343891
-Node: Sorting agenda items345889
-Node: Filtering/limiting agenda items347487
-Ref: Filtering/limiting agenda items-Footnote-1354923
-Ref: Filtering/limiting agenda items-Footnote-2355343
-Node: Agenda commands355411
-Ref: Agenda commands-Footnote-1377189
-Ref: Agenda commands-Footnote-2377270
-Ref: Agenda commands-Footnote-3377393
-Ref: Agenda commands-Footnote-4377497
-Node: Custom agenda views377584
-Node: Storing searches378230
-Ref: Storing searches-Footnote-1381291
-Ref: Storing searches-Footnote-2381408
-Node: Block agenda381660
-Node: Setting Options382947
-Node: Exporting Agenda Views386643
-Ref: Exporting Agenda Views-Footnote-1391612
-Ref: Exporting Agenda Views-Footnote-2391676
-Ref: Exporting Agenda Views-Footnote-3391836
-Ref: Exporting Agenda Views-Footnote-4392023
-Node: Agenda column view392105
-Node: Markup395223
-Node: Structural markup elements396257
-Node: Document title396932
-Node: Headings and sections397518
-Node: Table of contents398197
-Node: Lists399716
-Node: Paragraphs400014
-Node: Footnote markup401172
-Node: Emphasis and monospace401514
-Node: Horizontal rules402404
-Node: Comment lines402666
-Node: Images and tables403199
-Node: Literal examples404941
-Ref: Literal examples-Footnote-1408913
-Ref: Literal examples-Footnote-2409245
-Ref: Literal examples-Footnote-3409421
-Ref: Literal examples-Footnote-4409608
-Ref: Literal examples-Footnote-5409878
-Node: Include files409976
-Node: Index entries411679
-Node: Macro replacement412150
-Ref: Macro replacement-Footnote-1413011
-Node: Embedded LaTeX413241
-Ref: Embedded LaTeX-Footnote-1414209
-Node: Special symbols414405
-Ref: Special symbols-Footnote-1416099
-Node: Subscripts and superscripts416266
-Node: LaTeX fragments417406
-Ref: LaTeX fragments-Footnote-1419677
-Ref: LaTeX fragments-Footnote-2419854
-Ref: LaTeX fragments-Footnote-3420239
-Node: Previewing LaTeX fragments420463
-Ref: Previewing LaTeX fragments-Footnote-1421724
-Node: CDLaTeX mode421835
-Ref: CDLaTeX mode-Footnote-1424403
-Node: Special blocks424555
-Node: Exporting425483
-Node: The Export Dispatcher427451
-Ref: The Export Dispatcher-Footnote-1429854
-Node: Export back-ends430125
-Node: Export settings431075
-Ref: Export settings-Footnote-1438485
-Ref: Export settings-Footnote-2438591
-Ref: Export settings-Footnote-3438690
-Node: ASCII/Latin-1/UTF-8 export438737
-Node: Beamer export440810
-Ref: Beamer export-Footnote-1448456
-Ref: Beamer export-Footnote-2448623
-Node: HTML export448745
-Node: HTML Export commands449837
-Node: HTML doctypes450405
-Node: HTML preamble and postamble452747
-Node: Quoting HTML tags453844
-Node: Links in HTML export454502
-Node: Tables in HTML export455668
-Node: Images in HTML export456399
-Ref: Images in HTML export-Footnote-1457731
-Node: Math formatting in HTML export457790
-Ref: Math formatting in HTML export-Footnote-1459307
-Node: Text areas in HTML export459442
-Node: CSS support460247
-Ref: CSS support-Footnote-1463341
-Ref: CSS support-Footnote-2463521
-Node: JavaScript support463783
-Node: LaTeX and PDF export467238
-Ref: LaTeX and PDF export-Footnote-1468383
-Node: LaTeX export commands468726
-Node: Header and sectioning469437
-Ref: Header and sectioning-Footnote-1471106
-Ref: Header and sectioning-Footnote-2471226
-Node: Quoting LaTeX code471397
-Node: LaTeX specific attributes471997
-Ref: LaTeX specific attributes-Footnote-1480432
-Ref: LaTeX specific attributes-Footnote-2480518
-Ref: LaTeX specific attributes-Footnote-3480600
-Node: Markdown export480762
-Ref: Markdown export-Footnote-1482103
-Node: OpenDocument Text export482189
-Ref: OpenDocument Text export-Footnote-1483339
-Ref: OpenDocument Text export-Footnote-2483369
-Node: Pre-requisites for ODT export483513
-Node: ODT export commands483880
-Ref: x-export-to-odt484114
-Ref: ODT export commands-Footnote-1485140
-Ref: ODT export commands-Footnote-2485204
-Node: Extending ODT export485259
-Ref: x-export-to-other-formats486295
-Ref: x-convert-to-other-formats486843
-Node: Applying custom styles487304
-Node: Links in ODT export489504
-Node: Tables in ODT export490160
-Ref: Tables in ODT export-Footnote-1492321
-Node: Images in ODT export492414
-Ref: Images in ODT export-Footnote-1495221
-Node: Math formatting in ODT export495462
-Node: Working with LaTeX math snippets495929
-Ref: Working with LaTeX math snippets-Footnote-1498083
-Node: Working with MathML or OpenDocument formula files498158
-Node: Labels and captions in ODT export498743
-Node: Literal examples in ODT export500227
-Ref: Literal examples in ODT export-Footnote-1501153
-Node: Advanced topics in ODT export501268
-Node: Configuring a document converter502027
-Ref: x-odt-converter-capabilities502867
-Node: Working with OpenDocument style files503457
-Ref: x-factory-styles503958
-Ref: x-orgodtstyles-xml504194
-Ref: x-orgodtcontenttemplate-xml504540
-Ref: x-overriding-factory-styles505233
-Ref: x-org-odt-styles-file505507
-Ref: x-org-odt-content-template-file506446
-Node: Creating one-off styles506597
-Node: Customizing tables in ODT export508854
-Ref: Customizing tables in ODT export-Footnote-1514163
-Ref: Customizing tables in ODT export-Footnote-2514267
-Ref: Customizing tables in ODT export-Footnote-3514359
-Node: Validating OpenDocument XML514706
-Ref: Validating OpenDocument XML-Footnote-1515750
-Node: Org export515810
-Node: Texinfo export516595
-Node: Texinfo export commands517228
-Ref: Texinfo export commands-Footnote-1517785
-Node: Document preamble517897
-Ref: Document preamble-Footnote-1521250
-Node: Headings and sectioning structure521316
-Node: Indices522816
-Node: Quoting Texinfo code523654
-Node: Texinfo specific attributes524143
-Ref: Texinfo specific attributes-Footnote-1525390
-Node: An example525456
-Node: iCalendar export527433
-Ref: iCalendar export-Footnote-1530210
-Ref: iCalendar export-Footnote-2530308
-Ref: iCalendar export-Footnote-3530412
-Node: Other built-in back-ends530553
-Node: Export in foreign buffers531165
-Node: Advanced configuration532189
-Node: Publishing538345
-Node: Configuration539220
-Node: Project alist540007
-Node: Sources and destinations541191
-Node: Selecting files542746
-Node: Publishing action543853
-Ref: Publishing action-Footnote-1545747
-Node: Publishing options545914
-Node: Publishing links549324
-Node: Sitemap550325
-Node: Generating an index553972
-Node: Uploading files554588
-Node: Sample configuration556401
-Node: Simple example556895
-Node: Complex example557580
-Node: Triggering publication559643
-Node: Working With Source Code560655
-Node: Structure of code blocks562358
-Ref: Structure of code blocks-Footnote-1564256
-Node: Editing source code564356
-Node: Exporting code blocks566543
-Node: Extracting source code568687
-Node: Evaluating code blocks571003
-Ref: Evaluating code blocks-Footnote-1574449
-Ref: Evaluating code blocks-Footnote-2574746
-Node: Library of Babel574880
-Node: Languages575897
-Node: Header arguments578206
-Node: Using header arguments578696
-Node: System-wide header arguments579755
-Node: Language-specific header arguments580614
-Node: Header arguments in Org mode properties581136
-Ref: Header arguments in Org mode properties-Footnote-1582913
-Node: Language-specific header arguments in Org mode properties583185
-Node: Code block specific header arguments584226
-Node: Header arguments in function calls586116
-Node: Specific header arguments586898
-Node: var589534
-Node: results596485
-Node: file601544
-Node: file-desc602481
-Node: dir602971
-Node: exports605996
-Node: tangle606699
-Node: mkdirp607551
-Node: comments607903
-Node: padline609091
-Node: no-expand609647
-Node: session610164
-Node: noweb610628
-Node: noweb-ref612920
-Ref: noweb-ref-Footnote-1614407
-Node: noweb-sep614540
-Node: cache614847
-Node: sep616635
-Node: hlines617232
-Node: colnames618783
-Node: rownames620145
-Node: shebang621360
-Node: tangle-mode621780
-Node: eval622568
-Node: wrap623648
-Node: post624113
-Node: prologue625251
-Node: epilogue625840
-Node: Results of evaluation626108
-Node: Noweb reference syntax629954
-Node: Key bindings and useful functions631654
-Node: Batch execution634062
-Node: Miscellaneous635105
-Node: Completion635939
-Node: Easy Templates637984
-Node: Speed keys639510
-Node: Code evaluation security640354
-Node: Customization643088
-Node: In-buffer settings643700
-Ref: In-buffer settings-Footnote-1654093
-Node: The very busy C-c C-c key654141
-Node: Clean view656168
-Ref: Clean view-Footnote-1660199
-Ref: Clean view-Footnote-2660264
-Ref: Clean view-Footnote-3660464
-Ref: Clean view-Footnote-4660529
-Ref: Clean view-Footnote-5660661
-Ref: Clean view-Footnote-6660720
-Node: TTY keys660849
-Node: Interaction662894
-Node: Cooperation663293
-Node: Conflicts667182
-Node: org-crypt672274
-Node: Hacking673602
-Node: Hooks674597
-Node: Add-on packages675018
-Node: Adding hyperlink types675581
-Node: Adding export back-ends679604
-Node: Context-sensitive commands681086
-Ref: Context-sensitive commands-Footnote-1682715
-Node: Tables in arbitrary syntax682853
-Node: Radio tables684276
-Node: A LaTeX example687105
-Ref: A LaTeX example-Footnote-1691149
-Ref: A LaTeX example-Footnote-2691310
-Node: Translator functions691761
-Ref: Translator functions-Footnote-1695074
-Node: Radio lists695162
-Node: Dynamic blocks696329
-Node: Special agenda views698586
-Ref: x-agenda-skip-entry-regexp702142
-Ref: Special agenda views-Footnote-1702956
-Ref: Special agenda views-Footnote-2703165
-Node: Speeding up your agendas703304
-Node: Extracting agenda information704408
-Node: Using the property API708519
-Node: Using the mapping API712013
-Node: MobileOrg716532
-Node: Setting up the staging area718247
-Ref: Setting up the staging area-Footnote-1719359
-Ref: Setting up the staging area-Footnote-2719668
-Node: Pushing to MobileOrg719930
-Ref: Pushing to MobileOrg-Footnote-1720963
-Ref: Pushing to MobileOrg-Footnote-2721056
-Ref: Pushing to MobileOrg-Footnote-3721480
-Node: Pulling from MobileOrg721555
-Ref: Pulling from MobileOrg-Footnote-1724019
-Ref: Pulling from MobileOrg-Footnote-2724083
-Node: History and Acknowledgments724466
-Node: GNU Free Documentation License739690
-Node: Main Index765053
-Node: Key Index843931
-Node: Command and Function Index896859
-Node: Variable Index932784
+Ref: Matching tags and properties-Footnote-1337428
+Node: Timeline337508
+Node: Search view338211
+Node: Stuck projects339555
+Ref: Stuck projects-Footnote-1341641
+Node: Presentation and sorting341671
+Node: Categories342641
+Ref: Categories-Footnote-1343455
+Node: Time-of-day specifications343892
+Node: Sorting agenda items345890
+Node: Filtering/limiting agenda items347488
+Ref: Filtering/limiting agenda items-Footnote-1354924
+Ref: Filtering/limiting agenda items-Footnote-2355344
+Node: Agenda commands355412
+Ref: Agenda commands-Footnote-1377190
+Ref: Agenda commands-Footnote-2377271
+Ref: Agenda commands-Footnote-3377394
+Ref: Agenda commands-Footnote-4377498
+Node: Custom agenda views377585
+Node: Storing searches378231
+Ref: Storing searches-Footnote-1381292
+Ref: Storing searches-Footnote-2381409
+Node: Block agenda381661
+Node: Setting Options382948
+Node: Exporting Agenda Views386644
+Ref: Exporting Agenda Views-Footnote-1391613
+Ref: Exporting Agenda Views-Footnote-2391677
+Ref: Exporting Agenda Views-Footnote-3391837
+Ref: Exporting Agenda Views-Footnote-4392024
+Node: Agenda column view392106
+Node: Markup395224
+Node: Structural markup elements396258
+Node: Document title396933
+Node: Headings and sections397519
+Node: Table of contents398198
+Node: Lists399717
+Node: Paragraphs400015
+Node: Footnote markup401173
+Node: Emphasis and monospace401515
+Node: Horizontal rules402405
+Node: Comment lines402667
+Node: Images and tables403200
+Node: Literal examples404942
+Ref: Literal examples-Footnote-1408914
+Ref: Literal examples-Footnote-2409246
+Ref: Literal examples-Footnote-3409422
+Ref: Literal examples-Footnote-4409609
+Ref: Literal examples-Footnote-5409879
+Node: Include files409977
+Node: Index entries411680
+Node: Macro replacement412151
+Ref: Macro replacement-Footnote-1413012
+Node: Embedded LaTeX413242
+Ref: Embedded LaTeX-Footnote-1414210
+Node: Special symbols414406
+Ref: Special symbols-Footnote-1416100
+Node: Subscripts and superscripts416267
+Node: LaTeX fragments417407
+Ref: LaTeX fragments-Footnote-1419678
+Ref: LaTeX fragments-Footnote-2419855
+Ref: LaTeX fragments-Footnote-3420240
+Node: Previewing LaTeX fragments420464
+Ref: Previewing LaTeX fragments-Footnote-1421725
+Node: CDLaTeX mode421836
+Ref: CDLaTeX mode-Footnote-1424405
+Node: Special blocks424557
+Node: Exporting425485
+Node: The Export Dispatcher427453
+Ref: The Export Dispatcher-Footnote-1429856
+Node: Export back-ends430127
+Node: Export settings431077
+Ref: Export settings-Footnote-1438487
+Ref: Export settings-Footnote-2438593
+Ref: Export settings-Footnote-3438692
+Node: ASCII/Latin-1/UTF-8 export438739
+Node: Beamer export440812
+Ref: Beamer export-Footnote-1448458
+Ref: Beamer export-Footnote-2448625
+Node: HTML export448747
+Node: HTML Export commands449839
+Node: HTML doctypes450407
+Node: HTML preamble and postamble452749
+Node: Quoting HTML tags453846
+Node: Links in HTML export454504
+Node: Tables in HTML export455670
+Node: Images in HTML export456401
+Ref: Images in HTML export-Footnote-1457733
+Node: Math formatting in HTML export457792
+Ref: Math formatting in HTML export-Footnote-1459309
+Node: Text areas in HTML export459444
+Node: CSS support460249
+Ref: CSS support-Footnote-1463343
+Ref: CSS support-Footnote-2463523
+Node: JavaScript support463785
+Node: LaTeX and PDF export467240
+Ref: LaTeX and PDF export-Footnote-1468385
+Node: LaTeX export commands468728
+Node: Header and sectioning469439
+Ref: Header and sectioning-Footnote-1471108
+Ref: Header and sectioning-Footnote-2471228
+Node: Quoting LaTeX code471399
+Node: LaTeX specific attributes471999
+Ref: LaTeX specific attributes-Footnote-1480434
+Ref: LaTeX specific attributes-Footnote-2480520
+Ref: LaTeX specific attributes-Footnote-3480602
+Node: Markdown export480764
+Ref: Markdown export-Footnote-1482105
+Node: OpenDocument Text export482191
+Ref: OpenDocument Text export-Footnote-1483341
+Ref: OpenDocument Text export-Footnote-2483371
+Node: Pre-requisites for ODT export483515
+Node: ODT export commands483882
+Ref: x-export-to-odt484116
+Ref: ODT export commands-Footnote-1485142
+Ref: ODT export commands-Footnote-2485206
+Node: Extending ODT export485261
+Ref: x-export-to-other-formats486297
+Ref: x-convert-to-other-formats486845
+Node: Applying custom styles487306
+Node: Links in ODT export489506
+Node: Tables in ODT export490161
+Ref: Tables in ODT export-Footnote-1492322
+Node: Images in ODT export492415
+Ref: Images in ODT export-Footnote-1495222
+Node: Math formatting in ODT export495463
+Node: Working with LaTeX math snippets495930
+Ref: Working with LaTeX math snippets-Footnote-1498084
+Node: Working with MathML or OpenDocument formula files498159
+Node: Labels and captions in ODT export498744
+Node: Literal examples in ODT export500228
+Ref: Literal examples in ODT export-Footnote-1501154
+Node: Advanced topics in ODT export501269
+Node: Configuring a document converter502028
+Ref: x-odt-converter-capabilities502868
+Node: Working with OpenDocument style files503458
+Ref: x-factory-styles503959
+Ref: x-orgodtstyles-xml504195
+Ref: x-orgodtcontenttemplate-xml504541
+Ref: x-overriding-factory-styles505234
+Ref: x-org-odt-styles-file505508
+Ref: x-org-odt-content-template-file506447
+Node: Creating one-off styles506598
+Node: Customizing tables in ODT export508855
+Ref: Customizing tables in ODT export-Footnote-1514164
+Ref: Customizing tables in ODT export-Footnote-2514268
+Ref: Customizing tables in ODT export-Footnote-3514360
+Node: Validating OpenDocument XML514707
+Ref: Validating OpenDocument XML-Footnote-1515751
+Node: Org export515811
+Node: Texinfo export516596
+Node: Texinfo export commands517229
+Ref: Texinfo export commands-Footnote-1517786
+Node: Document preamble517898
+Ref: Document preamble-Footnote-1521255
+Node: Headings and sectioning structure521321
+Node: Indices522821
+Node: Quoting Texinfo code523659
+Node: Texinfo specific attributes524148
+Ref: Texinfo specific attributes-Footnote-1525395
+Node: An example525461
+Node: iCalendar export527438
+Ref: iCalendar export-Footnote-1530215
+Ref: iCalendar export-Footnote-2530313
+Ref: iCalendar export-Footnote-3530417
+Node: Other built-in back-ends530558
+Node: Export in foreign buffers531170
+Node: Advanced configuration532194
+Node: Publishing538348
+Node: Configuration539223
+Node: Project alist540010
+Node: Sources and destinations541194
+Node: Selecting files542749
+Node: Publishing action543856
+Ref: Publishing action-Footnote-1545750
+Node: Publishing options545917
+Node: Publishing links549327
+Node: Sitemap550328
+Node: Generating an index553975
+Node: Uploading files554591
+Node: Sample configuration556404
+Node: Simple example556898
+Node: Complex example557583
+Node: Triggering publication559646
+Node: Working With Source Code560658
+Node: Structure of code blocks562365
+Ref: Structure of code blocks-Footnote-1564263
+Node: Editing source code564363
+Node: Exporting code blocks566550
+Node: Extracting source code568694
+Node: Evaluating code blocks571010
+Ref: Evaluating code blocks-Footnote-1574456
+Ref: Evaluating code blocks-Footnote-2574753
+Node: Library of Babel574887
+Node: Languages575904
+Node: Header arguments578213
+Node: Using header arguments578703
+Node: System-wide header arguments579762
+Node: Language-specific header arguments580621
+Node: Header arguments in Org mode properties581143
+Ref: Header arguments in Org mode properties-Footnote-1582920
+Node: Language-specific header arguments in Org mode properties583192
+Node: Code block specific header arguments584233
+Node: Header arguments in function calls586123
+Node: Specific header arguments586905
+Node: var589541
+Node: results596512
+Node: file601571
+Node: file-desc602508
+Node: dir602998
+Node: exports606023
+Node: tangle606726
+Node: mkdirp607578
+Node: comments607930
+Node: padline609118
+Node: no-expand609674
+Node: session610191
+Node: noweb610655
+Node: noweb-ref612947
+Ref: noweb-ref-Footnote-1614434
+Node: noweb-sep614567
+Node: cache614874
+Node: sep616662
+Node: hlines617259
+Node: colnames618810
+Node: rownames620172
+Node: shebang621387
+Node: tangle-mode621807
+Node: eval622595
+Node: wrap623675
+Node: post624140
+Node: prologue625278
+Node: epilogue625867
+Node: Results of evaluation626135
+Node: Noweb reference syntax629981
+Node: Key bindings and useful functions631681
+Node: Batch execution634089
+Node: Miscellaneous635132
+Node: Completion635966
+Node: Easy Templates638011
+Node: Speed keys639537
+Node: Code evaluation security640381
+Node: Customization643115
+Node: In-buffer settings643727
+Ref: In-buffer settings-Footnote-1654120
+Node: The very busy C-c C-c key654168
+Node: Clean view656195
+Ref: Clean view-Footnote-1660227
+Ref: Clean view-Footnote-2660292
+Ref: Clean view-Footnote-3660492
+Ref: Clean view-Footnote-4660557
+Ref: Clean view-Footnote-5660689
+Ref: Clean view-Footnote-6660748
+Node: TTY keys660877
+Node: Interaction662922
+Node: Cooperation663321
+Node: Conflicts667210
+Node: org-crypt672302
+Node: Hacking673630
+Node: Hooks674625
+Node: Add-on packages675046
+Node: Adding hyperlink types675609
+Node: Adding export back-ends679632
+Node: Context-sensitive commands681114
+Ref: Context-sensitive commands-Footnote-1682743
+Node: Tables in arbitrary syntax682881
+Node: Radio tables684304
+Node: A LaTeX example687133
+Ref: A LaTeX example-Footnote-1691177
+Ref: A LaTeX example-Footnote-2691338
+Node: Translator functions691789
+Ref: Translator functions-Footnote-1695102
+Node: Radio lists695190
+Node: Dynamic blocks696357
+Node: Special agenda views698599
+Ref: x-agenda-skip-entry-regexp702155
+Ref: Special agenda views-Footnote-1702969
+Ref: Special agenda views-Footnote-2703178
+Node: Speeding up your agendas703317
+Node: Extracting agenda information704421
+Node: Using the property API708532
+Node: Using the mapping API712026
+Node: MobileOrg716545
+Node: Setting up the staging area718260
+Ref: Setting up the staging area-Footnote-1719372
+Ref: Setting up the staging area-Footnote-2719681
+Node: Pushing to MobileOrg719943
+Ref: Pushing to MobileOrg-Footnote-1720976
+Ref: Pushing to MobileOrg-Footnote-2721069
+Ref: Pushing to MobileOrg-Footnote-3721493
+Node: Pulling from MobileOrg721568
+Ref: Pulling from MobileOrg-Footnote-1724032
+Ref: Pulling from MobileOrg-Footnote-2724096
+Node: History and Acknowledgments724479
+Node: GNU Free Documentation License739703
+Node: Main Index765070
+Node: Key Index843604
+Node: Command and Function Index896524
+Node: Variable Index932449
 
 End Tag Table
 

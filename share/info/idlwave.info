@@ -1,4 +1,4 @@
-This is idlwave.info, produced by makeinfo version 5.2 from
+This is idlwave.info, produced by makeinfo version 6.3 from
 idlwave.texi.
 
 This file documents IDLWAVE, a major mode for editing IDL files with
@@ -6,7 +6,7 @@ Emacs, and interacting with an IDL shell run as a subprocess.
 
    This is edition 6.1 of the IDLWAVE User Manual for IDLWAVE 6.1.
 
-   Copyright © 1999–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -37,7 +37,7 @@ Emacs, and interacting with an IDL shell run as a subprocess.
 
    This is edition 6.1 of the IDLWAVE User Manual for IDLWAVE 6.1.
 
-   Copyright © 1999–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -61,7 +61,7 @@ Emacs, and interacting with an IDL shell run as a subprocess.
 * Sources of Routine Info::     How does IDLWAVE know about routine XYZ
 * HTML Help Browser Tips::
 * Configuration Examples::      The user is king
-* Windows and MacOS::           What still works, and how
+* Windows and macOS::           What still works, and how
 * Troubleshooting::             When good computers turn bad
 * GNU Free Documentation License:: The license for this documentation.
 * Index::                       Fast access
@@ -419,7 +419,7 @@ name will be completed.  Now provide the two arguments:
 
 and press <RET>.  This fails with an error message telling you the ‘YT’
 keyword to plot is ambiguous.  What are the allowed keywords again?  Go
-back to the source window and put the cursor into the ‘plot’ line and
+back to the source window and put the cursor into the “plot” line and
 press ‘C-c ?’.  This shows the routine info window for the plot routine,
 which contains a list of keywords, along with the argument list.  Oh, we
 wanted ‘YTITLE’.  Fix that up.  Recompile with ‘C-c C-d C-c’.  Jump back
@@ -518,7 +518,7 @@ you’ll be presented with all the various variables grouped into
 categories.  You can navigate the hierarchy (e.g., ‘IDLWAVE Code
 Formatting->Idlwave Abbrev And Indent Action->Idlwave Expand Generic
 End’ to turn on ‘END’ expansion), read about the variables, change them,
-and ‘Save for Future Sessions’.  Few of these variables need
+and “Save for Future Sessions”.  Few of these variables need
 customization, but you can exercise considerable control over IDLWAVE’s
 functionality with them.
 
@@ -609,7 +609,7 @@ library:
 
          a=readf<M-<TAB>>
 
-   expands to ‘readfits(’.  Then try
+   expands to “readfits(”.  Then try
 
          a=readfits(<C-c ?>
 
@@ -871,7 +871,7 @@ File: idlwave.info,  Node: Syntax Highlighting,  Next: Octals and Highlighting, 
 4.1.5 Syntax Highlighting
 -------------------------
 
-Highlighting of keywords, comments, strings etc.  can be accomplished
+Highlighting of keywords, comments, strings etc. can be accomplished
 with ‘font-lock’.  If you are using ‘global-font-lock-mode’ (in Emacs),
 or have ‘font-lock’ turned on in any other buffer in XEmacs, it should
 also automatically work in IDLWAVE buffers.  If you’d prefer invoking
@@ -978,9 +978,9 @@ set of _flags_ and the path to the _source file_.  The following default
 categories exist:
 
 System      A system routine of unknown origin.  When the system
-            library has been scanned as part of a catalog (*note
-            Catalogs::), this category will automatically split into
-            the next two.
+            library has been scanned as part of a catalog
+            (*note Catalogs::), this category will automatically split
+            into the next two.
 Builtin     A builtin system routine with no source code available.
 SystemLib   A library system routine in the official lib directory
             ‘!DIR/lib’.
@@ -1083,7 +1083,7 @@ below.  Help for routines without HTML documentation is also available,
 by using the routine documentation header and/or routine source.
 
    In any IDL program (or, as with most IDLWAVE commands, in the IDL
-Shell), press ‘M-?’ (‘idlwave-context-help’), or click with ‘S-Mouse-3’
+Shell), press ‘M-?’ (‘idlwave-context-help’), or click with ‘S-mouse-3’
 to access context sensitive online help.  The following locations are
 recognized context for help:
 
@@ -1117,10 +1117,10 @@ targeted.
 which online help can be accessed.
 
    • Online help for routines and keywords can be accessed through the
-     Routine Info display.  Click with ‘Mouse-3’ on an item to see the
+     Routine Info display.  Click with ‘mouse-3’ on an item to see the
      corresponding help (*note Routine Info::).
    • When using completion and Emacs pops up a ‘*Completions*’ buffer
-     with possible completions, clicking with ‘Mouse-3’ on a completion
+     with possible completions, clicking with ‘mouse-3’ on a completion
      item invokes help on that item (*note Completion::).  Items for
      which help is available in the online system documentation (vs.
      just the program source itself) will be emphasized (e.g., colored
@@ -1320,7 +1320,7 @@ procedure matching a regexp.
    If the list of completions is too long to fit in the ‘*Completions*’
 window, the window can be scrolled by pressing ‘M-<TAB>’ repeatedly.
 Online help (if installed) for each possible completion is available by
-clicking with ‘Mouse-3’ on the item.  Items for which system online help
+clicking with ‘mouse-3’ on the item.  Items for which system online help
 (from the IDL manual) is available will be emphasized (e.g., colored
 blue).  For other items, the corresponding source code or DocLib header
 will be used as the help text.
@@ -1338,8 +1338,8 @@ negative consequences.
 
  -- User Option: idlwave-function-completion-adds-paren (‘t’)
      Non-‘nil’ means completion automatically adds ‘(’ after completed
-     function.  A value of ‘2’ means also add the closing parenthesis
-     and position the cursor between the two.
+     function.  A value of 2 means also add the closing parenthesis and
+     position the cursor between the two.
 
  -- User Option: idlwave-completion-restore-window-configuration (‘t’)
      Non-‘nil’ means restore window configuration after successful
@@ -1968,7 +1968,7 @@ debug these programs.  The IDLWAVE shell is built on ‘comint’, an Emacs
 packages which handles the communication with the IDL program.
 Unfortunately, IDL for Windows does not have command-prompt versions and
 thus do not allow the interaction with Emacs, so the IDLWAVE shell
-currently only works under Unix and MacOSX.
+currently works under only Unix and macOS.
 
 * Menu:
 
@@ -2338,7 +2338,7 @@ you add or remove some on the command line) using ‘C-c C-d C-l’.
 
    In recent IDLWAVE versions, the breakpoint line is highlighted when
 the mouse is moved over it, and a tooltip pops up describing the break
-details.  ‘Mouse-3’ on the breakpoint line pops up a menu of breakpoint
+details.  ‘mouse-3’ on the breakpoint line pops up a menu of breakpoint
 actions, including clearing, disabling, and adding or changing break
 conditions or “after” break count.
 
@@ -2590,8 +2590,8 @@ File: idlwave.info,  Node: Examining Variables,  Next: Custom Expression Examina
 
 Do you find yourself repeatedly typing, e.g., ‘print,n_elements(x)’, and
 similar statements to remind yourself of the
-type/size/structure/value/etc.  of variables and expressions in your
-code or at the command line?  IDLWAVE has a suite of special commands to
+type/size/structure/value/etc. of variables and expressions in your code
+or at the command line?  IDLWAVE has a suite of special commands to
 automate these types of variable or expression examinations.  They work
 by sending statements to the shell formatted to include the indicated
 expression, and can be accessed in several ways.
@@ -2627,8 +2627,8 @@ By default, when invoking print, only an initial portion of long arrays
 will be printed, up to ‘idlwave-shell-max-print-length’.
 
    For added speed and convenience, there are mouse bindings which allow
-you to click on expressions and examine their values.  Use ‘S-Mouse-2’
-to print an expression and ‘C-M-Mouse-2’ to invoke help (i.e., you need
+you to click on expressions and examine their values.  Use ‘S-mouse-2’
+to print an expression and ‘C-M-mouse-2’ to invoke help (i.e., you need
 to hold down <META> and <CONTROL> while clicking with the middle mouse
 button).  If you simply click, the nearest expression will be selected
 in the same manner as described above.  You can also _drag_ the mouse in
@@ -2691,7 +2691,7 @@ mouse examine command, and two macros for generating your own examine
 key and mouse bindings.
 
    The most powerful and flexible mouse examine command of all is
-available on ‘C-S-Mouse-2’.  Just as for all the other mouse examine
+available on ‘C-S-mouse-2’.  Just as for all the other mouse examine
 commands, it permits click or drag expression selection, but instead of
 sending hard-coded commands to the shell, it pops-up a customizable
 selection list of examine functions to choose among, configured with the
@@ -2951,13 +2951,13 @@ are written out whenever the IDLWAVE shell is started.
      paths are needed to locate library catalogs.
 
  -- User Option: idlwave-library-path
-     IDL library path for Windows and MacOS.  Under Unix/MacOSX, will be
+     IDL library path for Windows and macOS.  Under Unix/macOS, will be
      obtained from the Shell when run.
 
  -- User Option: idlwave-system-directory
-     The IDL system directory for Windows and MacOS.  Also needed for
+     The IDL system directory for Windows and macOS.  Also needed for
      locating HTML help and the IDL Assistant for IDL v6.2 and later.
-     Under Unix/MacOSX, will be obtained from the Shell and recorded, if
+     Under Unix/macOS, will be obtained from the Shell and recorded, if
      run.
 
  -- User Option: idlwave-config-directory (‘~/.emacs.d/idlwave’)
@@ -3053,9 +3053,9 @@ catalog must be rescanned to update it.  Creating the user catalog is
 also much slower than scanning library catalogs.
 
    You can scan any of the directories on the currently known path.
-Under Windows and MacOS (not OSX), you need to specify the IDL search
-path in the variable ‘idlwave-library-path’, and the location of the IDL
-directory (the value of the ‘!DIR’ system variable) in the variable
+Under Windows, you need to specify the IDL search path in the variable
+‘idlwave-library-path’, and the location of the IDL directory (the value
+of the ‘!DIR’ system variable) in the variable
 ‘idlwave-system-directory’, like this(1):
 
      (setq idlwave-library-path
@@ -3141,7 +3141,7 @@ Therefore, such local files should not be installed inside the ‘lib’
 directory of the IDL directory.  This is also advisable for many other
 reasons.
 
-   Users of Windows and MacOS (not X) also must set the variable
+   Users of Windows also must set the variable
 ‘idlwave-system-directory’ to the value of the ‘!DIR’ system variable in
 IDL.  IDLWAVE appends ‘lib’ to the value of this variable and assumes
 that all files found on that path are system routines.
@@ -3195,19 +3195,10 @@ it is the preferred choice, and the default.  The variable
 help browser is used.  If you use the IDL Assistant, the tips here are
 not relevant.
 
-   Since IDLWAVE runs on a many different system types, a single browser
-configuration is not possible, but choices abound.  On many systems, the
-default browser configured in ‘browse-url-browser-function’, and hence
-inherited by default by ‘idlwave-help-browser-function’, is Netscape.
-Unfortunately, the HTML manuals decompiled from the original source
-contain formatting structures which Netscape 4.x does not handle well,
-though they are still readable.  A much better choice is Mozilla, or one
-of the Mozilla-derived browsers such as Galeon
-(http://galeon.sourceforge.net/) (GNU/Linux), Camino
-(http://www.mozilla.org/projects/camino/) (MacOSX), or Firebird
-(http://www.mozilla.org/projects/firebird/) (all platforms).  Newer
-versions of Emacs provide a browser-function choice
-‘browse-url-gnome-moz’ which uses the Gnome-configured browser.
+   Since IDLWAVE runs on many different system types, a single browser
+configuration is not possible, but choices abound.  The default
+‘idlwave-help-browser-function’ inherits the browser configured in
+‘browse-url-browser-function’.
 
    Note that the HTML files decompiled from the help sources contain
 specific references to the ‘Symbol’ font, which by default is not
@@ -3218,36 +3209,8 @@ recognizing ‘Symbol’ by following the directions here
 place, HTML help pages look almost identical to their PDF equivalents
 (yet can be bookmarked, browsed as history, searched, etc.).
 
-Individual platform recommendations:
-
-   • Unix/MacOSX: The ‘w3m’ (http://www.w3m.org) browser and its
-     associated ‘emacs-w3m’ (http://emacs-w3m.namazu.org/) emacs mode
-     provide in-buffer browsing with image display, and excellent speed
-     and formatting.  Both the Emacs mode and the browser itself must be
-     downloaded separately.  To use this browser, include
-
-          (setq idlwave-help-browser-function 'w3m-browse-url)
-
-     in your ‘.emacs’.  Setting a few other nice ‘w3m’ options cuts down
-     on screen clutter:
-
-          (setq w3m-use-tab nil
-                w3m-use-header-line nil
-                w3m-use-toolbar nil)
-
-     If you use a dedicated frame for help, you might want to add the
-     following, to get consistent behavior with the ‘q’ key:
-
-          ;; Close my help window when w3m closes.
-          (defadvice w3m-close-window (after idlwave-close activate)
-            (if (boundp 'idlwave-help-frame)
-                (idlwave-help-quit)))
-
-     Note that you can open the file in an external browser from within
-     ‘w3m’ using ‘M’.
-
 
-File: idlwave.info,  Node: Configuration Examples,  Next: Windows and MacOS,  Prev: HTML Help Browser Tips,  Up: Top
+File: idlwave.info,  Node: Configuration Examples,  Next: Windows and macOS,  Prev: HTML Help Browser Tips,  Up: Top
 
 Appendix C Configuration Examples
 *********************************
@@ -3318,7 +3281,7 @@ user is King!
            w3m-use-header-line nil
            w3m-use-toolbar nil)
 
-     ;; Close my help window or frame when w3m closes with `q'
+     ;; Close my help window or frame when w3m closes with 'q'.
      (defadvice w3m-close-window (after idlwave-close activate)
        (if (boundp 'idlwave-help-frame)
            (idlwave-help-quit)))
@@ -3344,11 +3307,11 @@ user is King!
          (idlwave-action-and-binding "," '(idlwave-surround nil 1))
          (idlwave-action-and-binding "&" '(idlwave-surround 1 1))
 
-         ;; Pad only after `->', remove any space before the arrow
+         ;; Pad only after '->', remove any space before the arrow
          (idlwave-action-and-binding "->"  '(idlwave-surround 0 -1 nil 2))
 
          ;; Set some personal bindings
-         ;; (In this case, makes `,' have the normal self-insert behavior.)
+         ;; (In this case, makes ',' have the normal self-insert behavior.)
          (local-set-key "," 'self-insert-command)
          (local-set-key [f5] 'idlwave-shell-break-here)
          (local-set-key [f6] 'idlwave-shell-clear-current-bp)
@@ -3392,28 +3355,27 @@ user is King!
                                              "help,___,/STRUCTURE"))))
 
 
-File: idlwave.info,  Node: Windows and MacOS,  Next: Troubleshooting,  Prev: Configuration Examples,  Up: Top
+File: idlwave.info,  Node: Windows and macOS,  Next: Troubleshooting,  Prev: Configuration Examples,  Up: Top
 
-Appendix D Windows and MacOS
+Appendix D Windows and macOS
 ****************************
 
 IDLWAVE was developed on a UNIX system.  However, thanks to the
 portability of Emacs, much of IDLWAVE does also work under different
-operating systems like Windows (with NTEmacs or NTXEmacs) or MacOS.
+operating systems like Windows (with NTEmacs or NTXEmacs).
 
    The only real problem is that there is no command-line version of IDL
-for Windows or MacOS(<=9) with which IDLWAVE can interact.  As a result,
-the IDLWAVE Shell does not work and you have to rely on IDLDE to run and
-debug your programs.  However, editing IDL source files with
-Emacs/IDLWAVE works with all bells and whistles, including routine info,
-completion and fast online help.  Only a small amount of additional
-information must be specified in your ‘.emacs’ file: the path names
-which, on a UNIX system, are automatically gathered by talking to the
-IDL program.
+for Windows with which IDLWAVE can interact.  As a result, the IDLWAVE
+Shell does not work and you have to rely on IDLDE to run and debug your
+programs.  However, editing IDL source files with Emacs/IDLWAVE works
+with all bells and whistles, including routine info, completion and fast
+online help.  Only a small amount of additional information must be
+specified in your ‘.emacs’ file: the path names which, on a UNIX system,
+are automatically gathered by talking to the IDL program.
 
    Here is an example of the additional configuration needed for a
-Windows system.  I am assuming that IDLWAVE has been installed in ‘C:\Program Files\IDLWAVE’
-and that IDL is installed in ‘C:\RSI\IDL63’.
+Windows system.  I am assuming that IDLWAVE has been installed in
+‘C:\Program Files\IDLWAVE’ and that IDL is installed in ‘C:\RSI\IDL63’.
 
      ;; location of the lisp files (only needed if IDLWAVE is not part of
      ;; your default X/Emacs installation)
@@ -3441,7 +3403,7 @@ help can skip the browser and use the HTMLHelp functionality directly.
 *Note Help with HTML Documentation::.
 
 
-File: idlwave.info,  Node: Troubleshooting,  Next: GNU Free Documentation License,  Prev: Windows and MacOS,  Up: Top
+File: idlwave.info,  Node: Troubleshooting,  Next: GNU Free Documentation License,  Prev: Windows and macOS,  Up: Top
 
 Appendix E Troubleshooting
 **************************
@@ -3459,7 +3421,7 @@ common problems and their solutions are documented below.
      examination commands are available as single keystrokes; ‘C-?’
      lists these shortcuts.  Use ‘q’ to quit the mode, and customize the
      variable ‘idlwave-shell-automatic-electric-debug’ if you prefer not
-     to enter electric debug on breakpoints… but you really should try
+     to enter electric debug on breakpoints... but you really should try
      it before you disable it!  You can also customize this variable to
      enter debug mode when errors are encountered.
 
@@ -3473,9 +3435,9 @@ common problems and their solutions are documented below.
      the idl program with the variable
      ‘idlwave-shell-explicit-file-name’.  Note that you may need to set
      your shell search path in two places when running Emacs as an Aqua
-     application with MacOSX; see the next topic.
+     application with macOS; see the next topic.
 
-  3. *IDLWAVE is disregarding my ‘IDL_PATH’ which I set under MacOSX*
+  3. *IDLWAVE is disregarding my ‘IDL_PATH’ which I set under macOS*
 
      If you run Emacs directly as an Aqua application, rather than from
      the console shell, the environment is set not from your usual shell
@@ -3652,7 +3614,7 @@ Appendix F GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -4102,7 +4064,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -4126,17 +4088,17 @@ Index
  [index ]
 * Menu:
 
-* ‘!DIR’, IDL variable:                  Routine Info.        (line  50)
-* ‘!DIR’, IDL variable <1>:              User Catalog.        (line   6)
-* ‘!DIR’, IDL variable <2>:              Load-Path Shadows.   (line  43)
-* ‘!PATH’, IDL variable:                 Routine Info.        (line  50)
-* ‘!PATH’, IDL variable <1>:             Routine Definitions. (line   6)
-* ‘*Debugging*’:                         Electric Debug Mode. (line   6)
-* ‘->’:                                  Object Method Completion and Class Ambiguity.
+* !DIR, IDL variable:                    Routine Info.        (line  50)
+* !DIR, IDL variable <1>:                User Catalog.        (line   6)
+* !DIR, IDL variable <2>:                Load-Path Shadows.   (line  43)
+* !PATH, IDL variable:                   Routine Info.        (line  50)
+* !PATH, IDL variable <1>:               Routine Definitions. (line   6)
+* *Debugging*:                           Electric Debug Mode. (line   6)
+* ->:                                    Object Method Completion and Class Ambiguity.
                                                               (line  27)
-* ‘.emacs’:                              Configuration Examples.
+* .emacs:                                Configuration Examples.
                                                               (line   6)
-* ‘.idlwave_catalog’:                    Library Catalogs.    (line   6)
+* .idlwave_catalog:                      Library Catalogs.    (line   6)
 * Abbreviations:                         Abbreviations.       (line   6)
 * Acknowledgments:                       Acknowledgments.     (line   6)
 * Actions:                               Actions.             (line   6)
@@ -4144,7 +4106,7 @@ Index
 * Active text, in routine info:          Routine Info.        (line  93)
 * Application, testing for shadowing:    Load-Path Shadows.   (line   6)
 * Authors, of IDLWAVE:                   Acknowledgments.     (line   6)
-* ‘auto-fill-mode’:                      Continuation Lines.  (line  14)
+* auto-fill-mode:                        Continuation Lines.  (line  14)
 * Block boundary check:                  Block Boundary Check.
                                                               (line   6)
 * Block, closing:                        Block Boundary Check.
@@ -4179,7 +4141,7 @@ Index
 * Calling sequences:                     Routine Info.        (line  42)
 * Calling stack, walking:                Walking the Calling Stack.
                                                               (line   6)
-* ‘CALL_EXTERNAL’, IDL routine:          Routine Definitions. (line   6)
+* CALL_EXTERNAL, IDL routine:            Routine Definitions. (line   6)
 * Canceling completion:                  Completion.          (line  55)
 * Case changes:                          Case Changes.        (line   6)
 * Case of completed words:               Case of Completed Words.
@@ -4247,11 +4209,11 @@ Index
 * Electric Debug Mode:                   A Tale of Two Modes. (line   6)
 * Electric Debug Mode <1>:               Electric Debug Mode. (line   6)
 * Email address, of Maintainer:          Acknowledgments.     (line   6)
-* ‘END’ type checking:                   Block Boundary Check.
+* END type checking:                     Block Boundary Check.
                                                               (line   6)
-* ‘END’, automatic insertion:            Block Boundary Check.
+* END, automatic insertion:              Block Boundary Check.
                                                               (line   6)
-* ‘END’, expanding:                      Block Boundary Check.
+* END, expanding:                        Block Boundary Check.
                                                               (line   6)
 * ENVI:                                  Starting the Shell.  (line  30)
 * Examining expressions:                 Examining Variables. (line   6)
@@ -4274,18 +4236,18 @@ Index
 * Foreign code, adapting <1>:            Actions.             (line  24)
 * Formatting, of code:                   Code Formatting.     (line   6)
 * Frame, for shell buffer:               Starting the Shell.  (line   6)
-* ‘Func-menu’, XEmacs package:           Motion Commands.     (line   6)
+* Func-menu, XEmacs package:             Motion Commands.     (line   6)
 * Function definitions, jumping to:      Motion Commands.     (line   6)
 * Function name completion:              Completion.          (line   6)
 * Getting Started:                       Getting Started.     (line   6)
-* ‘get_html_rinfo’:                      Documentation Scan.  (line   6)
+* get_html_rinfo:                        Documentation Scan.  (line   6)
 * Hanging paragraphs:                    Comment Indentation. (line   6)
 * Hanging paragraphs <1>:                Continuation Lines.  (line  14)
 * Header, for file documentation:        Doc Header.          (line   6)
 * Help using HTML manuals:               Help with HTML Documentation.
                                                               (line   6)
 * Help using routine source:             Help with Source.    (line   6)
-* ‘HELP’, on expressions:                Examining Variables. (line   6)
+* HELP, on expressions:                  Examining Variables. (line   6)
 * Highlighting of syntax:                Syntax Highlighting. (line   6)
 * Highlighting of syntax, Octals:        Octals and Highlighting.
                                                               (line   6)
@@ -4298,18 +4260,18 @@ Index
 * IDL library routine info:              User Catalog.        (line   6)
 * IDL manual, HTML version:              Help with HTML Documentation.
                                                               (line   6)
-* IDL variable ‘!DIR’:                   Routine Info.        (line  50)
-* IDL variable ‘!DIR’ <1>:               User Catalog.        (line   6)
-* IDL variable ‘!DIR’ <2>:               Load-Path Shadows.   (line  43)
-* IDL variable ‘!PATH’:                  Routine Info.        (line  50)
-* IDL variable ‘!PATH’ <1>:              Routine Definitions. (line   6)
+* IDL variable !DIR:                     Routine Info.        (line  50)
+* IDL variable !DIR <1>:                 User Catalog.        (line   6)
+* IDL variable !DIR <2>:                 Load-Path Shadows.   (line  43)
+* IDL variable !PATH:                    Routine Info.        (line  50)
+* IDL variable !PATH <1>:                Routine Definitions. (line   6)
 * IDL, as Emacs subprocess:              The IDLWAVE Shell.   (line   6)
-* ‘idl-shell.el’:                        Introduction.        (line   6)
-* ‘idl.el’:                              Introduction.        (line   6)
+* idl-shell.el:                          Introduction.        (line   6)
+* idl.el:                                Introduction.        (line   6)
 * IDL> Prompt:                           Starting the Shell.  (line  30)
-* ‘idlw-help.el’:                        Online Help.         (line   6)
-* ‘idlw-help.txt’:                       Online Help.         (line   6)
-* ‘idlw-rinfo.el’:                       Documentation Scan.  (line   6)
+* idlw-help.el:                          Online Help.         (line   6)
+* idlw-help.txt:                         Online Help.         (line   6)
+* idlw-rinfo.el:                         Documentation Scan.  (line   6)
 * IDLWAVE in a Nutshell:                 IDLWAVE in a Nutshell.
                                                               (line   6)
 * IDLWAVE major mode:                    The IDLWAVE Major Mode.
@@ -4470,8 +4432,8 @@ Index
 * idlwave-timestamp-hook:                Doc Header.          (line  20)
 * idlwave-use-last-hang-indent:          Continuation Lines.  (line  55)
 * idlwave-use-library-catalogs:          Library Catalogs.    (line  54)
-* ‘idlwave_catalog’:                     Library Catalogs.    (line   6)
-* ‘Imenu’, Emacs package:                Motion Commands.     (line   6)
+* idlwave_catalog:                       Library Catalogs.    (line   6)
+* Imenu, Emacs package:                  Motion Commands.     (line   6)
 * Indentation:                           Code Indentation.    (line   6)
 * Indentation, continued statement:      Continued Statement Indentation.
                                                               (line   6)
@@ -4499,23 +4461,21 @@ Index
 * Library catalogs:                      Library Catalogs.    (line   6)
 * Line input mode (Shell):               Using the Shell.     (line  75)
 * Line splitting:                        Continuation Lines.  (line   6)
-* ‘LINKIMAGE’, IDL routine:              Routine Definitions. (line   6)
+* LINKIMAGE, IDL routine:                Routine Definitions. (line   6)
 * Load-path shadows:                     Routine Info.        (line  50)
 * Load-path shadows <1>:                 Load-Path Shadows.   (line   6)
 * M-?:                                   Online Help.         (line  32)
 * M-q:                                   Continuation Lines.  (line  31)
 * M-<RET>:                               Continuation Lines.  (line   6)
 * M-<TAB>:                               Completion.          (line   6)
-* MacOS:                                 The IDLWAVE Shell.   (line   6)
-* MacOS <1>:                             User Catalog.        (line   6)
-* MacOS <2>:                             Load-Path Shadows.   (line  43)
-* MacOS <3>:                             Windows and MacOS.   (line   6)
-* MacOSX:                                Windows and MacOS.   (line   6)
+* macOS:                                 The IDLWAVE Shell.   (line   6)
+* macOS <1>:                             User Catalog.        (line   6)
+* macOS <2>:                             Windows and macOS.   (line   6)
 * Magic spells, for input mode:          Using the Shell.     (line  75)
 * Maintainer, of IDLWAVE:                Acknowledgments.     (line   6)
-* Major mode, ‘idlwave-mode’:            The IDLWAVE Major Mode.
+* Major mode, idlwave-mode:              The IDLWAVE Major Mode.
                                                               (line   6)
-* Major mode, ‘idlwave-shell-mode’:      The IDLWAVE Shell.   (line   6)
+* Major mode, idlwave-shell-mode:        The IDLWAVE Shell.   (line   6)
 * Method completion:                     Completion.          (line   6)
 * Method Completion in Shell:            Object Method Completion in the Shell.
                                                               (line   6)
@@ -4532,19 +4492,18 @@ Index
 * Object method completion:              Completion.          (line   6)
 * Object methods:                        Object Method Completion and Class Ambiguity.
                                                               (line   6)
-* ‘OBJ_NEW’, special online help:        Online Help.         (line  55)
+* OBJ_NEW, special online help:          Online Help.         (line  55)
 * Online Help:                           Online Help.         (line   6)
 * Online Help from the routine info buffer: Routine Info.     (line  93)
-* Online Help in ‘*Completions*’ buffer: Completion.          (line  47)
+* Online Help in *Completions* buffer:   Completion.          (line  47)
 * Online Help, in the shell:             Using the Shell.     (line  44)
 * Online Help, Installation:             Online Help.         (line   6)
 * Operators, padding with spaces:        Padding Operators.   (line   6)
 * Padding operators with spaces:         Padding Operators.   (line   6)
 * Paragraphs, filling:                   Comment Indentation. (line   6)
 * Paragraphs, hanging:                   Comment Indentation. (line   6)
-* Perl program, to create ‘idlw-rinfo.el’: Documentation Scan.
-                                                              (line   6)
-* ‘PRINT’ expressions:                   Examining Variables. (line   6)
+* Perl program, to create idlw-rinfo.el: Documentation Scan.  (line   6)
+* PRINT expressions:                     Examining Variables. (line   6)
 * Printing expressions:                  Examining Variables. (line   6)
 * Printing expressions, on calling stack: Examining Variables.
                                                               (line  55)
@@ -4553,7 +4512,7 @@ Index
 * Program structure, moving through:     Motion Commands.     (line   6)
 * Programs, compiling:                   Compiling Programs.  (line   6)
 * Quick-Start:                           Getting Started.     (line   6)
-* ‘RESOLVE_ROUTINE’:                     Resolving Routines.  (line   6)
+* RESOLVE_ROUTINE:                       Resolving Routines.  (line   6)
 * Restrictions for expression printing:  Examining Variables. (line  55)
 * Routine definitions:                   Routine Definitions. (line   6)
 * Routine definitions, multiple:         Routine Info.        (line  82)
@@ -4566,14 +4525,14 @@ Index
 * Routine source information:            Routine Info.        (line  42)
 * Routines, resolving:                   Resolving Routines.  (line   6)
 * ROUTINE_NAMES, IDL procedure:          Examining Variables. (line  67)
-* Saving object class on ‘->’:           Object Method Completion and Class Ambiguity.
+* Saving object class on ->:             Object Method Completion and Class Ambiguity.
                                                               (line  27)
 * Scanning buffers for routine info:     Routine Info.        (line   6)
 * Scanning buffers for routine info <1>: Routine Information Sources.
                                                               (line   6)
 * Scanning the documentation:            Documentation Scan.  (line   6)
-* Scrolling the ‘*Completions*’ window:  Completion.          (line  47)
-* ‘self’ object, default class:          Object Method Completion and Class Ambiguity.
+* Scrolling the *Completions* window:    Completion.          (line  47)
+* self object, default class:            Object Method Completion and Class Ambiguity.
                                                               (line   6)
 * Shadows, load-path:                    Routine Info.        (line  50)
 * Shadows, load-path <1>:                Load-Path Shadows.   (line   6)
@@ -4591,7 +4550,7 @@ Index
                                                               (line   6)
 * Space, around operators:               Padding Operators.   (line   6)
 * Speed, of online help:                 Online Help.         (line   6)
-* ‘Speedbar’, Emacs package:             Motion Commands.     (line  13)
+* Speedbar, Emacs package:               Motion Commands.     (line  13)
 * Spells, magic:                         Using the Shell.     (line  75)
 * Splitting, of lines:                   Continuation Lines.  (line   6)
 * Starting the shell:                    Starting the Shell.  (line   6)
@@ -4623,7 +4582,7 @@ Index
 * Windows:                               The IDLWAVE Shell.   (line   6)
 * Windows <1>:                           User Catalog.        (line   6)
 * Windows <2>:                           Load-Path Shadows.   (line  43)
-* Windows <3>:                           Windows and MacOS.   (line   6)
+* Windows <3>:                           Windows and macOS.   (line   6)
 * XML Help Catalog:                      Online Help.         (line   6)
 
 
@@ -4644,63 +4603,63 @@ Node: Continued Statement Indentation32102
 Node: Comment Indentation35411
 Node: Continuation Lines36419
 Node: Syntax Highlighting38986
-Node: Octals and Highlighting40051
-Node: Routine Info41145
-Ref: Routine Info-Footnote-147961
-Node: Online Help48127
-Node: Help with HTML Documentation52269
-Node: Help with Source55899
-Node: Completion58934
-Node: Case of Completed Words63177
-Node: Object Method Completion and Class Ambiguity65022
-Node: Object Method Completion in the Shell67788
-Node: Class and Keyword Inheritance68647
-Node: Structure Tag Completion71028
-Node: Routine Source72819
-Node: Resolving Routines73959
-Node: Code Templates74962
-Node: Abbreviations75497
-Node: Actions79912
-Node: Block Boundary Check81796
-Node: Padding Operators82893
-Node: Case Changes85178
-Node: Doc Header86716
-Node: Motion Commands88008
-Node: Misc Options89152
-Node: The IDLWAVE Shell89777
-Node: Starting the Shell90790
-Node: Using the Shell94474
-Ref: Using the Shell-Footnote-198509
-Node: Commands Sent to the Shell98701
-Node: Debugging IDL Programs100900
-Node: A Tale of Two Modes102330
-Node: Debug Key Bindings103433
-Node: Breakpoints and Stepping105419
-Node: Compiling Programs111557
-Node: Walking the Calling Stack113068
-Node: Electric Debug Mode114187
-Ref: Electric Debug Mode-Footnote-1120489
-Node: Examining Variables120624
-Ref: Examining Variables-Footnote-1125572
-Node: Custom Expression Examination125666
-Ref: Custom Expression Examination-Footnote-1129208
-Node: Acknowledgments129416
-Node: Sources of Routine Info131473
-Node: Routine Definitions132187
-Node: Routine Information Sources133552
-Node: Catalogs137117
-Node: Library Catalogs139782
-Node: User Catalog142683
-Ref: User Catalog-Footnote-1145811
-Ref: User Catalog-Footnote-2145898
-Node: Load-Path Shadows145934
-Node: Documentation Scan148583
-Node: HTML Help Browser Tips150090
-Node: Configuration Examples153297
-Node: Windows and MacOS160403
-Node: Troubleshooting162626
-Node: GNU Free Documentation License172647
-Node: Index197997
+Node: Octals and Highlighting40050
+Node: Routine Info41144
+Ref: Routine Info-Footnote-147960
+Node: Online Help48126
+Node: Help with HTML Documentation52268
+Node: Help with Source55898
+Node: Completion58933
+Node: Case of Completed Words63170
+Node: Object Method Completion and Class Ambiguity65015
+Node: Object Method Completion in the Shell67781
+Node: Class and Keyword Inheritance68640
+Node: Structure Tag Completion71021
+Node: Routine Source72812
+Node: Resolving Routines73952
+Node: Code Templates74955
+Node: Abbreviations75490
+Node: Actions79905
+Node: Block Boundary Check81789
+Node: Padding Operators82886
+Node: Case Changes85171
+Node: Doc Header86709
+Node: Motion Commands88001
+Node: Misc Options89145
+Node: The IDLWAVE Shell89770
+Node: Starting the Shell90782
+Node: Using the Shell94466
+Ref: Using the Shell-Footnote-198501
+Node: Commands Sent to the Shell98693
+Node: Debugging IDL Programs100892
+Node: A Tale of Two Modes102322
+Node: Debug Key Bindings103425
+Node: Breakpoints and Stepping105411
+Node: Compiling Programs111549
+Node: Walking the Calling Stack113060
+Node: Electric Debug Mode114179
+Ref: Electric Debug Mode-Footnote-1120481
+Node: Examining Variables120616
+Ref: Examining Variables-Footnote-1125563
+Node: Custom Expression Examination125657
+Ref: Custom Expression Examination-Footnote-1129199
+Node: Acknowledgments129407
+Node: Sources of Routine Info131464
+Node: Routine Definitions132178
+Node: Routine Information Sources133543
+Node: Catalogs137108
+Node: Library Catalogs139771
+Node: User Catalog142672
+Ref: User Catalog-Footnote-1145780
+Ref: User Catalog-Footnote-2145867
+Node: Load-Path Shadows145903
+Node: Documentation Scan148534
+Node: HTML Help Browser Tips150041
+Node: Configuration Examples151520
+Node: Windows and macOS158627
+Node: Troubleshooting160827
+Node: GNU Free Documentation License170846
+Node: Index196200
 
 End Tag Table
 

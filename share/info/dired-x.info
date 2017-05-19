@@ -1,7 +1,7 @@
-This is dired-x.info, produced by makeinfo version 5.2 from
+This is dired-x.info, produced by makeinfo version 6.3 from
 dired-x.texi.
 
-Copyright © 1994–1995, 1999, 2001–2015 Free Software Foundation, Inc.
+Copyright © 1994–1995, 1999, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -29,9 +29,9 @@ provided by the file ‘dired-x.el’.
 
    • Based on ‘dired.texi’ by Sebastian Kremer <sk@thp.uni-koeln.de>
 
-   • For ‘dired-x.el’ as distributed with GNU Emacs 24.5.
+   • For ‘dired-x.el’ as distributed with GNU Emacs 25.2.
 
-   Copyright © 1994–1995, 1999, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1994–1995, 1999, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -197,7 +197,7 @@ File: dired-x.info,  Node: Omitting Files in Dired,  Next: Local Variables,  Pre
 3 Omitting Files in Dired
 *************************
 
-"Omitting" a file means removing it from the directory listing.
+“Omitting” a file means removing it from the directory listing.
 Omitting is useful for keeping Dired buffers free of “uninteresting”
 files (for instance, auto-save, auxiliary, backup, and revision control
 files) so that the user can concentrate on the interesting files.  Like
@@ -453,7 +453,7 @@ list of marked files.
 
      Each element of the alist looks like
 
-          (REGEXP COMMAND…)
+          (REGEXP COMMAND...)
 
      where each COMMAND can either be a string or a Lisp expression that
      evaluates to a string.  If several commands are given, all of them
@@ -513,7 +513,7 @@ File: dired-x.info,  Node: Virtual Dired,  Next: Advanced Mark Commands,  Prev: 
 6 Virtual Dired
 ***************
 
-Using "Virtual Dired" means putting a buffer with Dired-like contents in
+Using “Virtual Dired” means putting a buffer with Dired-like contents in
 Dired mode.  The files described by the buffer contents need not
 actually exist.  This is useful if you want to peruse an ‘ls -lR’ output
 file, for example one you got from an FTP server.  You can use all
@@ -887,7 +887,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1337,7 +1337,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1361,19 +1361,19 @@ Concept Index
  [index ]
 * Menu:
 
-* Autoloading ‘dired-jump’ and ‘dired-jump-other-window’: Optional Installation Dired Jump.
+* Autoloading dired-jump and dired-jump-other-window: Optional Installation Dired Jump.
                                                                (line  6)
-* Binding ‘dired-x-find-file’:           Optional Installation File At Point.
+* Binding dired-x-find-file:             Optional Installation File At Point.
                                                                (line  6)
 * Bugs:                                  Bugs.                 (line  6)
 * Customizing file omitting:             Omitting Variables.   (line  6)
-* ‘dired-aux.el’:                        Technical Details.    (line  6)
+* dired-aux.el:                          Technical Details.    (line  6)
 * Dot files, how to omit them in Dired:  Omitting Examples.    (line 27)
 * Features:                              Features.             (line  6)
 * Finding a file at point:               Find File At Point.   (line  6)
 * Guessing shell commands for files.:    Shell Command Guessing.
                                                                (line  6)
-* ‘gzip’:                                Shell Command Guessing.
+* gzip:                                  Shell Command Guessing.
                                                                (line 72)
 * How to make omitting the default in Dired: Omitting Variables.
                                                                (line 12)
@@ -1382,7 +1382,7 @@ Concept Index
 * Lisp expression, marking files with in Dired: Special Marking Function.
                                                                (line  7)
 * Local Variables for Dired Directories: Local Variables.      (line  6)
-* ‘ls’ listings, how to peruse them in Dired: Virtual Dired.   (line  6)
+* ls listings, how to peruse them in Dired: Virtual Dired.     (line  6)
 * Mark file by Lisp expression:          Special Marking Function.
                                                                (line  7)
 * Modified functions:                    Technical Details.    (line  6)
@@ -1394,9 +1394,9 @@ Concept Index
                                                                (line  6)
 * Omitting RCS files in Dired:           Omitting Examples.    (line  6)
 * Omitting tib files in Dired:           Omitting Examples.    (line 18)
-* Passing GNU Tar its ‘z’ switch.:       Shell Command Guessing.
+* Passing GNU Tar its z switch.:         Shell Command Guessing.
                                                                (line 64)
-* Perusing ‘ls’ listings:                Virtual Dired.        (line  6)
+* Perusing ls listings:                  Virtual Dired.        (line  6)
 * RCS files, how to omit them in Dired:  Omitting Examples.    (line  6)
 * Reading mail.:                         Miscellaneous Commands.
                                                                (line 46)
@@ -1419,7 +1419,7 @@ Concept Index
                                                                (line  7)
 * Working directory:                     Multiple Dired Directories.
                                                                (line  6)
-* ‘znew’:                                Shell Command Guessing.
+* znew:                                  Shell Command Guessing.
                                                                (line 78)
 
 
@@ -1585,25 +1585,25 @@ Node: Installation4191
 Node: Optional Installation Dired Jump5321
 Node: Optional Installation File At Point6116
 Node: Omitting Files in Dired6877
-Node: Omitting Variables8420
-Node: Omitting Examples11473
-Node: Omitting Technical12908
-Node: Local Variables13334
-Node: Shell Command Guessing15406
-Node: Virtual Dired18865
-Node: Advanced Mark Commands20446
-Node: Advanced Cleaning Functions21885
-Node: Advanced Cleaning Variables22748
-Node: Special Marking Function23930
-Node: Multiple Dired Directories25595
-Node: Find File At Point26446
-Node: Miscellaneous Commands29367
-Node: Bugs32854
-Node: GNU Free Documentation License33119
-Node: Concept Index58466
-Node: Command Index62946
-Node: Key Index66318
-Node: Variable Index68477
+Node: Omitting Variables8424
+Node: Omitting Examples11477
+Node: Omitting Technical12912
+Node: Local Variables13338
+Node: Shell Command Guessing15410
+Node: Virtual Dired18869
+Node: Advanced Mark Commands20454
+Node: Advanced Cleaning Functions21893
+Node: Advanced Cleaning Variables22756
+Node: Special Marking Function23938
+Node: Multiple Dired Directories25603
+Node: Find File At Point26454
+Node: Miscellaneous Commands29375
+Node: Bugs32862
+Node: GNU Free Documentation License33127
+Node: Concept Index58478
+Node: Command Index62918
+Node: Key Index66290
+Node: Variable Index68449
 
 End Tag Table
 

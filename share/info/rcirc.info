@@ -1,6 +1,6 @@
-This is rcirc.info, produced by makeinfo version 5.2 from rcirc.texi.
+This is rcirc.info, produced by makeinfo version 6.3 from rcirc.texi.
 
-Copyright © 2006–2015 Free Software Foundation, Inc.
+Copyright © 2006–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -30,7 +30,7 @@ communicate with each other in real-time.  Communication occurs both in
 topic channels which are collections of many users, or privately, with
 just one other user.
 
-   Copyright © 2006–2015 Free Software Foundation, Inc.
+   Copyright © 2006–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -104,7 +104,7 @@ File: rcirc.info,  Node: Internet Relay Chat,  Next: Getting started with rcirc,
 1.1 Internet Relay Chat
 =======================
 
-"Internet Relay Chat" (IRC) is a form of instant communication over the
+“Internet Relay Chat” (IRC) is a form of instant communication over the
 Internet.  It is mainly designed for group (many-to-many) communication
 in discussion forums called channels, but also allows one-to-one
 communication.
@@ -239,8 +239,8 @@ to precede the command with a space, or rewrite your message in order to
 send it to a channel.
 
    Many commands take parameters.  IRC commands usually ignore string
-delimiters.  Neither quote nor double-quote have special meanings in
-IRC.
+delimiters.  Neither apostrophe nor double-quote have special meanings
+in IRC.
 
      /nick "alex schroeder"
 
@@ -657,11 +657,11 @@ new commands.
 loaded because ‘defun-rcirc-command’ is not yet available, and without
 ‘rcirc’ loaded, the command wouldn’t do us much good anyway.
 
-     (eval-after-load 'rcirc
-       '(defun-rcirc-command sv (arg)
-          "Boast about rcirc."
-          (interactive "i")
-          (rcirc-send-message process target
+     (with-eval-after-load 'rcirc
+       (defun-rcirc-command sv (arg)
+         "Boast about rcirc."
+         (interactive "i")
+         (rcirc-send-message process target
                               (concat "I use " rcirc-id-string))))
 
 
@@ -680,29 +680,29 @@ every channel buffer, one dead and one live.
 
    The real answer, therefore, is a ‘/reconnect’ command:
 
-     (eval-after-load 'rcirc
-       '(defun-rcirc-command reconnect (arg)
-          "Reconnect the server process."
-          (interactive "i")
-          (unless process
-            (error "There's no process for this target"))
-          (let* ((server (car (process-contact process)))
-                 (port (process-contact process :service))
-                 (nick (rcirc-nick process))
-                 channels query-buffers)
-            (dolist (buf (buffer-list))
-              (with-current-buffer buf
-                (when (eq process (rcirc-buffer-process))
-                  (remove-hook 'change-major-mode-hook
-                               'rcirc-change-major-mode-hook)
-                  (if (rcirc-channel-p rcirc-target)
-                      (setq channels (cons rcirc-target channels))
-                    (setq query-buffers (cons buf query-buffers))))))
-            (delete-process process)
-            (rcirc-connect server port nick
-                           rcirc-default-user-name
-                           rcirc-default-full-name
-                           channels))))
+     (with-eval-after-load 'rcirc
+       (defun-rcirc-command reconnect (arg)
+         "Reconnect the server process."
+         (interactive "i")
+         (unless process
+           (error "There's no process for this target"))
+         (let* ((server (car (process-contact process)))
+                (port (process-contact process :service))
+                (nick (rcirc-nick process))
+                channels query-buffers)
+           (dolist (buf (buffer-list))
+             (with-current-buffer buf
+               (when (eq process (rcirc-buffer-process))
+                 (remove-hook 'change-major-mode-hook
+                              'rcirc-change-major-mode-hook)
+                 (if (rcirc-channel-p rcirc-target)
+                     (setq channels (cons rcirc-target channels))
+                   (setq query-buffers (cons buf query-buffers))))))
+           (delete-process process)
+           (rcirc-connect server port nick
+                          rcirc-default-user-name
+                          rcirc-default-full-name
+                          channels))))
 
 
 File: rcirc.info,  Node: GNU Free Documentation License,  Next: Key Index,  Prev: Hacking and Tweaking,  Up: Top
@@ -721,7 +721,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1171,7 +1171,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1482,27 +1482,27 @@ Tag Table:
 Node: Top846
 Node: Basics2494
 Node: Internet Relay Chat2764
-Node: Getting started with rcirc4296
-Node: Reference7250
-Node: rcirc commands7596
-Node: Useful IRC commands10549
-Node: Configuration11307
-Node: Fighting Information Overload16354
-Node: Channels16857
-Node: People18433
-Node: Keywords20107
-Node: Notices20626
-Node: Hacking and Tweaking21551
-Node: Skipping /away messages using handlers22025
-Node: Using fly spell mode22778
-Node: Scrolling conservatively23208
-Node: Changing the time stamp format23889
-Node: Defining a new command24276
-Node: Reconnecting after you have lost the connection25127
-Node: GNU Free Documentation License27004
-Node: Key Index52361
-Node: Variable Index53747
-Node: Index55256
+Node: Getting started with rcirc4300
+Node: Reference7254
+Node: rcirc commands7600
+Node: Useful IRC commands10558
+Node: Configuration11316
+Node: Fighting Information Overload16363
+Node: Channels16866
+Node: People18442
+Node: Keywords20116
+Node: Notices20635
+Node: Hacking and Tweaking21560
+Node: Skipping /away messages using handlers22034
+Node: Using fly spell mode22787
+Node: Scrolling conservatively23217
+Node: Changing the time stamp format23898
+Node: Defining a new command24285
+Node: Reconnecting after you have lost the connection25137
+Node: GNU Free Documentation License26997
+Node: Key Index52358
+Node: Variable Index53744
+Node: Index55253
 
 End Tag Table
 

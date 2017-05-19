@@ -1,9 +1,9 @@
-This is remember.info, produced by makeinfo version 5.2 from
+This is remember.info, produced by makeinfo version 6.3 from
 remember.texi.
 
 This manual is for Remember Mode, version 2.0
 
-   Copyright © 2001, 2004–2005, 2007–2015 Free Software Foundation, Inc.
+   Copyright © 2001, 2004–2005, 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -28,7 +28,7 @@ Remember
 
 This manual is for Remember Mode, version 2.0
 
-   Copyright © 2001, 2004–2005, 2007–2015 Free Software Foundation, Inc.
+   Copyright © 2001, 2004–2005, 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -109,7 +109,7 @@ throwing the data at Emacs as possible.
 _actually_ increase the amount of quality material that you turn out, in
 the long run?  Perhaps it’s because the time we save electronically in
 one way, we’re losing electronically in another; the tool should never
-dominate one’s focus.  As the mystic Faridu’d-Din ‘Attar wrote: “Be
+dominate one’s focus.  As the mystic Farīd ud-Dīn ʿAṭṭār wrote: “Be
 occupied as little as possible with things of the outer world but much
 with things of the inner world; then right action will overcome
 inaction.”
@@ -223,7 +223,7 @@ remember-annotation-functions.  For example:
       (let ((remember-annotation-functions '(buffer-file-name)))
        (call-interactively 'remember)))
 
-   The ‘remember-notes’ command creates a "notes" buffer that visits the
+   The ‘remember-notes’ command creates a “notes” buffer that visits the
 file specified by the option ‘remember-data-file’.  The option
 ‘remember-notes-buffer-name’ specifies the name of the buffer.  The
 buffer uses ‘remember-notes-initial-major-mode’ and
@@ -255,7 +255,7 @@ File: remember.info,  Node: Function Reference,  Next: Keystrokes,  Prev: Quick 
 
  -- Function: remember-clipboard
      Remember the contents of the current clipboard.  This is most
-     useful for remembering things from Netscape or other X Windows
+     useful for remembering things from a web browser or other X Windows
      applications.
 
  -- Function: remember-finalize
@@ -425,7 +425,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -875,7 +875,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -923,18 +923,18 @@ Tag Table:
 Node: Top922
 Node: Preface2603
 Node: Introduction2953
-Node: Implementation5358
-Node: Quick Start7727
-Node: Function Reference10519
-Node: Keystrokes12785
-Node: Backends13186
-Node: Text File13671
-Node: Separate Text Files14091
-Node: Diary14713
-Node: Mailbox15135
-Node: Org15571
-Node: GNU Free Documentation License15792
-Node: Concept Index41144
+Node: Implementation5362
+Node: Quick Start7731
+Node: Function Reference10527
+Node: Keystrokes12798
+Node: Backends13199
+Node: Text File13684
+Node: Separate Text Files14104
+Node: Diary14726
+Node: Mailbox15148
+Node: Org15584
+Node: GNU Free Documentation License15805
+Node: Concept Index41161
 
 End Tag Table
 

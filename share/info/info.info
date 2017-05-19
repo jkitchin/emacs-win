@@ -1,9 +1,9 @@
-This is info.info, produced by makeinfo version 5.2 from info.texi.
+This is info.info, produced by makeinfo version 6.3 from info.texi.
 
 This file describes how to use Info, the menu-driven GNU documentation
 system.
 
-   Copyright © 1989, 1992, 1996–2015 Free Software Foundation, Inc.
+   Copyright © 1989, 1992, 1996–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -26,8 +26,8 @@ File: info.info,  Node: Top,  Next: Getting Started,  Up: (dir)
 Info: An Introduction
 *********************
 
-The GNU Project distributes most of its manuals in the "Info format",
-which you read using an "Info reader".  You are probably using an Info
+The GNU Project distributes most of its manuals in the “Info format”,
+which you read using an “Info reader”.  You are probably using an Info
 reader to read this now.
 
    There are two primary Info readers: ‘info’, a stand-alone program
@@ -40,15 +40,16 @@ type the command ‘h’ now.  It brings you to a programmed instruction
 sequence.
 
    To read about advanced Info commands, type ‘n’ twice.  This brings
-you to ‘Advanced Info Commands’, skipping over the ‘Getting Started’
+you to ‘Advanced Info Commands’, skipping over the “Getting Started”
 chapter.
 
-   Type ‘H’ to see a summary of all available commands.
+   If you are using Emacs, type ‘?’ to see a summary of all available
+commands.  In the stand-alone Info reader, type ‘H’ instead.
 
    This file describes how to use Info, the menu-driven GNU
 documentation system.
 
-   Copyright © 1989, 1992, 1996–2015 Free Software Foundation, Inc.
+   Copyright © 1989, 1992, 1996–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -174,12 +175,12 @@ You are talking to the program Info, for reading documentation.
    There are two ways to use Info: from within Emacs or as a stand-alone
 reader that you can invoke from a shell using the command ‘info’.
 
-   Right now you are looking at one "Node" of Information.  A node
+   Right now you are looking at one “Node” of Information.  A node
 contains text describing a specific topic at a specific level of detail.
 This node’s topic is “how to use Info”.  The mode line says that this is
 node ‘Help’ in the file ‘info’.
 
-   The top line of a node is its "header".  This node’s header (look at
+   The top line of a node is its “header”.  This node’s header (look at
 it now) says that the ‘Next’ node after this one is the node called
 ‘Help-P’.  An advanced Info command lets you go to any node whose name
 you know.  In the stand-alone Info reader program, the header line shows
@@ -303,12 +304,14 @@ once.  ‘b’ stands for “beginning.”
    Then come back, by typing <SPC> one or more times.
 
    You have just learned a considerable number of commands.  If you want
-to use one but have trouble remembering which, you should type ‘?’,
-which displays a brief list of commands.  When you are finished looking
-at the list, make it go away by typing <SPC> repeatedly.
+to use one but have trouble remembering which, you should type ‘?’ (‘H’
+in the stand-alone Info reader), which displays a brief list of
+commands.  When you are finished looking at the list, make it go away by
+typing <SPC> repeatedly.
 
->> Type a <?> now.  Press <SPC> to see consecutive screenfuls of
-   the list until finished.  Then type <SPC> several times.  If
+>> Type a <?> (or <H> in the stand-alone Info reader) now.
+   Press <SPC> to see consecutive screenfuls of the list
+   until finished.  Then type <SPC> several times.  If
    you are using Emacs, the help will then go away automatically.
    If you are using the stand-alone Info reader, type ‘x’ to
    return here.
@@ -469,7 +472,7 @@ you for more input.
    The Info commands you know do not need additional input; when you
 type one of them, Info processes it instantly and then is ready for
 another command.  The ‘m’ command is different: it needs to know the
-"name of the subtopic".  Once you have typed ‘m’, Info tries to read the
+“name of the subtopic”.  Once you have typed ‘m’, Info tries to read the
 subtopic name.
 
    Now, in the stand-alone Info, look for the line containing many
@@ -497,7 +500,7 @@ whether you use upper case or lower case when you type the subtopic.
 You should not put any spaces at the end, or inside of the item name,
 except for one space where a space appears in the item in the menu.
 
-   You can also use the "completion" feature to help enter the subtopic
+   You can also use the “completion” feature to help enter the subtopic
 name.  If you type the <TAB> key after entering part of a name, it will
 fill in more of the name—as much as Info can deduce from the part you
 have entered.
@@ -561,19 +564,19 @@ brief name.  You will see the subtopic’s name change its appearance
 (usually, its background color will change), and the shape of the mouse
 pointer will change if your platform supports that.  After a while, if
 you leave the mouse on that spot, a small window will pop up, saying
-“Mouse-2: go to that node,” or the same message may appear at the bottom
+“mouse-2: go to that node,” or the same message may appear at the bottom
 of the screen.
 
-   ‘Mouse-2’ is the second button of your mouse counting from the
+   ‘mouse-2’ is the second button of your mouse counting from the
 left—the middle button on a 3-button mouse.  (On a 2-button mouse, you
 may have to press both buttons together to “press the middle button”.)
-The message tells you pressing ‘Mouse-2’ with the current position of
+The message tells you pressing ‘mouse-2’ with the current position of
 the mouse pointer (on subtopic in the menu) will go to that subtopic.
 
-   More generally, ‘Mouse-2’ in an Info buffer finds the nearest link to
+   More generally, ‘mouse-2’ in an Info buffer finds the nearest link to
 another node and goes there.  For example, near a cross reference it
 acts like ‘f’, in a menu it acts like ‘m’, on the node’s header line it
-acts like ‘n’, ‘p’, or ‘u’, etc.  At end of the node’s text ‘Mouse-2’
+acts like ‘n’, ‘p’, or ‘u’, etc.  At end of the node’s text ‘mouse-2’
 moves to the next node, or up if there’s no next node.
 
 >> Type ‘n’ to see more commands.
@@ -597,7 +600,7 @@ that the ‘u’ command brought you from.  (Some Info readers may put you
 at the _front_ of the node instead—to get back to where you were
 reading, you have to type some <SPC>s.)
 
-   Another way to go Up is to click ‘Mouse-2’ on the ‘Up’ pointer shown
+   Another way to go Up is to click ‘mouse-2’ on the ‘Up’ pointer shown
 in the header line (provided that you have a mouse).
 
 >> Now type ‘u’ to move back up to ‘Help-M’.
@@ -608,14 +611,14 @@ File: info.info,  Node: Help-Xref,  Next: Help-Int,  Prev: Help-M,  Up: Getting 
 1.7 Following Cross-References
 ==============================
 
-In Info documentation, you will see many "cross references".  Cross
+In Info documentation, you will see many “cross references”.  Cross
 references look like this: *Note Cross: Help-Cross.  That text is a
 real, live cross reference, whose name is ‘Cross’ and which points to
 the node named ‘Help-Cross’.  (The node name is hidden in Emacs.  Do
 ‘M-x visible-mode’ to show or hide it.)
 
    You can follow a cross reference by moving the cursor to it and press
-<RET>, just as in a menu.  In Emacs, you can also click ‘Mouse-1’ on a
+<RET>, just as in a menu.  In Emacs, you can also click ‘mouse-1’ on a
 cross reference to follow it; you can see that the cross reference is
 mouse-sensitive by moving the mouse pointer to the reference and
 watching how the underlying text and the mouse pointer change in
@@ -720,7 +723,7 @@ the node which is listed in the index for that topic.  *Note Search
 Index::, for a full explanation.
 
    If you have been moving around to different nodes and wish to retrace
-your steps, the ‘l’ command (‘l’ for "last") will do that, one node-step
+your steps, the ‘l’ command (‘l’ for “last”) will do that, one node-step
 at a time.  As you move from node to node, Info records the nodes where
 you have been in a special history list.  The ‘l’ command revisits nodes
 in the history list; each successive ‘l’ command moves one step back
@@ -768,7 +771,7 @@ File: info.info,  Node: Help-Q,  Prev: Help-Int,  Up: Getting Started
 =================
 
 To get out of Info, back to what you were doing before, type ‘q’ for
-"Quit".  This runs ‘Info-exit’ in Emacs.
+“Quit”.  This runs ‘Info-exit’ in Emacs.
 
    This is the end of the basic course on using Info.  You have learned
 how to move in an Info document, and how to follow menus and cross
@@ -827,7 +830,7 @@ The commands which move between and inside nodes allow you to read the
 entire manual or its large portions.  But what if you need to find some
 information in the manual as fast as you can, and you don’t know or
 don’t remember in what node to look for it?  This need arises when you
-use a manual as a "reference", or when it is impractical to read the
+use a manual as a “reference”, or when it is impractical to read the
 entire manual before you start using the programs it describes.
 
    Info has powerful searching facilities that let you find things
@@ -930,12 +933,12 @@ File: info.info,  Node: Choose menu subtopic,  Next: Create Info buffer,  Prev: 
 ================================================
 
 If you begrudge each character of type-in which your system requires,
-you might like to use the commands ‘1’, ‘2’, ‘3’, ‘4’, …, ‘9’.  They are
-short for the ‘m’ command together with a name of a menu subtopic.  ‘1’
-goes through the first item in the current node’s menu; ‘2’ goes through
-the second item, etc.  In the stand-alone reader, ‘0’ goes through the
-last menu item; this is so you need not count how many entries are
-there.
+you might like to use the commands ‘1’, ‘2’, ‘3’, ‘4’, ..., ‘9’.  They
+are short for the ‘m’ command together with a name of a menu subtopic.
+‘1’ goes through the first item in the current node’s menu; ‘2’ goes
+through the second item, etc.  In the stand-alone reader, ‘0’ goes
+through the last menu item; this is so you need not count how many
+entries are there.
 
    If your display supports multiple fonts, colors or underlining, and
 you are using Emacs’s Info mode to read Info files, the third, sixth and
@@ -973,7 +976,10 @@ buffer ‘*info*<2>’, creating it if necessary.
    If you have created many Info buffers in Emacs, you might find it
 difficult to remember which buffer is showing which manual.  You can use
 the command ‘M-x info-display-manual’ to show an Info manual by name,
-reusing an existing buffer if there is one.
+reusing an existing buffer if there is one.  When given a prefix
+argument, this command limits the completion alternatives to currently
+visited info files, thus giving a convenient way to switch between
+several manuals.
 
 
 File: info.info,  Node: Emacs Info Variables,  Prev: Create Info buffer,  Up: Advanced
@@ -1095,7 +1101,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1545,7 +1551,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1574,6 +1580,10 @@ topics discussed in this document.
 
 * 1 through 9 (Info mode):               Choose menu subtopic.
                                                               (line   6)
+* 3rd menu item:                         Choose menu subtopic.
+                                                              (line  14)
+* 6th menu item:                         Choose menu subtopic.
+                                                              (line  14)
 * ? (Info mode):                         Help-^L.             (line  74)
 * abbreviating Info subnodes:            Help-M.              (line  89)
 * b (Info mode):                         Help-^L.             (line  65)
@@ -1595,6 +1605,7 @@ topics discussed in this document.
 * go to Top node:                        Help-Int.            (line  59)
 * going back in Info history:            Help-Int.            (line  26)
 * going forward in Info history:         Help-Int.            (line  41)
+* H (stand-alone Info reader):           Help-^L.             (line  74)
 * header of Info node:                   Help.                (line  16)
 * history list of visited nodes:         Help-Int.            (line  45)
 * i (Info mode):                         Search Index.        (line   6)
@@ -1650,9 +1661,11 @@ topics discussed in this document.
 * L (Info mode):                         Help-Int.            (line  45)
 * m (Info mode):                         Help-M.              (line  62)
 * M-n (Info mode):                       Create Info buffer.  (line   6)
+* menu items, select by their numbers:   Choose menu subtopic.
+                                                              (line   6)
 * menus in an Info document:             Help-M.              (line   6)
 * mouse support in Info mode:            Help-M.              (line 154)
-* Mouse-2 (Info mode):                   Help-M.              (line 154)
+* mouse-2 (Info mode):                   Help-M.              (line 154)
 * multiple Info buffers:                 Create Info buffer.  (line   6)
 * n (Info mode):                         Help.                (line  27)
 * node, in Info documents:               Help.                (line  11)
@@ -1668,10 +1681,16 @@ topics discussed in this document.
 * searching Info indices:                Search Index.        (line   6)
 * select N’th menu item:                 Choose menu subtopic.
                                                               (line   6)
+* sixth menu item:                       Choose menu subtopic.
+                                                              (line  14)
 * small screen, moving around:           Help-Small-Screen.   (line   6)
 * SPC (Info mode):                       Help-^L.             (line  15)
+* star * before menu item:               Choose menu subtopic.
+                                                              (line  14)
 * t (Info mode):                         Help-Int.            (line  59)
 * Texinfo:                               Further Reading.     (line   6)
+* third menu item:                       Choose menu subtopic.
+                                                              (line  14)
 * u (Info mode):                         Help-FOO.            (line  13)
 * visible-mode:                          Help-Inv.            (line  17)
 
@@ -1679,30 +1698,30 @@ topics discussed in this document.
 
 Tag Table:
 Node: Top957
-Node: Getting Started2967
-Node: Help-Small-Screen3811
-Node: Help5967
-Node: Help-P7687
-Node: Help-^L8971
-Ref: Help-^L-Footnote-113497
-Node: Help-Inv13891
-Node: Help-]15619
-Node: Help-M17255
-Node: Help-FOO26068
-Node: Help-Xref27103
-Node: Help-Cross30869
-Node: Help-Int31565
-Node: Help-Q34708
-Node: Advanced35883
-Node: Search Text37106
-Node: Search Index38932
-Node: Go to node41449
-Node: Choose menu subtopic42568
-Node: Create Info buffer43817
-Node: Emacs Info Variables45221
-Node: Further Reading49208
-Node: GNU Free Documentation License49972
-Node: Index75319
+Node: Getting Started3054
+Node: Help-Small-Screen3898
+Node: Help6054
+Node: Help-P7782
+Node: Help-^L9066
+Ref: Help-^L-Footnote-113675
+Node: Help-Inv14069
+Node: Help-]15797
+Node: Help-M17433
+Node: Help-FOO26254
+Node: Help-Xref27289
+Node: Help-Cross31059
+Node: Help-Int31755
+Node: Help-Q34902
+Node: Advanced36081
+Node: Search Text37304
+Node: Search Index39134
+Node: Go to node41651
+Node: Choose menu subtopic42770
+Node: Create Info buffer44018
+Node: Emacs Info Variables45598
+Node: Further Reading49585
+Node: GNU Free Documentation License50349
+Node: Index75700
 
 End Tag Table
 

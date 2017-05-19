@@ -1,6 +1,6 @@
-This is vip.info, produced by makeinfo version 5.2 from vip.texi.
+This is vip.info, produced by makeinfo version 6.3 from vip.texi.
 
-Copyright © 1987, 2001–2015 Free Software Foundation, Inc.
+Copyright © 1987, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -41,7 +41,7 @@ before you start using VIP.  Other nodes may be visited as needed.
 ‘ms@Sail.Stanford.Edu’ if you are outside of Japan and to
 ‘masahiko@sato.riec.tohoku.junet’ if you are in Japan.
 
-   Copyright © 1987, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1987, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -88,25 +88,25 @@ File: vip.info,  Node: Basic Concepts,  Next: Loading VIP,  Up: Survey
 We begin by explaining some basic concepts of Emacs.  These concepts are
 explained in more detail in the GNU Emacs Manual.
 
-   Conceptually, a "buffer" is just a string of ASCII characters and two
-special characters <PNT> ("point") and <MRK> ("mark") such that the
+   Conceptually, a “buffer” is just a string of ASCII characters and two
+special characters <PNT> (“point”) and <MRK> (“mark”) such that the
 character <PNT> occurs exactly once and <MRK> occurs at most once.  The
-"text" of a buffer is obtained by deleting the occurrences of <PNT> and
+“text” of a buffer is obtained by deleting the occurrences of <PNT> and
 <MRK>.  If, in a buffer, there is a character following <PNT> then we
-say that point is "looking at" the character; otherwise we say that
-point is "at the end of buffer".  <PNT> and <MRK> are used to indicate
+say that point is “looking at” the character; otherwise we say that
+point is “at the end of buffer”.  <PNT> and <MRK> are used to indicate
 positions in a buffer and they are not part of the text of the buffer.
 If a buffer contains a <MRK> then the text between <MRK> and <PNT> is
-called the "region" of the buffer.
+called the “region” of the buffer.
 
-   Emacs provides (multiple) "windows" on the screen, and you can see
+   Emacs provides (multiple) “windows” on the screen, and you can see
 the content of a buffer through the window associated with the buffer.
 The cursor of the screen is always positioned on the character after
 <PNT>.
 
-   A "keymap" is a table that records the bindings between characters
-and command functions.  There is the "global keymap" common to all the
-buffers.  Each buffer has its "local keymap" that determines the "mode"
+   A “keymap” is a table that records the bindings between characters
+and command functions.  There is the “global keymap” common to all the
+buffers.  Each buffer has its “local keymap” that determines the “mode”
 of the buffer.  Local keymap overrides global keymap, so that if a
 function is bound to some key in the local keymap then that function
 will be executed when you type the key.  If no function is bound to a
@@ -146,29 +146,29 @@ typing ‘C-x C-z’.  Other than this, all the key bindings of Emacs remain
 the same after loading VIP.
 
    Now, if you hit ‘C-z’, the function ‘vip-change-mode-to-vi’ will be
-called and you will be in "vi mode".  (Some major modes may locally bind
+called and you will be in “vi mode”.  (Some major modes may locally bind
 ‘C-z’ to some special functions.  In such cases, you can call
 ‘vip-change-mode-to-vi’ by ‘execute-extended-command’ which is invoked
 by ‘M-x’.  Here ‘M-x’ means ‘Meta-x’, and if your terminal does not have
 a <META> key you can enter it by typing ‘<ESC> x’.  The same effect can
 also be achieve by typing ‘M-x vip-mode’.)
 
-   You can observe the change of mode by looking at the "mode line".
+   You can observe the change of mode by looking at the “mode line”.
 For instance, if the mode line is:
      -----Emacs: *scratch*              (Lisp Interaction)----All------------
 then it will change to:
      -----Vi:    *scratch*              (Lisp Interaction)----All------------
 Thus the word ‘Emacs’ in the mode line will change to ‘Vi’.
 
-   You can go back to the original "emacs mode" by typing ‘C-z’ in vi
+   You can go back to the original “emacs mode” by typing ‘C-z’ in vi
 mode.  Thus ‘C-z’ toggles between these two modes.
 
    Note that modes in VIP exist orthogonally to modes in Emacs.  This
 means that you can be in vi mode and at the same time, say, shell mode.
 
    Vi mode corresponds to Vi’s command mode.  From vi mode you can enter
-"insert mode" (which corresponds to Vi’s insert mode) by usual Vi
-command keys like ‘i’, ‘a’, ‘o’ … etc.
+“insert mode” (which corresponds to Vi’s insert mode) by usual Vi
+command keys like ‘i’, ‘a’, ‘o’ ... etc.
 
    In insert mode, the mode line will look like this:
      -----Insert *scratch*              (Lisp Interaction)----All------------
@@ -360,9 +360,9 @@ File: vip.info,  Node: Region Commands,  Next: New Commands,  Prev: Marking,  Up
 1.4.7 Region Commands
 ---------------------
 
-Vi operators like ‘d’, ‘c’ etc.  are usually used in combination with
+Vi operators like ‘d’, ‘c’ etc. are usually used in combination with
 motion commands.  It is now possible to use current region as the
-argument to these operators.  (A "region" is a part of buffer delimited
+argument to these operators.  (A “region” is a part of buffer delimited
 by point and mark.)  The key ‘r’ is used for this purpose.  Thus ‘d r’
 will delete the current region.  If ‘R’ is used instead of ‘r’ the
 region will first be enlarged so that it will become the smallest region
@@ -603,8 +603,8 @@ File: vip.info,  Node: Numeric Arguments,  Next: Important Keys,  Up: Vi Command
 2.1 Numeric Arguments
 =====================
 
-Most Vi commands accept a "numeric argument" which can be supplied as a
-prefix to the commands.  A numeric argument is also called a "count".
+Most Vi commands accept a “numeric argument” which can be supplied as a
+prefix to the commands.  A numeric argument is also called a “count”.
 In many cases, if a count is given, the command is executed that many
 times.  For instance, ‘5 d d’ deletes 5 lines while simple ‘d d’ deletes
 a line.  In this manual the metavariable N will denote a count.
@@ -657,17 +657,17 @@ File: vip.info,  Node: Buffers and Windows,  Next: Files,  Prev: Important Keys,
 2.3 Buffers and Windows
 =======================
 
-In Emacs the text you edit is stored in a "buffer".  See GNU Emacs
-Manual, for details.  There is always one "current" buffer, also called
-the "selected buffer".
+In Emacs the text you edit is stored in a “buffer”.  See GNU Emacs
+Manual, for details.  There is always one “current” buffer, also called
+the “selected buffer”.
 
-   You can see the contents of buffers through "windows" created by
+   You can see the contents of buffers through “windows” created by
 Emacs.  When you have multiple windows on the screen only one of them is
 selected.  Each buffer has a unique name, and each window has a mode
 line which shows the name of the buffer associated with the window and
 other information about the status of the buffer.  You can change the
 format of the mode line, but normally if you see ‘**’ at the beginning
-of a mode line it means that the buffer is "modified".  If you write out
+of a mode line it means that the buffer is “modified”.  If you write out
 the content of the buffer to a file, then the buffer will become not
 modified.  Also if you see ‘%%’ at the beginning of the mode line, it
 means that the file associated with the buffer is write protected.
@@ -695,7 +695,7 @@ means that the file associated with the buffer is write protected.
 ‘X B’
      List the existing buffers (‘list-buffers’).
 
-   As "buffer name completion" is provided, you have only to type in
+   As “buffer name completion” is provided, you have only to type in
 initial substring of the buffer name which is sufficient to identify it
 among names of existing buffers.  After that, if you hit <TAB> the rest
 of the buffer name will be supplied by the system, and you can confirm
@@ -732,9 +732,9 @@ visit, save and insert files.
      If no file is associated with the buffer, this fact will be
      indicated by the null file name ‘""’.
 
-   In Emacs, you can edit a file by "visiting" it.  If you wish to visit
+   In Emacs, you can edit a file by “visiting” it.  If you wish to visit
 a file in the current window, you can just type ‘v’.  Emacs maintains
-the "default directory" which is specific to each buffer.  Suppose, for
+the “default directory” which is specific to each buffer.  Suppose, for
 instance, that the default directory of the current buffer is
 ‘/usr/masahiko/lisp/’.  Then you will get the following prompt in the
 minibuffer.
@@ -744,8 +744,8 @@ type ‘vip.el’ followed by <RET>.  If the file ‘vip.el’ already exists in
 the directory, Emacs will visit that file, and if not, the file will be
 created.  Emacs will use the file name (‘vip.el’, in this case) as the
 name of the buffer visiting the file.  In order to make the buffer name
-unique, Emacs may add a suffix (*note (emacs)Uniquify::).  As "file name
-completion" is provided here, you can sometimes save typing.  For
+unique, Emacs may add a suffix (*note (emacs)Uniquify::).  As “file name
+completion” is provided here, you can sometimes save typing.  For
 instance, suppose there is only one file in the default directory whose
 name starts with ‘v’, that is ‘vip.el’.  Then if you just type ‘v <TAB>’
 then it will be completed to ‘vip.el’.  Thus, in this case, you just
@@ -843,11 +843,11 @@ The following commands are used to mark positions in the buffer.
 ‘m ,’
      Jump to mark (and pop mark off the mark ring).
 
-   Emacs uses the "mark ring" to store marked positions.  The commands
+   Emacs uses the “mark ring” to store marked positions.  The commands
 ‘m <’, ‘m >’ and ‘m .’ not only set mark but also add it as the latest
 element of the mark ring (replacing the oldest one).  By repeating the
-command ‘‘m ,’’ you can visit older and older marked positions.  You
-will eventually be in a loop as the mark ring is a ring.
+command ‘m ,’ you can visit older and older marked positions.  You will
+eventually be in a loop as the mark ring is a ring.
 
 
 File: vip.info,  Node: Motion Commands,  Next: Searching and Replacing,  Prev: Mark Commands,  Up: Vi Commands
@@ -856,7 +856,7 @@ File: vip.info,  Node: Motion Commands,  Next: Searching and Replacing,  Prev: M
 ===================
 
 Commands for moving around in the current buffer are collected here.
-These commands are used as an ‘argument’ for the delete, change and yank
+These commands are used as an “argument” for the delete, change and yank
 commands to be described in the next section.
 
 ‘h’
@@ -901,7 +901,7 @@ Except for the ‘|’ command, these commands neglect a count.
      (‘vip-forward-word’).
 ‘W’
      Move point forward to the beginning of the next word, where a
-     "word" is considered as a sequence of non-white characters
+     “word” is considered as a sequence of non-white characters
      (‘vip-forward-Word’).
 ‘b’
      Move point backward to the beginning of a word
@@ -915,8 +915,8 @@ Except for the ‘|’ command, these commands neglect a count.
 ‘E’
      Move point forward to the end of a word, where a word is considered
      as a sequence of non-white characters (‘vip-end-of-Word’).
-Here the meaning of the word ‘word’ for the ‘w’, ‘b’ and ‘e’ commands is
-determined by the "syntax table" effective in the current buffer.  Each
+Here the meaning of the word “word” for the ‘w’, ‘b’ and ‘e’ commands is
+determined by the “syntax table” effective in the current buffer.  Each
 major mode has its syntax mode, and therefore the meaning of a word also
 changes as the major mode changes.  See GNU Emacs Manual for details of
 syntax table.
@@ -1006,7 +1006,7 @@ Following commands are available for searching and replacing.
      Search the first occurrence of the string STRING forward starting
      from point.  Given a count N, the N-th occurrence of STRING will be
      searched.  If the variable ‘vip-re-search’ has value ‘t’ then
-     "regular expression" search is done and the string matching the
+     “regular expression” search is done and the string matching the
      regular expression STRING is found.  If you give an empty string as
      STRING then the search mode will change from vanilla search to
      regular expression search and vice versa (‘vip-search-forward’).
@@ -1025,8 +1025,8 @@ Following commands are available for searching and replacing.
 ‘C-r’
      Search backward incrementally (‘isearch-backward’).
 ‘R STRING RET NEWSTRING’
-     There are two modes of replacement, "vanilla" and "regular
-     expression".  If the mode is vanilla you will get a prompt ‘Replace
+     There are two modes of replacement, “vanilla” and “regular
+     expression”.  If the mode is vanilla you will get a prompt ‘Replace
      string:’, and if the mode is regular expression you will ge a
      prompt ‘Replace regexp:’.  The mode is initially vanilla, but you
      can toggle these modes by giving a null string as STRING.  If the
@@ -1056,8 +1056,8 @@ In this section, commands for modifying the content of a buffer are
 described.  These commands affect the region determined by a motion
 command which is given to the commands as their argument.
 
-   We classify motion commands into "point commands" and "line
-commands".  The point commands are as follows:
+   We classify motion commands into “point commands” and “line
+commands”.  The point commands are as follows:
      h, l, 0, ^, $, w, W, b, B, e, E, (, ), /, ?, `, f, F, t, T, %, ;, ,
 The line commands are as follows:
      j, k, +, -, H, M, L, {, }, G, '
@@ -1067,7 +1067,7 @@ command.  On the other hand, if a line command is given as an argument
 to a modifying command, the region determined by the line command will
 be enlarged so that it will become the smallest region properly
 containing the region and consisting of whole lines (we call this
-process "expanding the region"), and then the enlarged region will be
+process “expanding the region”), and then the enlarged region will be
 affected by the modifying command.
 
 * Menu:
@@ -1126,8 +1126,8 @@ File: vip.info,  Node: Yank Commands,  Next: Put Back Commands,  Prev: Delete Co
 2.9.2 Yank Commands
 -------------------
 
-Yank commands "yank" a text of buffer into a (usually anonymous)
-register.  Here the word ‘yank’ is used in Vi’s sense.  Thus yank
+Yank commands “yank” a text of buffer into a (usually anonymous)
+register.  Here the word “yank” is used in Vi’s sense.  Thus yank
 commands do not alter the content of the buffer, and useful only in
 combination with commands that put back the yanked text into the buffer.
 
@@ -1172,7 +1172,7 @@ below.
      put back ends with a new line character, and if so the text will be
      put above the current line rather than at point (‘vip-Put-back’).
 Thus, ‘" c p’ will put back the content of the register ‘c’ into the
-buffer.  It is also possible to specify "number register" which is a
+buffer.  It is also possible to specify “number register” which is a
 numeral between ‘1’ and ‘9’.  If the number register N is specified,
 N-th previously deleted/yanked text will be put back.  It is an error to
 specify a number register for the delete/yank commands.
@@ -1379,12 +1379,12 @@ In vi mode, you can execute an Ex command EX-COMMAND by typing:
      : EX-COMMAND <RET>
    Every Ex command follows the following pattern:
      ADDRESS COMMAND ! PARAMETERS COUNT FLAGS
-where all parts are optional.  For the syntax of "address", the reader
+where all parts are optional.  For the syntax of “address”, the reader
 is referred to the reference manual of Ex.
 
    In the current version of VIP, searching by Ex commands is always
-"magic".  That is, search patterns are always treated as "regular
-expressions".  For example, a typical forward search would be invoked by
+“magic”.  That is, search patterns are always treated as “regular
+expressions”.  For example, a typical forward search would be invoked by
 ‘:/PAT/’.  If you wish to include ‘/’ as part of PAT you must preceded
 it by ‘\’.  VIP strips off these ‘\’’s before ‘/’ and the resulting PAT
 becomes the actual search pattern.  Emacs provides a different and
@@ -1419,7 +1419,7 @@ as ‘co’ or ‘cop’ or ‘copy’.
 specified by the ADDRESS.  If ADDRESS is also empty, point will move to
 the beginning of the current line.
 
-   Some commands accept "flags" which are one of ‘p’, ‘l’ and ‘#’.  If
+   Some commands accept “flags” which are one of ‘p’, ‘l’ and ‘#’.  If
 FLAGS are given, the text affected by the commands will be displayed on
 a temporary window, and you will be asked to hit return to continue.  In
 this way, you can see the text affected by the commands before the
@@ -1496,8 +1496,8 @@ in VIP from that in Vi/Ex.
 ‘ta[g] TAG’
      Find first definition of TAG.  If no TAG is given, previously given
      TAG is used and next alternate definition is find.  By default, the
-     file ‘TAGS’ in the current directory becomes the "selected tags
-     table".  You can select another tags table by ‘set’ command.  *Note
+     file ‘TAGS’ in the current directory becomes the “selected tags
+     table”.  You can select another tags table by ‘set’ command.  *Note
      Customizing Constants::, for details.
 ‘und[o]’
      Undo the last change.
@@ -1597,7 +1597,7 @@ File: vip.info,  Node: Customizing Key Bindings,  Prev: Customizing Constants,  
 4.2 Customizing Key Bindings
 ============================
 
-VIP uses ‘vip-command-mode-map’ as the "local keymap" for vi mode.  For
+VIP uses ‘vip-command-mode-map’ as the “local keymap” for vi mode.  For
 example, in vi mode, <SPC> is bound to the function ‘vip-scroll’.  But,
 if you wish to make <SPC> and some other keys behave like Vi, you can
 include the following lines in your ‘~/.emacs.d/vip’ file.
@@ -1630,7 +1630,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2080,7 +2080,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2101,258 +2101,254 @@ Key Index
  [index ]
 * Menu:
 
-* 000 ‘C-@’ (‘set-mark-command’):        Other Vi Commands.   (line  56)
-* 001 ‘C-a’ (‘vip-beginning-of-line’):   New Commands.        (line   9)
-* 002 ‘C-b’ (‘vip-scroll-back’):         Viewing the Buffer.  (line  17)
-* 003 ‘C-c’ (‘vip-ctl-c’):               New Commands.        (line  23)
-* 003 ‘C-c’ (‘vip-ctl-c’) <1>:           Important Keys.      (line  21)
-* 004 ‘C-d’ (‘vip-scroll-up’):           Viewing the Buffer.  (line  20)
-* 005 ‘C-e’ (‘vip-scroll-up-one’):       Viewing the Buffer.  (line  29)
-* 006 ‘C-f’ (‘vip-scroll-back’):         Viewing the Buffer.  (line  13)
-* 007 ‘C-g’ (‘vip-keyboard-quit’):       Changing.            (line  12)
-* 007 ‘C-g’ (‘vip-keyboard-quit’) <1>:   New Bindings.        (line  14)
-* 007 ‘C-g’ (‘vip-keyboard-quit’) <2>:   Important Keys.      (line  10)
-* 010 ‘C-h’ (‘delete-backward-char’) (insert mode): Commands in Insert Mode.
+* 000 C-@ (set-mark-command):            Other Vi Commands.   (line  56)
+* 001 C-a (vip-beginning-of-line):       New Commands.        (line   9)
+* 002 C-b (vip-scroll-back):             Viewing the Buffer.  (line  17)
+* 003 C-c (vip-ctl-c):                   New Commands.        (line  23)
+* 003 C-c (vip-ctl-c) <1>:               Important Keys.      (line  21)
+* 004 C-d (vip-scroll-up):               Viewing the Buffer.  (line  20)
+* 005 C-e (vip-scroll-up-one):           Viewing the Buffer.  (line  29)
+* 006 C-f (vip-scroll-back):             Viewing the Buffer.  (line  13)
+* 007 C-g (vip-keyboard-quit):           Changing.            (line  12)
+* 007 C-g (vip-keyboard-quit) <1>:       New Bindings.        (line  14)
+* 007 C-g (vip-keyboard-quit) <2>:       Important Keys.      (line  10)
+* 010 C-h (delete-backward-char) (insert mode): Commands in Insert Mode.
                                                               (line  39)
-* 010 ‘C-h’ (‘vip-delete-backward-char’) (insert mode): Insert Mode.
+* 010 C-h (vip-delete-backward-char) (insert mode): Insert Mode.
                                                               (line  13)
-* 011 TAB (‘indent-for-tab-command’):    Other Vi Commands.   (line  58)
-* 012 ‘C-j’ (‘electric-newline-and-maybe-indent’): Other Vi Commands.
+* 011 TAB (indent-for-tab-command):      Other Vi Commands.   (line  58)
+* 012 C-j (electric-newline-and-maybe-indent): Other Vi Commands.
                                                               (line  60)
-* 013 ‘C-k’ (‘kill-line’):               Other Vi Commands.   (line  62)
-* 014 ‘C-l’ (‘recenter’):                Important Keys.      (line  12)
-* 014 ‘C-l’ (‘recenter’) <1>:            Other Vi Commands.   (line  66)
-* 015 ‘RET’ (‘vip-scroll-back’):         New Bindings.        (line  19)
-* 015 ‘RET’ (‘vip-scroll-back’) <1>:     Viewing the Buffer.  (line  17)
-* 016 ‘C-n’ (‘vip-next-window’):         New Commands.        (line  11)
-* 016 ‘C-n’ (‘vip-next-window’) <1>:     Window Commands.     (line  10)
-* 016 ‘C-n’ (‘vip-next-window’) <2>:     Buffers and Windows. (line  24)
-* 017 ‘C-o’ (‘vip-open-line-at-point’):  New Commands.        (line  14)
-* 017 ‘C-o’ (‘vip-open-line-at-point’) <1>: Commands in Insert Mode.
+* 013 C-k (kill-line):                   Other Vi Commands.   (line  62)
+* 014 C-l (recenter):                    Important Keys.      (line  12)
+* 014 C-l (recenter) <1>:                Other Vi Commands.   (line  66)
+* 015 RET (vip-scroll-back):             New Bindings.        (line  19)
+* 015 RET (vip-scroll-back) <1>:         Viewing the Buffer.  (line  17)
+* 016 C-n (vip-next-window):             New Commands.        (line  11)
+* 016 C-n (vip-next-window) <1>:         Window Commands.     (line  10)
+* 016 C-n (vip-next-window) <2>:         Buffers and Windows. (line  24)
+* 017 C-o (vip-open-line-at-point):      New Commands.        (line  14)
+* 017 C-o (vip-open-line-at-point) <1>:  Commands in Insert Mode.
                                                               (line  29)
-* 020 ‘C-p’ (‘previous-line’):           Other Vi Commands.   (line  68)
-* 021 ‘C-q’ (‘quoted-insert’):           Other Vi Commands.   (line  70)
-* 022 ‘C-r’ (‘isearch-backward’):        New Commands.        (line  17)
-* 022 ‘C-r’ (‘isearch-backward’) <1>:    Searching and Replacing.
+* 020 C-p (previous-line):               Other Vi Commands.   (line  68)
+* 021 C-q (quoted-insert):               Other Vi Commands.   (line  70)
+* 022 C-r (isearch-backward):            New Commands.        (line  17)
+* 022 C-r (isearch-backward) <1>:        Searching and Replacing.
                                                               (line  29)
-* 022 ‘C-r’ (‘isearch-backward’) <2>:    Other Vi Commands.   (line  74)
-* 023 ‘C-s’ (‘isearch-forward’):         New Commands.        (line  19)
-* 023 ‘C-s’ (‘isearch-forward’) <1>:     Searching and Replacing.
+* 022 C-r (isearch-backward) <2>:        Other Vi Commands.   (line  74)
+* 023 C-s (isearch-forward):             New Commands.        (line  19)
+* 023 C-s (isearch-forward) <1>:         Searching and Replacing.
                                                               (line  26)
-* 023 ‘C-s’ (‘isearch-forward’) <2>:     Other Vi Commands.   (line  76)
-* 024 ‘C-t’ (‘transpose-chars’):         Other Vi Commands.   (line  78)
-* 025 ‘C-u’ (‘vip-scroll-down’):         Viewing the Buffer.  (line  23)
-* 026 ‘C-v’ (‘scroll-up’):               Other Vi Commands.   (line  83)
-* 027 ‘C-w’ (‘kill-region’):             Other Vi Commands.   (line  86)
-* 027 ‘C-w’ (‘vip-delete-backward-word’) (insert mode): Insert Mode.
+* 023 C-s (isearch-forward) <2>:         Other Vi Commands.   (line  76)
+* 024 C-t (transpose-chars):             Other Vi Commands.   (line  78)
+* 025 C-u (vip-scroll-down):             Viewing the Buffer.  (line  23)
+* 026 C-v (scroll-up):                   Other Vi Commands.   (line  83)
+* 027 C-w (kill-region):                 Other Vi Commands.   (line  86)
+* 027 C-w (vip-delete-backward-word) (insert mode): Insert Mode.
                                                               (line  15)
-* 027 ‘C-w’ (‘vip-delete-backward-word’) (insert mode) <1>: Commands in Insert Mode.
+* 027 C-w (vip-delete-backward-word) (insert mode) <1>: Commands in Insert Mode.
                                                               (line  41)
-* 0300 ‘C-x’ (‘vip-ctl-x’):              New Commands.        (line  23)
-* 0300 ‘C-x’ (‘vip-ctl-x’) <1>:          Important Keys.      (line  21)
-* 0301 ‘C-x C-z’ (‘suspend-emacs’):      Modes in VIP.        (line   6)
-* 031 ‘C-y’ (‘vip-scroll-down-one’):     Viewing the Buffer.  (line  26)
-* 032 ‘C-z’ (‘vip-change-mode-to-vi’):   Modes in VIP.        (line   6)
-* 032 ‘C-z’ (‘vip-change-mode-to-vi’) <1>: Emacs Mode.        (line   6)
-* 032 ‘C-z’ (‘vip-ESC’) (insert mode):   Insert Mode.         (line  17)
-* 032 ‘C-z’ (‘vip-ESC’) (insert mode) <1>: Commands in Insert Mode.
+* 0300 C-x (vip-ctl-x):                  New Commands.        (line  23)
+* 0300 C-x (vip-ctl-x) <1>:              Important Keys.      (line  21)
+* 0301 C-x C-z (suspend-emacs):          Modes in VIP.        (line   6)
+* 031 C-y (vip-scroll-down-one):         Viewing the Buffer.  (line  26)
+* 032 C-z (vip-change-mode-to-vi):       Modes in VIP.        (line   6)
+* 032 C-z (vip-change-mode-to-vi) <1>:   Emacs Mode.          (line   6)
+* 032 C-z (vip-ESC) (insert mode):       Insert Mode.         (line  17)
+* 032 C-z (vip-ESC) (insert mode) <1>:   Commands in Insert Mode.
                                                               (line  43)
-* 033 ‘ESC’ (‘vip-change-mode-to-vi’) (insert mode): Insert Mode.
-                                                              (line  11)
-* 033 ‘ESC’ (‘vip-change-mode-to-vi’) (insert mode) <1>: Commands in Insert Mode.
+* 033 ESC (vip-change-mode-to-vi) (insert mode): Insert Mode. (line  11)
+* 033 ESC (vip-change-mode-to-vi) (insert mode) <1>: Commands in Insert Mode.
                                                               (line  37)
-* 033 ‘ESC’ (‘vip-ESC’):                 New Commands.        (line  23)
-* 033 ‘ESC’ (‘vip-ESC’) <1>:             Important Keys.      (line  21)
-* 040 ‘SPC’ (‘vip-scroll’):              New Bindings.        (line  19)
-* 040 ‘SPC’ (‘vip-scroll’) <1>:          Viewing the Buffer.  (line  13)
-* 041 ‘!’ (‘vip-command-argument’):      Other Vi Commands.   (line  13)
-* 042 ‘"’ (‘vip-command-argument’):      Delete Commands.     (line  15)
-* 0430 ‘#’ (‘vip-command-argument’):     New Commands.        (line  51)
-* 0431 ‘# C’ (‘upcase-region’):          New Commands.        (line  58)
-* 0432 ‘# c’ (‘downcase-region’):        New Commands.        (line  55)
-* 0432 ‘# g’ (‘vip-global-execute’):     New Commands.        (line  62)
-* 0432 ‘# q’ (‘vip-quote-region’):       New Commands.        (line  65)
-* 0432 ‘# s’ (‘spell-region’):           New Commands.        (line  68)
-* 044 ‘$’ (‘vip-goto-eol’):              Motion Commands.     (line  42)
-* 045 ‘%’ (‘vip-paren-match’):           Motion Commands.     (line 117)
-* 046 ‘&’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 047 ‘'’ (‘vip-goto-mark-and-skip-white’): Motion Commands.  (line 110)
-* 050 ‘(’ (‘vip-backward-sentence’):     Motion Commands.     (line  87)
-* 051 ‘)’ (‘vip-forward-sentence’):      Motion Commands.     (line  90)
-* 052 ‘*’ (‘vip-call-last-kbd-macro’):   New Commands.        (line  70)
-* 052 ‘*’ (‘vip-call-last-kbd-macro’) <1>: Misc Commands.     (line  13)
-* 052 ‘*’ (‘vip-call-last-kbd-macro’) <2>: Other Vi Commands. (line  40)
-* 053 ‘+’ (‘vip-next-line-at-bol’):      Motion Commands.     (line  26)
-* 054 ‘,’ (‘vip-repeat-find-opposite’):  Motion Commands.     (line 142)
-* 055 ‘-’ (‘vip-previous-line-at-bol’):  Motion Commands.     (line  31)
-* 056 ‘.’ (‘vip-repeat’):                Undoing.             (line   6)
-* 056 ‘.’ (‘vip-repeat’) <1>:            Repeating and Undoing Modifications.
+* 033 ESC (vip-ESC):                     New Commands.        (line  23)
+* 033 ESC (vip-ESC) <1>:                 Important Keys.      (line  21)
+* 040 SPC (vip-scroll):                  New Bindings.        (line  19)
+* 040 SPC (vip-scroll) <1>:              Viewing the Buffer.  (line  13)
+* 041 ! (vip-command-argument):          Other Vi Commands.   (line  13)
+* 042 " (vip-command-argument):          Delete Commands.     (line  15)
+* 0430 # (vip-command-argument):         New Commands.        (line  51)
+* 0431 # C (upcase-region):              New Commands.        (line  58)
+* 0432 # c (downcase-region):            New Commands.        (line  55)
+* 0432 # g (vip-global-execute):         New Commands.        (line  62)
+* 0432 # q (vip-quote-region):           New Commands.        (line  65)
+* 0432 # s (spell-region):               New Commands.        (line  68)
+* 044 $ (vip-goto-eol):                  Motion Commands.     (line  42)
+* 045 % (vip-paren-match):               Motion Commands.     (line 117)
+* 046 & (vip-nil):                       Other Vi Commands.   (line  47)
+* 047 ' (vip-goto-mark-and-skip-white):  Motion Commands.     (line 110)
+* 050 ( (vip-backward-sentence):         Motion Commands.     (line  87)
+* 051 ) (vip-forward-sentence):          Motion Commands.     (line  90)
+* 052 * (vip-call-last-kbd-macro):       New Commands.        (line  70)
+* 052 * (vip-call-last-kbd-macro) <1>:   Misc Commands.       (line  13)
+* 052 * (vip-call-last-kbd-macro) <2>:   Other Vi Commands.   (line  40)
+* 053 + (vip-next-line-at-bol):          Motion Commands.     (line  26)
+* 054 , (vip-repeat-find-opposite):      Motion Commands.     (line 142)
+* 055 - (vip-previous-line-at-bol):      Motion Commands.     (line  31)
+* 056 . (vip-repeat):                    Undoing.             (line   6)
+* 056 . (vip-repeat) <1>:                Repeating and Undoing Modifications.
                                                               (line  15)
-* 057 ‘/’ (‘vip-search-forward’):        Searching.           (line   6)
-* 057 ‘/’ (‘vip-search-forward’) <1>:    Counts.              (line  18)
-* 057 ‘/’ (‘vip-search-forward’) <2>:    Searching and Replacing.
+* 057 / (vip-search-forward):            Searching.           (line   6)
+* 057 / (vip-search-forward) <1>:        Counts.              (line  18)
+* 057 / (vip-search-forward) <2>:        Searching and Replacing.
                                                               (line   9)
-* 060 ‘0’ (‘vip-beginning-of-line’):     Motion Commands.     (line  37)
-* 061 ‘1’ (numeric argument):            Numeric Arguments.   (line   6)
-* 062 ‘2’ (numeric argument):            Numeric Arguments.   (line   6)
-* 063 ‘3’ (numeric argument):            Numeric Arguments.   (line   6)
-* 064 ‘4’ (numeric argument):            Numeric Arguments.   (line   6)
-* 065 ‘5’ (numeric argument):            Numeric Arguments.   (line   6)
-* 066 ‘6’ (numeric argument):            Numeric Arguments.   (line   6)
-* 067 ‘7’ (numeric argument):            Numeric Arguments.   (line   6)
-* 068 ‘8’ (numeric argument):            Numeric Arguments.   (line   6)
-* 069 ‘9’ (numeric argument):            Numeric Arguments.   (line   6)
-* 072 ‘:’ (‘vip-ex’):                    Ex Commands.         (line   6)
-* 073 ‘;’ (‘vip-repeat-find’):           Motion Commands.     (line 140)
-* 074 ‘<’ (‘vip-command-argument’):      Other Vi Commands.   (line  25)
-* 075 ‘=’ (‘vip-command-argument’):      Other Vi Commands.   (line  36)
-* 076 ‘>’ (‘vip-command-argument’):      Other Vi Commands.   (line  31)
-* 077 ‘?’ (‘vip-search-backward’):       Searching.           (line   6)
-* 077 ‘?’ (‘vip-search-backward’) <1>:   Counts.              (line  18)
-* 077 ‘?’ (‘vip-search-backward’) <2>:   Searching and Replacing.
+* 060 0 (vip-beginning-of-line):         Motion Commands.     (line  37)
+* 061 1 (numeric argument):              Numeric Arguments.   (line   6)
+* 062 2 (numeric argument):              Numeric Arguments.   (line   6)
+* 063 3 (numeric argument):              Numeric Arguments.   (line   6)
+* 064 4 (numeric argument):              Numeric Arguments.   (line   6)
+* 065 5 (numeric argument):              Numeric Arguments.   (line   6)
+* 066 6 (numeric argument):              Numeric Arguments.   (line   6)
+* 067 7 (numeric argument):              Numeric Arguments.   (line   6)
+* 068 8 (numeric argument):              Numeric Arguments.   (line   6)
+* 069 9 (numeric argument):              Numeric Arguments.   (line   6)
+* 072 : (vip-ex):                        Ex Commands.         (line   6)
+* 073 ; (vip-repeat-find):               Motion Commands.     (line 140)
+* 074 < (vip-command-argument):          Other Vi Commands.   (line  25)
+* 075 = (vip-command-argument):          Other Vi Commands.   (line  36)
+* 076 > (vip-command-argument):          Other Vi Commands.   (line  31)
+* 077 ? (vip-search-backward):           Searching.           (line   6)
+* 077 ? (vip-search-backward) <1>:       Counts.              (line  18)
+* 077 ? (vip-search-backward) <2>:       Searching and Replacing.
                                                               (line  17)
-* 100 ‘@’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 101 ‘A’ (‘vip-Append’):                Commands in Insert Mode.
+* 100 @ (vip-nil):                       Other Vi Commands.   (line  47)
+* 101 A (vip-Append):                    Commands in Insert Mode.
                                                               (line  21)
-* 102 ‘B’ (‘vip-backward-Word’):         Motion Commands.     (line  58)
-* 103 ‘C’ (‘vip-ctl-c-equivalent’):      New Bindings.        (line  31)
-* 103 ‘C’ (‘vip-ctl-c-equivalent’) <1>:  Important Keys.      (line  29)
-* 104 ‘D’ (‘vip-kill-line’):             Delete Commands.     (line  34)
-* 105 ‘E’ (‘vip-end-of-Word’):           Motion Commands.     (line  64)
-* 106 ‘F’ (‘vip-find-char-backward’):    Motion Commands.     (line 131)
-* 107 ‘G’ (‘vip-goto-line’):             Motion Commands.     (line 101)
-* 110 ‘H’ (‘vip-window-top’):            Motion Commands.     (line  73)
-* 111 ‘I’ (‘vip-Insert’):                Commands in Insert Mode.
+* 102 B (vip-backward-Word):             Motion Commands.     (line  58)
+* 103 C (vip-ctl-c-equivalent):          New Bindings.        (line  31)
+* 103 C (vip-ctl-c-equivalent) <1>:      Important Keys.      (line  29)
+* 104 D (vip-kill-line):                 Delete Commands.     (line  34)
+* 105 E (vip-end-of-Word):               Motion Commands.     (line  64)
+* 106 F (vip-find-char-backward):        Motion Commands.     (line 131)
+* 107 G (vip-goto-line):                 Motion Commands.     (line 101)
+* 110 H (vip-window-top):                Motion Commands.     (line  73)
+* 111 I (vip-Insert):                    Commands in Insert Mode.
                                                               (line  15)
-* 112 ‘J’ (‘vip-join-lines’):            Other Vi Commands.   (line  21)
-* 113 ‘K’ (‘vip-kill-buffer’):           New Commands.        (line  36)
-* 113 ‘K’ (‘vip-kill-buffer’) <1>:       Buffer Commands.     (line  13)
-* 113 ‘K’ (‘vip-kill-buffer’) <2>:       Buffers and Windows. (line  38)
-* 114 ‘L’ (‘vip-window-bottom’):         Motion Commands.     (line  80)
-* 115 ‘M’ (‘vip-window-middle’):         Motion Commands.     (line  76)
-* 116 ‘N’ (‘vip-search-Next’):           Searching and Replacing.
+* 112 J (vip-join-lines):                Other Vi Commands.   (line  21)
+* 113 K (vip-kill-buffer):               New Commands.        (line  36)
+* 113 K (vip-kill-buffer) <1>:           Buffer Commands.     (line  13)
+* 113 K (vip-kill-buffer) <2>:           Buffers and Windows. (line  38)
+* 114 L (vip-window-bottom):             Motion Commands.     (line  80)
+* 115 M (vip-window-middle):             Motion Commands.     (line  76)
+* 116 N (vip-search-Next):               Searching and Replacing.
                                                               (line  23)
-* 117 ‘O’ (‘vip-Open-line’):             Counts.              (line  14)
-* 117 ‘O’ (‘vip-Open-line’) <1>:         Commands in Insert Mode.
+* 117 O (vip-Open-line):                 Counts.              (line  14)
+* 117 O (vip-Open-line) <1>:             Commands in Insert Mode.
                                                               (line  26)
-* 120 ‘P’ (‘vip-Put-back’):              Counts.              (line  10)
-* 120 ‘P’ (‘vip-Put-back’) <1>:          Put Back Commands.   (line  18)
-* 121 ‘Q’ (‘vip-query-replace’):         New Commands.        (line  40)
-* 121 ‘Q’ (‘vip-query-replace’) <1>:     Searching and Replacing.
+* 120 P (vip-Put-back):                  Counts.              (line  10)
+* 120 P (vip-Put-back) <1>:              Put Back Commands.   (line  18)
+* 121 Q (vip-query-replace):             New Commands.        (line  40)
+* 121 Q (vip-query-replace) <1>:         Searching and Replacing.
                                                               (line  42)
-* 122 ‘R’ (‘vip-replace-string’):        New Commands.        (line  40)
-* 122 ‘R’ (‘vip-replace-string’) <1>:    Searching and Replacing.
+* 122 R (vip-replace-string):            New Commands.        (line  40)
+* 122 R (vip-replace-string) <1>:        Searching and Replacing.
                                                               (line  31)
-* 123 ‘S’ (‘vip-switch-to-buffer-other-window’): New Bindings.
-                                                              (line  23)
-* 123 ‘S’ (‘vip-switch-to-buffer-other-window’) <1>: Buffer Commands.
+* 123 S (vip-switch-to-buffer-other-window): New Bindings.    (line  23)
+* 123 S (vip-switch-to-buffer-other-window) <1>: Buffer Commands.
                                                               (line  10)
-* 123 ‘S’ (‘vip-switch-to-buffer-other-window’) <2>: Buffers and Windows.
+* 123 S (vip-switch-to-buffer-other-window) <2>: Buffers and Windows.
                                                               (line  35)
-* 124 ‘T’ (‘vip-goto-char-backward’):    Motion Commands.     (line 137)
-* 125 ‘U’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 126 ‘V’ (‘vip-find-file-other-window’): New Commands.       (line  47)
-* 126 ‘V’ (‘vip-find-file-other-window’) <1>: File Commands.  (line   9)
-* 126 ‘V’ (‘vip-find-file-other-window’) <2>: Files.          (line  12)
-* 127 ‘W’ (‘vip-forward-Word’):          Motion Commands.     (line  51)
-* 1300 ‘X’ (‘vip-ctl-x-equivalent’):     New Bindings.        (line  31)
-* 1300 ‘X’ (‘vip-ctl-x-equivalent’) <1>: Important Keys.      (line  29)
-* 1301 ‘X (’ (‘start-kbd-macro’):        Misc Commands.       (line   8)
-* 1301 ‘X )’ (‘end-kbd-macro’):          Misc Commands.       (line  11)
-* 1301 ‘X 1’ (‘delete-other-windows’):   Window Commands.     (line  13)
-* 1301 ‘X 1’ (‘delete-other-windows’) <1>: Buffers and Windows.
-                                                              (line  26)
-* 1301 ‘X 2’ (‘split-window-vertically’): Window Commands.    (line  16)
-* 1301 ‘X 2’ (‘split-window-vertically’) <1>: Buffers and Windows.
+* 124 T (vip-goto-char-backward):        Motion Commands.     (line 137)
+* 125 U (vip-nil):                       Other Vi Commands.   (line  47)
+* 126 V (vip-find-file-other-window):    New Commands.        (line  47)
+* 126 V (vip-find-file-other-window) <1>: File Commands.      (line   9)
+* 126 V (vip-find-file-other-window) <2>: Files.              (line  12)
+* 127 W (vip-forward-Word):              Motion Commands.     (line  51)
+* 1300 X (vip-ctl-x-equivalent):         New Bindings.        (line  31)
+* 1300 X (vip-ctl-x-equivalent) <1>:     Important Keys.      (line  29)
+* 1301 X ( (start-kbd-macro):            Misc Commands.       (line   8)
+* 1301 X ) (end-kbd-macro):              Misc Commands.       (line  11)
+* 1301 X 1 (delete-other-windows):       Window Commands.     (line  13)
+* 1301 X 1 (delete-other-windows) <1>:   Buffers and Windows. (line  26)
+* 1301 X 2 (split-window-vertically):    Window Commands.     (line  16)
+* 1301 X 2 (split-window-vertically) <1>: Buffers and Windows.
                                                               (line  29)
-* 1301 ‘X 3’ (‘vip-buffer-in-two-windows’): New Bindings.     (line  47)
-* 1301 ‘X 3’ (‘vip-buffer-in-two-windows’) <1>: Window Commands.
-                                                              (line  19)
-* 1301 ‘X 3’ (‘vip-buffer-in-two-windows’) <2>: Buffers and Windows.
+* 1301 X 3 (vip-buffer-in-two-windows):  New Bindings.        (line  47)
+* 1301 X 3 (vip-buffer-in-two-windows) <1>: Window Commands.  (line  19)
+* 1301 X 3 (vip-buffer-in-two-windows) <2>: Buffers and Windows.
                                                               (line  31)
-* 1302 ‘X B’ (‘list-buffers’):           Buffers and Windows. (line  42)
-* 1302 ‘X I’ (‘insert-file’):            File Commands.       (line  15)
-* 1302 ‘X I’ (‘insert-file’) <1>:        Files.               (line  21)
-* 1302 ‘X S’ (‘save-buffer’):            Buffer Commands.     (line  16)
-* 1302 ‘X S’ (‘save-buffer’) <1>:        Files.               (line  15)
-* 1302 ‘X W’ (‘write-file’):             File Commands.       (line  12)
-* 1302 ‘X W’ (‘write-file’) <1>:         Files.               (line  19)
-* 1302 ‘X Z’ (‘suspend-emacs’):          Misc Commands.       (line  16)
-* 131 ‘Y’ (‘vip-yank-line’):             Yank Commands.       (line  21)
-* 132 ‘Z Z’ (‘save-buffers-kill-emacs’): Other Vi Commands.   (line   9)
-* 133 ‘[’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 134 ‘\’ (‘vip-escape-to-emacs’):       New Commands.        (line  29)
-* 134 ‘\’ (‘vip-escape-to-emacs’) <1>:   Important Keys.      (line  36)
-* 135 ‘]’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 136 ‘^’ (‘vip-bol-and-skip-white’):    Motion Commands.     (line  39)
-* 137 ‘_’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 140 ‘`’ (‘vip-goto-mark’):             Motion Commands.     (line 105)
-* 141 ‘a’ (‘vip-append’):                Commands in Insert Mode.
+* 1302 X B (list-buffers):               Buffers and Windows. (line  42)
+* 1302 X I (insert-file):                File Commands.       (line  15)
+* 1302 X I (insert-file) <1>:            Files.               (line  21)
+* 1302 X S (save-buffer):                Buffer Commands.     (line  16)
+* 1302 X S (save-buffer) <1>:            Files.               (line  15)
+* 1302 X W (write-file):                 File Commands.       (line  12)
+* 1302 X W (write-file) <1>:             Files.               (line  19)
+* 1302 X Z (suspend-emacs):              Misc Commands.       (line  16)
+* 131 Y (vip-yank-line):                 Yank Commands.       (line  21)
+* 132 Z Z (save-buffers-kill-emacs):     Other Vi Commands.   (line   9)
+* 133 [ (vip-nil):                       Other Vi Commands.   (line  47)
+* 134 \ (vip-escape-to-emacs):           New Commands.        (line  29)
+* 134 \ (vip-escape-to-emacs) <1>:       Important Keys.      (line  36)
+* 135 ] (vip-nil):                       Other Vi Commands.   (line  47)
+* 136 ^ (vip-bol-and-skip-white):        Motion Commands.     (line  39)
+* 137 _ (vip-nil):                       Other Vi Commands.   (line  47)
+* 140 ` (vip-goto-mark):                 Motion Commands.     (line 105)
+* 141 a (vip-append):                    Commands in Insert Mode.
                                                               (line  18)
-* 142 ‘b’ (‘vip-backward-word’):         Motion Commands.     (line  55)
-* 1430 ‘c’ (‘vip-command-argument’):     Change Commands.     (line   9)
-* 1431 ‘c R’:                            Change Commands.     (line  24)
-* 1432 ‘c c’:                            Change Commands.     (line  20)
-* 1432 ‘c r’:                            Change Commands.     (line  22)
-* 1440 ‘d’ (‘vip-command-argument’):     Delete Commands.     (line   7)
-* 1441 ‘d R’:                            Delete Commands.     (line  32)
-* 1442 ‘d d’:                            Delete Commands.     (line  28)
-* 1442 ‘d r’:                            Delete Commands.     (line  30)
-* 145 ‘e’ (‘vip-end-of-word’):           Motion Commands.     (line  62)
-* 146 ‘f’ (‘vip-find-char-forward’):     Motion Commands.     (line 128)
-* 147 ‘g’ (‘vip-info-on-file’):          New Bindings.        (line  14)
-* 147 ‘g’ (‘vip-info-on-file’) <1>:      Files.               (line  23)
-* 150 ‘h’ (‘vip-backward-char’):         Motion Commands.     (line  11)
-* 151 ‘i’ (‘vip-insert’):                Commands in Insert Mode.
+* 142 b (vip-backward-word):             Motion Commands.     (line  55)
+* 1430 c (vip-command-argument):         Change Commands.     (line   9)
+* 1431 c R:                              Change Commands.     (line  24)
+* 1432 c c:                              Change Commands.     (line  20)
+* 1432 c r:                              Change Commands.     (line  22)
+* 1440 d (vip-command-argument):         Delete Commands.     (line   7)
+* 1441 d R:                              Delete Commands.     (line  32)
+* 1442 d d:                              Delete Commands.     (line  28)
+* 1442 d r:                              Delete Commands.     (line  30)
+* 145 e (vip-end-of-word):               Motion Commands.     (line  62)
+* 146 f (vip-find-char-forward):         Motion Commands.     (line 128)
+* 147 g (vip-info-on-file):              New Bindings.        (line  14)
+* 147 g (vip-info-on-file) <1>:          Files.               (line  23)
+* 150 h (vip-backward-char):             Motion Commands.     (line  11)
+* 151 i (vip-insert):                    Commands in Insert Mode.
                                                               (line  13)
-* 152 ‘j’ (‘vip-next-line’):             Motion Commands.     (line  19)
-* 153 ‘k’ (‘vip-previous-line’):         Motion Commands.     (line  23)
-* 154 ‘l’ (‘vip-forward-char’):          Motion Commands.     (line  15)
-* 155 ‘m’ (‘vip-mark-point’):            Marking.             (line  10)
-* 155 ‘m’ (‘vip-mark-point’) <1>:        Mark Commands.       (line   9)
-* 156 ‘n’ (‘vip-search-next’):           Searching and Replacing.
+* 152 j (vip-next-line):                 Motion Commands.     (line  19)
+* 153 k (vip-previous-line):             Motion Commands.     (line  23)
+* 154 l (vip-forward-char):              Motion Commands.     (line  15)
+* 155 m (vip-mark-point):                Marking.             (line  10)
+* 155 m (vip-mark-point) <1>:            Mark Commands.       (line   9)
+* 156 n (vip-search-next):               Searching and Replacing.
                                                               (line  20)
-* 157 ‘o’ (‘vip-open-line’):             Counts.              (line  14)
-* 157 ‘o’ (‘vip-open-line’) <1>:         Commands in Insert Mode.
+* 157 o (vip-open-line):                 Counts.              (line  14)
+* 157 o (vip-open-line) <1>:             Commands in Insert Mode.
                                                               (line  23)
-* 160 ‘p’ (‘vip-put-back’):              Counts.              (line  10)
-* 160 ‘p’ (‘vip-put-back’) <1>:          Put Back Commands.   (line  10)
-* 161 ‘q’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 162 ‘r’ (‘vip-replace-char’):          Searching and Replacing.
+* 160 p (vip-put-back):                  Counts.              (line  10)
+* 160 p (vip-put-back) <1>:              Put Back Commands.   (line  10)
+* 161 q (vip-nil):                       Other Vi Commands.   (line  47)
+* 162 r (vip-replace-char):              Searching and Replacing.
                                                               (line  46)
-* 163 ‘s’ (‘vip-switch-to-buffer’):      New Bindings.        (line  23)
-* 163 ‘s’ (‘vip-switch-to-buffer’) <1>:  Buffer Commands.     (line   7)
-* 163 ‘s’ (‘vip-switch-to-buffer’) <2>:  Buffers and Windows. (line  33)
-* 164 ‘t’ (‘vip-goto-char-forward’):     Motion Commands.     (line 134)
-* 165 ‘u’ (‘vip-undo’):                  Undoing.             (line   6)
-* 165 ‘u’ (‘vip-undo’) <1>:              Repeating and Undoing Modifications.
+* 163 s (vip-switch-to-buffer):          New Bindings.        (line  23)
+* 163 s (vip-switch-to-buffer) <1>:      Buffer Commands.     (line   7)
+* 163 s (vip-switch-to-buffer) <2>:      Buffers and Windows. (line  33)
+* 164 t (vip-goto-char-forward):         Motion Commands.     (line 134)
+* 165 u (vip-undo):                      Undoing.             (line   6)
+* 165 u (vip-undo) <1>:                  Repeating and Undoing Modifications.
                                                               (line  10)
-* 166 ‘v’ (‘vip-find-file’):             New Commands.        (line  47)
-* 166 ‘v’ (‘vip-find-file’) <1>:         File Commands.       (line   7)
-* 166 ‘v’ (‘vip-find-file’) <2>:         Files.               (line  10)
-* 167 ‘w’ (‘vip-forward-word’):          Motion Commands.     (line  48)
-* 170 ‘x’ (‘vip-delete-char’):           Delete Commands.     (line  36)
-* 1710 ‘y’ (‘vip-command-argument’):     Yank Commands.       (line  12)
-* 1711 ‘y R’:                            Yank Commands.       (line  25)
-* 1712 ‘y r’:                            Yank Commands.       (line  23)
-* 1712 ‘y y’ (‘vip-yank-line’):          Yank Commands.       (line  21)
-* 1721 ‘z RET’ (‘vip-line-to-top’):      z Command.           (line   6)
-* 1721 ‘z RET’ (‘vip-line-to-top’) <1>:  Viewing the Buffer.  (line  38)
-* 1722 ‘z -’ (‘vip-line-to-bottom’):     z Command.           (line   6)
-* 1722 ‘z -’ (‘vip-line-to-bottom’) <1>: Viewing the Buffer.  (line  48)
-* 1722 ‘z .’ (‘vip-line-to-middle’):     z Command.           (line   6)
-* 1722 ‘z .’ (‘vip-line-to-middle’) <1>: Viewing the Buffer.  (line  43)
-* 1723 ‘z H’ (‘vip-line-to-top’):        z Command.           (line   6)
-* 1723 ‘z H’ (‘vip-line-to-top’) <1>:    Viewing the Buffer.  (line  38)
-* 1723 ‘z L’ (‘vip-line-to-bottom’):     z Command.           (line   6)
-* 1723 ‘z L’ (‘vip-line-to-bottom’) <1>: Viewing the Buffer.  (line  48)
-* 1723 ‘z M’ (‘vip-line-to-middle’):     z Command.           (line   6)
-* 1723 ‘z M’ (‘vip-line-to-middle’) <1>: Viewing the Buffer.  (line  43)
-* 173 ‘{’ (‘vip-backward-paragraph’):    Motion Commands.     (line  93)
-* 174 ‘|’ (‘vip-goto-col’):              Motion Commands.     (line  44)
-* 175 ‘}’ (‘vip-forward-paragraph’):     Motion Commands.     (line  96)
-* 176 ‘~’ (‘vip-nil’):                   Other Vi Commands.   (line  47)
-* 177 ‘DEL’ (‘vip-delete-backward-char’): Delete Commands.    (line  39)
+* 166 v (vip-find-file):                 New Commands.        (line  47)
+* 166 v (vip-find-file) <1>:             File Commands.       (line   7)
+* 166 v (vip-find-file) <2>:             Files.               (line  10)
+* 167 w (vip-forward-word):              Motion Commands.     (line  48)
+* 170 x (vip-delete-char):               Delete Commands.     (line  36)
+* 1710 y (vip-command-argument):         Yank Commands.       (line  12)
+* 1711 y R:                              Yank Commands.       (line  25)
+* 1712 y r:                              Yank Commands.       (line  23)
+* 1712 y y (vip-yank-line):              Yank Commands.       (line  21)
+* 1721 z RET (vip-line-to-top):          z Command.           (line   6)
+* 1721 z RET (vip-line-to-top) <1>:      Viewing the Buffer.  (line  38)
+* 1722 z - (vip-line-to-bottom):         z Command.           (line   6)
+* 1722 z - (vip-line-to-bottom) <1>:     Viewing the Buffer.  (line  48)
+* 1722 z . (vip-line-to-middle):         z Command.           (line   6)
+* 1722 z . (vip-line-to-middle) <1>:     Viewing the Buffer.  (line  43)
+* 1723 z H (vip-line-to-top):            z Command.           (line   6)
+* 1723 z H (vip-line-to-top) <1>:        Viewing the Buffer.  (line  38)
+* 1723 z L (vip-line-to-bottom):         z Command.           (line   6)
+* 1723 z L (vip-line-to-bottom) <1>:     Viewing the Buffer.  (line  48)
+* 1723 z M (vip-line-to-middle):         z Command.           (line   6)
+* 1723 z M (vip-line-to-middle) <1>:     Viewing the Buffer.  (line  43)
+* 173 { (vip-backward-paragraph):        Motion Commands.     (line  93)
+* 174 | (vip-goto-col):                  Motion Commands.     (line  44)
+* 175 } (vip-forward-paragraph):         Motion Commands.     (line  96)
+* 176 ~ (vip-nil):                       Other Vi Commands.   (line  47)
+* 177 DEL (vip-delete-backward-char):    Delete Commands.     (line  39)
 
 Concept Index
 *************
@@ -2417,48 +2413,48 @@ Tag Table:
 Node: Top847
 Node: Survey2679
 Node: Basic Concepts3209
-Node: Loading VIP4853
-Node: Modes in VIP5619
-Node: Emacs Mode8336
-Node: Vi Mode8695
-Node: Insert Mode9031
-Node: Differences from Vi9661
-Node: Undoing10834
-Node: Changing11191
-Node: Searching11851
-Node: z Command12603
-Node: Counts12978
-Node: Marking13536
-Node: Region Commands14067
-Node: New Commands14783
-Node: New Bindings17715
-Node: Window Commands19995
-Node: Buffer Commands20501
-Node: File Commands21025
-Node: Misc Commands21428
-Node: Vi Commands21872
-Node: Numeric Arguments22884
-Node: Important Keys23372
-Node: Buffers and Windows25205
-Node: Files27500
-Node: Viewing the Buffer30881
-Node: Mark Commands32886
-Node: Motion Commands33769
-Node: Searching and Replacing39626
-Node: Modifying Commands42006
-Node: Delete Commands43437
-Node: Yank Commands45205
-Node: Put Back Commands46138
-Node: Change Commands47628
-Node: Repeating and Undoing Modifications48696
-Node: Other Vi Commands49530
-Node: Commands in Insert Mode53313
-Node: Ex Commands55488
-Node: Ex Command Reference56683
-Node: Customization63376
-Node: Customizing Constants63817
-Node: Customizing Key Bindings65236
-Node: GNU Free Documentation License66319
+Node: Loading VIP4901
+Node: Modes in VIP5667
+Node: Emacs Mode8400
+Node: Vi Mode8759
+Node: Insert Mode9095
+Node: Differences from Vi9725
+Node: Undoing10898
+Node: Changing11255
+Node: Searching11915
+Node: z Command12667
+Node: Counts13042
+Node: Marking13600
+Node: Region Commands14131
+Node: New Commands14850
+Node: New Bindings17782
+Node: Window Commands20062
+Node: Buffer Commands20568
+Node: File Commands21092
+Node: Misc Commands21495
+Node: Vi Commands21939
+Node: Numeric Arguments22951
+Node: Important Keys23447
+Node: Buffers and Windows25280
+Node: Files27599
+Node: Viewing the Buffer30992
+Node: Mark Commands32997
+Node: Motion Commands33878
+Node: Searching and Replacing39743
+Node: Modifying Commands42135
+Node: Delete Commands43578
+Node: Yank Commands45346
+Node: Put Back Commands46283
+Node: Change Commands47777
+Node: Repeating and Undoing Modifications48845
+Node: Other Vi Commands49679
+Node: Commands in Insert Mode53462
+Node: Ex Commands55637
+Node: Ex Command Reference56844
+Node: Customization63545
+Node: Customizing Constants63986
+Node: Customizing Key Bindings65405
+Node: GNU Free Documentation License66492
 
 End Tag Table
 

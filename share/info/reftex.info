@@ -1,9 +1,9 @@
-This is reftex.info, produced by makeinfo version 5.2 from reftex.texi.
+This is reftex.info, produced by makeinfo version 6.3 from reftex.texi.
 
-This manual documents RefTeX (version 24.5), a package to do labels,
+This manual documents RefTeX (version 25.2), a package to do labels,
 references, citations and indices for LaTeX documents with Emacs.
 
-   Copyright © 1997–2015 Free Software Foundation, Inc.
+   Copyright © 1997–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,10 +27,10 @@ File: reftex.info,  Node: Top,  Next: Introduction,  Up: (dir)
 RefTeX
 ******
 
-This manual documents RefTeX (version 24.5), a package to do labels,
+This manual documents RefTeX (version 25.2), a package to do labels,
 references, citations and indices for LaTeX documents with Emacs.
 
-   Copyright © 1997–2015 Free Software Foundation, Inc.
+   Copyright © 1997–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -46,7 +46,7 @@ references, citations and indices for LaTeX documents with Emacs.
    RefTeX is a package for managing Labels, References, Citations and
 index entries with GNU Emacs.
 
-   This manual documents RefTeX version 24.5.
+   This manual documents RefTeX version 25.2.
 
    Don’t be discouraged by the size of this manual, which covers RefTeX
 in great depth.  All you need to know to use RefTeX can be summarized on
@@ -425,7 +425,7 @@ another window, jump to that location, or perform other actions.
 of this information is always available by pressing ‘?’.
 
      General
-............
+     .......
 
 ‘?’
      Display a summary of commands.
@@ -434,7 +434,7 @@ of this information is always available by pressing ‘?’.
      Prefix argument.
 
      Moving around
-..................
+     .............
 
 ‘n’
      Goto next entry in the table of contents.
@@ -454,7 +454,7 @@ of this information is always available by pressing ‘?’.
      to section 3.
 
      Access to document locations
-.................................
+     ............................
 
 ‘<SPC>’
      Show the corresponding location in another window.  This command
@@ -487,7 +487,7 @@ of this information is always available by pressing ‘?’.
      ‘reftex-toc’ was last called.
 
      Promotion and Demotion
-...........................
+     ......................
 
 ‘<’
      Promote the current section.  This will convert ‘\section’ to
@@ -514,7 +514,7 @@ of this information is always available by pressing ‘?’.
      all references of a label.
 
      Exiting
-............
+     .......
 
 ‘q’
      Hide the ‘*toc*’ buffer, return to the position where ‘reftex-toc’
@@ -529,7 +529,7 @@ of this information is always available by pressing ‘?’.
      restrict the index to the section at point in the ‘*toc*’ buffer.
 
      Controlling what gets displayed
-....................................
+     ...............................
 
 ‘t’
      Change the maximum level of toc entries displayed in the ‘*toc*’
@@ -567,7 +567,7 @@ of this information is always available by pressing ‘?’.
      ‘reftex-toc-include-context’.
 
      Updating the buffer
-........................
+     ...................
 
 ‘g’
      Rebuild the ‘*toc*’ buffer.  This does _not_ rescan the document.
@@ -586,7 +586,7 @@ of this information is always available by pressing ‘?’.
      Package::), RefTeX will switch to one of the external documents.
 
      Automatic recentering
-..........................
+     .....................
 
 ‘d’
      Toggle the display of a dedicated frame displaying just the ‘*toc*’
@@ -766,7 +766,7 @@ summary of this information is always available from the selection
 process by pressing ‘?’.
 
      General
-............
+     .......
 
 ‘?’
      Show a summary of available commands.
@@ -775,7 +775,7 @@ process by pressing ‘?’.
      Prefix argument.
 
      Moving around
-..................
+     .............
 
 ‘n’
      Go to next label.
@@ -798,7 +798,7 @@ process by pressing ‘?’.
      to section 3.
 
      Displaying Context
-.......................
+     ..................
 
 ‘<SPC>’
      Show the surroundings of the definition of the current label in
@@ -817,7 +817,7 @@ process by pressing ‘?’.
      where you called ‘reftex-reference’.
 
      Selecting a label and creating the reference
-.................................................
+     ............................................
 
 ‘<RET>’
      Insert a reference to the label at point into the buffer from which
@@ -866,14 +866,14 @@ process by pressing ‘?’.
      Cycle backward through active reference macros.
 
      Exiting
-............
+     .......
 
 ‘q’
      Exit the selection process without inserting any reference into the
      buffer.
 
      Controlling what gets displayed
-....................................
+     ...............................
 
      The defaults for the following flags can be configured with the
      variable ‘reftex-label-menu-flags’ (*note Options - Referencing
@@ -902,7 +902,7 @@ process by pressing ‘?’.
      still display and reference these labels.
 
      Updating the buffer
-........................
+     ...................
 
 ‘g’
      Update the menu.  This will rebuilt the menu from the internal
@@ -1272,7 +1272,7 @@ setup:
          nil))                      ; Return nil for not found
 
    A more complex example is the ‘linguex.sty’ package which defines
-list macros ‘\ex.’, ‘\a.’, ‘\b.’ etc.  for lists which are terminated by
+list macros ‘\ex.’, ‘\a.’, ‘\b.’ etc. for lists which are terminated by
 ‘\z.’ or by an empty line.
 
      \ex.  \label{ex:12} Some text in an exotic language ...
@@ -1520,7 +1520,7 @@ A summary of this information is always available from the selection
 process by pressing ‘?’.
 
      General
-............
+     .......
 
 ‘?’
      Show a summary of available commands.
@@ -1529,7 +1529,7 @@ process by pressing ‘?’.
      Prefix argument.
 
      Moving around
-..................
+     .............
 
 ‘n’
      Go to next article.
@@ -1538,7 +1538,7 @@ process by pressing ‘?’.
      Go to previous article.
 
      Access to full database entries
-....................................
+     ...............................
 
 ‘<SPC>’
      Show the database entry corresponding to the article at point, in
@@ -1551,7 +1551,7 @@ process by pressing ‘?’.
      With BibTeX entries, follow mode can be rather slow.
 
      Selecting entries and creating the citation
-................................................
+     ...........................................
 
 ‘<RET>’
      Insert a citation referencing the article at point into the buffer
@@ -1597,14 +1597,14 @@ process by pressing ‘?’.
      where you called ‘reftex-citation’.
 
      Exiting
-............
+     .......
 
 ‘q’
      Exit the selection process without inserting a citation into the
      buffer.
 
      Updating the buffer
-........................
+     ...................
 
 ‘g’
      Start over with a new regular expression.  The full database will
@@ -2093,7 +2093,7 @@ index from the ‘*Index*’ buffer.
 A summary of this information is always available by pressing ‘?’.
 
      General
-............
+     .......
 
 ‘?’
      Display a summary of commands.
@@ -2102,7 +2102,7 @@ A summary of this information is always available by pressing ‘?’.
      Prefix argument.
 
      Moving around
-..................
+     .............
 
 ‘! A..Z’
      Pressing any capital letter will jump to the corresponding section
@@ -2115,7 +2115,7 @@ A summary of this information is always available by pressing ‘?’.
      Go to previous entry.
 
      Access to document locations
-.................................
+     ............................
 
 ‘<SPC>’
      Show the place in the document where this index entry is defined.
@@ -2138,7 +2138,7 @@ A summary of this information is always available by pressing ‘?’.
      ‘reftex-revisit-to-follow’.
 
      Entry editing
-..................
+     .............
 
 ‘e’
      Edit the current index entry.  In the minibuffer, you can edit the
@@ -2181,7 +2181,7 @@ A summary of this information is always available by pressing ‘?’.
      (‘bbb!ccc’).
 
      Exiting
-............
+     .......
 
 ‘q’
      Hide the ‘*Index*’ buffer.
@@ -2193,7 +2193,7 @@ A summary of this information is always available by pressing ‘?’.
      Switch to the Table of Contents buffer of this document.
 
      Controlling what gets displayed
-....................................
+     ...............................
 
 ‘c’
      Toggle the display of short context in the ‘*Index*’ buffer.  The
@@ -2217,7 +2217,7 @@ A summary of this information is always available by pressing ‘?’.
      next section.
 
      Updating the buffer
-........................
+     ...................
 
 ‘g’
      Rebuild the ‘*Index*’ buffer.  This does _not_ rescan the document.
@@ -2457,6 +2457,9 @@ file:
 
      (setq reftex-extra-bindings t)
 
+   Note that this variable has to be set before RefTeX is loaded to have
+an effect.
+
    Changing and adding to RefTeX’s key bindings is best done in the hook
 ‘reftex-load-hook’.  For information on the keymaps which should be used
 to add keys, see *note Keymaps and Hooks::.
@@ -2517,6 +2520,10 @@ files:
      only exception is that section labels referring to a section
      statement outside the current file can still use that section title
      as context.
+
+   • RefTeX knows about the ‘\include’ and ‘\input’ macros.  In case you
+     use different commands to include files in a multifile document,
+     customize the variable ‘reftex-include-file-commands’.
 
 
 File: reftex.info,  Node: Language Support,  Next: Finding Files,  Prev: Multifile Documents,  Up: Top
@@ -3253,6 +3260,10 @@ variables have customize support, so if you are not familiar with Emacs
 Lisp (and even if you are) you might find it more comfortable to use
 ‘customize’ to look at and change these variables.  ‘M-x
 reftex-customize’ will get you there.
+
+   In case you don’t use the ‘customize’ interface, here’s a caveat:
+Changing (mostly parsing-related) options might require a call to
+‘reftex-compile-variables’ in order to become effective.
 
 * Menu:
 
@@ -4390,7 +4401,7 @@ File: reftex.info,  Node: Options - Fontification,  Next: Options - Misc,  Prev:
           mouse    Highlighting is mouse driven.
           both     Both cursor and mouse trigger highlighting.
 
-     Changing this variable requires to rebuild the selection and *toc*
+     Changing this variable requires rebuilding the selection and *toc*
      buffers to become effective (keys ‘g’ or ‘r’).
 
  -- User Option: reftex-cursor-selected-face
@@ -4547,8 +4558,8 @@ Version 4.24
 Version 4.22
    • New command ‘reftex-create-bibtex-file’ to create a new database
      with all entries referenced in the current document.
-   • New keys ‘e’ and ‘E’ allow to produce a BibTeX database file from
-     entries marked in a citation selection buffer.
+   • New keys ‘e’ and ‘E’ allow you to produce a BibTeX database file
+     from entries marked in a citation selection buffer.
 
 Version 4.21
    • Renaming labels from the toc buffer with key ‘M-%’.
@@ -4640,7 +4651,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -5090,7 +5101,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -5114,55 +5125,55 @@ Index
  [index ]
 * Menu:
 
-* ‘*toc*’ buffer:                        Table of Contents.   (line   6)
-* ‘*toc*’ buffer, recentering:           Table of Contents.   (line 198)
+* *toc* buffer:                          Table of Contents.   (line   6)
+* *toc* buffer, recentering:             Table of Contents.   (line 198)
 * ?:                                     Table of Contents.   (line  15)
 * ? <1>:                                 Referencing Labels.  (line  45)
 * ? <2>:                                 Creating Citations.  (line  30)
 * ? <3>:                                 Displaying and Editing the Index.
                                                               (line  29)
-* ‘\bibitem’:                            Viewing Cross-References.
+* \bibitem:                              Viewing Cross-References.
                                                               (line  37)
-* ‘\bibliography’:                       Creating Citations.  (line  20)
-* ‘\cite’:                               Citations.           (line   6)
-* ‘\cite’ <1>:                           Viewing Cross-References.
+* \bibliography:                         Creating Citations.  (line  20)
+* \cite:                                 Citations.           (line   6)
+* \cite <1>:                             Viewing Cross-References.
                                                               (line  32)
-* ‘\endnote’, LaTeX macro:               Builtin Label Environments.
+* \endnote, LaTeX macro:                 Builtin Label Environments.
                                                               (line  17)
-* ‘\eqref’, AMS-LaTeX macro:             Using \eqref.        (line   6)
-* ‘\externaldocument’:                   LaTeX xr Package.    (line   6)
-* ‘\footnote’, LaTeX macro:              Builtin Label Environments.
+* \eqref, AMS-LaTeX macro:               Using \eqref.        (line   6)
+* \externaldocument:                     LaTeX xr Package.    (line   6)
+* \footnote, LaTeX macro:                Builtin Label Environments.
                                                               (line  12)
-* ‘\index’:                              Index Support.       (line   6)
-* ‘\index’ <1>:                          Viewing Cross-References.
+* \index:                                Index Support.       (line   6)
+* \index <1>:                            Viewing Cross-References.
                                                               (line  50)
-* ‘\label’:                              Labels and References.
+* \label:                                Labels and References.
                                                               (line   6)
-* ‘\label’ <1>:                          Viewing Cross-References.
+* \label <1>:                            Viewing Cross-References.
                                                               (line  25)
-* ‘\newtheorem’:                         Theorem and Axiom.   (line   6)
-* ‘\ref’:                                Referencing Labels.  (line   6)
-* ‘\ref’ <1>:                            Viewing Cross-References.
+* \newtheorem:                           Theorem and Axiom.   (line   6)
+* \ref:                                  Referencing Labels.  (line   6)
+* \ref <1>:                              Viewing Cross-References.
                                                               (line  18)
 * Acknowledgments:                       Imprint.             (line   6)
-* ‘align’, AMS-LaTeX environment:        Builtin Label Environments.
+* align, AMS-LaTeX environment:          Builtin Label Environments.
                                                               (line  14)
-* ‘alignat’, AMS-LaTeX environment:      Builtin Label Environments.
+* alignat, AMS-LaTeX environment:        Builtin Label Environments.
                                                               (line  14)
 * AMS-LaTeX:                             Builtin Label Environments.
                                                               (line  14)
 * AMS-LaTeX <1>:                         Using \eqref.        (line   6)
-* ‘amsmath’, LaTeX package:              Builtin Label Environments.
+* amsmath, LaTeX package:                Builtin Label Environments.
                                                               (line  14)
-* ‘AUCTeX’, Emacs package:               AUCTeX.              (line   6)
+* AUCTeX, Emacs package:                 AUCTeX.              (line   6)
 * Automatic document scans:              Optimizations.       (line  70)
-* ‘axiom’, newtheorem:                   Theorem and Axiom.   (line   6)
-* ‘Beqnarray’, LaTeX environment:        Builtin Label Environments.
+* axiom, newtheorem:                     Theorem and Axiom.   (line   6)
+* Beqnarray, LaTeX environment:          Builtin Label Environments.
                                                               (line  18)
-* ‘bib-cite’, Emacs package:             Bib-Cite.            (line   6)
+* bib-cite, Emacs package:               Bib-Cite.            (line   6)
 * bib-cite-use-reftex-view-crossref:     Bib-Cite.            (line  22)
-* ‘BIBINPUTS’, environment variable:     Installation.        (line  93)
-* ‘BIBINPUTS’, environment variable <1>: Creating Citations.  (line  20)
+* BIBINPUTS, environment variable:       Installation.        (line  93)
+* BIBINPUTS, environment variable <1>:   Creating Citations.  (line  20)
 * Bibliographies, multiple:              Chapterbib and Bibunits.
                                                               (line   6)
 * BibTeX buffer, viewing cite locations from: Viewing Cross-References.
@@ -5170,7 +5181,7 @@ Index
 * BibTeX database files, not found:      Installation.        (line  93)
 * BibTeX database subsets:               BibTeX Database Subsets.
                                                               (line   6)
-* ‘bibunits’, LaTeX package:             Chapterbib and Bibunits.
+* bibunits, LaTeX package:               Chapterbib and Bibunits.
                                                               (line   6)
 * Bug reports:                           Imprint.             (line   6)
 * Builtin index macros:                  Builtin Index Macros.
@@ -5222,16 +5233,16 @@ Index
                                                               (line   6)
 * C-c | <1>:                             Key Bindings.        (line   8)
 * Changes:                               Changes.             (line   6)
-* ‘chapterbib’, LaTeX package:           Chapterbib and Bibunits.
+* chapterbib, LaTeX package:             Chapterbib and Bibunits.
                                                               (line   6)
-* ‘chicago’, citation style:             Citation Styles.     (line   6)
+* chicago, citation style:               Citation Styles.     (line   6)
 * Citation info:                         Citation Info.       (line   6)
 * Citation styles:                       Citation Styles.     (line   6)
-* Citation styles, ‘chicago’:            Citation Styles.     (line   6)
+* Citation styles, chicago:              Citation Styles.     (line   6)
 * Citation styles, ConTeXt:              Citation Styles.     (line   6)
-* Citation styles, ‘harvard’:            Citation Styles.     (line   6)
-* Citation styles, ‘jurabib’:            Citation Styles.     (line   6)
-* Citation styles, ‘natbib’:             Citation Styles.     (line   6)
+* Citation styles, harvard:              Citation Styles.     (line   6)
+* Citation styles, jurabib:              Citation Styles.     (line   6)
+* Citation styles, natbib:               Citation Styles.     (line   6)
 * Citations:                             Citations.           (line   6)
 * Citations outside LaTeX:               Citations Outside LaTeX.
                                                               (line   6)
@@ -5264,59 +5275,59 @@ Index
 * Documents, spread over files:          Multifile Documents. (line   6)
 * Editing the Index:                     Displaying and Editing the Index.
                                                               (line   6)
-* Emacs packages, ‘AUCTeX’:              AUCTeX.              (line   6)
-* Emacs packages, ‘bib-cite’:            Bib-Cite.            (line   6)
-* Emacs packages, ‘iso-cvt’:             Problems and Work-Arounds.
+* Emacs packages, AUCTeX:                AUCTeX.              (line   6)
+* Emacs packages, bib-cite:              Bib-Cite.            (line   6)
+* Emacs packages, iso-cvt:               Problems and Work-Arounds.
                                                               (line  31)
-* Emacs packages, ‘isotex’:              Problems and Work-Arounds.
+* Emacs packages, isotex:                Problems and Work-Arounds.
                                                               (line  31)
-* Emacs packages, ‘x-symbol’:            Problems and Work-Arounds.
+* Emacs packages, x-symbol:              Problems and Work-Arounds.
                                                               (line  31)
-* ‘endnote’, LaTeX package:              Builtin Label Environments.
+* endnote, LaTeX package:                Builtin Label Environments.
                                                               (line  17)
-* ‘enumerate’, LaTeX environment:        Builtin Label Environments.
+* enumerate, LaTeX environment:          Builtin Label Environments.
                                                               (line  12)
-* Environments without ‘\begin’:         Non-Standard Environments.
+* Environments without \begin:           Non-Standard Environments.
                                                               (line   6)
 * Environments, builtin:                 Builtin Label Environments.
                                                               (line   6)
-* ‘eqnarray’, LaTeX environment:         Builtin Label Environments.
+* eqnarray, LaTeX environment:           Builtin Label Environments.
                                                               (line  12)
-* ‘equation’, LaTeX environment:         Builtin Label Environments.
+* equation, LaTeX environment:           Builtin Label Environments.
                                                               (line  12)
 * External documents:                    LaTeX xr Package.    (line   6)
 * Faces:                                 Faces.               (line   6)
-* ‘fancybox’, LaTeX package:             Builtin Label Environments.
+* fancybox, LaTeX package:               Builtin Label Environments.
                                                               (line  18)
-* ‘fancyref’, LaTeX package:             Reference Styles.    (line  63)
+* fancyref, LaTeX package:               Reference Styles.    (line  63)
 * Figure wrapping macro:                 Figure Wrapper.      (line   6)
-* ‘figure*’, LaTeX environment:          Builtin Label Environments.
+* figure*, LaTeX environment:            Builtin Label Environments.
                                                               (line  12)
-* ‘figure’, LaTeX environment:           Builtin Label Environments.
+* figure, LaTeX environment:             Builtin Label Environments.
                                                               (line  12)
-* ‘figwindow’, LaTeX environment:        Builtin Label Environments.
+* figwindow, LaTeX environment:          Builtin Label Environments.
                                                               (line  21)
 * Finding files:                         Installation.        (line  93)
 * Finding files <1>:                     Finding Files.       (line   6)
 * Finding files, options:                Options - Finding Files.
                                                               (line   6)
-* ‘flalign’, AMS-LaTeX environment:      Builtin Label Environments.
+* flalign, AMS-LaTeX environment:        Builtin Label Environments.
                                                               (line  14)
-* ‘floatfig’, LaTeX package:             Builtin Label Environments.
+* floatfig, LaTeX package:               Builtin Label Environments.
                                                               (line  19)
-* ‘floatingfig’, LaTeX environment:      Builtin Label Environments.
+* floatingfig, LaTeX environment:        Builtin Label Environments.
                                                               (line  19)
 * Fontification, options:                Options - Fontification.
                                                               (line   6)
-* ‘ftp’, RefTeX site:                    Imprint.             (line   6)
-* ‘gather’, AMS-LaTeX environment:       Builtin Label Environments.
+* ftp, RefTeX site:                      Imprint.             (line   6)
+* gather, AMS-LaTeX environment:         Builtin Label Environments.
                                                               (line  14)
 * German magic words:                    Adding Magic Words.  (line   6)
 * Getting Started:                       RefTeX in a Nutshell.
                                                               (line   6)
 * Global indexing:                       Global Indexing.     (line   6)
-* ‘harvard’, citation style:             Citation Styles.     (line   6)
-* ‘http’, RefTeX home page:              Imprint.             (line   6)
+* harvard, citation style:               Citation Styles.     (line   6)
+* http, RefTeX home page:                Imprint.             (line   6)
 * Idle timer restart:                    Problems and Work-Arounds.
                                                               (line  75)
 * Imprint:                               Imprint.             (line   6)
@@ -5339,17 +5350,17 @@ Index
                                                               (line   6)
 * Index, editing:                        Displaying and Editing the Index.
                                                               (line   6)
-* ‘index’, LaTeX package:                Builtin Index Macros.
+* index, LaTeX package:                  Builtin Index Macros.
                                                               (line   6)
-* Indexing, from ‘phrases’ buffer:       Global Indexing.     (line   6)
+* Indexing, from phrases buffer:         Global Indexing.     (line   6)
 * Indexing, global:                      Global Indexing.     (line   6)
 * Installation:                          Installation.        (line   6)
 * Introduction:                          Introduction.        (line   6)
-* ‘iso-cvt’, Emacs package:              Problems and Work-Arounds.
+* iso-cvt, Emacs package:                Problems and Work-Arounds.
                                                               (line  31)
-* ‘isotex’, Emacs package:               Problems and Work-Arounds.
+* isotex, Emacs package:                 Problems and Work-Arounds.
                                                               (line  31)
-* ‘jurabib’, citation style:             Citation Styles.     (line   6)
+* jurabib, citation style:               Citation Styles.     (line   6)
 * Key bindings, problems with Viper mode: Problems and Work-Arounds.
                                                               (line  82)
 * Key Bindings, summary:                 Key Bindings.        (line   6)
@@ -5380,42 +5391,42 @@ Index
                                                               (line   7)
 * LaTeX core:                            Builtin Label Environments.
                                                               (line  12)
-* LaTeX macro ‘footnote’:                Builtin Label Environments.
+* LaTeX macro footnote:                  Builtin Label Environments.
                                                               (line  12)
-* LaTeX packages, ‘amsmath’:             Builtin Label Environments.
+* LaTeX packages, amsmath:               Builtin Label Environments.
                                                               (line  14)
-* LaTeX packages, ‘endnote’:             Builtin Label Environments.
+* LaTeX packages, endnote:               Builtin Label Environments.
                                                               (line  17)
-* LaTeX packages, ‘fancybox’:            Builtin Label Environments.
+* LaTeX packages, fancybox:              Builtin Label Environments.
                                                               (line  18)
-* LaTeX packages, ‘fancyref’:            Reference Styles.    (line  63)
-* LaTeX packages, ‘floatfig’:            Builtin Label Environments.
+* LaTeX packages, fancyref:              Reference Styles.    (line  63)
+* LaTeX packages, floatfig:              Builtin Label Environments.
                                                               (line  19)
-* LaTeX packages, ‘index’:               Builtin Index Macros.
+* LaTeX packages, index:                 Builtin Index Macros.
                                                               (line   6)
-* LaTeX packages, ‘linguex’:             Non-Standard Environments.
+* LaTeX packages, linguex:               Non-Standard Environments.
                                                               (line  38)
-* LaTeX packages, ‘longtable’:           Builtin Label Environments.
+* LaTeX packages, longtable:             Builtin Label Environments.
                                                               (line  20)
-* LaTeX packages, ‘multind’:             Builtin Index Macros.
+* LaTeX packages, multind:               Builtin Index Macros.
                                                               (line   6)
-* LaTeX packages, ‘pf’:                  Problems and Work-Arounds.
+* LaTeX packages, pf:                    Problems and Work-Arounds.
                                                               (line  54)
-* LaTeX packages, ‘picinpar’:            Builtin Label Environments.
+* LaTeX packages, picinpar:              Builtin Label Environments.
                                                               (line  21)
-* LaTeX packages, ‘rotating’:            Builtin Label Environments.
+* LaTeX packages, rotating:              Builtin Label Environments.
                                                               (line  23)
-* LaTeX packages, ‘saferef’:             Referencing Labels.  (line 125)
-* LaTeX packages, ‘sidecap’:             Builtin Label Environments.
+* LaTeX packages, saferef:               Referencing Labels.  (line 125)
+* LaTeX packages, sidecap:               Builtin Label Environments.
                                                               (line  22)
-* LaTeX packages, ‘subfigure’:           Builtin Label Environments.
+* LaTeX packages, subfigure:             Builtin Label Environments.
                                                               (line  24)
-* LaTeX packages, ‘supertab’:            Builtin Label Environments.
+* LaTeX packages, supertab:              Builtin Label Environments.
                                                               (line  25)
-* LaTeX packages, ‘varioref’:            Reference Styles.    (line  63)
-* LaTeX packages, ‘wrapfig’:             Builtin Label Environments.
+* LaTeX packages, varioref:              Reference Styles.    (line  63)
+* LaTeX packages, wrapfig:               Builtin Label Environments.
                                                               (line  26)
-* LaTeX packages, ‘xr’:                  LaTeX xr Package.    (line   6)
+* LaTeX packages, xr:                    LaTeX xr Package.    (line   6)
 * LaTeX-add-environments, AUCTeX:        Style Files.         (line  33)
 * LaTeX-label-function, AUCTeX:          AUCTeX-RefTeX Interface.
                                                               (line  20)
@@ -5423,11 +5434,11 @@ Index
 * latex-mode-hook:                       Installation.        (line  74)
 * LaTeX-section, AUCTeX:                 AUCTeX-RefTeX Interface.
                                                               (line  20)
-* ‘linguex’, LaTeX package:              Non-Standard Environments.
+* linguex, LaTeX package:                Non-Standard Environments.
                                                               (line  38)
-* ‘longtable’, LaTeX environment:        Builtin Label Environments.
+* longtable, LaTeX environment:          Builtin Label Environments.
                                                               (line  20)
-* ‘longtable’, LaTeX package:            Builtin Label Environments.
+* longtable, LaTeX package:              Builtin Label Environments.
                                                               (line  20)
 * Macro definition lines, in phrase buffer: The Index Phrases File.
                                                               (line   6)
@@ -5437,12 +5448,12 @@ Index
 * Maintainer:                            Imprint.             (line   6)
 * Menu, in the menu bar:                 RefTeXs Menu.        (line   6)
 * Multifile documents:                   Multifile Documents. (line   6)
-* ‘multind’, LaTeX package:              Builtin Index Macros.
+* multind, LaTeX package:                Builtin Index Macros.
                                                               (line   6)
 * Multiple selection buffers:            Optimizations.       (line  80)
-* ‘multline’, AMS-LaTeX environment:     Builtin Label Environments.
+* multline, AMS-LaTeX environment:       Builtin Label Environments.
                                                               (line  14)
-* ‘natbib’, citation style:              Citation Styles.     (line   6)
+* natbib, citation style:                Citation Styles.     (line   6)
 * Non-standard environments:             Non-Standard Environments.
                                                               (line   6)
 * Noweb files:                           Finding Files.       (line  55)
@@ -5478,13 +5489,13 @@ Index
 * Parser functions, for special environments: Non-Standard Environments.
                                                               (line   6)
 * Partial documents scans:               Optimizations.       (line  26)
-* ‘pf’, LaTeX package:                   Problems and Work-Arounds.
+* pf, LaTeX package:                     Problems and Work-Arounds.
                                                               (line  54)
 * Phrase file:                           The Index Phrases File.
                                                               (line   6)
 * Phrases, collecting:                   Collecting Phrases.  (line   6)
 * Phrases, consistency checks:           Consistency Checks.  (line   6)
-* ‘picinpar’, LaTeX package:             Builtin Label Environments.
+* picinpar, LaTeX package:               Builtin Label Environments.
                                                               (line  21)
 * Problems and work-arounds:             Problems and Work-Arounds.
                                                               (line   6)
@@ -5638,7 +5649,8 @@ Index
 * reftex-idle-time:                      Table of Contents.   (line 198)
 * reftex-idle-time <1>:                  Options - Viewing Cross-References.
                                                               (line  30)
-* reftex-include-file-commands:          Options - Table of Contents.
+* reftex-include-file-commands:          Multifile Documents. (line  43)
+* reftex-include-file-commands <1>:      Options - Table of Contents.
                                                               (line   6)
 * reftex-index:                          Creating Index Entries.
                                                               (line   6)
@@ -5752,7 +5764,7 @@ Index
                                                               (line   6)
 * reftex-level-indent:                   Options - Referencing Labels.
                                                               (line  79)
-* reftex-load-hook:                      Key Bindings.        (line  42)
+* reftex-load-hook:                      Key Bindings.        (line  45)
 * reftex-load-hook <1>:                  Keymaps and Hooks.   (line  11)
 * reftex-max-section-depth:              Options - Table of Contents.
                                                               (line  11)
@@ -5907,18 +5919,18 @@ Index
 * reftex-vref-is-default (deprecated):   Reference Styles.    (line  63)
 * RefTeXs Menu:                          RefTeXs Menu.        (line   6)
 * Removing lookup buffers:               Optimizations.       (line  17)
-* ‘rotating’, LaTeX package:             Builtin Label Environments.
+* rotating, LaTeX package:               Builtin Label Environments.
                                                               (line  23)
 * S-mouse-2:                             Reference Info.      (line   6)
 * S-mouse-2 <1>:                         Citation Info.       (line   6)
 * S-mouse-2 <2>:                         Viewing Cross-References.
                                                               (line   6)
 * S-mouse-2 <3>:                         Key Bindings.        (line   8)
-* ‘saferef’, LaTeX package:              Referencing Labels.  (line 125)
+* saferef, LaTeX package:                Referencing Labels.  (line 125)
 * Saving parser information:             Optimizations.       (line  44)
-* ‘SCfigure’, LaTeX environment:         Builtin Label Environments.
+* SCfigure, LaTeX environment:           Builtin Label Environments.
                                                               (line  22)
-* ‘SCtable’, LaTeX environment:          Builtin Label Environments.
+* SCtable, LaTeX environment:            Builtin Label Environments.
                                                               (line  22)
 * Section numbers, wrong:                Problems and Work-Arounds.
                                                               (line  16)
@@ -5931,37 +5943,37 @@ Index
 * Selection process <1>:                 Creating Citations.  (line   6)
 * Settings, local:                       Problems and Work-Arounds.
                                                               (line  21)
-* ‘sidecap’, LaTeX package:              Builtin Label Environments.
+* sidecap, LaTeX package:                Builtin Label Environments.
                                                               (line  22)
-* ‘sidewaysfigure’, LaTeX environment:   Builtin Label Environments.
+* sidewaysfigure, LaTeX environment:     Builtin Label Environments.
                                                               (line  23)
-* ‘sidewaystable’, LaTeX environment:    Builtin Label Environments.
+* sidewaystable, LaTeX environment:      Builtin Label Environments.
                                                               (line  23)
 * Special parser functions:              Non-Standard Environments.
                                                               (line   6)
 * Structure editing:                     Table of Contents.   (line   6)
 * Style files, AUCTeX:                   Style Files.         (line   6)
-* ‘subequations’, AMS-LaTeX environment: Builtin Label Environments.
+* subequations, AMS-LaTeX environment:   Builtin Label Environments.
                                                               (line  14)
-* ‘subfig’, LaTeX package:               Builtin Label Environments.
+* subfig, LaTeX package:                 Builtin Label Environments.
                                                               (line  24)
-* ‘subfigure*’, LaTeX environment:       Builtin Label Environments.
+* subfigure*, LaTeX environment:         Builtin Label Environments.
                                                               (line  24)
-* ‘subfigure’, LaTeX environment:        Builtin Label Environments.
+* subfigure, LaTeX environment:          Builtin Label Environments.
                                                               (line  24)
-* ‘supertab’, LaTeX package:             Builtin Label Environments.
+* supertab, LaTeX package:               Builtin Label Environments.
                                                               (line  25)
-* ‘supertabular’, LaTeX environment:     Builtin Label Environments.
+* supertabular, LaTeX environment:       Builtin Label Environments.
                                                               (line  25)
 * Table of contents buffer:              Table of Contents.   (line   6)
 * Table of contents buffer, recentering: Table of Contents.   (line 198)
 * Table of contents, options:            Options - Table of Contents.
                                                               (line   6)
-* ‘table*’, LaTeX environment:           Builtin Label Environments.
+* table*, LaTeX environment:             Builtin Label Environments.
                                                               (line  12)
-* ‘table’, LaTeX environment:            Builtin Label Environments.
+* table, LaTeX environment:              Builtin Label Environments.
                                                               (line  12)
-* ‘tabwindow’, LaTeX environment:        Builtin Label Environments.
+* tabwindow, LaTeX environment:          Builtin Label Environments.
                                                               (line  21)
 * TeX files, not found:                  Installation.        (line  93)
 * TeX-add-style-hook, AUCTeX:            Style Files.         (line   6)
@@ -5980,14 +5992,14 @@ Index
                                                               (line  41)
 * tex-main-file:                         Multifile Documents. (line  15)
 * TeX-master:                            Multifile Documents. (line  15)
-* ‘TEXBIB’, environment variable:        Creating Citations.  (line  20)
-* ‘TEXINPUTS’, environment variable:     Installation.        (line  93)
+* TEXBIB, environment variable:          Creating Citations.  (line  20)
+* TEXINPUTS, environment variable:       Installation.        (line  93)
 * Thanks:                                Imprint.             (line   6)
-* ‘thebibliography’, LaTeX environment:  Creating Citations.  (line  20)
-* ‘theorem’, newtheorem:                 Theorem and Axiom.   (line   6)
+* thebibliography, LaTeX environment:    Creating Citations.  (line  20)
+* theorem, newtheorem:                   Theorem and Axiom.   (line   6)
 * TOC entries for environments:          Table of Contents.   (line 212)
 * turn-on-reftex:                        Installation.        (line  74)
-* ‘varioref’, LaTeX package:             Reference Styles.    (line  63)
+* varioref, LaTeX package:               Reference Styles.    (line  63)
 * Viewing citations:                     Citation Info.       (line   6)
 * Viewing cite locations from BibTeX buffer: Viewing Cross-References.
                                                               (line  42)
@@ -5998,16 +6010,16 @@ Index
                                                               (line  82)
 * viper-harness-minor-mode:              Problems and Work-Arounds.
                                                               (line  82)
-* ‘wrapfig’, LaTeX package:              Builtin Label Environments.
+* wrapfig, LaTeX package:                Builtin Label Environments.
                                                               (line  26)
-* ‘wrapfigure’, LaTeX environment:       Builtin Label Environments.
+* wrapfigure, LaTeX environment:         Builtin Label Environments.
                                                               (line  26)
-* ‘x-symbol’, Emacs package:             Problems and Work-Arounds.
+* x-symbol, Emacs package:               Problems and Work-Arounds.
                                                               (line  31)
-* ‘xalignat’, AMS-LaTeX environment:     Builtin Label Environments.
+* xalignat, AMS-LaTeX environment:       Builtin Label Environments.
                                                               (line  14)
-* ‘xr’, LaTeX package:                   LaTeX xr Package.    (line   6)
-* ‘xxalignat’, AMS-LaTeX environment:    Builtin Label Environments.
+* xr, LaTeX package:                     LaTeX xr Package.    (line   6)
+* xxalignat, AMS-LaTeX environment:      Builtin Label Environments.
                                                               (line  14)
 
 
@@ -6030,68 +6042,68 @@ Node: Figure Wrapper48124
 Node: Adding Magic Words50110
 Node: Using \eqref51080
 Node: Non-Standard Environments51944
-Node: Putting it Together55983
-Node: Reference Info56759
-Node: Reference Styles57424
-Ref: Reference Styles-Footnote-161639
-Node: LaTeX xr Package61758
-Node: Citations62922
-Node: Creating Citations63815
-Node: Citation Styles68763
-Node: Citation Info70858
-Node: Chapterbib and Bibunits71523
-Node: Citations Outside LaTeX72201
-Node: BibTeX Database Subsets73345
-Node: Index Support74761
-Node: Creating Index Entries77975
-Node: The Index Phrases File79378
-Node: Collecting Phrases81566
-Ref: Collecting Phrases-Footnote-184485
-Ref: Collecting Phrases-Footnote-284575
-Node: Consistency Checks84664
-Node: Global Indexing86189
-Ref: Global Indexing-Footnote-189455
-Node: Displaying and Editing the Index89602
-Node: Builtin Index Macros95795
-Node: Defining Index Macros96427
-Ref: Defining Index Macros-Footnote-1100089
-Node: Viewing Cross-References100154
-Ref: Viewing Cross-References-Footnote-1102877
-Ref: Viewing Cross-References-Footnote-2102962
-Node: RefTeXs Menu103022
-Node: Key Bindings103431
-Node: Faces104948
-Node: Multifile Documents105504
-Node: Language Support107257
-Node: Finding Files108750
-Node: Optimizations111932
-Node: AUCTeX117275
-Ref: AUCTeX-Footnote-1117919
-Node: AUCTeX-RefTeX Interface117999
-Ref: AUCTeX-RefTeX Interface-Footnote-1120364
-Ref: AUCTeX-RefTeX Interface-Footnote-2120486
-Node: Style Files120649
-Ref: Style Files-Footnote-1124644
-Node: Bib-Cite124769
-Node: Problems and Work-Arounds125841
-Node: Imprint129998
-Node: Commands132062
-Node: Options140616
-Node: Options - Table of Contents141436
-Node: Options - Defining Label Environments146527
-Node: Options - Creating Labels157549
-Node: Options - Referencing Labels162060
-Node: Options - Creating Citations167255
-Node: Options - Index Support174067
-Node: Options - Viewing Cross-References183978
-Node: Options - Finding Files186646
-Node: Options - Optimizations190669
-Node: Options - Fontification195296
-Node: Options - Misc198739
-Node: Keymaps and Hooks200606
-Node: Changes201384
-Node: GNU Free Documentation License206861
-Node: Index232202
+Node: Putting it Together55982
+Node: Reference Info56758
+Node: Reference Styles57423
+Ref: Reference Styles-Footnote-161638
+Node: LaTeX xr Package61757
+Node: Citations62921
+Node: Creating Citations63814
+Node: Citation Styles68762
+Node: Citation Info70857
+Node: Chapterbib and Bibunits71522
+Node: Citations Outside LaTeX72200
+Node: BibTeX Database Subsets73344
+Node: Index Support74760
+Node: Creating Index Entries77974
+Node: The Index Phrases File79377
+Node: Collecting Phrases81565
+Ref: Collecting Phrases-Footnote-184484
+Ref: Collecting Phrases-Footnote-284574
+Node: Consistency Checks84663
+Node: Global Indexing86188
+Ref: Global Indexing-Footnote-189454
+Node: Displaying and Editing the Index89601
+Node: Builtin Index Macros95794
+Node: Defining Index Macros96426
+Ref: Defining Index Macros-Footnote-1100088
+Node: Viewing Cross-References100153
+Ref: Viewing Cross-References-Footnote-1102876
+Ref: Viewing Cross-References-Footnote-2102961
+Node: RefTeXs Menu103021
+Node: Key Bindings103430
+Node: Faces105032
+Node: Multifile Documents105588
+Node: Language Support107559
+Node: Finding Files109052
+Node: Optimizations112234
+Node: AUCTeX117577
+Ref: AUCTeX-Footnote-1118221
+Node: AUCTeX-RefTeX Interface118301
+Ref: AUCTeX-RefTeX Interface-Footnote-1120666
+Ref: AUCTeX-RefTeX Interface-Footnote-2120788
+Node: Style Files120951
+Ref: Style Files-Footnote-1124946
+Node: Bib-Cite125071
+Node: Problems and Work-Arounds126143
+Node: Imprint130300
+Node: Commands132364
+Node: Options140918
+Node: Options - Table of Contents141943
+Node: Options - Defining Label Environments147034
+Node: Options - Creating Labels158056
+Node: Options - Referencing Labels162567
+Node: Options - Creating Citations167762
+Node: Options - Index Support174574
+Node: Options - Viewing Cross-References184485
+Node: Options - Finding Files187153
+Node: Options - Optimizations191176
+Node: Options - Fontification195803
+Node: Options - Misc199246
+Node: Keymaps and Hooks201113
+Node: Changes201891
+Node: GNU Free Documentation License207372
+Node: Index232717
 
 End Tag Table
 

@@ -1,9 +1,9 @@
-This is message.info, produced by makeinfo version 5.2 from
+This is message.info, produced by makeinfo version 6.3 from
 message.texi.
 
 This file documents Message, the Emacs message composition mode.
 
-   Copyright © 1996–2015 Free Software Foundation, Inc.
+   Copyright © 1996–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -29,7 +29,7 @@ Message
 
 This file documents Message, the Emacs message composition mode.
 
-   Copyright © 1996–2015 Free Software Foundation, Inc.
+   Copyright © 1996–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -156,7 +156,7 @@ File: message.info,  Node: Wide Reply,  Next: Followup,  Prev: Reply,  Up: Inter
 ==============
 
 The ‘message-wide-reply’ pops up a message buffer that’s a wide reply to
-the message in the current buffer.  A "wide reply" is a reply that goes
+the message in the current buffer.  A “wide reply” is a reply that goes
 out to all people listed in the ‘To’, ‘From’ (or ‘Reply-to’) and ‘Cc’
 headers.
 
@@ -276,8 +276,12 @@ The ‘message-forward’ command pops up a message buffer to forward the
 message in the current buffer.  If given a prefix, forward using news.
 
 ‘message-forward-ignored-headers’
-     All headers that match this regexp will be deleted when forwarding
-     a message.
+     In non-‘nil’, all headers that match this regexp will be deleted
+     when forwarding a message.
+
+‘message-forward-included-headers’
+     In non-‘nil’, only headers that match this regexp will be kept when
+     forwarding a message.
 
 ‘message-make-forward-subject-function’
      A list of functions that are called to generate a subject header
@@ -328,7 +332,7 @@ File: message.info,  Node: Bouncing,  Next: Mailing Lists,  Prev: Resending,  Up
 
 The ‘message-bounce’ command will, if the current buffer contains a
 bounced mail message, pop up a message buffer stripped of the bounce
-information.  A "bounced message" is typically a mail you’ve sent out
+information.  A “bounced message” is typically a mail you’ve sent out
 that has been returned by some ‘mailer-daemon’ as undeliverable.
 
    Headers that match the ‘message-ignored-bounced-headers’ regexp will
@@ -748,16 +752,72 @@ File: message.info,  Node: Security,  Next: Various Commands,  Prev: IDNA,  Up: 
 2.7 Security
 ============
 
-Using the MML language, Message is able to create digitally signed and
-digitally encrypted messages.  Message (or rather MML) currently support
-PGP (RFC 1991), PGP/MIME (RFC 2015/3156) and S/MIME.
+By default, e-mails are transmitted without any protection around the
+Internet, which implies that they can be read and changed by lots of
+different parties.  In particular, they are analyzed under bulk
+surveillance, which violates basic human rights.  To defend those
+rights, digital self-defense is necessary (in addition to legal
+changes), and encryption and digital signatures are powerful techniques
+for self-defense.  In essence, encryption ensures that only the intended
+recipient will be able to read a message, while digital signatures make
+sure that modifications to messages can be detected by the recipient.
+
+   Nowadays, there are two major incompatible e-mail encryption
+standards, namely OpenPGP and S/MIME.  Both of these standards are
+implemented by the GNU Privacy Guard (GnuPG) (https://www.gnupg.org/),
+which needs to be installed as external software in addition to GNU
+Emacs.  Before you can start to encrypt, decrypt, and sign messages, you
+need to create a so-called key-pair, which consists of a private key and
+a public key.  Your _public_ key (also known as _certificate_, in
+particular with S/MIME), is used by others (a) to encrypt messages
+intended for you and (b) to verify digital signatures created by you.
+In contrast, you use your _private_ key (a) to decrypt messages and (b)
+to sign messages.  (You may want to think of your public key as an open
+safe that you offer to others such that they can deposit messages and
+lock the door, while your private key corresponds to the opening
+combination for the safe.)
+
+   Thus, you need to perform the following steps for e-mail encryption,
+typically outside Emacs.  See, for example, the The GNU Privacy Handbook
+(https://www.gnupg.org/gph/en/manual.html) for details covering the
+standard OpenPGP with GnuPG.
+  1. Install GnuPG.
+  2. Create a key-pair for your own e-mail address.
+  3. Distribute your public key, e.g., via upload to key servers.
+  4. Import the public keys for the recipients to which you want to send
+     encrypted e-mails.
+
+   Whether to use the standard OpenPGP or S/MIME is beyond the scope of
+this documentation.  Actually, you can use one standard for one set of
+recipients and the other standard for different recipients (depending
+their preferences or capabilities).
+
+   In case you are not familiar with all those acronyms: The standard
+OpenPGP is also called PGP (Pretty Good Privacy).  The command line
+tools offered by GnuPG for OpenPGP are called ‘gpg’ and ‘gpg2’, while
+the one for S/MIME is called ‘gpgsm’.  An alternative, but discouraged,
+tool for S/MIME is ‘openssl’.  To make matters worse, e-mail messages
+can be formed in two different ways with OpenPGP, namely PGP (RFC
+1991/4880) and PGP/MIME (RFC 2015/3156).
+
+   The good news, however, is the following: In GNU Emacs, Message
+supports all those variants, comes with reasonable defaults that can be
+customized according to your needs, and invokes the proper command line
+tools behind the scenes for encryption, decryption, as well as creation
+and verification of digital signatures.
+
+   Message uses the MML language for the creation of signed and/or
+encrypted messages as explained in the following.
 
 * Menu:
 
 * Signing and encryption::      Signing and encrypting commands.
 * Using S/MIME::                Using S/MIME
-* Using PGP/MIME::              Using PGP/MIME
+* Using OpenPGP::               Using OpenPGP
+* Passphrase caching::          How to cache passphrases
 * PGP Compatibility::           Compatibility with older implementations
+* Encrypt-to-self::             Reading your own encrypted messages
+* Bcc Warning::                 Do not use encryption with Bcc headers
 
 
 File: message.info,  Node: Signing and encryption,  Next: Using S/MIME,  Up: Security
@@ -833,15 +893,45 @@ other properly.  Thus, we now describe what external libraries or
 programs are required to make things work, and some small general hints.
 
 
-File: message.info,  Node: Using S/MIME,  Next: Using PGP/MIME,  Prev: Signing and encryption,  Up: Security
+File: message.info,  Node: Using S/MIME,  Next: Using OpenPGP,  Prev: Signing and encryption,  Up: Security
 
 2.7.2 Using S/MIME
 ------------------
 
-_Note!_  This section assume you have a basic familiarity with modern
-cryptography, S/MIME, various PKCS standards, OpenSSL and so on.
+S/MIME requires an external implementation, such as GNU Privacy Guard
+(https://www.gnupg.org/) or OpenSSL (https://www.openssl.org/).  The
+default Emacs interface to the S/MIME implementation is EasyPG (*note
+EasyPG Assistant User’s Manual: (epa)Top.), which has been included in
+Emacs since version 23 and which relies on the command line tool ‘gpgsm’
+provided by GnuPG.  That tool implements certificate management,
+including certificate revocation and expiry, while such tasks need to be
+performed manually, if OpenSSL is used.
 
-   The S/MIME support in Message (and MML) require OpenSSL.  OpenSSL
+   The choice between EasyPG and OpenSSL is controlled by the variable
+‘mml-smime-use’, which needs to be set to the value ‘epg’ for EasyPG.
+Depending on your version of Emacs that value may be the default; if
+not, you can either customize that variable or place the following line
+in your ‘.emacs’ file (that line needs to be placed above other code
+related to message/gnus/encryption):
+
+     (require 'epg)
+
+   Moreover, you may want to customize the variables
+‘mml-default-encrypt-method’ and ‘mml-default-sign-method’ to the string
+‘"smime"’.
+
+   That’s all if you want to use S/MIME with EasyPG, and that’s the
+recommended way of using S/MIME with Message.
+
+   If you think about using OpenSSL instead of EasyPG, please read the
+BUGS section in the manual for the ‘smime’ command coming with OpenSSL
+first.  If you still want to use OpenSSL, the following applies.
+
+   _Note!_  The remainder of this section assumes you have a basic
+familiarity with modern cryptography, S/MIME, various PKCS standards,
+OpenSSL and so on.
+
+   The S/MIME support in Message (and MML) can use OpenSSL.  OpenSSL
 performs the actual S/MIME sign/encrypt operations.  OpenSSL can be
 found at <http://www.openssl.org/>.  OpenSSL 0.9.6 and later should
 work.  Version 0.9.5a cannot extract mail addresses from certificates,
@@ -894,25 +984,43 @@ you are on a secure single user machine) simply press ‘RET’ at the
 passphrase prompt.
 
 
-File: message.info,  Node: Using PGP/MIME,  Next: PGP Compatibility,  Prev: Using S/MIME,  Up: Security
+File: message.info,  Node: Using OpenPGP,  Next: Passphrase caching,  Prev: Using S/MIME,  Up: Security
 
-2.7.3 Using PGP/MIME
---------------------
+2.7.3 Using OpenPGP
+-------------------
 
-PGP/MIME requires an external OpenPGP implementation, such as GNU
-Privacy Guard (http://www.gnupg.org/).  Pre-OpenPGP implementations such
-as PGP 2.x and PGP 5.x are also supported.  The default Emacs interface
-to the PGP implementation is EasyPG (*note EasyPG Assistant User’s
-Manual: (epa)Top.), but PGG (*note PGG: (pgg)Top.) and Mailcrypt are
-also supported.  *Note PGP Compatibility::.
+Use of OpenPGP requires an external software, such as GNU Privacy Guard
+(https://www.gnupg.org/).  Pre-OpenPGP implementations such as PGP 2.x
+and PGP 5.x are also supported.  The default Emacs interface to the PGP
+implementation is EasyPG (*note EasyPG Assistant User’s Manual:
+(epa)Top.), but PGG (*note PGG: (pgg)Top.) and Mailcrypt are also
+supported.  *Note PGP Compatibility::.
 
-   Message internally calls GnuPG (the ‘gpg’ command) to perform data
-encryption, and in certain cases (decrypting or signing for example),
-‘gpg’ requires user’s passphrase.  Currently the recommended way to
-supply your passphrase to ‘gpg’ is to use the ‘gpg-agent’ program.
+   As stated earlier, messages encrypted with OpenPGP can be formatted
+according to two different standards, namely PGP or PGP/MIME.  The
+variables ‘mml-default-encrypt-method’ and ‘mml-default-sign-method’
+determine which variant to prefer, PGP/MIME by default.
 
-   To use ‘gpg-agent’ in Emacs, you need to run the following command
-from the shell before starting Emacs.
+
+File: message.info,  Node: Passphrase caching,  Next: PGP Compatibility,  Prev: Using OpenPGP,  Up: Security
+
+2.7.4 Passphrase caching
+------------------------
+
+Message with EasyPG internally calls GnuPG (the ‘gpg’ or ‘gpgsm’
+command) to perform data encryption, and in certain cases (decrypting or
+signing for example), ‘gpg’/‘gpgsm’ requires user’s passphrase.
+Currently the recommended way to supply your passphrase is to use the
+‘gpg-agent’ program.
+
+   In particular, the ‘gpg-agent’ program supports passphrase caching so
+that you do not need to enter your passphrase for every decryption/sign
+operation.  *Note (gnupg)Agent Options::.
+
+   How to use ‘gpg-agent’ in Emacs depends on your version of GnuPG.
+With GnuPG version 2.1, ‘gpg-agent’ is started automatically if
+necessary.  With older versions you may need to run the following
+command from the shell before starting Emacs.
 
      eval `gpg-agent --daemon`
 
@@ -924,17 +1032,17 @@ good idea to put this command in your ‘.xsession’ or ‘.bash_profile’.
    Once your ‘gpg-agent’ is set up, it will ask you for a passphrase as
 needed for ‘gpg’.  Under the X Window System, you will see a new
 passphrase input dialog appear.  The dialog is provided by PIN Entry
-(the ‘pinentry’ command), and as of version 0.7.2, ‘pinentry’ cannot
-cooperate with Emacs on a single tty.  So, if you are using a text
-console, you may need to put a passphrase into gpg-agent’s cache
-beforehand.  The following command does the trick.
+(the ‘pinentry’ command), reasonably recent versions of which can also
+cooperate with Emacs on a text console.  If that does not work, you may
+need to put a passphrase into gpg-agent’s cache beforehand.  The
+following command does the trick.
 
      gpg --use-agent --sign < /dev/null > /dev/null
 
 
-File: message.info,  Node: PGP Compatibility,  Prev: Using PGP/MIME,  Up: Security
+File: message.info,  Node: PGP Compatibility,  Next: Encrypt-to-self,  Prev: Passphrase caching,  Up: Security
 
-2.7.4 Compatibility with older implementations
+2.7.5 Compatibility with older implementations
 ----------------------------------------------
 
 Note, if you are using the ‘gpg.el’ you must make sure that the
@@ -963,6 +1071,40 @@ message that can be understood by PGP version 2.
 
    (Refer to <http://www.gnupg.org/gph/en/pgp2x.html> for more
 information about the problem.)
+
+
+File: message.info,  Node: Encrypt-to-self,  Next: Bcc Warning,  Prev: PGP Compatibility,  Up: Security
+
+2.7.6 Encrypt-to-self
+---------------------
+
+By default, messages are encrypted to all recipients (‘To’, ‘Cc’, ‘Bcc’
+headers).  Thus, you will not be able to decrypt your own messages.  To
+make sure that messages are also encrypted to your own key(s), several
+alternative solutions exist:
+  1. Use the ‘encrypt-to’ option in the file ‘gpg.conf’ (for OpenPGP) or
+     ‘gpgsm.conf’ (for S/MIME with EasyPG). *Note (gnupg)Invoking GPG::,
+     or *Note (gnupg)Invoking GPGSM::.
+  2. Include your own e-mail address (for which you created a key-pair)
+     among the recipients.
+  3. Customize the variable ‘mml-secure-openpgp-encrypt-to-self’ (for
+     OpenPGP) or ‘mml-secure-smime-encrypt-to-self’ (for S/MIME with
+     EasyPG).
+
+
+File: message.info,  Node: Bcc Warning,  Prev: Encrypt-to-self,  Up: Security
+
+2.7.7 Bcc Warning
+-----------------
+
+The ‘Bcc’ header is meant to hide recipients of messages.  However, when
+encrypted messages are used, the e-mail addresses of all ‘Bcc’-headers
+are given away to all recipients without warning, which is a bug.  But
+now Message got to warn if ‘Bcc’ recipients are found in an encrypted
+message when you are just about to send it.  If you are sure those ‘Bcc’
+addresses are safe to expose, set the ‘mml-secure-safe-bcc-list’
+variable, that is a list of e-mail addresses.  See
+<https://debbugs.gnu.org/cgi/bugreport.cgi?bug=18718>.
 
 
 File: message.info,  Node: Various Commands,  Next: Sending,  Prev: Security,  Up: Commands
@@ -1584,7 +1726,7 @@ File: message.info,  Node: News Variables,  Next: Insertion Variables,  Prev: Ne
      ‘message-send-news’.
 
 ‘message-post-method’
-     Gnusish "select method" (see the Gnus manual for details) used for
+     Gnusish “select method” (see the Gnus manual for details) used for
      posting a prepared news message.
 
 
@@ -1638,7 +1780,7 @@ File: message.info,  Node: Insertion Variables,  Next: Various Message Variables
 ‘message-yank-prefix’
      When you are replying to or following up an article, you normally
      want to quote the person you are answering.  Inserting quoted text
-     is done by "yanking", and each line you yank will have
+     is done by “yanking”, and each line you yank will have
      ‘message-yank-prefix’ prepended to it (except for quoted lines
      which use ‘message-yank-cited-prefix’ and empty lines which use
      ‘message-yank-empty-prefix’).  The default is ‘> ’.
@@ -1976,7 +2118,7 @@ Here’s an example from Gnus:
    This restores the Gnus window configuration when the message buffer
 is killed, postponed or exited.
 
-   An "action" can be either: a normal function, or a list where the CAR
+   An “action” can be either: a normal function, or a list where the CAR
 is a function and the CDR is the list of arguments, or a form to be
 ‘eval’ed.
 
@@ -2014,8 +2156,8 @@ File: message.info,  Node: Responses,  Up: Appendices
 To determine where a message is to go, the following algorithm is used
 by default.
 
-"reply"
-     A "reply" is when you want to respond _just_ to the person who sent
+“reply”
+     A “reply” is when you want to respond _just_ to the person who sent
      the message via mail.  There will only be one recipient.  To
      determine who the recipient will be, the following headers are
      consulted, in turn:
@@ -2024,8 +2166,8 @@ by default.
 
      ‘From’
 
-"wide reply"
-     A "wide reply" is a mail response that includes _all_ entities
+“wide reply”
+     A “wide reply” is a mail response that includes _all_ entities
      mentioned in the message you are responding to.  All mailboxes from
      the following headers will be concatenated to form the outgoing
      ‘To’/‘Cc’ headers:
@@ -2042,8 +2184,8 @@ by default.
      in the list of mailboxes.  If this header is ‘never’, that means
      that the ‘From’ (or ‘Reply-To’) mailbox will be suppressed.
 
-"followup"
-     A "followup" is a response sent via news.  The following headers
+“followup”
+     A “followup” is a response sent via news.  The following headers
      (listed in order of precedence) determine where the response is to
      be sent:
 
@@ -2071,7 +2213,7 @@ File: message.info,  Node: GNU Free Documentation License,  Next: Index,  Prev: 
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2521,7 +2663,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2567,7 +2709,7 @@ File: message.info,  Node: Index,  Next: Key Index,  Prev: GNU Free Documentatio
 * Expires:                               News Headers.        (line  52)
 * feedmail-send-it:                      Mail Variables.      (line   7)
 * From:                                  News Headers.        (line  11)
-* gpg-agent:                             Using PGP/MIME.      (line  13)
+* gpg-agent:                             Passphrase caching.  (line   6)
 * gpg-temp-directory:                    PGP Compatibility.   (line   6)
 * i-did-not-set–mail-host-address–so-tickle-me: News Headers. (line  35)
 * IDNA:                                  IDNA.                (line   6)
@@ -2641,10 +2783,11 @@ File: message.info,  Node: Index,  Next: Key Index,  Prev: GNU Free Documentatio
 * message-followup:                      Followup.            (line   6)
 * message-followup-to-function:          Followup.            (line   9)
 * message-forward:                       Forwarding.          (line   6)
-* message-forward-as-mime:               Forwarding.          (line  34)
-* message-forward-before-signature:      Forwarding.          (line  40)
+* message-forward-as-mime:               Forwarding.          (line  38)
+* message-forward-before-signature:      Forwarding.          (line  44)
 * message-forward-ignored-headers:       Forwarding.          (line  10)
-* message-forward-subject-author-subject: Forwarding.         (line  21)
+* message-forward-included-headers:      Forwarding.          (line  14)
+* message-forward-subject-author-subject: Forwarding.         (line  25)
 * message-from-style:                    Message Headers.     (line  33)
 * message-generate-hashcash:             Mail Headers.        (line  21)
 * message-generate-headers-first:        Message Headers.     (line  13)
@@ -2705,7 +2848,7 @@ File: message.info,  Node: Index,  Next: Key Index,  Prev: GNU Free Documentatio
 * message-mail-p:                        Various Message Variables.
                                                               (line 108)
 * message-mailer-swallows-blank-line:    Mail Variables.      (line  83)
-* message-make-forward-subject-function: Forwarding.          (line  14)
+* message-make-forward-subject-function: Forwarding.          (line  18)
 * message-mark-insert-begin:             Insertion Variables. (line  84)
 * message-mark-insert-end:               Insertion Variables. (line  87)
 * message-mark-insert-file:              Insertion.           (line  35)
@@ -2793,7 +2936,7 @@ File: message.info,  Node: Index,  Next: Key Index,  Prev: GNU Free Documentatio
 * message-user-organization:             News Headers.        (line  24)
 * message-user-organization-file:        News Headers.        (line  24)
 * message-user-path:                     News Headers.        (line  62)
-* message-wash-forwarded-subjects:       Forwarding.          (line  28)
+* message-wash-forwarded-subjects:       Forwarding.          (line  32)
 * message-wide-reply:                    Wide Reply.          (line   6)
 * message-wide-reply-confirm-recipients: Wide Reply.          (line  46)
 * message-wide-reply-to-function:        Wide Reply.          (line  11)
@@ -2820,6 +2963,7 @@ File: message.info,  Node: Index,  Next: Key Index,  Prev: GNU Free Documentatio
                                                               (line  19)
 * mml-secure-message-sign-smime:         Signing and encryption.
                                                               (line  11)
+* mml-secure-safe-bcc-list:              Bcc Warning.         (line   8)
 * mml-signencrypt-style-alist:           PGP Compatibility.   (line  17)
 * mml-unsecure-message:                  Signing and encryption.
                                                               (line  35)
@@ -2948,46 +3092,49 @@ Node: New Mail Message3631
 Node: New News Message4014
 Node: Reply4428
 Node: Wide Reply5839
-Node: Followup7949
-Node: Canceling News8773
-Node: Superseding9992
-Node: Forwarding10663
-Node: Resending12287
-Node: Bouncing12655
-Node: Mailing Lists13249
-Node: Commands18550
-Node: Buffer Entry19293
-Node: Header Commands19978
-Node: Movement25243
-Node: Insertion25835
-Node: MIME27256
-Node: IDNA28525
-Node: Security29891
-Node: Signing and encryption30448
-Node: Using S/MIME33328
-Node: Using PGP/MIME36601
-Node: PGP Compatibility38374
-Node: Various Commands39904
-Node: Sending41788
-Node: Mail Aliases42234
-Node: Spelling43643
-Node: Variables45010
-Node: Message Headers45734
-Node: Mail Headers52262
-Node: Mail Variables53252
-Node: News Headers57309
-Node: News Variables64527
-Node: Insertion Variables64948
-Node: Various Message Variables70444
-Node: Sending Variables76210
-Node: Message Buffers77577
-Node: Message Actions79792
-Node: Compatibility81311
-Node: Appendices81770
-Node: Responses81993
-Node: GNU Free Documentation License83427
-Node: Index108754
-Node: Key Index131760
+Node: Followup7953
+Node: Canceling News8777
+Node: Superseding9996
+Node: Forwarding10667
+Node: Resending12453
+Node: Bouncing12821
+Node: Mailing Lists13419
+Node: Commands18720
+Node: Buffer Entry19463
+Node: Header Commands20148
+Node: Movement25413
+Node: Insertion26005
+Node: MIME27426
+Node: IDNA28695
+Node: Security30061
+Node: Signing and encryption33806
+Node: Using S/MIME36686
+Node: Using OpenPGP41420
+Node: Passphrase caching42227
+Node: PGP Compatibility43960
+Node: Encrypt-to-self45518
+Node: Bcc Warning46384
+Node: Various Commands47052
+Node: Sending48936
+Node: Mail Aliases49382
+Node: Spelling50791
+Node: Variables52158
+Node: Message Headers52882
+Node: Mail Headers59410
+Node: Mail Variables60400
+Node: News Headers64457
+Node: News Variables71675
+Node: Insertion Variables72100
+Node: Various Message Variables77600
+Node: Sending Variables83366
+Node: Message Buffers84733
+Node: Message Actions86948
+Node: Compatibility88471
+Node: Appendices88930
+Node: Responses89153
+Node: GNU Free Documentation License90611
+Node: Index115942
+Node: Key Index139094
 
 End Tag Table
 

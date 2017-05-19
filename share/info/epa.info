@@ -1,8 +1,8 @@
-This is epa.info, produced by makeinfo version 5.2 from epa.texi.
+This is epa.info, produced by makeinfo version 6.3 from epa.texi.
 
 This file describes EasyPG Assistant 1.0.0.
 
-   Copyright © 2007–2015 Free Software Foundation, Inc.
+   Copyright © 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: epa.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: epa.info,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
 
 EasyPG Assistant user’s manual
 ******************************
@@ -34,7 +34,7 @@ interface called EasyPG Library.
 
    This file describes EasyPG Assistant 1.0.0.
 
-   Copyright © 2007–2015 Free Software Foundation, Inc.
+   Copyright © 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -53,6 +53,7 @@ interface called EasyPG Library.
 * Quick start::
 * Commands::
 * Caching Passphrases::
+* GnuPG version compatibility::
 * Bug Reports::
 * GNU Free Documentation License::  The license for this documentation.
 * Key Index::
@@ -94,7 +95,7 @@ integrated into other Emacs functionalities.  For example, automatic
 encryption/decryption of ‘*.gpg’ files.
 
 
-File: epa.info,  Node: Commands,  Next: Caching Passphrases,  Prev: Quick start,  Up: Top
+File: epa.info,  Node: Commands,  Next: GnuPG version compatibility,  Prev: Quick start,  Up: Top
 
 3 Commands
 **********
@@ -111,7 +112,7 @@ This chapter introduces various commands for typical use cases.
 * Encrypting/decrypting gpg files::
 
 
-File: epa.info,  Node: Key management,  Next: Cryptographic operations on regions,  Up: Commands
+File: epa.info,  Node: Key management,  Next: Cryptographic operations on regions,  Prev: Commands,  Up: Commands
 
 3.1 Key management
 ==================
@@ -336,8 +337,8 @@ get it back with ‘M-x epa-file-enable’.
 
 By default, ‘epa-file’ will try to use symmetric encryption, aka
 password-based encryption.  If you want to use public key encryption
-instead, do ‘M-x epa-file-select-keys’, which will pops up the key
-selection dialog.
+instead, do ‘M-x epa-file-select-keys’, which pops up the key selection
+dialog.
 
  -- Command: epa-file-select-keys
      Select recipient keys to encrypt the currently visiting file with
@@ -377,19 +378,53 @@ behavior are below.
      The default value is ‘t’.
 
 
-File: epa.info,  Node: Caching Passphrases,  Next: Bug Reports,  Prev: Commands,  Up: Top
+File: epa.info,  Node: GnuPG version compatibility,  Next: Caching Passphrases,  Prev: Commands,  Up: Top
 
-4 Caching Passphrases
+4 GnuPG version compatibility
+*****************************
+
+As of February 2016, there are three active branches of GnuPG: 2.1, 2.0,
+and 1.4.  All those branches should work flawlessly with Emacs with
+basic use-cases.  They have, however, some incompatible characteristics,
+which might be visible when used from Emacs.
+
+   • The key store format used by GnuPG 2.1 is incompatible with 1.4.
+     That means, a key created with GnuPG 2.1 is not visible with 1.4.
+
+   • GnuPG 2.1 uses a fixed address for the Unix domain socket used to
+     communicate with gpg-agent.  The ‘GPG_AGENT_INFO’ environment
+     variable, which is used by GnuPG 2.0 and 1.4, is ignored.  That
+     means, if your system has both GnuPG 2.1 and 1.4, the gpg command
+     from GnuPG 1.4 is not able to use gpg-agent provided by 2.1 (at
+     least out of box).q
+
+   • GnuPG 2.1 (2.1.5 or later) has a mechanism to direct the Pinentry
+     password prompt to the Emacs minibuffer(1), which would be useful
+     when you use Emacs remotely or from a text-only terminal.  That
+     feature is not available in other versions, and more specifically,
+     with 2.0 (as of 2.0.29), there is no way to avoid the graphical
+     prompt.
+
+   ---------- Footnotes ----------
+
+   (1) To enable this feature, add ‘allow-emacs-pinentry’ to
+‘~/.gnupg/gpg-agent.conf’ and let gpg-agent reload the configuration,
+with: ‘gpgconf --reload gpg-agent’
+
+
+File: epa.info,  Node: Caching Passphrases,  Next: Bug Reports,  Prev: GnuPG version compatibility,  Up: Top
+
+5 Caching Passphrases
 *********************
 
-Typing passphrases is an irritating task if you frequently open and
+Typing passphrases is a troublesome task if you frequently open and
 close the same file.  GnuPG and EasyPG Assistant provide mechanisms to
 remember your passphrases.  However, the configuration is a bit
-confusing since it depends on your GnuPG installation (GnuPG version 1
-or GnuPG version 2), encryption method (symmetric or public key), and
+confusing since it depends on your GnuPG installation*Note GnuPG version
+compatibility::, encryption method (symmetric or public key), and
 whether or not you want to use gpg-agent.  Here are some questions:
 
-  1. Do you use GnuPG version 2 instead of GnuPG version 1?
+  1. Do you use GnuPG version 2.1 or 2.0 instead of GnuPG version 1.4?
   2. Do you use symmetric encryption rather than public key encryption?
   3. Do you want to use gpg-agent?
 
@@ -415,7 +450,7 @@ Encrypting/decrypting gpg files::.
 
 File: epa.info,  Node: Bug Reports,  Next: GNU Free Documentation License,  Prev: Caching Passphrases,  Up: Top
 
-5 Bug Reports
+6 Bug Reports
 *************
 
 Bugs and problems with EasyPG Assistant are actively worked on by the
@@ -451,7 +486,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -901,7 +936,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -925,25 +960,25 @@ Key Index
  [index ]
 * Menu:
 
-* ‘: d’:                                 Dired integration.    (line 17)
-* ‘: e’:                                 Dired integration.    (line 26)
-* ‘: s’:                                 Dired integration.    (line 23)
-* ‘: v’:                                 Dired integration.    (line 20)
-* ‘C-c C-e C-d’:                         Mail-mode integration.
+* : d:                                   Dired integration.    (line 17)
+* : e:                                   Dired integration.    (line 26)
+* : s:                                   Dired integration.    (line 23)
+* : v:                                   Dired integration.    (line 20)
+* C-c C-e C-d:                           Mail-mode integration.
                                                                (line 20)
-* ‘C-c C-e C-e’:                         Mail-mode integration.
+* C-c C-e C-e:                           Mail-mode integration.
                                                                (line 29)
-* ‘C-c C-e C-s’:                         Mail-mode integration.
+* C-c C-e C-s:                           Mail-mode integration.
                                                                (line 26)
-* ‘C-c C-e C-v’:                         Mail-mode integration.
+* C-c C-e C-v:                           Mail-mode integration.
                                                                (line 23)
-* ‘C-c C-e d’:                           Mail-mode integration.
+* C-c C-e d:                             Mail-mode integration.
                                                                (line 20)
-* ‘C-c C-e e’:                           Mail-mode integration.
+* C-c C-e e:                             Mail-mode integration.
                                                                (line 29)
-* ‘C-c C-e s’:                           Mail-mode integration.
+* C-c C-e s:                             Mail-mode integration.
                                                                (line 26)
-* ‘C-c C-e v’:                           Mail-mode integration.
+* C-c C-e v:                             Mail-mode integration.
                                                                (line 23)
 
 
@@ -1027,21 +1062,23 @@ Variable Index
 
 Tag Table:
 Node: Top899
-Node: Overview2187
-Node: Quick start2559
-Node: Commands3137
-Node: Key management3509
-Node: Cryptographic operations on regions6234
-Node: Cryptographic operations on files8250
-Node: Dired integration8981
-Node: Mail-mode integration9592
-Node: Encrypting/decrypting gpg files11226
-Node: Caching Passphrases13805
-Node: Bug Reports15229
-Node: GNU Free Documentation License16162
-Node: Key Index41508
-Node: Function Index43095
-Node: Variable Index46534
+Node: Overview2233
+Node: Quick start2605
+Node: Commands3183
+Node: Key management3563
+Node: Cryptographic operations on regions6305
+Node: Cryptographic operations on files8321
+Node: Dired integration9052
+Node: Mail-mode integration9663
+Node: Encrypting/decrypting gpg files11297
+Node: GnuPG version compatibility13871
+Ref: GnuPG version compatibility-Footnote-115228
+Node: Caching Passphrases15407
+Node: Bug Reports16859
+Node: GNU Free Documentation License17792
+Node: Key Index43142
+Node: Function Index44681
+Node: Variable Index48120
 
 End Tag Table
 

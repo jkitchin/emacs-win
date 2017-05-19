@@ -1,8 +1,8 @@
-This is ido.info, produced by makeinfo version 5.2 from ido.texi.
+This is ido.info, produced by makeinfo version 6.3 from ido.texi.
 
 This file documents the Ido package for GNU Emacs.
 
-   Copyright © 2013-2015 Free Software Foundation, Inc.
+   Copyright © 2013-2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,7 +27,7 @@ Interactive Do
 
 This file documents the Ido package for GNU Emacs.
 
-   Copyright © 2013-2015 Free Software Foundation, Inc.
+   Copyright © 2013-2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -93,7 +93,7 @@ This document describes a set of features that can interactively do
 things with buffers and files.  All the features are described here in
 detail.
 
-   The "Ido" package can let you switch between buffers and visit files
+   The “Ido” package can let you switch between buffers and visit files
 and directories with a minimum of keystrokes.  It is a superset of
 Iswitchb, the interactive buffer switching package by Stephen Eglen.
 
@@ -128,7 +128,7 @@ File: ido.info,  Node: Working Directories,  Prev: Activation,  Up: Overview
 1.2 Working Directories
 =======================
 
-"Working directories" are directories where files have most recently
+“Working directories” are directories where files have most recently
 been opened.  The current directory is inserted at the front of this
 ‘ido-work-directory-list’ whenever a file is opened with ‘ido-find-file’
 and other file-related functions.
@@ -254,7 +254,7 @@ the files in that directory, simply move the directory to the head of
 the list and hit <RET>.
 
    To go up to the parent directory, delete any partial file name
-already specified (e.g.  using <DEL>) and hit <DEL>.
+already specified (e.g., using <DEL>) and hit <DEL>.
 
    To go to the root directory (on the current drive), enter two
 slashes.  On MS-DOS or Windows, to select the root of another drive,
@@ -279,7 +279,7 @@ File: ido.info,  Node: Prefix Matching,  Next: Flexible Matching,  Prev: Interac
 ===================
 
 The standard way of completion with *nix shells and Emacs is to insert a
-"prefix" and then hitting <TAB> (or another completion key).  Cause of
+“prefix” and then hitting <TAB> (or another completion key).  Cause of
 this behavior has become second nature to a lot of Emacs users Ido
 offers in addition to the default substring matching method (look above)
 also the prefix matching method.  The kind of matching is the only
@@ -544,7 +544,8 @@ File: ido.info,  Node: Misc,  Next: GNU Free Documentation License,  Prev: Custo
 
 After ‘C-x b’ (‘ido-switch-buffer’), the buffer at the head of the list
 can be killed by pressing ‘C-k’.  If the buffer needs saving, you will
-be queried before the buffer is killed.
+be queried before the buffer is killed.  ‘C-S-b’ buries the buffer at
+the head of the list.
 
    Likewise, after ‘C-x C-f’, you can delete (i.e., physically remove)
 the file at the head of the list with ‘C-k’.  You will always be asked
@@ -629,7 +630,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1079,7 +1080,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1130,26 +1131,26 @@ Variable Index
 Tag Table:
 Node: Top906
 Node: Overview3185
-Node: Activation3896
-Node: Working Directories4394
-Node: Matching5480
-Node: Interactive Substring Matching5982
-Node: Prefix Matching10665
-Node: Flexible Matching11484
-Node: Regexp Matching12625
-Node: Highlighting13312
-Node: Hidden Buffers and Files13670
-Node: Customization14281
-Node: Changing List Order15088
-Node: Find File At Point15939
-Node: Ignoring16580
-Node: Misc Customization18081
-Node: Misc21148
-Node: All Matching22398
-Node: Replacement23320
-Node: Other Packages23746
-Node: GNU Free Documentation License24116
-Node: Variable Index49460
+Node: Activation3900
+Node: Working Directories4398
+Node: Matching5488
+Node: Interactive Substring Matching5990
+Node: Prefix Matching10673
+Node: Flexible Matching11496
+Node: Regexp Matching12637
+Node: Highlighting13324
+Node: Hidden Buffers and Files13682
+Node: Customization14293
+Node: Changing List Order15100
+Node: Find File At Point15951
+Node: Ignoring16592
+Node: Misc Customization18093
+Node: Misc21160
+Node: All Matching22466
+Node: Replacement23388
+Node: Other Packages23814
+Node: GNU Free Documentation License24184
+Node: Variable Index49532
 
 End Tag Table
 

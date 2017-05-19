@@ -1,9 +1,9 @@
-This is semantic.info, produced by makeinfo version 5.2 from
+This is semantic.info, produced by makeinfo version 6.3 from
 semantic.texi.
 
 This manual documents the Semantic library and utilities.
 
-   Copyright © 1999–2005, 2007, 2009–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2005, 2007, 2009–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -40,7 +40,7 @@ use the mailing list cedet-semantic@sourceforge.net via the URL:
 
    This manual documents the Semantic library and utilities.
 
-   Copyright © 1999–2005, 2007, 2009–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2005, 2007, 2009–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -78,11 +78,11 @@ the context of the programming language, instead of rigorously
 “understanding” it.
 
    Semantic provides a new infrastructure to analyze source code using
-"parsers" instead of regular expressions.  It contains two built-in
+“parsers” instead of regular expressions.  It contains two built-in
 parser generators (an LL generator named ‘Bovine’ and an LALR generator
 named ‘Wisent’, both written in Emacs Lisp), and parsers for several
-common programming languages.  It can also make use of "external
-parsers"—programs such as GNU Global and GNU IDUtils.
+common programming languages.  It can also make use of “external
+parsers”—programs such as GNU Global and GNU IDUtils.
 
    Semantic provides a uniform, language-independent API for accessing
 the parser output.  This output can be used by other Emacs Lisp programs
@@ -270,14 +270,14 @@ File: semantic.info,  Node: Semantic mode user commands,  Up: Semantic mode
 
 Semantic mode provides a number of commands for navigating, querying,
 and editing source code in a language-aware manner.  These commands
-generally act on "tags", which are the source-code units deemed
+generally act on “tags”, which are the source-code units deemed
 “important” by the present programming language (e.g., functions in the
 C programming language).
 
    These commands may be used in any buffer that has been parsed by
 Semantic.  Several of them prompt for a tag name using the minibuffer;
 here, the ‘TAB’ key can be used to complete tag names.  Others act on
-the "current tag", meaning the tag at (or around) point.
+the “current tag”, meaning the tag at (or around) point.
 
 ‘C-c , j’
      Prompt for a tag defined in the current file, and move point to it
@@ -324,7 +324,7 @@ the "current tag", meaning the tag at (or around) point.
 ‘C-c , C-w’
      Kill the current tag (‘senator-kill-tag’).  This removes the text
      for that tag, placing it in the kill ring.  You can retrieve the
-     text with ‘C-y’.  This also places the tag in the "tag ring", so
+     text with ‘C-y’.  This also places the tag in the “tag ring”, so
      that you can yank it with ‘\C-c,\C-y’, below.
 
 ‘C-c , M-w’
@@ -434,7 +434,7 @@ suppress saving altogether, by customizing ‘semanticdb-persistent-path’:
      is empty, all paths are considered valid.
 
      Project management packages, such as EDE (*note (ede)Top::), may
-     add their own predicates with "add-hook" to this variable.  This
+     add their own predicates with “add-hook” to this variable.  This
      allows SemanticDB to save tag caches in directories controlled by
      them.
 
@@ -452,7 +452,7 @@ File: semantic.info,  Node: Semanticdb Search Configuration,  Next: Changing Bac
 When another part of Semantic (or another Emacs package using Semantic)
 queries the SemanticDB library for a source code tag, the search need
 not be limited to tags defined within the current file.  It can include
-tags defined elsewhere, such as "header files" referenced by the current
+tags defined elsewhere, such as “header files” referenced by the current
 file (e.g., via the C/C++ ‘#include’ directive).  While performing the
 search, the SemanticDB library may even automatically visit other files
 and parse them, if necessary.
@@ -463,9 +463,9 @@ Throttle::.
 
    The details of SemanticDB searches can vary from language to
 language.  In C/C++ code, for example, SemanticDB distinguishes between
-"project header files" and "system header files", based on whether the
+“project header files” and “system header files”, based on whether the
 ‘#include’ directive uses the ‘""’ or ‘<>’ filename delimiter.
-SemanticDB looks for system header in the "system include path" (*note
+SemanticDB looks for system header in the “system include path” (*note
 Include paths::).
 
 * Menu:
@@ -481,7 +481,7 @@ File: semantic.info,  Node: Search Throttle,  Next: Semanticdb Roots,  Up: Seman
 2.2.2.1 SemanticDB Search Throttle
 ..................................
 
-The SemanticDB "search throttle" determines how aggressive SemanticDB
+The SemanticDB “search throttle” determines how aggressive SemanticDB
 searches are.  It is controlled by the variable
 ‘semanticdb-find-default-throttle’.  The default value of this variable
 aims for maximum accuracy, at the expense of search time.
@@ -533,8 +533,8 @@ File: semantic.info,  Node: Semanticdb Roots,  Next: Include paths,  Prev: Searc
 
 The ‘project’ setting in the SemanticDB search throttle (*note Search
 Throttle::) tells SemanticDB to search within the current single code
-project.  For Semantic’s point of view, "projects" are determined by
-their top-level directories, or "project roots"; every subdirectory of a
+project.  For Semantic’s point of view, “projects” are determined by
+their top-level directories, or “project roots”; every subdirectory of a
 project root is considered part of the same project.
 
    If you use EDE for project management, it will set the project roots
@@ -562,7 +562,7 @@ File: semantic.info,  Node: Include paths,  Next: Semanticdb search debugging co
 .....................
 
 System include paths are standard locations to find source code tags,
-such as the "header files" in ‘/usr/include’ and its subdirectories on
+such as the “header files” in ‘/usr/include’ and its subdirectories on
 Unix-like operating systems.
 
    You can add and remove system include paths using the following
@@ -604,7 +604,7 @@ find on disk using ‘M-x semanticdb-find-adebug-lost-includes’.
      Dump a list of all databases in Emacs memory.
 
  -- Command: semanticdb-find-test-translate-path &optional arg
-     Call and output results of "semanticdb-find-translate-path".  In
+     Call and output results of “semanticdb-find-translate-path”.  In
      the displayed buffer, you can type <SPC> to expand items.  With ARG
      non-‘nil’, specify a BRUTISH translation.
 
@@ -659,7 +659,7 @@ File: semantic.info,  Node: Idle Scheduler,  Next: Analyzer,  Prev: SemanticDB, 
 2.3 Idle Scheduler
 ==================
 
-The "Semantic Idle Scheduler" is a part of Semantic that performs
+The “Semantic Idle Scheduler” is a part of Semantic that performs
 various operations while Emacs is waiting for user input (idle time).
 Its primary job is to perform buffer parsing during idle time.  You can
 also use the Idle Scheduler to display function prototypes (*note Idle
@@ -814,8 +814,8 @@ File: semantic.info,  Node: Idle Completions Mode,  Prev: Idle Summary Mode,  Up
 2.3.5 Idle Completions Mode
 ---------------------------
 
-Semantic Idle Completions mode is a minor mode for performing "code
-completions" during idle time.  The completions are displayed inline,
+Semantic Idle Completions mode is a minor mode for performing “code
+completions” during idle time.  The completions are displayed inline,
 with keybindings that allow you to cycle through different alternatives.
 
    Semantic Idle Completions mode performs completion based on the
@@ -1018,9 +1018,9 @@ a code symbol.
 
           (global-set-key '[(S-mouse-1)] semantic-ia-fast-mouse-jump)
 
-   These commands are often more accurate than the ‘find-tag’ command
-(*note (emacs)Tags::), because the Semantic Analyzer is
-context-sensitive.
+   These commands are often more accurate than the
+‘xref-find-definitions’ command (*note (emacs)Looking Up Identifiers::),
+because the Semantic Analyzer is context-sensitive.
 
    You can also use ‘C-c , j’ (‘semantic-complete-jump-local’) and ‘C-c
 , J’ (‘semantic-complete-jump’) to navigate tags.  *Note Semantic mode
@@ -1231,7 +1231,7 @@ File: semantic.info,  Node: SymRef,  Next: MRU Bookmarks,  Prev: Speedbar,  Up: 
 2.6 Symbol References
 =====================
 
-Semantic can interface with external "symbol reference tools", such as
+Semantic can interface with external “symbol reference tools”, such as
 GNU Global and GNU Idutils.  These tools provide information about where
 different tags or symbols appear.
 
@@ -1302,7 +1302,7 @@ the declaration line of the function or tag on the topmost line in the
 text area.  This allows you to keep that declaration line in view at all
 times, even if it is scrolls off the “top” of the screen.
 
-   In addition, clicking ‘Mouse-1’ on the header line opens a context
+   In addition, clicking ‘mouse-1’ on the header line opens a context
 menu that contains menu items for copying, killing, or narrowing to that
 tag.
 
@@ -1327,7 +1327,7 @@ Semantic Highlight Function minor mode highlights the declaration line
 of the current function or tag (that is to say, the first line that
 describes the rest of the construct).
 
-   In addition, clicking ‘Mouse-3’ on the highlighted declaration line
+   In addition, clicking ‘mouse-3’ on the highlighted declaration line
 opens a context menu that contains menu items for copying, killing, or
 narrowing to that tag.
 
@@ -1432,11 +1432,11 @@ You can create new types of decorations using the following function:
      decorated by ‘NAME-highlight’.
 
      To put primary decorations on a tag ‘NAME-highlight’, use functions
-     like "semantic-set-tag-face", "semantic-set-tag-intangible", etc.,
+     like “semantic-set-tag-face”, “semantic-set-tag-intangible”, etc.,
      found in the semantic-decorate library.
 
      To add other kind of decorations on a tag, ‘NAME-highlight’ must
-     use "semantic-decorate-tag", and other functions of the semantic
+     use “semantic-decorate-tag”, and other functions of the semantic
      decoration API found in this library.
 
 
@@ -1572,7 +1572,7 @@ Semanticdb complexity is certainly an issue.  It is a rather hairy
 problem to try and solve.
 
 ‘semanticdb.el’
-     Defines a "database" and a "table" base class.  You can instantiate
+     Defines a “database” and a “table” base class.  You can instantiate
      these classes, and use them, but they are not persistent.
 
      This file also provides support for ‘semanticdb-minor-mode’, which
@@ -1584,7 +1584,7 @@ problem to try and solve.
      routines use caches to save data structures that are complex to
      calculate.
 
-     Lastly, it provides the concept of "project root".  It is a system
+     Lastly, it provides the concept of “project root”.  It is a system
      by which a file can be associated with the root of a project, so if
      you have a tree of directories and source files, it can find the
      root, and allow a tag-search to span all available databases in
@@ -1596,7 +1596,7 @@ problem to try and solve.
      buffer and writing them to a file.
 
 ‘semanticdb-el.el’
-     Implements a special kind of "system" database that uses Emacs
+     Implements a special kind of “system” database that uses Emacs
      internals to perform queries.
 
 ‘semanticdb-ebrowse.el’
@@ -1625,7 +1625,7 @@ across several modules.  When the Semantic analyzer fails, start with
 ‘semantic-analyze-debug-assist’, then dive into some of these files.
 
 ‘semantic-analyze.el’
-     The core analyzer for defining the "current context".  The current
+     The core analyzer for defining the “current context”.  The current
      context is an object that contains references to aspects of the
      local context including the current prefix, and a tag list defining
      what the prefix means.
@@ -1646,7 +1646,7 @@ across several modules.  When the Semantic analyzer fails, start with
      the current prefix used when doing completion.
 
 ‘semantic-scope.el’
-     Calculate "scope" for a location in a buffer.  The scope includes
+     Calculate “scope” for a location in a buffer.  The scope includes
      local variables, and tag lists in scope for various reasons, such
      as C++ using statements.
 
@@ -1827,7 +1827,7 @@ Appendix B GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2277,7 +2277,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2412,46 +2412,46 @@ Index
 Tag Table:
 Node: Top938
 Node: Introduction2521
-Node: Semantic Components5824
-Node: Using Semantic7181
-Node: Semantic mode8617
-Node: Semantic mode user commands11572
-Node: SemanticDB14897
-Node: Semanticdb Tag Storage16289
-Node: Semanticdb Search Configuration18928
-Node: Search Throttle20378
-Node: Semanticdb Roots22625
-Node: Include paths24131
-Node: Semanticdb search debugging commands25444
-Node: Changing Backends26844
-Node: Create System Databases27602
-Node: Idle Scheduler28241
-Node: Reparsing Options29954
-Node: Idle Working Options31455
-Node: Debugging Idle Time Issues32738
-Node: Idle Summary Mode33424
-Node: Idle Completions Mode35056
-Node: Analyzer38122
-Node: Smart Completion38674
-Node: Smart Summary41878
-Node: Smart Jump42795
-Node: Analyzer Debug43829
-Node: Speedbar50409
-Node: SymRef51707
-Node: MRU Bookmarks53730
-Node: Sticky Func Mode54697
-Node: Highlight Func Mode55876
-Node: Tag Decoration Mode56941
-Node: Semantic Internals61037
-Node: Parser code61755
-Node: Tag handling63580
-Node: Semanticdb Internals65306
-Node: Analyzer Internals67456
-Node: Tools69466
-Node: Tests71218
-Node: Glossary71695
-Node: GNU Free Documentation License73751
-Node: Index99095
+Node: Semantic Components5832
+Node: Using Semantic7189
+Node: Semantic mode8625
+Node: Semantic mode user commands11580
+Node: SemanticDB14917
+Node: Semanticdb Tag Storage16309
+Node: Semanticdb Search Configuration18952
+Node: Search Throttle20418
+Node: Semanticdb Roots22669
+Node: Include paths24183
+Node: Semanticdb search debugging commands25500
+Node: Changing Backends26904
+Node: Create System Databases27662
+Node: Idle Scheduler28301
+Node: Reparsing Options30018
+Node: Idle Working Options31519
+Node: Debugging Idle Time Issues32802
+Node: Idle Summary Mode33488
+Node: Idle Completions Mode35120
+Node: Analyzer38190
+Node: Smart Completion38742
+Node: Smart Summary41946
+Node: Smart Jump42863
+Node: Analyzer Debug43928
+Node: Speedbar50508
+Node: SymRef51806
+Node: MRU Bookmarks53833
+Node: Sticky Func Mode54800
+Node: Highlight Func Mode55979
+Node: Tag Decoration Mode57044
+Node: Semantic Internals61152
+Node: Parser code61870
+Node: Tag handling63695
+Node: Semanticdb Internals65421
+Node: Analyzer Internals67587
+Node: Tools69605
+Node: Tests71357
+Node: Glossary71834
+Node: GNU Free Documentation License73890
+Node: Index99238
 
 End Tag Table
 

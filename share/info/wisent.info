@@ -1,6 +1,6 @@
-This is wisent.info, produced by makeinfo version 5.2 from wisent.texi.
+This is wisent.info, produced by makeinfo version 6.3 from wisent.texi.
 
-Copyright © 1988–1993, 1995, 1998–2004, 2007, 2012–2015 Free Software
+Copyright © 1988–1993, 1995, 1998–2004, 2007, 2012–2017 Free Software
 Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
@@ -34,7 +34,7 @@ in Emacs buffers.
    It also describes how Wisent is used with the Semantic tool set
 described in the *note Semantic Manual: (semantic)Top.
 
-   Copyright © 1988–1993, 1995, 1998–2004, 2007, 2012–2015 Free Software
+   Copyright © 1988–1993, 1995, 1998–2004, 2007, 2012–2017 Free Software
 Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
@@ -63,7 +63,7 @@ File: wisent.info,  Node: Wisent Overview,  Next: Wisent Grammar,  Prev: Top,  U
 1 Wisent Overview
 *****************
 
-"Wisent" (the European Bison) is an implementation in Emacs Lisp of the
+“Wisent” (the European Bison) is an implementation in Emacs Lisp of the
 GNU Compiler Compiler Bison.  Its code is a port of the C code of GNU
 Bison 1.28 & 1.31.
 
@@ -119,22 +119,22 @@ File: wisent.info,  Node: Wisent Grammar,  Next: Wisent Parsing,  Prev: Wisent O
 ****************
 
 In order for Wisent to parse a language, it must be described by a
-"context-free grammar".  That is a grammar specified as rules that can
+“context-free grammar”.  That is a grammar specified as rules that can
 be applied regardless of context.  For more information, see *note
 (bison)Language and Grammar::, in the Bison manual.
 
-   The formal grammar is formulated using "terminal" and "nonterminal"
+   The formal grammar is formulated using “terminal” and “nonterminal”
 items.  Terminals can be Emacs Lisp symbols or characters, and
 nonterminals are symbols only.
 
-   Terminals (also known as "tokens") represent the lexical elements of
+   Terminals (also known as “tokens”) represent the lexical elements of
 the language like numbers, strings, etc..
 
    For example ‘PLUS’ can represent the operator ‘+’.
 
    Nonterminal symbols are described by rules:
 
-     RESULT ≡ COMPONENTS…
+     RESULT ≡ COMPONENTS...
 
    ‘RESULT’ is a nonterminal that this rule describes and ‘COMPONENTS’
 are various terminals and nonterminals that are put together by this
@@ -171,8 +171,8 @@ TERMINALS
 
 ASSOCS
      Specify the associativity of TERMINALS.  It is ‘nil’ when there is
-     no associativity defined, or an alist of ‘(ASSOC-TYPE . ASSOC-VALUE)’
-     elements.
+     no associativity defined, or an alist of
+     ‘(ASSOC-TYPE . ASSOC-VALUE)’ elements.
 
      ASSOC-TYPE must be one of the ‘default-prec’, ‘nonassoc’, ‘left’ or
      ‘right’ symbols.  When ASSOC-TYPE is ‘default-prec’, ASSOC-VALUE
@@ -216,7 +216,7 @@ NON-TERMINALS
           to upper case.  The terminal symbol ‘error’ is reserved for
           error recovery.
 
-          Scattered among the components can be "middle-rule" actions.
+          Scattered among the components can be “middle-rule” actions.
           Usually only ACTION is provided (*note action::).
 
           If COMPONENTS in a rule is ‘nil’, it means that the rule can
@@ -246,7 +246,7 @@ NON-TERMINALS
           named ‘UMINUS’.  There are no tokens of this type, but the
           symbol serves to stand for its precedence:
 
-               …
+               ...
                ((default-prec t) ;; This is the default
                 (left '+' '-')
                 (left '*')
@@ -254,11 +254,11 @@ NON-TERMINALS
 
           Now the precedence of ‘UMINUS’ can be used in specific rules:
 
-               (exp    …                  ;; exp:    …
+               (exp    ...                  ;; exp:    ...
                         ((exp ?- exp))      ;;         | exp '-' exp
-                       …                  ;;         …
+                       ...                  ;;         ...
                         ((?- exp) [UMINUS]) ;;         | '-' exp %prec UMINUS
-                       …                  ;;         …
+                       ...                  ;;         ...
                        )                    ;;         ;
 
           If you forget to append ‘[UMINUS]’ to the rule for unary
@@ -404,7 +404,7 @@ Here is an example to parse simple infix arithmetic expressions.  See
         )
        )
 
-   In the bison-like "WY" format (*note Wisent Semantic::) the grammar
+   In the bison-like “WY” format (*note Wisent Semantic::) the grammar
 looks like this:
 
      %token <number> NUM
@@ -462,13 +462,13 @@ File: wisent.info,  Node: Compiling a grammar,  Next: Conflicts,  Prev: Example,
 =======================
 
 After providing a context-free grammar in a suitable format, it must be
-translated into a set of tables (an "automaton") that will be used to
+translated into a set of tables (an “automaton”) that will be used to
 derive the parser.  Like Bison, Wisent translates grammars that must be
-"LALR(1)".
+“LALR(1)”.
 
    A grammar is LALR(1) if it is possible to tell how to parse any
 portion of an input string with just a single token of look-ahead: the
-"look-ahead token".  See *note (bison)Language and Grammar::, in the
+“look-ahead token”.  See *note (bison)Language and Grammar::, in the
 Bison manual for more information.
 
    Grammar translation (compilation) is achieved by the function:
@@ -518,16 +518,16 @@ parser has only one action to do (*note Wisent Parsing::).
 
    In certain cases, a grammar can produce an automaton where, at some
 states, there are more than one action possible.  Such a grammar is
-"ambiguous", and generates "conflicts".
+“ambiguous”, and generates “conflicts”.
 
    The parser can’t be driven by an automaton which isn’t completely
-"deterministic", that is which contains conflicts.  It is necessary to
+“deterministic”, that is which contains conflicts.  It is necessary to
 resolve the conflicts to eliminate them.  Wisent resolves conflicts like
 Bison does.
 
    There are two sorts of conflicts:
 
-"shift/reduce conflicts"
+“shift/reduce conflicts”
      When either a shift or a reduction would be valid at the same
      state.
 
@@ -535,7 +535,7 @@ Bison does.
      directed by operator precedence declarations.  See *note
      (bison)Shift/Reduce::, in the Bison manual for more information.
 
-"reduce/reduce conflicts"
+“reduce/reduce conflicts”
      That occurs if there are two or more rules that apply to the same
      sequence of input.  This usually indicates a serious error in the
      grammar.
@@ -699,7 +699,7 @@ that useless tokens might be used by the scanner):
          on left: 1 2 3 4 5, on right: 1 2 3 4
 
    The report then details the automaton itself, describing each state
-with it set of "items", also known as "pointed rules".  Each item is a
+with it set of “items”, also known as “pointed rules”.  Each item is a
 production rule together with a point (marked by ‘.’) that the input
 cursor.
 
@@ -884,8 +884,8 @@ lookaheads.
 precedence of ‘/’ wrt ‘+’, ‘-’, and ‘*’, but also because the
 associativity of ‘/’ is not specified.
 
-   Finally, the state 11 (plus 12) is named the "final state", or the
-"accepting state":
+   Finally, the state 11 (plus 12) is named the “final state”, or the
+“accepting state”:
 
      state 11
 
@@ -906,14 +906,14 @@ File: wisent.info,  Node: Wisent Parsing,  Next: Wisent Semantic,  Prev: Wisent 
 3 Wisent Parsing
 ****************
 
-The Wisent’s parser is what is called a "bottom-up" or "shift-reduce"
+The Wisent’s parser is what is called a “bottom-up” or “shift-reduce”
 parser which repeatedly:
 
-"shift"
+“shift”
      That is pushes the value of the last lexical token read (the
      look-ahead token) into a value stack, and reads a new one.
 
-"reduce"
+“reduce”
      That is replaces a nonterminal by its semantic value.  The values
      of the components which form the right hand side of a rule are
      popped from the value stack and reduced by the semantic action of
@@ -921,11 +921,11 @@ parser which repeatedly:
 
    The parser will stop on:
 
-"accept"
+“accept”
      When all input has been successfully parsed.  The semantic value of
      the start nonterminal is on top of the value stack.
 
-"error"
+“error”
      When a syntax error (an unexpected token in input) has been
      detected.  At this point the parser issues an error message and
      either stops or calls a recovery routine to try to resume parsing.
@@ -956,8 +956,8 @@ built by ‘wisent-compile-grammar’ from a context-free grammar.
           its goal.  It defaults to the start symbol defined in the
           grammar (*note Wisent Grammar::).
 
-   The following two normal hooks permit to do some useful processing
-respectively before to start parsing, and after the parser terminated.
+   The following two normal hooks permit doing some useful processing
+respectively before starting parsing, and after the parser terminated.
 
  -- Variable: wisent-pre-parse-hook
      Normal hook run just before entering the LR parser engine.
@@ -1036,8 +1036,9 @@ File: wisent.info,  Node: Actions goodies,  Next: Report errors,  Prev: Writing 
  -- Function: wisent-region &rest positions
      Return the start/end positions of the region including POSITIONS.
      Each element of POSITIONS is a pair ‘(START-POS .  END-POS)’ or
-     ‘nil’.  The returned value is the pair ‘(MIN-START-POS . MAX-END-POS)’
-     or ‘nil’ if no POSITIONS are available.
+     ‘nil’.  The returned value is the pair
+     ‘(MIN-START-POS . MAX-END-POS)’ or ‘nil’ if no POSITIONS are
+     available.
 
 
 File: wisent.info,  Node: Report errors,  Next: Error recovery,  Prev: Actions goodies,  Up: Wisent Parsing
@@ -1053,7 +1054,7 @@ containing the message to report.
 
  -- Function: wisent-message string &rest args
      Print a one-line message if ‘wisent-parse-verbose-flag’ is set.
-     Pass STRING and ARGS arguments to "message".
+     Pass STRING and ARGS arguments to “message”.
 
 *Please Note:*
      ‘wisent-message’ uses the following function to print lexical
@@ -1117,7 +1118,7 @@ opening-delimiter that has already been parsed:
 
      (primary (( ?{ expr  ?} ))
               (( ?{ error ?} ))
-              …
+              ...
               )
 
    Note that error recovery rules may have actions, just as any other
@@ -1233,7 +1234,7 @@ File: wisent.info,  Node: Debugging actions,  Prev: Error recovery,  Up: Wisent 
 3.5 Debugging semantic actions
 ==============================
 
-Each semantic action is represented by a symbol interned in an "obarray"
+Each semantic action is represented by a symbol interned in an “obarray”
 that is part of the LALR(1) automaton (*note Compiling a grammar::).
 ‘symbol-function’ on a semantic action symbol return the semantic action
 lambda expression.
@@ -1285,7 +1286,7 @@ File: wisent.info,  Node: Wisent Semantic,  Next: GNU Free Documentation License
 *********************************
 
 This section presents how the Wisent’s parser can be used to produce
-"tags" for the Semantic tool set.
+“tags” for the Semantic tool set.
 
    Semantic tags form a hierarchy of Emacs Lisp data structures that
 describes a program in a way independent of programming languages.  Tags
@@ -1293,7 +1294,7 @@ map program declarations, like functions, methods, variables, data
 types, classes, includes, grammar rules, etc..
 
    To use the Wisent parser with Semantic you have to define your
-grammar in "WY" form, a grammar format very close to the one used by
+grammar in “WY” form, a grammar format very close to the one used by
 Bison.
 
    Please *note Semantic Grammar Framework Manual: (grammar-fw)top. for
@@ -1312,7 +1313,7 @@ File: wisent.info,  Node: Grammar styles,  Next: Wisent Lex,  Up: Wisent Semanti
 
 Semantic parsing heavily depends on how you wrote the grammar.  There
 are mainly two styles to write a Wisent’s grammar intended to be used
-with the Semantic tool set: the "Iterative style" and the "Bison style".
+with the Semantic tool set: the “Iterative style” and the “Bison style”.
 Each one has pros and cons, and in certain cases it can be worth a mix
 of the two styles!
 
@@ -1330,7 +1331,7 @@ File: wisent.info,  Node: Iterative style,  Next: Bison style,  Up: Grammar styl
 4.1.1 Iterative style
 ---------------------
 
-The "iterative style" is the preferred style to use with Semantic.  It
+The “iterative style” is the preferred style to use with Semantic.  It
 relies on an iterative parser back-end mechanism which parses start
 nonterminals one at a time and automagically skips unexpected lexical
 tokens in input.
@@ -1339,12 +1340,12 @@ tokens in input.
 iterative parsers are better in that they can handle obscure errors more
 cleanly.
 
-   Each start nonterminal must produces a "raw tag" by calling a
+   Each start nonterminal must produces a “raw tag” by calling a
 ‘TAG’-like grammar macro with appropriate parameters.  See also *note
 Start nonterminals::.
 
    Then, each parsing iteration automatically translates a raw tag into
-"expanded tags", updating the raw tag structure with internal properties
+“expanded tags”, updating the raw tag structure with internal properties
 and buffer related data.
 
    After parsing completes, it results in a tree of expanded tags.
@@ -1353,14 +1354,14 @@ and buffer related data.
 grammar provided in the Semantic distribution in the file
 ‘semantic/wisent/java-tags.wy’.
 
-     …
+     ...
      ;; Alternate entry points
      ;;    - Needed by partial re-parse
      %start formal_parameter
-     …
+     ...
      ;;    - Needed by EXPANDFULL clauses
      %start formal_parameters
-     …
+     ...
 
      formal_parameter_list
        : PAREN_BLOCK
@@ -1406,7 +1407,7 @@ File: wisent.info,  Node: Bison style,  Next: Mixed style,  Prev: Iterative styl
 4.1.2 Bison style
 -----------------
 
-What we call the "Bison style" is the traditional style of Bison’s
+What we call the “Bison style” is the traditional style of Bison’s
 grammars.  Compared to iterative style, it is not straightforward to use
 grammars written in Bison style in Semantic.  Mainly because such
 grammars are designed to parse the whole input data in one pass, and
@@ -1419,7 +1420,7 @@ provided in the Semantic distribution in the file
 ‘semantic/wisent/java.wy’.
 
      %start formal_parameter
-     …
+     ...
 
      formal_parameter_list
        : formal_parameter_list COMMA formal_parameter
@@ -1456,7 +1457,7 @@ File: wisent.info,  Node: Mixed style,  Next: Start nonterminals,  Prev: Bison s
      %start grammar
      ;; Reparse
      %start prologue epilogue declaration nonterminal rule
-     …
+     ...
 
      %%
 
@@ -1467,7 +1468,7 @@ File: wisent.info,  Node: Mixed style,  Next: Start nonterminals,  Prev: Bison s
        | nonterminal
        | PERCENT_PERCENT
        ;
-     …
+     ...
 
      nonterminal:
          SYMBOL COLON rules SEMI
@@ -1490,7 +1491,7 @@ File: wisent.info,  Node: Mixed style,  Next: Start nonterminals,  Prev: Bison s
          rhs
          (let* ((rhs $1)
                 name type comps prec action elt)
-           …
+           ...
            (EXPANDTAG
             (TAG name 'rule :type type :value comps :prec prec :expr action)
             ))
@@ -1534,7 +1535,7 @@ to use ‘EXPANDFULL’ to iterate in ‘RULES_PART’, like this:
          rhs
          (let* ((rhs $1)
                 name type comps prec action elt)
-           …
+           ...
            (TAG name 'rule :type type :value comps :prec prec :expr action)
            )
        ;
@@ -1616,7 +1617,7 @@ rule that explicitly uses ‘EXPANDTAG’ belongs to.*
          rhs
          (let* ((rhs $1)
                 name type comps prec action elt)
-           …
+           ...
            (EXPANDTAG
             (TAG name 'rule :type type :value comps :prec prec :expr action)
             ))
@@ -1706,7 +1707,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2156,7 +2157,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2227,7 +2228,7 @@ Index
 * reduce:                                Wisent Parsing.      (line  13)
 * reduce/reduce conflicts:               Conflicts.           (line  28)
 * reparse-symbol:                        Start nonterminals.  (line  45)
-* ‘reparse-symbol’ property:             Start nonterminals.  (line   6)
+* reparse-symbol property:               Start nonterminals.  (line   6)
 * rule:                                  Wisent Grammar.      (line   6)
 * scanner:                               Writing a lexer.     (line  10)
 * semantic action symbols:               Debugging actions.   (line   6)
@@ -2312,31 +2313,31 @@ Index
 Tag Table:
 Node: Top885
 Node: Wisent Overview2191
-Node: Wisent Grammar4500
-Node: Grammar format5747
-Ref: action11877
-Node: Example14192
-Node: Compiling a grammar16226
-Node: Conflicts18327
-Node: Grammar Debugging19882
-Node: Understanding the automaton21278
-Node: Wisent Parsing31067
-Node: Writing a lexer33595
-Node: Actions goodies35234
-Node: Report errors35968
-Node: Error recovery37607
-Ref: wisent-skip-token41995
-Node: Debugging actions43212
-Node: Wisent Semantic45087
-Node: Grammar styles45935
-Node: Iterative style46471
-Node: Bison style48904
-Node: Mixed style50601
-Node: Start nonterminals53263
-Node: Useful functions56190
-Node: Wisent Lex56751
-Node: GNU Free Documentation License58235
-Node: Index83584
+Node: Wisent Grammar4504
+Node: Grammar format5767
+Ref: action11901
+Node: Example14216
+Node: Compiling a grammar16254
+Node: Conflicts18367
+Node: Grammar Debugging19942
+Node: Understanding the automaton21338
+Node: Wisent Parsing31143
+Node: Writing a lexer33695
+Node: Actions goodies35334
+Node: Report errors36073
+Node: Error recovery37716
+Ref: wisent-skip-token42104
+Node: Debugging actions43321
+Node: Wisent Semantic45200
+Node: Grammar styles46056
+Node: Iterative style46600
+Node: Bison style49045
+Node: Mixed style50746
+Node: Start nonterminals53408
+Node: Useful functions56335
+Node: Wisent Lex56896
+Node: GNU Free Documentation License58380
+Node: Index83733
 
 End Tag Table
 

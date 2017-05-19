@@ -1,8 +1,8 @@
-This is erc.info, produced by makeinfo version 5.2 from erc.texi.
+This is erc.info, produced by makeinfo version 6.3 from erc.texi.
 
-This manual is for ERC as distributed with Emacs 24.5.
+This manual is for ERC as distributed with Emacs 25.2.
 
-   Copyright © 2005–2015 Free Software Foundation, Inc.
+   Copyright © 2005–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -28,9 +28,9 @@ File: erc.info,  Node: Top,  Next: Introduction,  Up: (dir)
 ERC
 ***
 
-This manual is for ERC as distributed with Emacs 24.5.
+This manual is for ERC as distributed with Emacs 25.2.
 
-   Copyright © 2005–2015 Free Software Foundation, Inc.
+   Copyright © 2005–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -255,54 +255,54 @@ File: erc.info,  Node: Keystroke Summary,  Next: Modules,  Prev: Getting Started
 
 This is a summary of keystrokes available in every ERC buffer.
 
-‘C-a or <home> (`erc-bol')’
+‘C-a or <home> (erc-bol)’
      Go to beginning of line or end of prompt.
 
-‘RET (`erc-send-current-line')’
+‘RET (erc-send-current-line)’
      Send the current line
 
-‘TAB (`erc-complete-word')’
+‘TAB (erc-complete-word)’
      If at prompt, complete the current word.  Otherwise, move to the
      next link or button.
 
-‘M-TAB (`ispell-complete-word')’
+‘M-TAB (ispell-complete-word)’
      Complete the given word, using ispell.
 
-‘C-c C-a (`erc-bol')’
+‘C-c C-a (erc-bol)’
      Go to beginning of line or end of prompt.
 
-‘C-c C-b (`erc-iswitchb')’
+‘C-c C-b (erc-iswitchb)’
      Use ‘iswitchb-read-buffer’ to prompt for a ERC buffer to switch to.
 
-‘C-c C-c (`erc-toggle-interpret-controls')’
+‘C-c C-c (erc-toggle-interpret-controls)’
      Toggle interpretation of control sequences in messages.
 
-‘C-c C-d (`erc-input-action')’
+‘C-c C-d (erc-input-action)’
      Interactively input a user action and send it to IRC.
 
-‘C-c C-e (`erc-toggle-ctcp-autoresponse')’
+‘C-c C-e (erc-toggle-ctcp-autoresponse)’
      Toggle automatic CTCP replies (like VERSION and PING).
 
-‘C-c C-f (`erc-toggle-flood-control')’
+‘C-c C-f (erc-toggle-flood-control)’
      Toggle use of flood control on sent messages.
 
-‘C-c TAB (`erc-invite-only-mode')’
+‘C-c TAB (erc-invite-only-mode)’
      Turn on the invite only mode (+i) for the current channel.
 
-‘C-c C-j (`erc-join-channel')’
+‘C-c C-j (erc-join-channel)’
      Join channel.  If point is at the beginning of a channel name, use
      that as default.
 
-‘C-c C-k (`erc-go-to-log-matches-buffer')’
+‘C-c C-k (erc-go-to-log-matches-buffer)’
      Interactively open an erc-log-matches buffer
 
-‘C-c C-l (`erc-save-buffer-in-logs')’
+‘C-c C-l (erc-save-buffer-in-logs)’
      Append buffer contents to the log file, if logging is enabled.
 
-‘C-c C-n (`erc-channel-names')’
+‘C-c C-n (erc-channel-names)’
      Run "/names #channel" in the current channel.
 
-‘C-c C-o (`erc-get-channel-mode-from-keypress')’
+‘C-c C-o (erc-get-channel-mode-from-keypress)’
      Read a key sequence and call the corresponding channel mode
      function.  After doing ‘C-c C-o’, type in a channel mode letter.
 
@@ -311,19 +311,19 @@ This is a summary of keystrokes available in every ERC buffer.
      ‘k’ is pressed, ‘erc-set-channel-key’ gets called.  Anything else
      will be sent to ‘erc-toggle-channel-mode’.
 
-‘C-c C-p (`erc-part-from-channel')’
+‘C-c C-p (erc-part-from-channel)’
      Part from the current channel and prompt for a reason.
 
-‘C-c C-q (`erc-quit-server')’
+‘C-c C-q (erc-quit-server)’
      Disconnect from current server after prompting for reason.
 
-‘C-c C-r (`erc-remove-text-properties-region')’
+‘C-c C-r (erc-remove-text-properties-region)’
      Clears the region (start,end) in object from all colors, etc.
 
-‘C-c C-t (`erc-set-topic')’
+‘C-c C-t (erc-set-topic)’
      Prompt for a topic for the current channel.
 
-‘C-c C-u (`erc-kill-input')’
+‘C-c C-u (erc-kill-input)’
      Kill current input line using ‘erc-bol’ followed by ‘kill-line’.
 
 
@@ -641,8 +641,8 @@ command can optionally go into ‘~/.emacs.d/.ercrc.el’.
      (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#erc")))
 
      ;; Rename server buffers to reflect the current network name instead
-     ;; of SERVER:PORT. (e.g. "freenode" instead of "irc.freenode.net:6667"). This
-     ;; is useful when using a bouncer like ZNC where you have multiple
+     ;; of SERVER:PORT (e.g., "freenode" instead of "irc.freenode.net:6667").
+     ;; This is useful when using a bouncer like ZNC where you have multiple
      ;; connections to the same server.
      (setq erc-rename-buffers t)
 
@@ -673,6 +673,20 @@ RET’.
 
           (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
+ -- User Option: erc-network-hide-list
+     If non, ‘nil’, this is a list of IRC networks and message types to
+     hide, e.g.:
+
+          (setq erc-network-hide-list (("freenode" "JOIN" "PART" "QUIT")
+          ("OFTC" "JOIN" "PART""))
+
+ -- User Option: erc-channel-hide-list
+     If non, ‘nil’, this is a list of IRC channels and message types to
+     hide, e.g.:
+
+          (setq erc-channel-hide-list (("#erc" "JOIN" "PART" "QUIT")
+          ("#emacs" "NICK"))
+
  -- User Option: erc-lurker-hide-list
      Like ‘erc-hide-list’, but only applies to messages sent by lurkers.
      The function ‘erc-lurker-p’ determines whether a given nickname is
@@ -694,7 +708,7 @@ After you have read this guide, if you still have questions about ERC,
 or if you have bugs to report, there are several places you can go.
 
    • <http://www.emacswiki.org/cgi-bin/wiki/ERC> is the emacswiki.org
-     page for ERC.  Anyone may add tips, hints, etc.  to it.
+     page for ERC.  Anyone may add tips, hints, etc. to it.
 
    • You can ask questions about using ERC on the Emacs mailing list,
      <http://lists.gnu.org/mailman/listinfo/help-gnu-emacs>.
@@ -790,7 +804,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1240,7 +1254,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1325,15 +1339,15 @@ Node: Getting Started3575
 Node: Sample Session4368
 Node: Special Features6833
 Node: Keystroke Summary9063
-Node: Modules11732
-Node: Advanced Usage13905
-Node: Connecting14257
-Node: Sample Configuration18593
-Node: Options22059
-Node: Getting Help and Reporting Bugs22897
-Node: History23702
-Node: GNU Free Documentation License25852
-Node: Concept Index51198
+Node: Modules11690
+Node: Advanced Usage13863
+Node: Connecting14215
+Node: Sample Configuration18551
+Node: Options22017
+Node: Getting Help and Reporting Bugs23329
+Node: History24133
+Node: GNU Free Documentation License26283
+Node: Concept Index51633
 
 End Tag Table
 

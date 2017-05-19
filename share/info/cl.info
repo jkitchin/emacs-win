@@ -1,8 +1,8 @@
-This is cl.info, produced by makeinfo version 5.2 from cl.texi.
+This is cl.info, produced by makeinfo version 6.3 from cl.texi.
 
 This file documents the GNU Emacs Common Lisp emulation package.
 
-   Copyright © 1993, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1993, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,7 +27,7 @@ GNU Emacs Common Lisp Emulation
 
 This file documents the GNU Emacs Common Lisp emulation package.
 
-   Copyright © 1993, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1993, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -84,7 +84,7 @@ Emacs Lisp programmers have grown in number, and the applications they
 write have grown more ambitious, it has become clear that Emacs Lisp
 could benefit from many of the conveniences of Common Lisp.
 
-   The "CL" package adds a number of Common Lisp functions and control
+   The “CL” package adds a number of Common Lisp functions and control
 structures to Emacs Lisp.  While not a 100% complete implementation of
 Common Lisp, it adds enough functionality to make Emacs Lisp programming
 significantly more convenient.
@@ -129,6 +129,11 @@ features from this package should simply include at the beginning:
 
 You may wish to add such a statement to your init file, if you make
 frequent use of features from this package.
+
+   Code that only uses macros from this package can enclose the above in
+‘eval-when-compile’.  Internally, this library is divided into several
+files, *note Organization::.  Your code should only ever load the main
+‘cl-lib’ file, which will load the others as needed.
 
 
 File: cl.info,  Node: Organization,  Next: Naming Conventions,  Prev: Usage,  Up: Overview
@@ -220,7 +225,7 @@ they do not cause other components like ‘cl-extra’ to be loaded.
      cl-rest            cl-decf [1]        cl-incf [1]
      cl-acons           cl-adjoin [2]      cl-pairlis
      cl-pushnew [1,2]   cl-declaim         cl-proclaim
-     cl-caaar…cl-cddddr                  cl-first…cl-tenth
+     cl-caaar...cl-cddddr                  cl-first...cl-tenth
      cl-mapcar [3]
 
 [1] Only when PLACE is a plain variable name.
@@ -261,13 +266,19 @@ package to implement Common Lisp argument lists seamlessly.  Instead,
 this package defines alternates for several Lisp forms which you must
 use if you need Common Lisp argument lists.
 
- -- Macro: cl-defun name arglist body…
+ -- Macro: cl-defun name arglist body...
      This form is identical to the regular ‘defun’ form, except that
      ARGLIST is allowed to be a full Common Lisp argument list.  Also,
      the function body is enclosed in an implicit block called NAME;
      *note Blocks and Exits::.
 
- -- Macro: cl-defsubst name arglist body…
+ -- Macro: cl-iter-defun name arglist body...
+     This form is identical to the regular ‘iter-defun’ form, except
+     that ARGLIST is allowed to be a full Common Lisp argument list.
+     Also, the function body is enclosed in an implicit block called
+     NAME; *note Blocks and Exits::.
+
+ -- Macro: cl-defsubst name arglist body...
      This is just like ‘cl-defun’, except that the function that is
      defined is automatically proclaimed ‘inline’, i.e., calls to it may
      be expanded into in-line code by the byte compiler.  This is
@@ -278,7 +289,7 @@ use if you need Common Lisp argument lists.
      arguments, default values, etc., to be done at compile-time
      whenever possible.
 
- -- Macro: cl-defmacro name arglist body…
+ -- Macro: cl-defmacro name arglist body...
      This is identical to the regular ‘defmacro’ form, except that
      ARGLIST is allowed to be a full Common Lisp argument list.  The
      ‘&environment’ keyword is supported as described in Steele’s book
@@ -303,22 +314,22 @@ argument lists and its implicit block.
 
    The full form of a Common Lisp argument list is
 
-     (VAR…
-      &optional (VAR INITFORM SVAR)…
+     (VAR...
+      &optional (VAR INITFORM SVAR)...
       &rest VAR
-      &key ((KEYWORD VAR) INITFORM SVAR)…
-      &aux (VAR INITFORM)…)
+      &key ((KEYWORD VAR) INITFORM SVAR)...
+      &aux (VAR INITFORM)...)
 
    Each of the five argument list sections is optional.  The SVAR,
 INITFORM, and KEYWORD parts are optional; if they are omitted, then
 ‘(VAR)’ may be written simply ‘VAR’.
 
-   The first section consists of zero or more "required" arguments.
+   The first section consists of zero or more “required” arguments.
 These arguments must always be specified in a call to the function;
 there is no difference between Emacs Lisp and Common Lisp as far as
 required arguments are concerned.
 
-   The second section consists of "optional" arguments.  These arguments
+   The second section consists of “optional” arguments.  These arguments
 may be specified in the function call; if they are not, INITFORM
 specifies the default value used for the argument.  (No INITFORM means
 to use ‘nil’ as the default.)  The INITFORM is evaluated with the
@@ -331,7 +342,7 @@ use an SVAR, then there will be no way for your function to tell whether
 it was called with no argument, or with the default value passed
 explicitly as an argument.
 
-   The third section consists of a single "rest" argument.  If more
+   The third section consists of a single “rest” argument.  If more
 arguments were passed to the function than are accounted for by the
 required and optional arguments, those extra arguments are collected
 into a list and bound to the “rest” argument variable.  Common Lisp’s
@@ -339,7 +350,7 @@ into a list and bound to the “rest” argument variable.  Common Lisp’s
 ‘&body’ as a synonym for ‘&rest’ in macro contexts; this package accepts
 it all the time.
 
-   The fourth section consists of "keyword" arguments.  These are
+   The fourth section consists of “keyword” arguments.  These are
 optional arguments which are specified by name rather than positionally
 in the argument list.  For example,
 
@@ -350,7 +361,7 @@ The first two arguments are bound to ‘a’ and ‘b’ in the usual way.  The
 remaining arguments must be pairs of the form ‘:c’, ‘:d’, or ‘:e’
 followed by the value to be bound to the corresponding argument
 variable.  (Symbols whose names begin with a colon are called
-"keywords", and they are self-quoting in the same way as ‘nil’ and ‘t’.)
+“keywords”, and they are self-quoting in the same way as ‘nil’ and ‘t’.)
 
    For example, the call ‘(foo 1 2 :d 3 :c 4)’ sets the five arguments
 to 1, 2, 4, 3, and 17, respectively.  If the same keyword appears more
@@ -364,6 +375,7 @@ because ‘2’ is not a valid keyword.
 simply the variable name prefixed with a colon.  For example,
 
      (cl-defun bar (&key (a 1) ((baz b) 4)))
+
 
    specifies a keyword ‘:a’ that sets the variable ‘a’ with default
 value 1, as well as a keyword ‘baz’ that sets the variable ‘b’ with
@@ -390,8 +402,8 @@ keyword arguments which are passed on to the ‘cl-member’ function.
 ‘allow-other-keys’ is used to keep both ‘find-thing’ and ‘cl-member’
 from complaining about each others’ keywords in the arguments.
 
-   The fifth section of the argument list consists of "auxiliary
-variables".  These are not really arguments at all, but simply variables
+   The fifth section of the argument list consists of “auxiliary
+variables”.  These are not really arguments at all, but simply variables
 which are bound to ‘nil’ or to the specified INITFORMS during execution
 of the function.  There is no difference between the following two
 functions, except for a matter of stylistic taste:
@@ -403,7 +415,7 @@ functions, except for a matter of stylistic taste:
        (let ((c (+ a b)) d)
          BODY))
 
-   Argument lists support "destructuring".  In Common Lisp,
+   Argument lists support “destructuring”.  In Common Lisp,
 destructuring is only allowed with ‘defmacro’; this package allows it
 with ‘cl-defun’ and other argument lists as well.  In destructuring, any
 argument variable (VAR in the above example) can be replaced by a list
@@ -413,7 +425,7 @@ recursive argument list.  For example:
 
      (cl-defmacro dolist ((var listform &optional resultform)
                         &rest body)
-       …)
+       ...)
 
    This says that the first argument of ‘dolist’ must be a list of two
 or three items; if there are other arguments as well as this list, they
@@ -450,7 +462,7 @@ top-level forms evaluated at compile-time.  For example, the compiler
 effectively evaluates ‘defmacro’ forms at compile-time so that later
 parts of the file can refer to the macros that are defined.
 
- -- Macro: cl-eval-when (situations…) forms…
+ -- Macro: cl-eval-when (situations...) forms...
      This form controls when the body FORMS are evaluated.  The
      SITUATIONS list may contain any set of the symbols ‘compile’,
      ‘load’, and ‘eval’ (or their long-winded ANSI equivalents,
@@ -493,33 +505,33 @@ parts of the file can refer to the macros that are defined.
      When ‘foo.el’ is compiled, these variables will be set during the
      compilation itself:
 
-          foo1  foo3  foo5  foo7      ; `compile'
+          foo1  foo3  foo5  foo7      ; 'compile'
 
      When ‘foo.elc’ is loaded, these variables will be set:
 
-          foo2  foo3  foo6  foo7      ; `load'
+          foo2  foo3  foo6  foo7      ; 'load'
 
      And if ‘foo.el’ is loaded uncompiled, these variables will be set:
 
-          foo4  foo5  foo6  foo7      ; `eval'
+          foo4  foo5  foo6  foo7      ; 'eval'
 
      If these seven ‘cl-eval-when’s had been, say, inside a ‘defun’,
      then the first three would have been equivalent to ‘nil’ and the
      last four would have been equivalent to the corresponding ‘setq’s.
 
-     Note that ‘(cl-eval-when (load eval) …)’ is equivalent to ‘(progn
-     …)’ in all contexts.  The compiler treats certain top-level forms,
-     like ‘defmacro’ (sort-of) and ‘require’, as if they were wrapped in
-     ‘(cl-eval-when (compile load eval) …)’.
+     Note that ‘(cl-eval-when (load eval) ...)’ is equivalent to ‘(progn
+     ...)’ in all contexts.  The compiler treats certain top-level
+     forms, like ‘defmacro’ (sort-of) and ‘require’, as if they were
+     wrapped in ‘(cl-eval-when (compile load eval) ...)’.
 
    Emacs includes two special forms related to ‘cl-eval-when’.  *Note
 (elisp)Eval During Compile::.  One of these, ‘eval-when-compile’, is not
 quite equivalent to any ‘cl-eval-when’ construct and is described below.
 
-   The other form, ‘(eval-and-compile …)’, is exactly equivalent to
-‘(cl-eval-when (compile load eval) …)’.
+   The other form, ‘(eval-and-compile ...)’, is exactly equivalent to
+‘(cl-eval-when (compile load eval) ...)’.
 
- -- Macro: eval-when-compile forms…
+ -- Macro: eval-when-compile forms...
      The FORMS are evaluated at compile-time; at execution time, this
      form acts like a quoted constant of the resulting value.  Used at
      top-level, ‘eval-when-compile’ is just like ‘eval-when (compile
@@ -649,13 +661,13 @@ related to ‘cl-typep’.
      integers can be coerced in versions of Emacs that support floats.
      In all other circumstances, ‘cl-coerce’ signals an error.
 
- -- Macro: cl-deftype name arglist forms…
+ -- Macro: cl-deftype name arglist forms...
      This macro defines a new type called NAME.  It is similar to
      ‘defmacro’ in many ways; when NAME is encountered as a type name,
      the body FORMS are evaluated and should return a type specifier
      that is equivalent to the type.  The ARGLIST is a Common Lisp
      argument list of the sort accepted by ‘cl-defmacro’.  The type
-     specifier ‘(NAME ARGS…)’ is expanded by calling the expander with
+     specifier ‘(NAME ARGS...)’ is expanded by calling the expander with
      those arguments; the type symbol ‘NAME’ is expanded by calling the
      expander with no arguments.  The ARGLIST is processed the same as
      for ‘cl-defmacro’ except that optional arguments without explicit
@@ -739,7 +751,7 @@ File: cl.info,  Node: Assignment,  Next: Generalized Variables,  Up: Control Str
 The ‘cl-psetq’ form is just like ‘setq’, except that multiple
 assignments are done in parallel rather than sequentially.
 
- -- Macro: cl-psetq [symbol form]…
+ -- Macro: cl-psetq [symbol form]...
      This special form (actually a macro) is used to assign to several
      variables simultaneously.  Given only one SYMBOL and FORM, it has
      the same effect as ‘setq’.  Given several SYMBOL and FORM pairs, it
@@ -772,7 +784,7 @@ File: cl.info,  Node: Generalized Variables,  Next: Variable Bindings,  Prev: As
 4.2 Generalized Variables
 =========================
 
-A "generalized variable" or "place form" is one of the many places in
+A “generalized variable” or “place form” is one of the many places in
 Lisp memory where values can be stored.  The simplest place form is a
 regular Lisp variable.  But the CARs and CDRs of lists, elements of
 arrays, properties of symbols, and many other locations are also places
@@ -797,7 +809,7 @@ handlers for several additional functions:
 
    • Functions from this package:
           cl-rest        cl-subseq      cl-get         cl-getf
-          cl-caaar…cl-cddddr          cl-first…cl-tenth
+          cl-caaar...cl-cddddr          cl-first...cl-tenth
 
      Note that for ‘cl-getf’ (as for ‘nthcdr’), the list argument of the
      function must itself be a valid PLACE form.
@@ -891,7 +903,7 @@ This package defines a number of macros that operate on generalized
 variables.  Many are interesting and useful even when the PLACE is just
 a variable name.
 
- -- Macro: cl-psetf [place form]…
+ -- Macro: cl-psetf [place form]...
      This macro is to ‘setf’ what ‘cl-psetq’ is to ‘setq’: When several
      PLACEs and FORMs are involved, the assignments take place in
      parallel rather than sequentially.  Specifically, all subforms are
@@ -938,7 +950,7 @@ a variable name.
      optional keyword arguments are interpreted in the same way as for
      ‘cl-adjoin’.  *Note Lists as Sets::.
 
- -- Macro: cl-shiftf place… newvalue
+ -- Macro: cl-shiftf place... newvalue
      This macro shifts the PLACEs left by one, shifting in the value of
      NEWVALUE (which may be any Lisp expression, not just a generalized
      variable), and returning the value shifted out of the first PLACE.
@@ -953,7 +965,7 @@ a variable name.
      except that the subforms of A, B, and C are actually evaluated only
      once each and in the apparent order.
 
- -- Macro: cl-rotatef place…
+ -- Macro: cl-rotatef place...
      This macro rotates the PLACEs left by one in circular fashion.
      Thus, ‘(cl-rotatef A B C D)’ is equivalent to
 
@@ -969,7 +981,7 @@ a variable name.
    The following macros were invented for this package; they have no
 analogues in Common Lisp.
 
- -- Macro: cl-letf (bindings…) forms…
+ -- Macro: cl-letf (bindings...) forms...
      This macro is analogous to ‘let’, but for generalized variables
      rather than just symbols.  Each BINDING should be of the form
      ‘(PLACE VALUE)’; the original contents of the PLACEs are saved, the
@@ -982,7 +994,7 @@ analogues in Common Lisp.
 
           (cl-letf (((point) (point-min))
                     (a 17))
-               …)
+               ...)
 
      moves point in the current buffer to the beginning of the buffer,
      and also binds ‘a’ to 17 (as if by a normal ‘let’, since ‘a’ is
@@ -996,6 +1008,11 @@ analogues in Common Lisp.
      ‘cl-letf’ of ‘(point-marker)’ is much closer to this behavior.
      (‘point’ and ‘point-marker’ are equivalent as ‘setf’ places; each
      will accept either an integer or a marker as the stored value.)
+
+     Like in the case of ‘let’, the VALUE forms are evaluated in the
+     order they appear, but the order of bindings is unspecified.
+     Therefore, avoid binding the same PLACE more than once in a single
+     ‘cl-letf’ form.
 
      Since generalized variables look like lists, ‘let’’s shorthand of
      using ‘foo’ for ‘(foo nil)’ as a BINDING would be ambiguous in
@@ -1012,11 +1029,11 @@ analogues in Common Lisp.
      variable with a specified VALUE (such as ‘(a 17)’ in the above
      example).
 
- -- Macro: cl-letf* (bindings…) forms…
+ -- Macro: cl-letf* (bindings...) forms...
      This macro is to ‘cl-letf’ what ‘let*’ is to ‘let’: It does the
      bindings in sequential rather than parallel order.
 
- -- Macro: cl-callf FUNCTION PLACE ARGS…
+ -- Macro: cl-callf FUNCTION PLACE ARGS...
      This is the “generic” modify macro.  It calls FUNCTION, which
      should be an unquoted function name, macro name, or lambda.  It
      passes PLACE and ARGS as arguments, and assigns the result back to
@@ -1029,7 +1046,7 @@ analogues in Common Lisp.
 
      Note again that ‘cl-callf’ is an extension to standard Common Lisp.
 
- -- Macro: cl-callf2 FUNCTION ARG1 PLACE ARGS…
+ -- Macro: cl-callf2 FUNCTION ARG1 PLACE ARGS...
      This macro is like ‘cl-callf’, except that PLACE is the _second_
      argument of FUNCTION rather than the first.  For example, ‘(push X
      PLACE)’ is equivalent to ‘(cl-callf2 cons X PLACE)’.
@@ -1067,7 +1084,7 @@ The standard ‘let’ form binds variables whose names are known at
 compile-time.  The ‘cl-progv’ form provides an easy way to bind
 variables whose names are computed at run-time.
 
- -- Macro: cl-progv symbols values forms…
+ -- Macro: cl-progv symbols values forms...
      This form establishes ‘let’-style variable bindings on a set of
      variables computed at run-time.  The expressions SYMBOLS and VALUES
      are evaluated, and must return lists of symbols and values,
@@ -1084,13 +1101,13 @@ File: cl.info,  Node: Function Bindings,  Next: Macro Bindings,  Prev: Dynamic B
 
 These forms make ‘let’-like bindings to functions instead of variables.
 
- -- Macro: cl-flet (bindings…) forms…
+ -- Macro: cl-flet (bindings...) forms...
      This form establishes ‘let’-style bindings on the function cells of
      symbols rather than on the value cells.  Each BINDING must be a
-     list of the form ‘(NAME ARGLIST FORMS…)’, which defines a function
-     exactly as if it were a ‘cl-defun’ form.  The function NAME is
-     defined accordingly but only within the body of the ‘cl-flet’,
-     hiding any external definition if applicable.
+     list of the form ‘(NAME ARGLIST FORMS...)’, which defines a
+     function exactly as if it were a ‘cl-defun’ form.  The function
+     NAME is defined accordingly but only within the body of the
+     ‘cl-flet’, hiding any external definition if applicable.
 
      The bindings are lexical in scope.  This means that all references
      to the named functions must appear physically within the body of
@@ -1105,7 +1122,7 @@ These forms make ‘let’-like bindings to functions instead of variables.
      differently.  In particular, its binding is dynamic rather than
      lexical.  *Note Obsolete Macros::.
 
- -- Macro: cl-labels (bindings…) forms…
+ -- Macro: cl-labels (bindings...) forms...
      The ‘cl-labels’ form is like ‘cl-flet’, except that the function
      bindings can be recursive.  The scoping is lexical, but you can
      only capture functions in closures if ‘lexical-binding’ is ‘t’.
@@ -1133,7 +1150,7 @@ File: cl.info,  Node: Macro Bindings,  Prev: Function Bindings,  Up: Variable Bi
 
 These forms create local macros and “symbol macros”.
 
- -- Macro: cl-macrolet (bindings…) forms…
+ -- Macro: cl-macrolet (bindings...) forms...
      This form is analogous to ‘cl-flet’, but for macros instead of
      functions.  Each BINDING is a list of the same form as the
      arguments to ‘cl-defmacro’ (i.e., a macro name, argument list, and
@@ -1145,8 +1162,8 @@ These forms create local macros and “symbol macros”.
      appear physically within the body FORMS, possibly after expansion
      of other macros in the body.
 
- -- Macro: cl-symbol-macrolet (bindings…) forms…
-     This form creates "symbol macros", which are macros that look like
+ -- Macro: cl-symbol-macrolet (bindings...) forms...
+     This form creates “symbol macros”, which are macros that look like
      variable references rather than function calls.  Each BINDING is a
      list ‘(VAR EXPANSION)’; any reference to VAR within the body FORMS
      is replaced by EXPANSION.
@@ -1213,13 +1230,13 @@ File: cl.info,  Node: Conditionals,  Next: Blocks and Exits,  Prev: Variable Bin
 These conditional forms augment Emacs Lisp’s simple ‘if’, ‘and’, ‘or’,
 and ‘cond’ forms.
 
- -- Macro: cl-case keyform clause…
+ -- Macro: cl-case keyform clause...
      This macro evaluates KEYFORM, then compares it with the key values
      listed in the various CLAUSEs.  Whichever clause matches the key is
      executed; comparison is done by ‘eql’.  If no clause matches, the
      ‘cl-case’ form returns ‘nil’.  The clauses are of the form
 
-          (KEYLIST BODY-FORMS…)
+          (KEYLIST BODY-FORMS...)
 
      where KEYLIST is a list of key values.  If there is exactly one
      value, and it is not a cons cell or the symbol ‘nil’ or ‘t’, then
@@ -1241,14 +1258,14 @@ and ‘cond’ forms.
             ((?\r ?\n) (do-ret-thing))
             (t (do-other-thing)))
 
- -- Macro: cl-ecase keyform clause…
+ -- Macro: cl-ecase keyform clause...
      This macro is just like ‘cl-case’, except that if the key does not
      match any of the clauses, an error is signaled rather than simply
      returning ‘nil’.
 
- -- Macro: cl-typecase keyform clause…
+ -- Macro: cl-typecase keyform clause...
      This macro is a version of ‘cl-case’ that checks for types rather
-     than values.  Each CLAUSE is of the form ‘(TYPE BODY…)’.  *Note
+     than values.  Each CLAUSE is of the form ‘(TYPE BODY...)’.  *Note
      Type Predicates::, for a description of type specifiers.  For
      example,
 
@@ -1260,9 +1277,9 @@ and ‘cond’ forms.
 
      The type specifier ‘t’ matches any type of object; the word
      ‘otherwise’ is also allowed.  To make one clause match any of
-     several types, use an ‘(or …)’ type specifier.
+     several types, use an ‘(or ...)’ type specifier.
 
- -- Macro: cl-etypecase keyform clause…
+ -- Macro: cl-etypecase keyform clause...
      This macro is just like ‘cl-typecase’, except that if the key does
      not match any of the clauses, an error is signaled rather than
      simply returning ‘nil’.
@@ -1273,13 +1290,13 @@ File: cl.info,  Node: Blocks and Exits,  Next: Iteration,  Prev: Conditionals,  
 4.5 Blocks and Exits
 ====================
 
-Common Lisp "blocks" provide a non-local exit mechanism very similar to
+Common Lisp “blocks” provide a non-local exit mechanism very similar to
 ‘catch’ and ‘throw’, with lexical scoping.  This package actually
 implements ‘cl-block’ in terms of ‘catch’; however, the lexical scoping
 allows the byte-compiler to omit the costly ‘catch’ step if the body of
 the block does not actually ‘cl-return-from’ the block.
 
- -- Macro: cl-block name forms…
+ -- Macro: cl-block name forms...
      The FORMS are evaluated as if by a ‘progn’.  However, if any of the
      FORMS execute ‘(cl-return-from NAME)’, they will jump out and
      return directly from the ‘cl-block’ form.  The ‘cl-block’ returns
@@ -1347,15 +1364,15 @@ The macros described here provide more sophisticated, high-level looping
 constructs to complement Emacs Lisp’s basic loop forms (*note
 (elisp)Iteration::).
 
- -- Macro: cl-loop forms…
+ -- Macro: cl-loop forms...
      This package supports both the simple, old-style meaning of ‘loop’
-     and the extremely powerful and flexible feature known as the "Loop
-     Facility" or "Loop Macro".  This more advanced facility is
+     and the extremely powerful and flexible feature known as the “Loop
+     Facility” or “Loop Macro”.  This more advanced facility is
      discussed in the following section; *note Loop Facility::.  The
      simple form of ‘loop’ is described here.
 
      If ‘cl-loop’ is followed by zero or more Lisp expressions, then
-     ‘(cl-loop EXPRS…)’ simply creates an infinite loop executing the
+     ‘(cl-loop EXPRS...)’ simply creates an infinite loop executing the
      expressions over and over.  The loop is enclosed in an implicit
      ‘nil’ block.  Thus,
 
@@ -1371,7 +1388,7 @@ constructs to complement Emacs Lisp’s basic loop forms (*note
      above notation would simply access and throw away the value of a
      variable.)
 
- -- Macro: cl-do (spec…) (end-test [result…]) forms…
+ -- Macro: cl-do (spec...) (end-test [result...]) forms...
      This macro creates a general iterative loop.  Each SPEC is of the
      form
 
@@ -1394,9 +1411,9 @@ constructs to complement Emacs Lisp’s basic loop forms (*note
      VAR has no STEP form, it is bound to its INIT value but not
      otherwise modified during the ‘cl-do’ loop (unless the code
      explicitly modifies it); this case is just a shorthand for putting
-     a ‘(let ((VAR INIT)) …)’ around the loop.  If INIT is also omitted
-     it defaults to ‘nil’, and in this case a plain ‘VAR’ can be used in
-     place of ‘(VAR)’, again following the analogy with ‘let’.
+     a ‘(let ((VAR INIT)) ...)’ around the loop.  If INIT is also
+     omitted it defaults to ‘nil’, and in this case a plain ‘VAR’ can be
+     used in place of ‘(VAR)’, again following the analogy with ‘let’.
 
      This example (from Steele) illustrates a loop that applies the
      function ‘f’ to successive pairs of values from the lists ‘foo’ and
@@ -1410,7 +1427,7 @@ constructs to complement Emacs Lisp’s basic loop forms (*note
                ((or (null x) (null y))
                 (nreverse z)))
 
- -- Macro: cl-do* (spec…) (end-test [result…]) forms…
+ -- Macro: cl-do* (spec...) (end-test [result...]) forms...
      This is to ‘cl-do’ what ‘let*’ is to ‘let’.  In particular, the
      initial values are bound as if by ‘let*’ rather than ‘let’, and the
      steps are assigned as if by ‘setq’ rather than ‘cl-psetq’.
@@ -1426,11 +1443,11 @@ constructs to complement Emacs Lisp’s basic loop forms (*note
              (nreverse z))
             (push (f x y) z))
 
- -- Macro: cl-dolist (var list [result]) forms…
+ -- Macro: cl-dolist (var list [result]) forms...
      This is exactly like the standard Emacs Lisp macro ‘dolist’, but
      surrounds the loop with an implicit ‘nil’ block.
 
- -- Macro: cl-dotimes (var count [result]) forms…
+ -- Macro: cl-dotimes (var count [result]) forms...
      This is exactly like the standard Emacs Lisp macro ‘dotimes’, but
      surrounds the loop with an implicit ‘nil’ block.  The body is
      executed with VAR bound to the integers from zero (inclusive) to
@@ -1438,7 +1455,7 @@ constructs to complement Emacs Lisp’s basic loop forms (*note
      with VAR bound to the total number of iterations that were done
      (i.e., ‘(max 0 COUNT)’) to get the return value for the loop form.
 
- -- Macro: cl-do-symbols (var [obarray [result]]) forms…
+ -- Macro: cl-do-symbols (var [obarray [result]]) forms...
      This loop iterates over all interned symbols.  If OBARRAY is
      specified and is not ‘nil’, it loops over all symbols in that
      obarray.  For each symbol, the body FORMS are evaluated with VAR
@@ -1447,7 +1464,7 @@ constructs to complement Emacs Lisp’s basic loop forms (*note
      bound to ‘nil’) to get the return value.  The loop is surrounded by
      an implicit ‘nil’ block.
 
- -- Macro: cl-do-all-symbols (var [result]) forms…
+ -- Macro: cl-do-all-symbols (var [result]) forms...
      This is identical to ‘cl-do-symbols’ except that the OBARRAY
      argument is omitted; it always iterates over the default obarray.
 
@@ -1492,7 +1509,7 @@ be very easy to learn and well-suited to its purpose.
 place at byte-compile time; compiled ‘cl-loop’s are just as efficient as
 the equivalent ‘while’ loops written longhand.
 
- -- Macro: cl-loop clauses…
+ -- Macro: cl-loop clauses...
      A loop construct consists of a series of CLAUSEs, each introduced
      by a symbol like ‘for’ or ‘do’.  Clauses are simply strung together
      in the argument list of ‘cl-loop’, with minimal extra parentheses.
@@ -1503,8 +1520,8 @@ the equivalent ‘while’ loops written longhand.
      Common Lisp specifies a certain general order of clauses in a loop:
 
           (loop NAME-CLAUSE
-                VAR-CLAUSES…
-                ACTION-CLAUSES…)
+                VAR-CLAUSES...
+                ACTION-CLAUSES...)
 
      The NAME-CLAUSE optionally gives a name to the implicit block that
      surrounds the loop.  By default, the implicit block is named ‘nil’.
@@ -1661,15 +1678,6 @@ is purely a matter of style.
           (cl-loop for x on '(1 2 3 4) collect x)
                   ⇒ ((1 2 3 4) (2 3 4) (3 4) (4))
 
-     With ‘by’, there is no real reason that the ‘on’ expression must be
-     a list.  For example:
-
-          (cl-loop for x on first-animal by 'next-animal collect x)
-
-     where ‘(next-animal x)’ takes an “animal” X and returns the next in
-     the (assumed) sequence of animals, or ‘nil’ if X was the last
-     animal in the sequence.
-
 ‘for VAR in-ref LIST by FUNCTION’
      This is like a regular ‘in’ clause, but VAR becomes a ‘setf’-able
      “reference” onto the elements of the list rather than just a
@@ -1700,8 +1708,8 @@ is purely a matter of style.
      (starting at 0) of the elements.
 
      This clause type is taken from older versions of the ‘loop’ macro,
-     and is not present in modern Common Lisp.  The ‘using (sequence …)’
-     term of the older macros is not supported.
+     and is not present in modern Common Lisp.  The ‘using (sequence
+     ...)’ term of the older macros is not supported.
 
 ‘for VAR being the elements of-ref SEQUENCE’
      This clause iterates over a sequence, with VAR a ‘setf’-able
@@ -1729,8 +1737,8 @@ is purely a matter of style.
      more than one ‘for’ clause iterating over symbols, hash tables,
      keymaps, overlays, or intervals in a given ‘cl-loop’.  Fortunately,
      it would rarely if ever be useful to do so.  It _is_ valid to mix
-     one of these types of clauses with other clauses like ‘for … to’ or
-     ‘while’.
+     one of these types of clauses with other clauses like ‘for ... to’
+     or ‘while’.
 
 ‘for VAR being the hash-keys of HASH-TABLE’
 ‘for VAR being the hash-values of HASH-TABLE’
@@ -1760,17 +1768,17 @@ is purely a matter of style.
      its nested keymaps, where VAR takes on values which are vectors.
      The strings or vectors are reused for each iteration, so you must
      copy them if you wish to keep them permanently.  You can add a
-     ‘using (key-bindings …)’ clause to get the command bindings as
+     ‘using (key-bindings ...)’ clause to get the command bindings as
      well.
 
-‘for VAR being the overlays [of BUFFER] …’
+‘for VAR being the overlays [of BUFFER] ...’
      This clause iterates over the “overlays” of a buffer (the clause
      ‘extents’ is synonymous with ‘overlays’).  If the ‘of’ term is
      omitted, the current buffer is used.  This clause also accepts
      optional ‘from POS’ and ‘to POS’ terms, limiting the clause to
      overlays which overlap the specified region.
 
-‘for VAR being the intervals [of BUFFER] …’
+‘for VAR being the intervals [of BUFFER] ...’
      This clause iterates over all intervals of a buffer with constant
      text properties.  The variable VAR will be bound to conses of start
      and end positions, where one start position is always equal to the
@@ -1803,8 +1811,8 @@ is purely a matter of style.
      the old value of VAR).  For example, these two loops are
      effectively the same:
 
-          (cl-loop for x on my-list by 'cddr do …)
-          (cl-loop for x = my-list then (cddr x) while x do …)
+          (cl-loop for x on my-list by 'cddr do ...)
+          (cl-loop for x = my-list then (cddr x) while x do ...)
 
      Note that this type of ‘for’ clause does not imply any sort of
      terminating condition; the above example combines it with a ‘while’
@@ -1868,8 +1876,8 @@ in conjunction with one or more ‘for’ clauses.
      This clause simply counts up to the specified number using an
      internal temporary variable.  The loops
 
-          (cl-loop repeat (1+ n) do …)
-          (cl-loop for temp to n do …)
+          (cl-loop repeat (1+ n) do ...)
+          (cl-loop for temp to n do ...)
 
      are identical except that the second one forces you to choose a
      name for a variable you aren’t actually going to use.
@@ -1880,8 +1888,8 @@ in conjunction with one or more ‘for’ clauses.
      are equivalent, except for the implicit ‘nil’ block that surrounds
      the second one:
 
-          (while COND FORMS…)
-          (cl-loop while COND do FORMS…)
+          (while COND FORMS...)
+          (cl-loop while COND do FORMS...)
 
 ‘until CONDITION’
      This clause stops the loop when the specified condition is true,
@@ -1894,8 +1902,8 @@ in conjunction with one or more ‘for’ clauses.
      non-‘nil’, the loop returns ‘t’:
 
           (if (cl-loop for size in size-list always (> size 10))
-              (some-big-sizes)
-            (no-big-sizes))
+              (only-big-sizes)
+            (some-small-sizes))
 
 ‘never CONDITION’
      This clause is like ‘always’, except that the loop returns ‘t’ if
@@ -1905,6 +1913,10 @@ in conjunction with one or more ‘for’ clauses.
      This clause stops the loop when the specified form is non-‘nil’; in
      this case, it returns that non-‘nil’ value.  If all the values were
      ‘nil’, the loop returns ‘nil’.
+
+‘iter-by ITERATOR’
+     This clause iterates over the values from the specified form, an
+     iterator object.  See (*note (elisp)Generators::).
 
 
 File: cl.info,  Node: Accumulation Clauses,  Next: Other Clauses,  Prev: Iteration Clauses,  Up: Loop Facility
@@ -1985,9 +1997,9 @@ This section describes the remaining loop clauses.
      otherwise leaves the variable alone during the loop.  The following
      loops are basically equivalent:
 
-          (cl-loop with x = 17 do …)
-          (let ((x 17)) (cl-loop do …))
-          (cl-loop for x = 17 then x do …)
+          (cl-loop with x = 17 do ...)
+          (let ((x 17)) (cl-loop do ...))
+          (cl-loop for x = 17 then x do ...)
 
      Naturally, the variable VAR might be used for some purpose in the
      rest of the loop.  For example:
@@ -2058,7 +2070,7 @@ This section describes the remaining loop clauses.
      surrounding the loop.  The NAME is the symbol to be used as the
      block name.
 
-‘initially [do] FORMS…’
+‘initially [do] FORMS...’
      This keyword introduces one or more Lisp forms which will be
      executed before the loop itself begins (but after any variables
      requested by ‘for’ or ‘with’ have been bound to their initial
@@ -2066,7 +2078,7 @@ This section describes the remaining loop clauses.
      several, they are executed in the order they appear in the loop.
      The keyword ‘do’ is optional.
 
-‘finally [do] FORMS…’
+‘finally [do] FORMS...’
      This introduces Lisp forms which will be executed after the loop
      finishes (say, on request of a ‘for’ or ‘while’).  ‘initially’ and
      ‘finally’ clauses may appear anywhere in the loop construct, but
@@ -2080,7 +2092,7 @@ This section describes the remaining loop clauses.
      Variables bound by ‘for’, ‘with’, or ‘into’ will still contain
      their final values when FORM is executed.
 
-‘do FORMS…’
+‘do FORMS...’
      The word ‘do’ may be followed by any number of Lisp expressions
      which are executed as an implicit ‘progn’ in the body of the loop.
      Many of the examples in this section illustrate the use of ‘do’.
@@ -2125,14 +2137,14 @@ Common Lisp functions that work with multiple values, but in Emacs Lisp
 these functions simply operate on lists instead.  The ‘cl-values’ form,
 for example, is a synonym for ‘list’ in Emacs.
 
- -- Macro: cl-multiple-value-bind (var…) values-form forms…
+ -- Macro: cl-multiple-value-bind (var...) values-form forms...
      This form evaluates VALUES-FORM, which must return a list of
      values.  It then binds the VARs to these respective values, as if
      by ‘let’, and then executes the body FORMS.  If there are more VARs
      than values, the extra VARs are bound to ‘nil’.  If there are fewer
      VARs than values, the excess values are ignored.
 
- -- Macro: cl-multiple-value-setq (var…) form
+ -- Macro: cl-multiple-value-setq (var...) form
      This form evaluates FORM, which must return a list of values.  It
      then sets the VARs to these respective values, as if by ‘setq’.
      Extra VARs or values are treated the same as in
@@ -2155,7 +2167,7 @@ Argument Lists::.
    Destructuring is made available to the user by way of the following
 macro:
 
- -- Macro: cl-destructuring-bind arglist expr forms…
+ -- Macro: cl-destructuring-bind arglist expr forms...
      This macro expands to code that executes FORMS, with the variables
      in ARGLIST bound to the list of values returned by EXPR.  The
      ARGLIST can include all the features allowed for ‘cl-defmacro’
@@ -2168,7 +2180,7 @@ macro:
 facility, which allows you to define compile-time expansions and
 optimizations for your functions.
 
- -- Macro: cl-define-compiler-macro name arglist forms…
+ -- Macro: cl-define-compiler-macro name arglist forms...
      This form is similar to ‘defmacro’, except that it only expands
      calls to NAME at compile-time; calls processed by the Lisp
      interpreter are not expanded, nor are they expanded by the
@@ -2176,7 +2188,7 @@ optimizations for your functions.
 
      The argument list may begin with a ‘&whole’ keyword and a variable.
      This variable is bound to the macro-call form itself, i.e., to a
-     list of the form ‘(NAME ARGS…)’.  If the macro expander returns
+     list of the form ‘(NAME ARGS...)’.  If the macro expander returns
      this form unchanged, then the compiler treats it as a normal
      function call.  This allows compiler macros to work as optimizers
      for special cases of a function, leaving complicated cases alone.
@@ -2235,17 +2247,17 @@ the default.  Otherwise these declarations will effectively be ignored.
      DECL-SPEC.  Since ‘cl-proclaim’ is a function, DECL-SPEC is
      evaluated and thus should normally be quoted.
 
- -- Macro: cl-declaim decl-specs…
+ -- Macro: cl-declaim decl-specs...
      This macro is like ‘cl-proclaim’, except that it takes any number
      of DECL-SPEC arguments, and the arguments are unevaluated and
      unquoted.  The ‘cl-declaim’ macro also puts ‘(cl-eval-when (compile
-     load eval) …)’ around the declarations so that they will be
+     load eval) ...)’ around the declarations so that they will be
      registered at compile-time as well as at run-time.  (This is vital,
      since normally the declarations are meant to influence the way the
      compiler treats the rest of the file that contains the ‘cl-declaim’
      form.)
 
- -- Macro: cl-declare decl-specs…
+ -- Macro: cl-declare decl-specs...
      This macro is used to make declarations within functions and other
      code.  Common Lisp allows declarations in various locations,
      generally at the beginning of any of the many “implicit ‘progn’s”
@@ -2253,13 +2265,14 @@ the default.  Otherwise these declarations will effectively be ignored.
      Currently the only declaration understood by ‘cl-declare’ is
      ‘special’.
 
- -- Macro: cl-locally declarations… forms…
+ -- Macro: cl-locally declarations... forms...
      In this package, ‘cl-locally’ is no different from ‘progn’.
 
  -- Macro: cl-the type form
-     Type information provided by ‘cl-the’ is ignored in this package;
-     in other words, ‘(cl-the TYPE FORM)’ is equivalent to FORM.  Future
-     byte-compiler optimizations may make use of this information.
+     ‘cl-the’ returns the value of ‘form’, first checking (if
+     optimization settings permit) that it is of type ‘type’.  Future
+     byte-compiler optimizations may also make use of this information
+     to improve runtime efficiency.
 
      For example, ‘mapcar’ can map over both lists and arrays.  It is
      hard for the compiler to expand ‘mapcar’ into an in-line loop
@@ -2308,17 +2321,17 @@ declarations, such as ‘type’ and ‘ftype’, are silently ignored.
           (cl-declaim (inline foo bar))
           (cl-eval-when (compile load eval)
             (cl-proclaim '(inline foo bar)))
-          (defsubst foo (…) …)       ; instead of defun
+          (defsubst foo (...) ...)       ; instead of defun
 
      *Please note:* this declaration remains in effect after the
      containing source file is done.  It is correct to use it to request
      that a function you have defined should be inlined, but it is
      impolite to use it to request inlining of an external function.
 
-     In Common Lisp, it is possible to use ‘(declare (inline …))’ before
-     a particular call to a function to cause just that call to be
-     inlined; the current byte compilers provide no way to implement
-     this, so ‘(cl-declare (inline …))’ is currently ignored by this
+     In Common Lisp, it is possible to use ‘(declare (inline ...))’
+     before a particular call to a function to cause just that call to
+     be inlined; the current byte compilers provide no way to implement
+     this, so ‘(cl-declare (inline ...))’ is currently ignored by this
      package.
 
 ‘notinline’
@@ -2475,15 +2488,8 @@ variables.
      user’s code.
 
      (Internally, the variable ‘cl--gensym-counter’ holds the counter
-     used to generate names.  It is incremented after each use.  In
-     Common Lisp this is initialized with 0, but this package
-     initializes it with a random time-dependent value to avoid trouble
-     when two files that each used ‘cl-gensym’ in their compilation are
-     loaded together.  Uninterned symbols become interned when the
-     compiler writes them out to a file and the Emacs loader loads them,
-     so their names have to be treated a bit more carefully than in
-     Common Lisp where uninterned symbols remain uninterned after
-     loading.)
+     used to generate names.  It is initialized with zero and
+     incremented after each use.)
 
  -- Function: cl-gentemp &optional x
      This function is like ‘cl-gensym’, except that it produces a new
@@ -2536,6 +2542,10 @@ numerical argument, or ‘nil’ otherwise.
  -- Function: cl-evenp integer
      This predicate tests whether INTEGER is even.  It is an error if
      the argument is not an integer.
+
+ -- Function: cl-digit-char-p char radix
+     Test if CHAR is a digit in the specified RADIX (default is 10).  If
+     it is, return the numerical value of digit CHAR in RADIX.
 
 
 File: cl.info,  Node: Numerical Functions,  Next: Random Numbers,  Prev: Predicates on Numbers,  Up: Numbers
@@ -2607,6 +2617,14 @@ These functions perform various arithmetic operations on numbers.
  -- Function: cl-rem number divisor
      This function returns the same value as the second return value of
      ‘cl-truncate’.
+
+ -- Function: cl-parse-integer string &key start end radix junk-allowed
+     This function implements the Common Lisp ‘parse-integer’ function.
+     It parses an integer in the specified RADIX from the substring of
+     STRING between START and END.  Any leading and trailing whitespace
+     chars are ignored.  The function signals an error if the substring
+     between START and END cannot be parsed as an integer, unless
+     JUNK-ALLOWED is non-‘nil’.
 
 
 File: cl.info,  Node: Random Numbers,  Next: Implementation Parameters,  Prev: Numerical Functions,  Up: Numbers
@@ -2739,7 +2757,7 @@ File: cl.info,  Node: Sequences,  Next: Lists,  Prev: Numbers,  Up: Top
 9 Sequences
 ***********
 
-Common Lisp defines a number of functions that operate on "sequences",
+Common Lisp defines a number of functions that operate on “sequences”,
 which are either lists, strings, or vectors.  Emacs Lisp includes a few
 of these, notably ‘elt’ and ‘length’; this package defines most of the
 rest.
@@ -2905,7 +2923,7 @@ function ‘mapcar’.
  -- Function: cl-notevery predicate seq &rest more-seqs
      This function calls PREDICATE on each element of the sequence(s) in
      turn; it returns a non-‘nil’ value as soon as PREDICATE returns
-     ‘nil’ for any element, or ‘t’ if the predicate was true for all
+     ‘nil’ for any element, or ‘nil’ if the predicate was true for all
      elements.
 
  -- Function: cl-reduce function seq &key :from-end :start :end
@@ -3148,7 +3166,7 @@ File: cl.info,  Node: Sorting Sequences,  Prev: Searching Sequences,  Up: Sequen
      rearranging the CDR pointers in suitable fashion.
 
  -- Function: cl-stable-sort seq predicate &key :key
-     This function sorts SEQ "stably", meaning two elements which are
+     This function sorts SEQ “stably”, meaning two elements which are
      equal in terms of PREDICATE are guaranteed not to be rearranged out
      of their original order by the sort.
 
@@ -3203,16 +3221,15 @@ chains of cons cells.
 
  -- Function: cl-first x
      This function is a synonym for ‘(car X)’.  Likewise, the functions
-     ‘cl-second’, ‘cl-third’, …, through ‘cl-tenth’ return the given
+     ‘cl-second’, ‘cl-third’, ..., through ‘cl-tenth’ return the given
      element of the list X.
 
  -- Function: cl-rest x
      This function is a synonym for ‘(cdr X)’.
 
  -- Function: cl-endp x
-     Common Lisp defines this function to act like ‘null’, but signaling
-     an error if ‘x’ is neither a ‘nil’ nor a cons cell.  This package
-     simply defines ‘cl-endp’ as a synonym for ‘null’.
+     This function acts like ‘null’, but signals an error if ‘x’ is
+     neither a ‘nil’ nor a cons cell.
 
  -- Function: cl-list-length x
      This function returns the length of list X, exactly like ‘(length
@@ -3375,7 +3392,7 @@ File: cl.info,  Node: Association Lists,  Prev: Lists as Sets,  Up: Lists
 10.4 Association Lists
 ======================
 
-An "association list" is a list representing a mapping from one set of
+An “association list” is a list representing a mapping from one set of
 values to another; any list whose elements are cons cells is an
 association list.
 
@@ -3412,9 +3429,9 @@ File: cl.info,  Node: Structures,  Next: Assertions,  Prev: Lists,  Up: Top
 11 Structures
 *************
 
-The Common Lisp "structure" mechanism provides a general way to define
+The Common Lisp “structure” mechanism provides a general way to define
 data types similar to C’s ‘struct’ types.  A structure is a Lisp object
-containing some number of "slots", each of which can hold any Lisp data
+containing some number of “slots”, each of which can hold any Lisp data
 object.  Functions are provided for accessing and setting the slots,
 creating or copying structure objects, and recognizing objects of a
 particular structure type.
@@ -3425,7 +3442,7 @@ provides no way to create new distinct types, this package implements
 structures as vectors (or lists upon request) with a special “tag”
 symbol to identify them.
 
- -- Macro: cl-defstruct name slots…
+ -- Macro: cl-defstruct name slots...
      The ‘cl-defstruct’ form defines a new structure type called NAME,
      with the specified SLOTS.  (The SLOTS may begin with a string which
      documents the structure type.)  In the simplest case, NAME and each
@@ -3460,7 +3477,7 @@ symbol to identify them.
      Accessors like ‘person-name’ normally check their arguments
      (effectively using ‘person-p’) and signal an error if the argument
      is the wrong type.  This check is affected by ‘(optimize (safety
-     …))’ declarations.  Safety level 1, the default, uses a somewhat
+     ...))’ declarations.  Safety level 1, the default, uses a somewhat
      optimized check that will detect all incorrect arguments, but may
      use an uninformative error message (e.g., “expected a vector”
      instead of “expected a ‘person’”).  Safety level 0 omits all checks
@@ -3486,9 +3503,9 @@ symbol to identify them.
                ⇒ t
 
      In general, NAME is either a name symbol or a list of a name symbol
-     followed by any number of "struct options"; each SLOT is either a
+     followed by any number of “struct options”; each SLOT is either a
      slot symbol or a list of the form ‘(SLOT-NAME DEFAULT-VALUE
-     SLOT-OPTIONS…)’.  The DEFAULT-VALUE is a Lisp form that is
+     SLOT-OPTIONS...)’.  The DEFAULT-VALUE is a Lisp form that is
      evaluated any time an instance of the structure type is created
      without specifying that slot’s value.
 
@@ -3716,13 +3733,42 @@ symbol to identify them.
    Except as noted, the ‘cl-defstruct’ facility of this package is
 entirely compatible with that of Common Lisp.
 
+   The ‘cl-defstruct’ package also provides a few structure
+introspection functions.
+
+ -- Function: cl-struct-sequence-type struct-type
+     This function returns the underlying data structure for
+     ‘struct-type’, which is a symbol.  It returns ‘vector’ or ‘list’,
+     or ‘nil’ if ‘struct-type’ is not actually a structure.
+
+ -- Function: cl-struct-slot-info struct-type
+     This function returns a list of slot descriptors for structure
+     ‘struct-type’.  Each entry in the list is ‘(name . opts)’, where
+     ‘name’ is the name of the slot and ‘opts’ is the list of slot
+     options given to ‘defstruct’.  Dummy entries represent the slots
+     used for the struct name and that are skipped to implement
+     ‘:initial-offset’.
+
+ -- Function: cl-struct-slot-offset struct-type slot-name
+     Return the offset of slot ‘slot-name’ in ‘struct-type’.  The
+     returned zero-based slot index is relative to the start of the
+     structure data type and is adjusted for any structure name and
+     :initial-offset slots.  Signal error if struct ‘struct-type’ does
+     not contain ‘slot-name’.
+
+ -- Function: cl-struct-slot-value struct-type slot-name inst
+     Return the value of slot ‘slot-name’ in ‘inst’ of ‘struct-type’.
+     ‘struct’ and ‘slot-name’ are symbols.  ‘inst’ is a structure
+     instance.  This routine is also a ‘setf’ place.  Can signal the
+     same errors as ‘cl-struct-slot-offset’.
+
 
 File: cl.info,  Node: Assertions,  Next: Efficiency Concerns,  Prev: Structures,  Up: Top
 
 12 Assertions and Errors
 ************************
 
-This section describes two macros that test "assertions", i.e.,
+This section describes two macros that test “assertions”, i.e.,
 conditions which must be true if the program is operating correctly.
 Assertions never add to the behavior of a Lisp program; they simply make
 “sanity checks” to make sure everything is as it should be.
@@ -3732,7 +3778,7 @@ is less than 3, then the byte-compiler will optimize away the following
 assertions.  Because assertions might be optimized away, it is a bad
 idea for them to include side-effects.
 
- -- Macro: cl-assert test-form [show-args string args…]
+ -- Macro: cl-assert test-form [show-args string args...]
      This form verifies that TEST-FORM is true (i.e., evaluates to a
      non-‘nil’ value).  If so, it returns ‘nil’.  If the test is not
      satisfied, ‘cl-assert’ signals an error.
@@ -3853,8 +3899,7 @@ but not required to signal an error in these situations.  This package
 sometimes omits such error checking in the interest of compactness and
 efficiency.  For example, ‘cl-do’ variable specifiers are supposed to be
 lists of one, two, or three forms; extra forms are ignored by this
-package rather than signaling a syntax error.  The ‘cl-endp’ function is
-simply a synonym for ‘null’ in this package.  Functions taking keyword
+package rather than signaling a syntax error.  Functions taking keyword
 arguments will accept an odd number of arguments, treating the trailing
 keyword as if it were followed by the value ‘nil’.
 
@@ -3883,8 +3928,9 @@ File: cl.info,  Node: Common Lisp Compatibility,  Next: Porting Common Lisp,  Pr
 Appendix B Common Lisp Compatibility
 ************************************
 
-The following is a list of all known incompatibilities between this
-package and Common Lisp as documented in Steele (2nd edition).
+The following is a list of some of the most important incompatibilities
+between this package and Common Lisp as documented in Steele (2nd
+edition).
 
    The word ‘cl-defun’ is required instead of ‘defun’ in order to use
 extended Common Lisp argument lists in a function.  Likewise,
@@ -3911,7 +3957,7 @@ since Emacs Lisp cannot support multiple return values directly.  The
 macros will be compatible with Common Lisp if ‘cl-values’ or
 ‘cl-values-list’ is always used to return to a ‘cl-multiple-value-bind’
 or other multiple-value receiver; if ‘cl-values’ is used without
-‘cl-multiple-value-…’ or vice-versa the effect will be different from
+‘cl-multiple-value-...’ or vice-versa the effect will be different from
 Common Lisp.
 
    Many Common Lisp declarations are ignored, and others match the
@@ -3919,10 +3965,7 @@ Common Lisp standard in concept but not in detail.  For example, local
 ‘special’ declarations, which are purely advisory in Emacs Lisp, do not
 rigorously obey the scoping rules set down in Steele’s book.
 
-   The variable ‘cl--gensym-counter’ starts out with a pseudo-random
-value rather than with zero.  This is to cope with the fact that
-generated symbols become interned when they are written to and loaded
-back from a file.
+   The variable ‘cl--gensym-counter’ starts out with zero.
 
    The ‘cl-defstruct’ facility is compatible, except that structures are
 of type ‘:type vector :named’ by default rather than some special,
@@ -3959,7 +4002,7 @@ code into Emacs.
    • Lexical scoping.  In Common Lisp, function arguments and ‘let’
      bindings apply only to references physically within their bodies
      (or within macro expansions in their bodies).  Traditionally, Emacs
-     Lisp uses "dynamic scoping" wherein a binding to a variable is
+     Lisp uses “dynamic scoping” wherein a binding to a variable is
      visible even inside functions called from the body.  *Note
      (elisp)Dynamic Binding::.  Lexical binding is available since Emacs
      24.1, so be sure to set ‘lexical-binding’ to ‘t’ if you need to
@@ -3996,11 +4039,11 @@ code into Emacs.
 
    • Other syntactic features.  Common Lisp provides a number of
      notations beginning with ‘#’ that the Emacs Lisp parser won’t
-     understand.  For example, ‘#| … |#’ is an alternate comment
+     understand.  For example, ‘#| ... |#’ is an alternate comment
      notation, and ‘#+lucid (foo)’ tells the parser to ignore the
      ‘(foo)’ except in Lucid Common Lisp.
 
-   • Packages.  In Common Lisp, symbols are divided into "packages".
+   • Packages.  In Common Lisp, symbols are divided into “packages”.
      Symbols that are Lisp built-ins are typically stored in one
      package; symbols that are vendor extensions are put in another, and
      each application program would have a package for its own symbols.
@@ -4077,8 +4120,7 @@ code into Emacs.
      ‘make-list’.
 
    • A few more notable Common Lisp features not included in this
-     package: ‘compiler-let’, ‘tagbody’, ‘prog’, ‘ldb/dpb’,
-     ‘parse-integer’, ‘cerror’.
+     package: ‘compiler-let’, ‘prog’, ‘ldb/dpb’, ‘cerror’.
 
    • Recursion.  While recursion works in Emacs Lisp just like it does
      in Common Lisp, various details of the Emacs Lisp system and
@@ -4132,7 +4174,7 @@ The following macros are extensions to Common Lisp, where all bindings
 are lexical unless declared otherwise.  These features are likewise
 obsolete since the introduction of true lexical binding in Emacs 24.1.
 
- -- Macro: lexical-let (bindings…) forms…
+ -- Macro: lexical-let (bindings...) forms...
      This form is exactly like ‘let’ except that the bindings it
      establishes are purely lexical.
 
@@ -4153,7 +4195,7 @@ binding of ‘a’ to 2.  But ‘lexical-let’ actually creates a distinct
 local variable ‘a’ for use within its body, without any effect on the
 global variable of the same name.
 
-   The most important use of lexical bindings is to create "closures".
+   The most important use of lexical bindings is to create “closures”.
 A closure is a function object that refers to an outside lexical
 variable (*note (elisp)Closures::).  For example:
 
@@ -4216,7 +4258,7 @@ named closure.  If several closures are created in the body of a single
 ‘lexical-let’, they all close over the same instance of the lexical
 variable.
 
- -- Macro: lexical-let* (bindings…) forms…
+ -- Macro: lexical-let* (bindings...) forms...
      This form is just like ‘lexical-let’, except that the bindings are
      made sequentially in the manner of ‘let*’.
 
@@ -4230,7 +4272,7 @@ The following macros are obsolete, and are replaced by versions with a
 ‘cl-’ prefix that do not behave in exactly the same way.  Consequently,
 the ‘cl.el’ versions are not simply aliases to the ‘cl-lib.el’ versions.
 
- -- Macro: flet (bindings…) forms…
+ -- Macro: flet (bindings...) forms...
      This macro is replaced by ‘cl-flet’ (*note Function Bindings::),
      which behaves the same way as Common Lisp’s ‘flet’.  This ‘flet’
      takes the same arguments as ‘cl-flet’, but does not behave in
@@ -4263,7 +4305,7 @@ the ‘cl.el’ versions are not simply aliases to the ‘cl-lib.el’ versions.
      ‘cl-flet’ is clearly not a substitute.  The most direct replacement
      would be instead to use ‘cl-letf’ to temporarily rebind
      ‘(symbol-function 'FUN)’.  But in most cases, a better substitute
-     is to use an advice, such as:
+     is to use advice, such as:
 
           (defvar my-fun-advice-enable nil)
           (add-advice 'FUN :around
@@ -4276,9 +4318,9 @@ the ‘cl.el’ versions are not simply aliases to the ‘cl-lib.el’ versions.
 
      Note that many primitives (e.g., ‘+’) have special byte-compile
      handling.  Attempts to redefine such functions using ‘flet’,
-     ‘cl-letf’, or an advice will fail when byte-compiled.
+     ‘cl-letf’, or advice will fail when byte-compiled.
 
- -- Macro: labels (bindings…) forms…
+ -- Macro: labels (bindings...) forms...
      This macro is replaced by ‘cl-labels’ (*note Function Bindings::),
      which behaves the same way as Common Lisp’s ‘labels’.  This
      ‘labels’ takes the same arguments as ‘cl-labels’, but does not
@@ -4307,15 +4349,15 @@ Generalized Variables::.
      The macro NAME is defined to take a PLACE argument followed by
      additional arguments described by ARGLIST.  The call
 
-          (NAME PLACE ARGS…)
+          (NAME PLACE ARGS...)
 
      will be expanded to
 
-          (cl-callf FUNC PLACE ARGS…)
+          (cl-callf FUNC PLACE ARGS...)
 
      which in turn is roughly equivalent to
 
-          (setf PLACE (FUNC PLACE ARGS…))
+          (setf PLACE (FUNC PLACE ARGS...))
 
      For example:
 
@@ -4375,7 +4417,7 @@ Generalized Variables::.
           (gv-define-simple-setter car setcar)
           (gv-define-simple-setter buffer-name rename-buffer t)
 
- -- Macro: defsetf access-fn arglist (store-var) forms…
+ -- Macro: defsetf access-fn arglist (store-var) forms...
      This is the second, more complex, form of ‘defsetf’.  It can be
      replaced by ‘gv-define-setter’.
 
@@ -4408,7 +4450,7 @@ Generalized Variables::.
           (gv-define-setter nth (store n x)
             `(setcar (nthcdr ,n ,x) ,store))
 
- -- Macro: define-setf-method access-fn arglist forms…
+ -- Macro: define-setf-method access-fn arglist forms...
      This is the most general way to create new place forms.  You can
      replace this by ‘gv-define-setter’ or ‘gv-define-expander’.
 
@@ -4416,14 +4458,14 @@ Generalized Variables::.
      expanded, the FORMS are evaluated and must return a list of five
      items:
 
-       1. A list of "temporary variables".
+       1. A list of “temporary variables”.
 
-       2. A list of "value forms" corresponding to the temporary
+       2. A list of “value forms” corresponding to the temporary
           variables above.  The temporary variables will be bound to
           these value forms as the first step of any operation on the
           generalized variable.
 
-       3. A list of exactly one "store variable" (generally obtained
+       3. A list of exactly one “store variable” (generally obtained
           from a call to ‘gensym’).
 
        4. A Lisp form that stores the contents of the store variable
@@ -4468,7 +4510,7 @@ Appendix E GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -4918,7 +4960,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -4950,15 +4992,15 @@ Function Index
 * cl-assoc-if-not:                       Association Lists.   (line  25)
 * cl-block:                              Blocks and Exits.    (line  12)
 * cl-caddr:                              List Functions.      (line   9)
-* cl-callf:                              Modify Macros.       (line 135)
-* cl-callf2:                             Modify Macros.       (line 148)
+* cl-callf:                              Modify Macros.       (line 140)
+* cl-callf2:                             Modify Macros.       (line 153)
 * cl-case:                               Conditionals.        (line   9)
 * cl-ceiling:                            Numerical Functions. (line  43)
 * cl-check-type:                         Assertions.          (line  38)
 * cl-coerce:                             Type Predicates.     (line  60)
 * cl-compiler-macroexpand:               Macros.              (line  58)
 * cl-concatenate:                        Sequence Functions.  (line  26)
-* cl-copy-list:                          List Functions.      (line  50)
+* cl-copy-list:                          List Functions.      (line  49)
 * cl-count:                              Searching Sequences. (line  26)
 * cl-count-if:                           Searching Sequences. (line  30)
 * cl-count-if-not:                       Searching Sequences. (line  30)
@@ -4966,9 +5008,9 @@ Function Index
 * cl-declaim:                            Declarations.        (line  24)
 * cl-declare:                            Declarations.        (line  34)
 * cl-define-compiler-macro:              Macros.              (line  27)
-* cl-defmacro:                           Argument Lists.      (line  33)
+* cl-defmacro:                           Argument Lists.      (line  39)
 * cl-defstruct:                          Structures.          (line  19)
-* cl-defsubst:                           Argument Lists.      (line  22)
+* cl-defsubst:                           Argument Lists.      (line  28)
 * cl-deftype:                            Type Predicates.     (line  71)
 * cl-defun:                              Argument Lists.      (line  16)
 * cl-delete:                             Sequence Functions.  (line  64)
@@ -4976,6 +5018,8 @@ Function Index
 * cl-delete-if:                          Sequence Functions.  (line  75)
 * cl-delete-if-not:                      Sequence Functions.  (line  75)
 * cl-destructuring-bind:                 Macros.              (line  14)
+* cl-digit-char-p:                       Predicates on Numbers.
+                                                              (line  25)
 * cl-do:                                 Iteration.           (line  34)
 * cl-do*:                                Iteration.           (line  73)
 * cl-do-all-symbols:                     Iteration.           (line 110)
@@ -5000,22 +5044,23 @@ Function Index
 * cl-float-limits:                       Implementation Parameters.
                                                               (line  14)
 * cl-floor:                              Numerical Functions. (line  23)
-* cl-function:                           Argument Lists.      (line  42)
+* cl-function:                           Argument Lists.      (line  48)
 * cl-gcd:                                Numerical Functions. (line   8)
 * cl-gensym:                             Creating Symbols.    (line   9)
-* cl-gentemp:                            Creating Symbols.    (line  31)
+* cl-gentemp:                            Creating Symbols.    (line  24)
 * cl-get:                                Property Lists.      (line  11)
 * cl-getf:                               Property Lists.      (line  30)
 * cl-incf:                               Modify Macros.       (line  17)
 * cl-intersection:                       Lists as Sets.       (line  50)
 * cl-isqrt:                              Numerical Functions. (line  18)
+* cl-iter-defun:                         Argument Lists.      (line  22)
 * cl-labels:                             Function Bindings.   (line  29)
 * cl-lcm:                                Numerical Functions. (line  13)
-* cl-ldiff:                              List Functions.      (line  42)
+* cl-ldiff:                              List Functions.      (line  41)
 * cl-letf:                               Modify Macros.       (line  88)
-* cl-letf*:                              Modify Macros.       (line 131)
-* cl-list*:                              List Functions.      (line  36)
-* cl-list-length:                        List Functions.      (line  29)
+* cl-letf*:                              Modify Macros.       (line 136)
+* cl-list*:                              List Functions.      (line  35)
+* cl-list-length:                        List Functions.      (line  28)
 * cl-load-time-value:                    Time of Evaluation.  (line  93)
 * cl-locally:                            Declarations.        (line  42)
 * cl-loop:                               Iteration.           (line  10)
@@ -5068,6 +5113,7 @@ Function Index
 * cl-oddp:                               Predicates on Numbers.
                                                               (line  17)
 * cl-pairlis:                            Association Lists.   (line  33)
+* cl-parse-integer:                      Numerical Functions. (line  71)
 * cl-plusp:                              Predicates on Numbers.
                                                               (line   9)
 * cl-position:                           Searching Sequences. (line  18)
@@ -5107,6 +5153,10 @@ Function Index
                                                               (line  61)
 * cl-sort:                               Sorting Sequences.   (line   6)
 * cl-stable-sort:                        Sorting Sequences.   (line  31)
+* cl-struct-sequence-type:               Structures.          (line 313)
+* cl-struct-slot-info:                   Structures.          (line 318)
+* cl-struct-slot-offset:                 Structures.          (line 326)
+* cl-struct-slot-value:                  Structures.          (line 333)
 * cl-sublis:                             Substitution of Expressions.
                                                               (line  31)
 * cl-subseq:                             Sequence Functions.  (line   9)
@@ -5124,7 +5174,7 @@ Function Index
 * cl-tagbody:                            Blocks and Exits.    (line  60)
 * cl-tailp:                              Lists as Sets.       (line  24)
 * cl-the:                                Declarations.        (line  45)
-* cl-tree-equal:                         List Functions.      (line  54)
+* cl-tree-equal:                         List Functions.      (line  53)
 * cl-truncate:                           Numerical Functions. (line  49)
 * cl-typecase:                           Conditionals.        (line  42)
 * cl-typep:                              Type Predicates.     (line   6)
@@ -5176,68 +5226,68 @@ Variable Index
 Tag Table:
 Node: Top923
 Node: Overview2997
-Node: Usage5224
-Node: Organization5658
-Node: Naming Conventions8859
-Node: Program Structure10204
-Node: Argument Lists10655
-Node: Time of Evaluation20155
-Node: Predicates26297
-Node: Type Predicates26641
-Node: Equality Predicates31651
-Node: Control Structure33084
-Node: Assignment34001
-Node: Generalized Variables35296
-Node: Setf Extensions36078
-Node: Modify Macros40351
-Node: Variable Bindings47194
-Node: Dynamic Bindings47781
-Node: Function Bindings48631
-Node: Macro Bindings50957
-Node: Conditionals54370
-Node: Blocks and Exits57083
-Node: Iteration60894
-Node: Loop Facility66316
-Node: Loop Basics67300
-Node: Loop Examples69930
-Node: For Clauses72335
-Node: Iteration Clauses84722
-Node: Accumulation Clauses86690
-Node: Other Clauses89142
-Node: Multiple Values95573
-Node: Macros97146
-Node: Declarations100482
-Node: Symbols108688
-Node: Property Lists109035
-Node: Creating Symbols112398
-Node: Numbers114448
-Node: Predicates on Numbers114942
-Node: Numerical Functions115757
-Node: Random Numbers119153
-Node: Implementation Parameters121795
-Node: Sequences125034
-Node: Sequence Basics125782
-Node: Mapping over Sequences129507
-Node: Sequence Functions135872
-Node: Searching Sequences141646
-Node: Sorting Sequences144854
-Node: Lists147605
-Node: List Functions148097
-Node: Substitution of Expressions150947
-Node: Lists as Sets152936
-Node: Association Lists156825
-Node: Structures158372
-Node: Assertions173689
-Node: Efficiency Concerns176283
-Node: Common Lisp Compatibility181054
-Node: Porting Common Lisp183605
-Node: Obsolete Features192859
-Node: Obsolete Lexical Binding193534
-Node: Obsolete Macros197421
-Node: Obsolete Setf Customization200715
-Node: GNU Free Documentation License207325
-Node: Function Index232681
-Node: Variable Index247407
+Node: Usage5228
+Node: Organization5939
+Node: Naming Conventions9140
+Node: Program Structure10485
+Node: Argument Lists10936
+Node: Time of Evaluation20760
+Node: Predicates26902
+Node: Type Predicates27246
+Node: Equality Predicates32256
+Node: Control Structure33689
+Node: Assignment34606
+Node: Generalized Variables35901
+Node: Setf Extensions36691
+Node: Modify Macros40964
+Node: Variable Bindings48044
+Node: Dynamic Bindings48631
+Node: Function Bindings49481
+Node: Macro Bindings51807
+Node: Conditionals55224
+Node: Blocks and Exits57937
+Node: Iteration61752
+Node: Loop Facility67182
+Node: Loop Basics68166
+Node: Loop Examples70796
+Node: For Clauses73201
+Node: Iteration Clauses85228
+Node: Accumulation Clauses87350
+Node: Other Clauses89802
+Node: Multiple Values96233
+Node: Macros97806
+Node: Declarations101142
+Node: Symbols109380
+Node: Property Lists109727
+Node: Creating Symbols113090
+Node: Numbers114669
+Node: Predicates on Numbers115163
+Node: Numerical Functions116156
+Node: Random Numbers120018
+Node: Implementation Parameters122660
+Node: Sequences125899
+Node: Sequence Basics126651
+Node: Mapping over Sequences130376
+Node: Sequence Functions136743
+Node: Searching Sequences142517
+Node: Sorting Sequences145725
+Node: Lists148480
+Node: List Functions148972
+Node: Substitution of Expressions151721
+Node: Lists as Sets153710
+Node: Association Lists157599
+Node: Structures159150
+Node: Assertions175989
+Node: Efficiency Concerns178587
+Node: Common Lisp Compatibility183278
+Node: Porting Common Lisp185683
+Node: Obsolete Features194904
+Node: Obsolete Lexical Binding195579
+Node: Obsolete Macros199470
+Node: Obsolete Setf Customization202758
+Node: GNU Free Documentation License209380
+Node: Function Index234740
+Node: Variable Index250041
 
 End Tag Table
 

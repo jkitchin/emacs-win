@@ -1,9 +1,9 @@
-This is sc.info, produced by makeinfo version 5.2 from sc.texi.
+This is sc.info, produced by makeinfo version 6.3 from sc.texi.
 
 This document describes Supercite, an Emacs package for citing and
 attributing replies to mail and news messages.
 
-   Copyright © 1993, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1993, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -30,7 +30,7 @@ Supercite
 This document describes Supercite, an Emacs package for citing and
 attributing replies to mail and news messages.
 
-   Copyright © 1993, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1993, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -72,8 +72,8 @@ File: sc.info,  Node: Introduction,  Next: Citations,  Prev: Top,  Up: Top
 **************
 
 Supercite is a GNU Emacs package written entirely in Emacs Lisp.  It
-interfaces to most of the commonly used Emacs mail user agents ("MUAs")
-and news user agents ("NUAs"), and provides sophisticated facilities for
+interfaces to most of the commonly used Emacs mail user agents (“MUAs”)
+and news user agents (“NUAs”), and provides sophisticated facilities for
 the citing and attributing of message replies.  Supercite has a very
 specific and limited role in the process of composing replies to both
 USENET network news and electronic mail.
@@ -106,11 +106,11 @@ in your MUA.  You will probably hit ‘r’ (i.e., “reply”) or ‘f’ (i.e.
 create a reply buffer and initialize the outgoing mail headers
 appropriately.  The body of the reply will usually be empty at this
 point.  You now decide that you would like to include part of the
-original message in your reply.  To do this, you "yank" the original
+original message in your reply.  To do this, you “yank” the original
 message into the reply buffer, typically with a key stroke such as ‘C-c
 C-y’.  This sequence will invoke an MUA-specific function which fills
-the body of the reply with the original message and then "attributes"
-this text to its author.  This is called "citing" and its effect is to
+the body of the reply with the original message and then “attributes”
+this text to its author.  This is called “citing” and its effect is to
 prefix every line from the original message with a special text tag.
 Most MUAs provide some default style of citing; by using Supercite you
 gain a wider flexibility in the look and style of citations.
@@ -153,13 +153,13 @@ handled automatically by the MUA.  *Note Hints to MUA Authors::.
 
    The first thing Supercite does, via ‘sc-cite-original’, is to parse
 through the original message’s mail headers.  It saves this data in an
-"information association list", or "info alist".  The information in
+“information association list”, or “info alist”.  The information in
 this list is used in a number of places throughout Supercite.  *Note
 Information Keys and the Info Alist::.
 
    After the mail header info is extracted, the headers are optionally
-removed ("nuked") from the reply.  Supercite then writes a "reference
-header" into the buffer.  This reference header is a string carrying
+removed (“nuked”) from the reply.  Supercite then writes a “reference
+header” into the buffer.  This reference header is a string carrying
 details about the citation it is about to perform.
 
    Next, Supercite visits each line in the reply, transforming the line
@@ -196,9 +196,9 @@ File: sc.info,  Node: Citations,  Next: Information Keys and the Info Alist,  Pr
 2 Citations
 ***********
 
-A "citation" is the acknowledgment of the original author of a mail
+A “citation” is the acknowledgment of the original author of a mail
 message in the body of the reply.  There are two basic citation styles
-which Supercite supports.  The first, called "nested citations" is an
+which Supercite supports.  The first, called “nested citations” is an
 anonymous form of citation; in other words, an indication is made that
 the cited line was written by someone _other_ that the current message
 author (i.e., other than you, the person composing the reply), but no
@@ -225,7 +225,7 @@ impossible to figure out who actually participated in the thread, and
 multiple nesting of ‘‘>’’ characters can sometimes make the message very
 difficult for the eye to scan.
 
-   In "non-nested citations", each cited line begins with an informative
+   In “non-nested citations”, each cited line begins with an informative
 string attributing that line to the original author.  Only the first
 level of attribution will be shown; subsequent citations don’t nest the
 citation strings.  The above dialog might look like this when non-nested
@@ -252,26 +252,26 @@ File: sc.info,  Node: Citation Elements,  Next: Recognizing Citations,  Up: Cita
 2.1 Citation Elements
 =====================
 
-"Citation strings" are composed of one or more elements.  Non-nested
+“Citation strings” are composed of one or more elements.  Non-nested
 citations are composed of four elements, three of which are directly
 user definable.  The elements are concatenated together, in this order:
 
-  1. The "citation leader".  The citation leader is contained in the
+  1. The “citation leader”.  The citation leader is contained in the
      variable ‘sc-citation-leader’, and has the default value of a
      string containing four spaces.
 
-  2. The "attribution string".  This element is supplied automatically
+  2. The “attribution string”.  This element is supplied automatically
      by Supercite, based on your preferences and the original message’s
      mail headers, though you may be asked to confirm Supercite’s
      choice.  *Note Selecting an Attribution::, for more details.
 
-  3. The "citation delimiter".  This string, contained in the variable
+  3. The “citation delimiter”.  This string, contained in the variable
      ‘sc-citation-delimiter’ visually separates the citation from the
      text of the line.  This variable has a default value of ‘">"’ and
      for best results, the string should consist of only a single
      character.
 
-  4. The "citation separator".  The citation separator is contained in
+  4. The “citation separator”.  The citation separator is contained in
      the variable ‘sc-citation-separator’, and has the default value of
      a string containing a single space.
 
@@ -328,9 +328,9 @@ File: sc.info,  Node: Information Keys and the Info Alist,  Next: Reference Head
 3 Information Keys and the Info Alist
 *************************************
 
-"Mail header information keys" are nuggets of information that Supercite
+“Mail header information keys” are nuggets of information that Supercite
 extracts from the various mail headers of the original message, placed
-in the reply buffer by the MUA.  Information is kept in the "Info Alist"
+in the reply buffer by the MUA.  Information is kept in the “Info Alist”
 as key-value pairs, and can be retrieved for use in various places
 within Supercite, such as in header rewrite functions and attribution
 selection.  Other bits of data, composed and created by Supercite, are
@@ -396,8 +396,8 @@ the following keys into the info alist:
      the author’s first middle name.
 
    If the author’s name has more than one middle name, they will appear
-as info keys with the appropriate index (e.g., ‘"sc-middlename-2"’, …).
-*Note Selecting an Attribution::.
+as info keys with the appropriate index (e.g., ‘"sc-middlename-2"’,
+...).  *Note Selecting an Attribution::.
 
 
 File: sc.info,  Node: Reference Headers,  Next: Getting Connected,  Prev: Information Keys and the Info Alist,  Up: Top
@@ -405,7 +405,7 @@ File: sc.info,  Node: Reference Headers,  Next: Getting Connected,  Prev: Inform
 4 Reference Headers
 *******************
 
-Supercite will insert an informative "reference header" at the beginning
+Supercite will insert an informative “reference header” at the beginning
 of the cited body of text, which display more detail about the original
 article and provides the mapping between the attribution and the
 original author in non-nested citations.  Whereas the citation string
@@ -420,12 +420,12 @@ header.
 * The Built-in Header Rewrite Functions::
 * Electric References::
 
-   There are a number of built-in "header rewrite functions" supplied by
+   There are a number of built-in “header rewrite functions” supplied by
 Supercite, but you can write your own custom header rewrite functions
 (perhaps using the built-in ones as examples).  The variable
 ‘sc-rewrite-header-list’ contains the list of such header rewrite
 functions.  This list is consulted both when inserting the initial
-reference header, and when displaying "electric references".  *Note
+reference header, and when displaying “electric references”.  *Note
 Electric References::.
 
    When Supercite is initially run on a reply buffer (via
@@ -507,7 +507,7 @@ time, it just goes ahead and inserts the reference header indexed by
 reference headers based on the type of reply or forwarding you are
 doing.  You may also want to preview the reference header before
 deciding whether to insert it into the reply buffer or not.  Supercite
-provides an optional "electric reference" mode which you can drop into
+provides an optional “electric reference” mode which you can drop into
 to give you this functionality.
 
    If the variable ‘sc-electric-references-p’ is non-‘nil’, Supercite
@@ -573,13 +573,13 @@ the following to ‘~.emacs’:
 
      (add-hook 'mail-citation-hook 'sc-cite-original)
 
-For more details of the process, read on…
+For more details of the process, read on...
 
    Hitting ‘C-c C-y’ in your MUA’s reply buffer yanks and cites the
 original message into the reply buffer.  In reality, the citation of the
 original message is performed via a call through a configurable hook
 variable.  The name of this variable has been agreed to in advance as
-part of the "citation interface specification".  By default this hook
+part of the “citation interface specification”.  By default this hook
 variable has a ‘nil’ value, which the MUA recognizes to mean, “use your
 default citation function.” When you add Supercite’s citation function
 to the hook, thereby giving the variable a non-‘nil’ value, it tells the
@@ -602,7 +602,7 @@ interface specifications, or if you are writing or maintaining an MUA,
 are using is to set up Emacs so it will load Supercite at the
 appropriate time.  This happens automatically if Supercite is
 distributed with your Emacs version.  If not, you can set up an
-"autoload" for Supercite.
+“autoload” for Supercite.
 
    To do the latter, put the following in your ‘.emacs’ file:
 
@@ -785,11 +785,11 @@ text.
    However, during normal editing, Supercite itself cannot be used to
 fill paragraphs.  This is a change from version 2.  There are other
 add-on lisp packages which do filling much better than Supercite ever
-did.  The two best known are "filladapt" and "gin-mode".  Both work well
+did.  The two best known are “filladapt” and “gin-mode”.  Both work well
 with Supercite and both are available at the normal Emacs Lisp archive
-sites.  "gin-mode" works pretty well out of the box, but if you use
-"filladapt", you may want to run the function ‘sc-setup-filladapt’ from
-your ‘sc-load-hook’.  This simply makes "filladapt" a little more
+sites.  “gin-mode” works pretty well out of the box, but if you use
+“filladapt”, you may want to run the function ‘sc-setup-filladapt’ from
+your ‘sc-load-hook’.  This simply makes “filladapt” a little more
 Supercite savvy than its default setup.
 
    Also, Supercite will collapse leading whitespace between the citation
@@ -846,7 +846,7 @@ As you know, the attribution string is the part of the author’s name
 that will be used to composed a non-nested citation string.  Supercite
 scans the various mail headers present in the original article and uses
 a number of heuristics to extract strings which it puts into the
-"attribution association list" or "attribution alist".  This is
+“attribution association list” or “attribution alist”.  This is
 analogous, but different than, the info alist previously mentioned.
 Each element in the attribution alist is a key-value pair containing
 such information as the author’s first name, middle names, and last
@@ -935,7 +935,7 @@ Each element in this list contains lists of the following form:
 
      (INFOKEY ((REGEXP . ATTRIBUTION)
               (REGEXP . ATTRIBUTION)
-              (…)))
+              (...)))
 
 where INFOKEY is a key for ‘sc-mail-field’ and REGEXP is a regular
 expression to match against the INFOKEY’s value.  If REGEXP matches the
@@ -1073,9 +1073,9 @@ File: sc.info,  Node: Configuring the Citation Engine,  Next: Post-yank Formatti
 *********************************
 
 At the heart of Supercite is a regular expression interpreting engine
-called "Regi".  Regi operates by interpreting a data structure called a
-Regi-frame (or just "frame"), which is a list of Regi-entries (or just
-"entry").  Each entry contains a predicate, typically a regular
+called “Regi”.  Regi operates by interpreting a data structure called a
+Regi-frame (or just “frame”), which is a list of Regi-entries (or just
+“entry”).  Each entry contains a predicate, typically a regular
 expression, which is matched against a line of text in the current
 buffer.  If the predicate matches true, an associated expression is
 ‘eval’uated.  In this way, an entire region of text can be transformed
@@ -1213,8 +1213,8 @@ your preferred citation style, and it will add a level of citation to
 nested citations.  It will also simply cite uncited lines in your
 preferred style.
 
-   In a similar vein, there are default frames for "unciting" and
-"reciting", contained in the variables ‘sc-default-uncite-frame’ and
+   In a similar vein, there are default frames for “unciting” and
+“reciting”, contained in the variables ‘sc-default-uncite-frame’ and
 ‘sc-default-recite-frame’ respectively.
 
    As mentioned earlier (*note Recognizing Citations::), citations are
@@ -1229,9 +1229,9 @@ consulted to find the frame to use (‘sc-cite-frame-alist’,
 ‘sc-uncite-frame-alist’, and ‘sc-recite-frame-alist’ respectively).
 These frames can contain alists of the form:
 
-     ((INFOKEY (REGEXP . FRAME) (REGEXP . FRAME) …)
-      (INFOKEY (REGEXP . FRAME) (REGEXP . FRAME) …)
-      (…))
+     ((INFOKEY (REGEXP . FRAME) (REGEXP . FRAME) ...)
+      (INFOKEY (REGEXP . FRAME) (REGEXP . FRAME) ...)
+      (...))
 
    Where INFOKEY is a key suitable for ‘sc-mail-field’, REGEXP is a
 regular expression which is ‘string-match’’d against the value of the
@@ -1282,7 +1282,7 @@ regions of text in the reply buffer.  Often you may want to recite a
 paragraph to use a nickname, or manually cite a message when setting
 ‘sc-cite-region-limit’ to ‘nil’.  The following commands perform these
 functions on the region of text between ‘point’ and ‘mark’.  Each of
-them sets the "undo boundary" before modifying the region so that the
+them sets the “undo boundary” before modifying the region so that the
 command can be undone in the standard Emacs way.
 
    Here is the list of Supercite citing commands:
@@ -1490,7 +1490,7 @@ a mail message to the Supercite mailing list:
              Martin>    tends to be a "full blown" version rather than to be
              Martin>    stripped down.
 
-             Martin> 2: `point' is at the start of the header, `mark' at the
+             Martin> 2: 'point' is at the start of the header, 'mark' at the
              Martin>    end of the message body.
 
              Martin> 3: (run-hooks 'mail-yank-hooks)
@@ -1498,7 +1498,7 @@ a mail message to the Supercite mailing list:
              Martin> [Supercite] should be run as such a hook and merely
              Martin> rewrite the message.  This way it isn't anymore
              Martin> [Supercite]'s job to gather the original from obscure
-             Martin> sources. […]
+             Martin> sources. [...]
 
    This specification was adopted, but underwent a slight modification
 with the release of Emacs 19.  Instead of the variable
@@ -1598,7 +1598,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2048,7 +2048,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2522,40 +2522,40 @@ each appears under its ‘sc-’VARIABLE name and its VARIABLE name.
 Tag Table:
 Node: Top1046
 Node: Introduction2339
-Node: Usage Overview3377
-Node: What Supercite Does Not Do4548
-Node: What Supercite Does5696
-Node: Citations8569
-Node: Citation Elements10918
-Node: Recognizing Citations12814
-Node: Information Keys and the Info Alist14605
-Node: Reference Headers17277
-Node: The Built-in Header Rewrite Functions18851
-Node: Electric References21411
-Node: Getting Connected24387
-Node: Replying and Yanking27587
-Node: Reply Buffer Initialization27907
-Node: Filling Cited Text34934
-Node: Selecting an Attribution38491
-Node: Attribution Preferences39374
-Node: Anonymous Attributions43385
-Node: Author Names46542
-Node: Configuring the Citation Engine49102
-Node: Using Regi50875
-Node: Frames You Can Customize54841
-Node: Post-yank Formatting Commands57382
-Node: Citing Commands58569
-Node: Insertion Commands60841
-Node: Variable Toggling Shortcuts61827
-Node: Mail Field Commands64346
-Node: Miscellaneous Commands66721
-Node: Hints to MUA Authors67139
-Node: Thanks and History70895
-Node: GNU Free Documentation License72962
-Node: Concept Index98318
-Node: Command Index106250
-Node: Key Index113392
-Node: Variable Index115843
+Node: Usage Overview3385
+Node: What Supercite Does Not Do4568
+Node: What Supercite Does5716
+Node: Citations8605
+Node: Citation Elements10966
+Node: Recognizing Citations12882
+Node: Information Keys and the Info Alist14673
+Node: Reference Headers17354
+Node: The Built-in Header Rewrite Functions18940
+Node: Electric References21500
+Node: Getting Connected24480
+Node: Replying and Yanking27688
+Node: Reply Buffer Initialization28008
+Node: Filling Cited Text35035
+Node: Selecting an Attribution38612
+Node: Attribution Preferences39503
+Node: Anonymous Attributions43514
+Node: Author Names46671
+Node: Configuring the Citation Engine49231
+Node: Using Regi51016
+Node: Frames You Can Customize54982
+Node: Post-yank Formatting Commands57531
+Node: Citing Commands58718
+Node: Insertion Commands60994
+Node: Variable Toggling Shortcuts61980
+Node: Mail Field Commands64499
+Node: Miscellaneous Commands66874
+Node: Hints to MUA Authors67292
+Node: Thanks and History71048
+Node: GNU Free Documentation License73115
+Node: Concept Index98475
+Node: Command Index106407
+Node: Key Index113549
+Node: Variable Index116000
 
 End Tag Table
 

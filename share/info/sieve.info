@@ -1,9 +1,9 @@
-This is sieve.info, produced by makeinfo version 5.2 from sieve.texi.
+This is sieve.info, produced by makeinfo version 6.3 from sieve.texi.
 
 This file documents the Emacs Sieve package, for server-side mail
 filtering.
 
-   Copyright © 2001–2015 Free Software Foundation, Inc.
+   Copyright © 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -36,7 +36,7 @@ language, so keep RFC 3028 around.
    This file documents the Emacs Sieve package, for server-side mail
 filtering.
 
-   Copyright © 2001–2015 Free Software Foundation, Inc.
+   Copyright © 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -267,10 +267,10 @@ growing number of RFCs and drafts documents.  This chapter lists the
 relevant ones.  They can all be fetched from
 <http://quimby.gnus.org/notes/>.
 
-"RFC3028"
+“RFC3028”
      Sieve: A Mail Filtering Language.
 
-"RFC5804"
+“RFC5804”
      A Protocol for Remotely Managing Sieve Scripts
 
 
@@ -290,7 +290,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -740,7 +740,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -804,8 +804,8 @@ Node: Managing Sieve4082
 Node: Examples5699
 Node: Manage Sieve API7058
 Node: Standards8532
-Node: GNU Free Documentation License9003
-Node: Index34345
+Node: GNU Free Documentation License9011
+Node: Index34357
 
 End Tag Table
 

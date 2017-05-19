@@ -1,6 +1,6 @@
-This is ert.info, produced by makeinfo version 5.2 from ert.texi.
+This is ert.info, produced by makeinfo version 6.3 from ert.texi.
 
-Copyright © 2008, 2010–2015 Free Software Foundation, Inc.
+Copyright © 2008, 2010–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -23,7 +23,7 @@ File: ert.info,  Node: Top,  Next: Introduction,  Up: (dir)
 ERT: Emacs Lisp Regression Testing
 **********************************
 
-Copyright © 2008, 2010–2015 Free Software Foundation, Inc.
+Copyright © 2008, 2010–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -66,7 +66,7 @@ How to Run Tests
 
 How to Write Tests
 
-* The ‘should’ Macro::          A powerful way to express assertions.
+* The should Macro::          A powerful way to express assertions.
 * Expected Failures::           Tests for known bugs.
 * Tests and Their Environment:: Don’t depend on customizations; no side effects.
 * Useful Techniques::           Some examples.
@@ -132,7 +132,7 @@ familiar: This example defines a test named ‘pp-test-quote’ that will
 pass if the three calls to ‘equal’ all return non-‘nil’.
 
    ‘should’ is a macro with the same meaning as ‘cl-assert’ but better
-error reporting.  *Note The ‘should’ Macro::.
+error reporting.  *Note The should Macro::.
 
    Each test should have a name that describes what functionality it
 tests.  Test names can be chosen arbitrarily—they are in a namespace
@@ -270,6 +270,12 @@ zero exit status if all tests passed, or nonzero if any tests failed or
 if anything else went wrong.  It will also print progress messages and
 error diagnostics to standard output.
 
+   You can also redirect the above output to a log file, say
+‘output.log’, and use the ‘ert-summarize-tests-batch-and-exit’ function
+to produce a neat summary as shown below:
+
+     emacs -batch -l ert -f ert-summarize-tests-batch-and-exit output.log
+
    If ERT is not part of your Emacs distribution, you may need to use
 ‘-L /path/to/ert/’ so that Emacs can find it.  You may need additional
 ‘-L’ flags to ensure that ‘my-tests.el’ and all the files that it
@@ -335,13 +341,13 @@ where a test was defined if the test was loaded from a file.
 
 * Menu:
 
-* The ‘should’ Macro::          A powerful way to express assertions.
+* The should Macro::          A powerful way to express assertions.
 * Expected Failures::           Tests for known bugs.
 * Tests and Their Environment:: Don’t depend on customizations; no side effects.
 * Useful Techniques::           Some examples.
 
 
-File: ert.info,  Node: The ‘should’ Macro,  Next: Expected Failures,  Up: How to Write Tests
+File: ert.info,  Node: The should Macro,  Next: Expected Failures,  Up: How to Write Tests
 
 3.1 The ‘should’ Macro
 ======================
@@ -398,7 +404,7 @@ fail anyway, so ‘should-not-error’ is effectively the default.
 reports.
 
 
-File: ert.info,  Node: Expected Failures,  Next: Tests and Their Environment,  Prev: The ‘should’ Macro,  Up: How to Write Tests
+File: ert.info,  Node: Expected Failures,  Next: Tests and Their Environment,  Prev: The should Macro,  Up: How to Write Tests
 
 3.2 Expected Failures
 =====================
@@ -524,18 +530,18 @@ Testing simple functions that have no side effects and no dependencies
 on their environment is easy.  Such tests often look like this:
 
      (ert-deftest ert-test-mismatch ()
-       (should (eql (ert--mismatch "" "") nil))
-       (should (eql (ert--mismatch "" "a") 0))
-       (should (eql (ert--mismatch "a" "a") nil))
-       (should (eql (ert--mismatch "ab" "a") 1))
-       (should (eql (ert--mismatch "Aa" "aA") 0))
-       (should (eql (ert--mismatch '(a b c) '(a b d)) 2)))
+       (should (eql (cl-mismatch "" "") nil))
+       (should (eql (cl-mismatch "" "a") 0))
+       (should (eql (cl-mismatch "a" "a") nil))
+       (should (eql (cl-mismatch "ab" "a") 1))
+       (should (eql (cl-mismatch "Aa" "aA") 0))
+       (should (eql (cl-mismatch '(a b c) '(a b d)) 2)))
 
-   This test calls the function ‘ert--mismatch’ several times with
-various combinations of arguments and compares the return value to the
-expected return value.  (Some programmers prefer ‘(should (eql EXPECTED
-ACTUAL))’ over the ‘(should (eql ACTUAL EXPECTED))’ shown here.  ERT
-works either way.)
+   This test calls the function ‘cl-mismatch’ several times with various
+combinations of arguments and compares the return value to the expected
+return value.  (Some programmers prefer ‘(should (eql EXPECTED ACTUAL))’
+over the ‘(should (eql ACTUAL EXPECTED))’ shown here.  ERT works either
+way.)
 
    Here’s a more complicated test:
 
@@ -842,7 +848,7 @@ languages would be counter-productive in Lisp.)
 particular module.  Since symbol prefixes are the usual way of
 separating module namespaces in Emacs Lisp, test selectors already solve
 this by allowing regexp matching on test names; e.g., the selector
-"^ert-" selects ERT’s self-tests.
+‘"^ert-"’ selects ERT’s self-tests.
 
    Other uses include grouping tests by their expected execution time,
 e.g., to run quick tests during interactive development and slow tests
@@ -866,7 +872,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1316,7 +1322,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1335,26 +1341,26 @@ their use in free software.
 
 Tag Table:
 Node: Top847
-Node: Introduction3754
-Node: How to Run Tests6693
-Node: Running Tests Interactively7455
-Node: Running Tests in Batch Mode10299
-Node: Test Selectors11378
-Node: How to Write Tests13537
-Node: The ‘should’ Macro14424
-Node: Expected Failures16526
-Node: Tests and Their Environment18763
-Node: Useful Techniques22348
-Node: How to Debug Tests26166
-Node: Understanding Explanations26565
-Node: Interactive Debugging28481
-Node: Extending ERT30664
-Node: Defining Explanation Functions31021
-Node: Low-Level Functions for Working with Tests31959
-Node: Other Testing Concepts32788
-Node: Mocks and Stubs33198
-Node: Fixtures and Test Suites33783
-Node: GNU Free Documentation License36199
+Node: Introduction3748
+Node: How to Run Tests6681
+Node: Running Tests Interactively7443
+Node: Running Tests in Batch Mode10287
+Node: Test Selectors11625
+Node: How to Write Tests13784
+Node: The should Macro14665
+Node: Expected Failures16761
+Node: Tests and Their Environment18992
+Node: Useful Techniques22577
+Node: How to Debug Tests26381
+Node: Understanding Explanations26780
+Node: Interactive Debugging28696
+Node: Extending ERT30879
+Node: Defining Explanation Functions31236
+Node: Low-Level Functions for Working with Tests32174
+Node: Other Testing Concepts33003
+Node: Mocks and Stubs33413
+Node: Fixtures and Test Suites33998
+Node: GNU Free Documentation License36420
 
 End Tag Table
 

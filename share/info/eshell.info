@@ -1,8 +1,8 @@
-This is eshell.info, produced by makeinfo version 5.2 from eshell.texi.
+This is eshell.info, produced by makeinfo version 6.3 from eshell.texi.
 
 This manual is for Eshell, the Emacs shell.
 
-   Copyright © 1999–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -34,7 +34,7 @@ interface similar to command shells such as ‘bash’, ‘zsh’, ‘rc’, or
 
    This manual is for Eshell, the Emacs shell.
 
-   Copyright © 1999–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -59,7 +59,6 @@ interface similar to command shells such as ‘bash’, ‘zsh’, ‘rc’, or
 * Concept Index::
 * Function and Variable Index::
 * Command Index::
-* Key Index::
 
 
 File: eshell.info,  Node: Introduction,  Next: Commands,  Prev: Top,  Up: Top
@@ -70,7 +69,7 @@ File: eshell.info,  Node: Introduction,  Next: Commands,  Prev: Top,  Up: Top
 1.1 What is Eshell?
 ===================
 
-Eshell is a "command shell" written in Emacs Lisp.  Everything it does,
+Eshell is a “command shell” written in Emacs Lisp.  Everything it does,
 it uses Emacs’s facilities to do.  This means that Eshell is as portable
 as Emacs itself.  It also means that cooperation with Lisp code is
 natural and seamless.
@@ -83,7 +82,7 @@ clicking with a mouse on certain parts of the screen.  But that is only
 one form of command input.
 
    By far the most versatile way to express what you want the computer
-to do is by using an abbreviated language called "script".  In script,
+to do is by using an abbreviated language called “script”.  In script,
 instead of telling the computer, “list my files, please”, one writes a
 standard abbreviated command word—‘ls’.  Typing ‘ls’ in a command shell
 is a script way of telling the computer to list your files.(1)
@@ -238,8 +237,10 @@ numbers, depending on what the parser thinks they look like.  If you
 need to use a function that takes some other data type, you will need to
 call it in an Elisp expression (which can also be used with *note
 expansions: Expansion.).  As with other shells, you can escape special
-characters and spaces with the backslash (‘\’) and the single (‘''’) and
-double (‘""’) quotes.
+characters and spaces with the backslash (‘\’) and apostrophes (‘''’)
+and double quotes (‘""’).  This is needed especially for file names with
+special characters like pipe (‘|’), which could be part of remote file
+names.
 
 
 File: eshell.info,  Node: Built-ins,  Next: Variables,  Prev: Arguments,  Up: Commands
@@ -280,6 +281,11 @@ these will print a usage message when given the ‘--help’ option.
 ‘alias’
      Define an alias (*note Aliases::).  This does not add it to the
      aliases file.
+
+‘clear’
+     Scrolls the contents of the eshell window out of sight, leaving a
+     blank window.  If provided with an optional non-nil argument, the
+     scrollback contents are cleared instead.
 
 ‘date’
      Similar to, but slightly different from, the GNU Coreutils ‘date’
@@ -446,7 +452,7 @@ and searching are bound to different keys:
 ‘M-n’
      Previous and next history line.  If there is anything on the input
      line when you run these commands, they will instead jump to the
-     precious or next line that begins with that string.
+     previous or next line that begins with that string.
 
 
 File: eshell.info,  Node: Completion,  Next: for loop,  Prev: History,  Up: Commands
@@ -643,9 +649,24 @@ emulator.
 to in this manual as “visual commands,” because they are not simply
 line-oriented.  You must tell Eshell which commands are visual, by
 adding them to ‘eshell-visual-commands’; for commands that are visual
-for only certain _sub_-commands – e.g.  ‘git log’ but not ‘git status’ –
+for only certain _sub_-commands – e.g., ‘git log’ but not ‘git status’ –
 use ‘eshell-visual-subcommands’; and for commands that are visual only
 when passed certain options, use ‘eshell-visual-options’.
+
+   Caution: Some tools such as Git use the pager ‘less’ by default to
+paginate their output but call it with its ‘-F’ option.  This option
+causes ‘less’ to echo the output instead of paginating it if the output
+is less than one page long.  This causes undesirable behavior if, e.g.,
+‘git diff’, is defined as a visual subcommand.  It’ll work if the output
+is big enough and fail if it is less than one page long.  If that occurs
+to you, search for configuration options for calling ‘less’ without the
+‘-F’ option.  For Git, you can do that using ‘git config --global
+core.pager 'less -+F'’.
+
+   If you want the buffers created by visual programs killed when the
+program exits, customize the variable
+‘eshell-destroy-buffer-when-process-dies’ to a non-‘nil’ value; the
+default is ‘nil’.
 
 4.2 Redirection
 ===============
@@ -659,7 +680,8 @@ operator, and Elisp functions, using virtual devices.
    The buffer redirection operator, ‘>>>’, expects a buffer object on
 the right-hand side, into which it inserts the output of the left-hand
 side.  e.g., ‘echo hello >>> #<buffer *scratch*>’ inserts the string
-‘"hello"’ into the ‘*scratch*’ buffer.
+‘"hello"’ into the ‘*scratch*’ buffer.  The convenience shorthand
+variant ‘#<BUFFER-NAME>’, as in ‘#<*scratch*>’, is also accepted.
 
    ‘eshell-virtual-targets’ is a list of mappings of virtual device
 names to functions.  Eshell comes with two virtual devices: ‘/dev/kill’,
@@ -846,7 +868,7 @@ Problem running ‘less’ without arguments on Windows
 
           Spawning child process: invalid argument
 
-     Also a new ‘less’ buffer was created with nothing in it…
+     Also a new ‘less’ buffer was created with nothing in it...
      (presumably this holds the output of ‘less’).
 
      If ‘less.exe’ is invoked from the Eshell command line, the expected
@@ -960,7 +982,7 @@ Problem with repeating ‘echo ${find /tmp}’
 
      With smart display active, if ‘RET’ is held down, after a while it
      can’t keep up anymore and starts outputting blank lines.  It only
-     happens if an asynchronous process is involved…
+     happens if an asynchronous process is involved...
 
      I think the problem is that ‘eshell-send-input’ is resetting the
      input target location, so that if the asynchronous process is not
@@ -1017,7 +1039,7 @@ Implement ‘M-|’ for Eshell
 Implement input redirection
 
      If it’s a Lisp function, input redirection implies ‘xargs’ (in a
-     way…).  If input redirection is added, also update the
+     way...).  If input redirection is added, also update the
      ‘file-name-quote-list’, and the delimiter list.
 
 Allow ‘#<WORD ARG>’ as a generic syntax
@@ -1133,7 +1155,7 @@ Write a ‘tail’ command which uses ‘view-file’
 
 Make ‘dgrep’ load ‘dired’, mark everything, then invoke ‘dired-do-search’
 
-Write mesh.c
+Write ‘mesh.c’
 
      This would run Emacs with the appropriate arguments to invoke
      Eshell only.  That way, it could be listed as a login shell.
@@ -1142,7 +1164,8 @@ Use an intangible ‘PS2’ string for multi-line input prompts
 
 Auto-detect when a command is visual, by checking ‘TERMCAP’ usage
 
-The first keypress after ‘M-x watson’ triggers ‘eshell-send-input’
+The first keypress after ‘M-x watson’ triggers
+     ‘eshell-send-input’
 
 Make ‘/’ electric
 
@@ -1217,7 +1240,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1667,7 +1690,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1718,16 +1741,17 @@ Function and Variable Index
  [index ]
 * Menu:
 
-* $$:                                    Built-ins.           (line 132)
-* $+:                                    Built-ins.           (line 122)
-* $-:                                    Built-ins.           (line 125)
-* $?:                                    Built-ins.           (line 136)
-* $_:                                    Built-ins.           (line 129)
+* $$:                                    Built-ins.           (line 137)
+* $+:                                    Built-ins.           (line 127)
+* $-:                                    Built-ins.           (line 130)
+* $?:                                    Built-ins.           (line 141)
+* $_:                                    Built-ins.           (line 134)
+* eshell-destroy-buffer-when-process-dies: Input/Output.      (line  36)
 * eshell-prefer-lisp-functions:          Built-ins.           (line  25)
 * eshell-source-file:                    Scripts.             (line   6)
 
 
-File: eshell.info,  Node: Command Index,  Next: Key Index,  Prev: Function and Variable Index,  Up: Top
+File: eshell.info,  Node: Command Index,  Prev: Function and Variable Index,  Up: Top
 
 Command Index
 *************
@@ -1737,79 +1761,73 @@ Command Index
 
 * .:                                     Scripts.             (line  13)
 * addpath:                               Built-ins.           (line  33)
-* agrep:                                 Built-ins.           (line  53)
+* agrep:                                 Built-ins.           (line  58)
 * alias:                                 Built-ins.           (line  37)
-* cd:                                    Built-ins.           (line  91)
-* date:                                  Built-ins.           (line  41)
-* define:                                Built-ins.           (line  45)
-* diff:                                  Built-ins.           (line  48)
-* egrep:                                 Built-ins.           (line  54)
-* fgrep:                                 Built-ins.           (line  55)
-* glimpse:                               Built-ins.           (line  56)
-* grep:                                  Built-ins.           (line  52)
+* cd:                                    Built-ins.           (line  96)
+* clear:                                 Built-ins.           (line  41)
+* date:                                  Built-ins.           (line  46)
+* define:                                Built-ins.           (line  50)
+* diff:                                  Built-ins.           (line  53)
+* egrep:                                 Built-ins.           (line  59)
+* fgrep:                                 Built-ins.           (line  60)
+* glimpse:                               Built-ins.           (line  61)
+* grep:                                  Built-ins.           (line  57)
 * history:                               History.             (line   6)
-* info:                                  Built-ins.           (line  60)
-* jobs:                                  Built-ins.           (line  64)
-* kill:                                  Built-ins.           (line  68)
-* listify:                               Built-ins.           (line  72)
-* locate:                                Built-ins.           (line  77)
-* make:                                  Built-ins.           (line  82)
-* occur:                                 Built-ins.           (line  85)
-* printnl:                               Built-ins.           (line  88)
+* info:                                  Built-ins.           (line  65)
+* jobs:                                  Built-ins.           (line  69)
+* kill:                                  Built-ins.           (line  73)
+* listify:                               Built-ins.           (line  77)
+* locate:                                Built-ins.           (line  82)
+* make:                                  Built-ins.           (line  87)
+* occur:                                 Built-ins.           (line  90)
+* printnl:                               Built-ins.           (line  93)
 * source:                                Scripts.             (line   6)
-* su:                                    Built-ins.           (line 111)
-* sudo:                                  Built-ins.           (line 112)
-
-
-File: eshell.info,  Node: Key Index,  Prev: Command Index,  Up: Top
-
-Key Index
-*********
+* su:                                    Built-ins.           (line 116)
+* sudo:                                  Built-ins.           (line 117)
 
 
 
 Tag Table:
 Node: Top902
-Node: Introduction2398
-Ref: Introduction-Footnote-15828
-Ref: Introduction-Footnote-25918
-Node: Contributors to Eshell6121
-Node: Commands7289
-Node: Invocation7714
-Ref: Invocation-Footnote-18860
-Node: Arguments8957
-Node: Built-ins9531
-Node: Variables13976
-Ref: Variables-Footnote-114334
-Node: Aliases14363
-Node: History14958
-Node: Completion16556
-Ref: Completion-Footnote-118188
-Node: for loop18288
-Node: Scripts18821
-Node: Expansion19419
-Ref: Expansion-Footnote-120041
-Ref: Expansion-Footnote-220162
-Node: Dollars Expansion20279
-Node: Globbing22406
-Ref: Globbing-Footnote-122975
-Node: Input/Output23018
-Node: Extension modules25646
-Ref: Extension modules-Footnote-126573
-Ref: Extension modules-Footnote-226621
-Ref: Extension modules-Footnote-326659
-Node: Writing a module26771
-Node: Module testing26907
-Node: Directory handling27066
-Node: Key rebinding27230
-Node: Smart scrolling27385
-Node: Terminal emulation27544
-Node: Bugs and ideas27687
-Node: GNU Free Documentation License44027
-Node: Concept Index69383
-Node: Function and Variable Index70789
-Node: Command Index71490
-Node: Key Index73400
+Node: Introduction2384
+Ref: Introduction-Footnote-15822
+Ref: Introduction-Footnote-25912
+Node: Contributors to Eshell6115
+Node: Commands7283
+Node: Invocation7708
+Ref: Invocation-Footnote-18854
+Node: Arguments8951
+Node: Built-ins9655
+Node: Variables14301
+Ref: Variables-Footnote-114659
+Node: Aliases14688
+Node: History15283
+Node: Completion16881
+Ref: Completion-Footnote-118513
+Node: for loop18613
+Node: Scripts19146
+Node: Expansion19744
+Ref: Expansion-Footnote-120366
+Ref: Expansion-Footnote-220487
+Node: Dollars Expansion20604
+Node: Globbing22731
+Ref: Globbing-Footnote-123300
+Node: Input/Output23343
+Node: Extension modules26901
+Ref: Extension modules-Footnote-127828
+Ref: Extension modules-Footnote-227876
+Ref: Extension modules-Footnote-327914
+Node: Writing a module28026
+Node: Module testing28162
+Node: Directory handling28321
+Node: Key rebinding28485
+Node: Smart scrolling28640
+Node: Terminal emulation28799
+Node: Bugs and ideas28942
+Node: GNU Free Documentation License45293
+Node: Concept Index70653
+Node: Function and Variable Index72059
+Node: Command Index72833
 
 End Tag Table
 

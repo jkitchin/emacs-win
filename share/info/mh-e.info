@@ -1,8 +1,8 @@
-This is mh-e.info, produced by makeinfo version 5.2 from mh-e.texi.
+This is mh-e.info, produced by makeinfo version 6.3 from mh-e.texi.
 
-This is version 8.5 of ‘The MH-E Manual’, last updated 2013-03-02.
+This is version 8.6 of ‘The MH-E Manual’, last updated 2016-04-29.
 
-   Copyright © 1995, 2001–2003, 2005–2015 Free Software Foundation, Inc.
+   Copyright © 1995, 2001–2003, 2005–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of either:
@@ -33,9 +33,9 @@ File: mh-e.info,  Node: Top,  Next: Preface,  Prev: (dir),  Up: (dir)
 The MH-E Manual
 ***************
 
-This is version 8.5 of ‘The MH-E Manual’, last updated 2013-03-02.
+This is version 8.6 of ‘The MH-E Manual’, last updated 2016-04-29.
 
-   Copyright © 1995, 2001–2003, 2005–2015 Free Software Foundation, Inc.
+   Copyright © 1995, 2001–2003, 2005–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of either:
@@ -168,7 +168,7 @@ about GNU Emacs and MH.  Now I’m fully hooked on both of them.
 
    The MH-E package is distributed with Emacs(1), so you shouldn’t have
 to do anything special to use it.  Gnus is also required; version 5.10
-or higher is recommended.  This manual covers MH-E version 8.5.  To help
+or higher is recommended.  This manual covers MH-E version 8.6.  To help
 you decide which version you have, see *note Getting Started::.
 
    If you don’t already use GNU Emacs but want to learn more, you can
@@ -187,7 +187,7 @@ command (‘info mh-e’) or within Emacs (‘C-h i m mh-e <RET>’).  The
 online version is available at SourceForge
 (http://mh-e.sourceforge.net/manual/).  Another great online resource is
 the book ‘MH & nmh: Email for Users & Programmers’
-(http://rand-mh.sourceforge.net/book/) (also known as "the MH book").
+(http://rand-mh.sourceforge.net/book/) (also known as “the MH book”).
 
    I hope you enjoy this manual!  If you have any comments, or
 suggestions for this document, please let me know.
@@ -198,7 +198,7 @@ Bill Wohler <wohler at newt.com>
 
    ---------- Footnotes ----------
 
-   (1) Version 8.5 of MH-E appeared in Emacs 24.4.  It is supported in
+   (1) Version 8.6 of MH-E appeared in Emacs 24.4.  It is supported in
 GNU Emacs 23 and higher, as well as XEmacs 21.4.22 and 21.5.31.  MH-E is
 known not to work with GNU Emacs versions 20 and below, and XEmacs
 version 21.5.9–21.5.16.  It is compatible with MH versions 6.8.4 and
@@ -214,9 +214,9 @@ If you’re an experienced Emacs user, you can skip the following
 conventions and definition of terms and go directly to the next section
 (*note Getting Started::).
 
-   In general, "functions" in this text refer to Emacs Lisp functions
+   In general, “functions” in this text refer to Emacs Lisp functions
 that one would call from within Emacs Lisp programs (for example,
-‘(mh-inc-folder)’).  On the other hand, "commands" are those things that
+‘(mh-inc-folder)’).  On the other hand, “commands” are those things that
 are run by the user, such as ‘i’ or ‘M-x mh-inc-folder’.  Programs
 outside of Emacs are specifically called MH commands, shell commands, or
 Unix commands.
@@ -243,7 +243,7 @@ Unix commands.
 ‘<BS>’
      Press the <BACKSPACE> key(1).
 
-   A "prefix argument" allows you to pass an argument to any Emacs
+   A “prefix argument” allows you to pass an argument to any Emacs
 function.  To pass an argument, type ‘C-u’ before the Emacs command or
 keystroke.  Numeric arguments can be passed as well.  For example, to
 insert five f’s, use ‘C-u 5 f’.  There is a default of four when using
@@ -261,22 +261,22 @@ the <META> key.  Examples include ‘M-5’ to specify an argument of 5, or
      (*note Reading Mail Tour::).  In this mode, simply enter the
      numerical argument before entering the command.
 
-   Emacs uses "variables" to hold values.  These can be changed via
+   Emacs uses “variables” to hold values.  These can be changed via
 calls to the function ‘setq’ in ‘~/.emacs’.
 
    Variables in MH-E that are normally modified by the user are called
-"options" and are modified through the customize functions (such as ‘M-x
+“options” and are modified through the customize functions (such as ‘M-x
 customize-option’ or ‘M-x customize-group’).  *Note (emacs)Easy
 Customization::, in ‘The GNU Emacs Manual’.  *Note Options::.
 
-   You can specify various styles for displaying text using "faces".
+   You can specify various styles for displaying text using “faces”.
 MH-E provides a set of faces that you can use to personalize the look of
 your MH-E buffers.  Use the command ‘M-x customize-face’ to do this.
 *Note (emacs)Face Customization::, in ‘The GNU Emacs Manual’.
 
-   Commands often offer "hooks" which enable you to extend or modify the
+   Commands often offer “hooks” which enable you to extend or modify the
 way a command works.  *note Hooks: (emacs)Hooks, in ‘The GNU Emacs
-Manual’ for a description about "normal hooks" and "abnormal hooks".
+Manual’ for a description about “normal hooks” and “abnormal hooks”.
 MH-E uses normal hooks in nearly all cases, so you can assume that we
 are talking about normal hooks unless we explicitly mention that a hook
 is abnormal.  We also follow the conventions described in that section:
@@ -285,16 +285,16 @@ the MH-E hooks end in ‘-hook’.  You can add hooks with either
 ‘customize-option’ or ‘add-hook’.
 
    There are several other terms that are used in Emacs that you should
-know.  The "point" is where the cursor currently is.  You can save your
-current place in the file by setting a "mark".  This operation is useful
-in several ways.  The mark can be later used when defining a "region",
+know.  The “point” is where the cursor currently is.  You can save your
+current place in the file by setting a “mark”.  This operation is useful
+in several ways.  The mark can be later used when defining a “region”,
 which is the text between the point and mark.  Many commands operate on
 regions, such as those for deleting text or filling paragraphs.  A mark
 can be set with ‘C-@’ (or ‘C-<SPC>’).
 
-   The "minibuffer" is the bottom line of the Emacs window, where all
+   The “minibuffer” is the bottom line of the Emacs window, where all
 prompting and multiple-character input is directed.  You can use
-"completion" to enter values such as folders.  Completion means that
+“completion” to enter values such as folders.  Completion means that
 Emacs fills in text for you when you type <SPC> or <TAB>.  A second
 <SPC> or <TAB> will list all possibilities at that point.  *Note
 Completion: (emacs)Completion.  Note that <SPC> cannot be used for
@@ -336,7 +336,7 @@ is pretty close to Version 6 and Version 7.  It differs from Version 4
 and Version 5 and is vastly different from Version 3.  *Note History::.
 
    To determine which version of MH-E that you have, enter ‘M-x
-mh-version <RET>’.  Hopefully it says that you’re running Version 8.5
+mh-version <RET>’.  Hopefully it says that you’re running Version 8.6
 which is the latest version as of this printing.
 
    If your version is much older than this, please consider upgrading.
@@ -362,9 +362,9 @@ need to know about MH to use MH-E, but the more you know about MH, the
 more you can leverage its power.  See the MH book
 (http://rand-mh.sourceforge.net/book/mh/../) to learn more about MH.
 
-   Your MH environment includes your "MH profile" which is found in the
+   Your MH environment includes your “MH profile” which is found in the
 file ‘~/.mh_profile’, or the file named in the environment variable
-‘$MH’.  This file contains a number of "MH profile components".  For
+‘$MH’.  This file contains a number of “MH profile components”.  For
 example, the ‘Path:’ MH profile component contains the path to your mail
 directory, which is ‘~/Mail’ by default.
 
@@ -493,7 +493,7 @@ That’s all there is to it!
 
    ---------- Footnotes ----------
 
-   (1) A "mode" changes Emacs to make it easier to edit a particular
+   (1) A “mode” changes Emacs to make it easier to edit a particular
 type of text.
 
    (2) If you’re running Emacs under the X Window System, then you would
@@ -511,7 +511,7 @@ File: mh-e.info,  Node: Reading Mail Tour,  Next: Processing Mail Tour,  Prev: S
 
 To read the mail you’ve just sent yourself, enter ‘M-x mh-rmail’.  This
 incorporates the new mail and puts the output from ‘inc’(1) (called
-"scan lines" after the MH program ‘scan’(2) which prints a one-line
+“scan lines” after the MH program ‘scan’(2) which prints a one-line
 summary of each message) into a buffer called ‘+inbox’ whose major mode
 is MH-Folder.
 
@@ -607,7 +607,7 @@ previous character with <BS>.  When you’re finished editing your
 message, send it with ‘C-c C-c’ as before.
 
    You’ll often want to save messages that were sent to you in an
-organized fashion.  This is done with "folders".  You can use folders to
+organized fashion.  This is done with “folders”.  You can use folders to
 keep messages from your friends, or messages related to a particular
 topic.  With your cursor in the MH-Folder buffer and positioned on the
 message you sent to yourself, type ‘o’ to output (‘refile’ in MH
@@ -631,7 +631,7 @@ refile we did previously), use the ‘x’ command.
 mh-smail’.  So go ahead, send some mail to your friends!
 
    You can get a quick reminder about these commands by typing ‘?’.
-This lists several "prefix characters".  To list the commands available
+This lists several “prefix characters”.  To list the commands available
 via the prefix characters, type the prefix character followed by a ‘?’,
 for example, ‘F ?’.  More complete help is available with the ‘C-h m’
 (‘describe-mode’) command.
@@ -1015,12 +1015,12 @@ incorporates your mail and creates a buffer called ‘+inbox’ in MH-Folder
 mode.  The command ‘M-x mh-rmail’ shows you only new mail, not mail you
 have already read(1).
 
-   There are some commands that need to read mail, such as ‘Mouse-2’
+   There are some commands that need to read mail, such as ‘mouse-2’
 over the ‘Mail’ button that ‘display-time’ adds to the mode line.  You
 can configure Emacs to have these commands use MH-E by setting the
 option ‘read-mail-command’ to ‘mh-rmail’.
 
-   The ‘+inbox’ buffer contains "scan lines", which are one-line
+   The ‘+inbox’ buffer contains “scan lines”, which are one-line
 summaries of each incorporated message.  You can perform most MH
 commands on these messages via one- or two-letter commands in either the
 MH-Folder or MH-Show buffers or by using the ‘Message’ menu.  See
@@ -1121,14 +1121,14 @@ the Figure in *note Reading Mail Tour::, for an example.
 ‘X s’
 ‘X u’
      Unpack message created with ‘uudecode’ or ‘shar’ (‘mh-store-msg’).
-‘Mouse-2’
+‘mouse-2’
      Move point to mouse event and show message (‘mh-show-mouse’).
 
    Within the MH-Show buffer, the following command is defined.
 
 ‘<RET>’
-‘Mouse-1’
-‘Mouse-2’
+‘mouse-1’
+‘mouse-2’
      View contents of button (‘mh-press-button’).
 
    The following table lists options in the ‘mh-show’ customization
@@ -1257,7 +1257,7 @@ File: mh-e.info,  Node: Viewing,  Next: Viewing Attachments,  Prev: Reading Mail
 =====================
 
 The command <RET> (‘mh-show’) displays the message that the cursor is on
-while ‘Mouse-2’ (‘mh-show-mouse’) displays the message that the mouse
+while ‘mouse-2’ (‘mh-show-mouse’) displays the message that the mouse
 cursor is on.  If the message is already displayed, it scrolls to the
 beginning of the message.  Use <SPC> (‘mh-page-msg’) and <BS>
 (‘mh-previous-page’) to move forwards and backwards one page at a time
@@ -1364,12 +1364,12 @@ entirely, choose ‘None’.
    Email addresses and URLs in the message are highlighted if the option
 ‘goto-address-highlight-p’ is on, which it is by default.  To view the
 web page for a highlighted URL or to send a message using a highlighted
-email address, use ‘Mouse-2’ or ‘C-c <RET>’ (‘goto-address-at-point’).
+email address, use ‘mouse-2’ or ‘C-c <RET>’ (‘goto-address-at-point’).
 *Note Sending Mail::, to see how to configure Emacs to send the message
 using MH-E.
 
    It is a long standing custom to inject body language using a
-cornucopia of punctuation, also known as the "smileys".  MH-E can render
+cornucopia of punctuation, also known as the “smileys”.  MH-E can render
 these as graphical widgets if the option ‘mh-graphical-smileys-flag’ is
 turned on, which it is by default.  Smileys include patterns such as :-)
 and ;-).  Similarly, a few typesetting features are indicated in ASCII
@@ -1384,7 +1384,7 @@ Viewing Attachments::.
 
    MH-E normally renders signatures and vCards in italics so that the
 body of the message stands out more.  MH-E depends on the presence of
-the "signature separator" (‘"-- "’) to do this.  You can also customize
+the “signature separator” (‘"-- "’) to do this.  You can also customize
 the face ‘mh-show-signature’ so the appearance of the signature block is
 more to your liking.
 
@@ -1410,7 +1410,7 @@ yields a mode line of
 information, see <http://quimby.gnus.org/circus/face/>.
 
    (2) The display of this field requires the ‘uncompface’ program
-(ftp://ftp.cs.indiana.edu/pub/faces/compface/compface.tar.Z).  Recent
+(ftp://ftp.cs.indiana.edu/pub/faces/compface/compface.tar.Z). Recent
 versions of XEmacs have internal support for ‘X-Face:’ images.  If your
 version of XEmacs does not, then you’ll need both ‘uncompface’ and the
 ‘x-face’ package (ftp://ftp.jpl.org/pub/elisp/).
@@ -1426,9 +1426,9 @@ File: mh-e.info,  Node: Viewing Attachments,  Next: HTML,  Prev: Viewing,  Up: R
 6.2 Viewing Attachments
 =======================
 
-MH has the ability to display "MIME" (Multipurpose Internet Mail
-Extensions) messages which are simply messages with additional "body
-parts" or "attachments".  You can use the MH commands ‘show’(1) or
+MH has the ability to display “MIME” (Multipurpose Internet Mail
+Extensions) messages which are simply messages with additional “body
+parts” or “attachments”.  You can use the MH commands ‘show’(1) or
 ‘mhshow’(2) from the shell to read MIME messages(3).
 
    MH-E can handle attachments as well if the Gnus ‘mm-decode’ package
@@ -1441,11 +1441,11 @@ command ‘;’ (semicolon; ‘mh-toggle-mh-decode-mime-flag’) to view the raw
 message.  This option also controls the display of quoted-printable
 messages and other graphical widgets.  *Note Viewing::.
 
-   Attachments in MH-E are indicated by "buttons" like this:
+   Attachments in MH-E are indicated by “buttons” like this:
 
      [1. image/jpeg; foo.jpg]...
 
-   To view the contents of the button, use either ‘Mouse-1’ or ‘Mouse-2’
+   To view the contents of the button, use either ‘mouse-1’ or ‘mouse-2’
 on the button or <RET> (‘mh-press-button’) when the cursor is over the
 button.  This command is a toggle so if you use it again on the same
 attachment, it is hidden.  If Emacs does not know how to display the
@@ -1583,7 +1583,7 @@ File: mh-e.info,  Node: HTML,  Next: Digests,  Prev: Viewing Attachments,  Up: R
 6.3 HTML
 ========
 
-MH-E can display messages that have been sent in HTML(1). The content of
+MH-E can display messages that have been sent in HTML. The content of
 the message will appear in the MH-Show buffer as you would expect if the
 entire message is HTML, or there is an inline HTML body part.  However,
 if there is an HTML body part that is an attachment, then you’ll see a
@@ -1599,70 +1599,73 @@ Attachments::.
 upon the presence of a known browser on your system.  If you wish to use
 a different browser, then set this option accordingly.  See the
 documentation for the browser you use for additional information on how
-to use it.  In particular, find and disable the option to render images
-as this can tip off spammers that the email address they have used is
-valid.
+to use it.  In particular, find and disable the option to render images,
+as displaying remote images can tip off spammers that the email address
+they have used is valid.
 
    If you’re confused about which ‘mm-text-html-renderer’ to use, here’s
-a brief description of each, sorted by popularity, that includes the
-results of a quick poll of MH-E users from 2005-12-23.
+a brief description of each, sorted by name.
 
-‘w3m’ 7
-     The ‘w3m’ browser requires an external program.  It’s quick,
-     produces pretty nice output, and best of all, it’s the only browser
-     that highlights links.  These can be clicked with ‘Mouse-2’ to view
-     the content of the link in ‘w3m’.  The ‘w3m’ browser handles tables
-     well and actually respects the table’s width parameter (which can
-     cause text to wrap if the author didn’t anticipate that the page
-     would be viewed in Emacs).
-‘w3m-standalone’ 3
-     This browser, along with ‘nil’ for the external browser, are the
-     only choices that work without having to download a separate lisp
-     package or external program.  This browser is quick, but does not
-     show links.  It handles simple tables but some tables get rendered
-     much wider than the Emacs frame.  This browser was the only one not
-     to handle the escape ‘&ndash;’ (it printed a ‘?’), but it did
-     render ‘&reg;’.
-‘links’ 1
+‘gnus-w3m’
+     The ‘gnus-w3m’ browser requires an external program.  It’s quick,
+     produces pretty nice output, and it highlights links.  It renders
+     ‘&ndash;’ and ‘&reg;’ okay.  It sometimes fails to wrap lines
+     properly.  It always downloads remote images.
+‘html2text’
+     The ‘html2text’ browser requires an external program.  Some users
+     have reported problems with it, such as filling the entire message
+     as if it were one paragraph, or displaying chunks of raw HTML.
+‘links’
      The ‘links’ browser requires an external program.  It’s quick, and
      produces nicer output than ‘lynx’ on single column mails in tables.
      However, it doesn’t show links and it doesn’t do as nice a job on
-     multi-column tables as some lines wrap.  At least it fits in 80
-     columns and thus seems better than ‘w3’ and ‘w3m-standalone’.
-     Converts escapes such as ‘&reg;’ to (R).
-‘lynx’ 1
+     multi-column tables as some lines wrap.  It does do a good job of
+     fitting text within 80 columns.  It appears to render special
+     characters using ASCII equivalents.  For example, ‘&reg;’ appears
+     as (R). It does not download images.
+‘lynx’
      The ‘lynx’ browser requires an external program.  It’s quick and
      produces pretty decent output but it doesn’t show links.  It
      doesn’t seem to do multi-column tables which makes output much
      cleaner.  It centers the output and wraps long lines more than
-     most.  Handles ‘&reg;’.
-‘nil’ 1
-     This choice obviously requires an external browser.  Like
-     ‘w3m-standalone’, it works out of the box.  With this setting, HTML
-     messages have a button for the body part which you can view with ‘K
-     v’ (‘mh-folder-toggle-mime-part’).
-‘w3’ 0
-     This choice does not require an external program as all of the
-     rendering is done in lisp.  You do need to get the package
-     separately.  This browser is *slow*, and doesn’t appear to have
-     been updated since 2001 and the author hasn’t responded to my
-     emails.  It displays unknown tags instead of hiding them, so you
-     get to see all the Microsoft crap in certain messages.  Tends to
-     make multi-column tables wider than even a full-screen Emacs can
-     handle.  Like ‘w3m’, you can follow links, but you have to find
-     them first as they are not highlighted.  Performs well on
-     single-column tables and handles escapes such as ‘&reg;’.
-‘html2text’ 0
-     The ‘html2text’ browser requires an external program.  I noticed
-     that it can do some nasty things with simple HTML mails (like
-     filling the entire message as if it were one paragraph, including
-     signature).  On another message, it displayed half of the HTML tags
-     for some reason.
+     most.  It does not always handle special characters like ‘&reg;’ or
+     ‘&ndash;’.  It does not download images.
+‘nil’
+     This choice obviously requires an external browser.  With this
+     setting, HTML messages have a button for the body part which you
+     can view with ‘K v’ (‘mh-folder-toggle-mime-part’).  Rendering of
+     special characters and handling of remote images depends on your
+     choice of browser.
+‘shr’
+     This choice does not require an external program, but it does
+     require that Emacs be configured at build time to use ‘libxml2’.
+     It is fairly quick, it highlights links, and it supports HTML color
+     declarations.  It renders ‘&ndash;’ and ‘&reg;’ okay.  It sometimes
+     truncates text, particularly if the message tries to have fancy
+     text layout.  By default it does not download images; this behavior
+     is controlled by the options ‘mm-html-blocked-images’ and
+     ‘mm-html-inhibit-images’ (*note (emacs-mime)Display
+     Customization::).
+‘w3m’
+     The ‘w3m’ browser requires an external program.  It’s quick,
+     produces pretty nice output, and it highlights links.  These can be
+     clicked with ‘mouse-2’ to view the content of the link in ‘w3m’.
+     The ‘w3m’ browser handles tables well and actually respects the
+     table’s width parameter (which can cause text to wrap if the author
+     didn’t anticipate that the page would be viewed in Emacs).  It does
+     not download images by default; this behavior is controlled by the
+     option ‘mm-w3m-safe-url-regexp’ (*note (emacs-mime)Display
+     Customization::).
+‘w3m-standalone’
+     This browser is quick, but does not show links.  It handles simple
+     tables but some tables get rendered much wider than the Emacs
+     frame.  This browser renders ‘&ndash;’ and ‘&reg;’ okay.  It does
+     not download images.
 
    For a couple more sources of information about
 ‘mm-text-html-renderer’, *Note (emacs-mime)Display Customization::, and
 the documentation for the Gnus command ‘W h’ (*note (gnus)Article
-Washing::,).
+Washing::).
 
    A useful key binding that you can add to ‘~/.emacs’ is the following
 which displays an HTML link or textual URL in an external browser when
@@ -1670,10 +1673,6 @@ clicked with ‘S-mouse-2’.  This binding works in any buffer, including
 HTML buffers.
 
      (global-set-key [S-mouse-2] 'browse-url-at-mouse)
-
-   ---------- Footnotes ----------
-
-   (1) This feature depends on a version of Gnus that is at least 5.10.
 
 
 File: mh-e.info,  Node: Digests,  Next: Reading PGP,  Prev: HTML,  Up: Reading Mail
@@ -1995,7 +1994,7 @@ this section, simply add the following code to ‘~/.emacs’.
 
      (defun my-mh-rmail (&optional arg)
        "Toggle between MH-E and normal screen configurations.
-     With non-nil or prefix argument, inc mailbox as well
+     With non-nil or prefix argument, include mailbox as well
      when going into mail."
        (interactive "P")                 ; user callable function, P=prefix arg
        (setq my-mh-screen-saved          ; save state
@@ -2507,7 +2506,7 @@ Emacs buffer whose mode is MH-Letter (to see what the buffer looks like,
 *note Sending Mail Tour::).  MH-Letter mode allows you to edit your
 message, to check the validity of the recipients, to insert attachments
 and other messages into your message, and to send the message.  We’ll go
-more into depth about editing a "draft"(1) (a message you’re composing)
+more into depth about editing a “draft”(1) (a message you’re composing)
 in just a moment (*note Editing Drafts::).
 
    If you prefer to be prompted for the recipient and subject fields
@@ -2560,7 +2559,7 @@ fields.
 
    ---------- Footnotes ----------
 
-   (1) I highly recommend that you use a "draft folder" so that you can
+   (1) I highly recommend that you use a “draft folder” so that you can
 edit several drafts in parallel.  To do so, create a folder named
 ‘+drafts’ for example, and add the profile component ‘Draft-Folder:
 drafts’ (see ‘mh-profile’(5)).
@@ -2740,7 +2739,7 @@ File: mh-e.info,  Node: Editing Drafts,  Next: Aliases,  Prev: Sending Mail,  Up
 9 Editing a Draft
 *****************
 
-When you edit a message that you want to send (called a "draft" in this
+When you edit a message that you want to send (called a “draft” in this
 case), the mode used is MH-Letter.  This mode provides several commands
 in addition to the normal Emacs editing commands to help you edit your
 draft.  These can also be found in the ‘Letter’ menu.
@@ -3145,7 +3144,7 @@ command ‘C-c C-s’ (‘mh-insert-signature’).
 
    By default, the text of your signature is taken from the file
 ‘~/.signature’.  You can read from other sources by changing the option
-‘mh-signature-file-name’.  This file may contain a "vCard" in which case
+‘mh-signature-file-name’.  This file may contain a “vCard” in which case
 an attachment is added with the vCard.
 
    The option ‘mh-signature-file-name’ may also be a symbol, in which
@@ -3223,7 +3222,7 @@ message!
 
    If you were to create a multimedia message with plain MH commands,
 you would insert ‘mhbuild’ or ‘mhn’ directives (henceforth called
-"MH-style directives" into your draft and use the ‘mhbuild’ command in
+“MH-style directives” into your draft and use the ‘mhbuild’ command in
 nmh or ‘mhn’ command in MH and GNU mailutils to expand them.  MH-E works
 in much the same way, although it provides a handful of commands
 prefixed with ‘C-c C-m’ to insert the directives so you don’t need to
@@ -3236,7 +3235,7 @@ choose between them.  By default, this option is set to ‘MML’ if it is
 supported since it provides a lot more functionality.  This option can
 also be set to ‘MH’ if MH-style directives are preferred.
 
-   The MH-E MIME commands require a "media type" for each body part or
+   The MH-E MIME commands require a “media type” for each body part or
 attachment.  For example, a PDF document is of type ‘application/pdf’
 and an HTML document is of type ‘text/html’.  Some commands fill in the
 media type for you, whereas others require you to enter one.
@@ -3254,7 +3253,7 @@ including.  In the case of binaries, the media type
 appropriate media type, use ‘text/plain’ for text messages and
 ‘application/octet-stream’ for everything else.
 
-   You are also sometimes asked for a "content description".  This is
+   You are also sometimes asked for a “content description”.  This is
 simply an optional brief phrase, in your own words, that describes the
 object.  If you don’t care to enter a content description, just press
 return and none will be included; however, a reader may skip over
@@ -3940,7 +3939,7 @@ You can also use the speedbar (*note Speedbar Frames: (emacs)Speedbar,)
 to view your folders.  To bring up the speedbar, run ‘M-x speedbar
 <RET>’.  You will see a new frame appear with all of your MH folders.
 Folders with unseen messages appear in boldface.  Click on a folder name
-with ‘Mouse-2’ to visit that folder in a similar fashion to the command
+with ‘mouse-2’ to visit that folder in a similar fashion to the command
 ‘F v’ (‘mh-visit-folder’) (*note Folders::).  Click on the ‘+’ icon to
 expand and view the sub-folders of that folder.
 
@@ -3964,7 +3963,7 @@ items listed in the table below.
      message count before the next automatic update
      (‘mh-speed-refresh’).
 
-   You can click on ‘Mouse-3’ to bring up a context menu that contains
+   You can click on ‘mouse-3’ to bring up a context menu that contains
 these items.  Dismiss the speedbar with ‘C-x 5 0’ (‘delete-frame’).
 
    The MH-E speedbar uses the MH command ‘flists’(1) to generate the
@@ -4422,15 +4421,15 @@ File: mh-e.info,  Node: Threading,  Next: Limits,  Prev: Searching,  Up: Top
 16 Viewing Message Threads
 **************************
 
-MH-E groups messages by "threads" which are messages that are part of
+MH-E groups messages by “threads” which are messages that are part of
 the same discussion and usually all have the same ‘Subject:’ header
 field.  Other ways to organize messages in a folder include limiting
 (*note Limits::) or using full-text indexed searches (*note
 Searching::).
 
-   A thread begins with a single message called a "root".  All replies
-to the same message are "siblings" of each other.  Any message that has
-replies to it is an "ancestor" of those replies.
+   A thread begins with a single message called a “root”.  All replies
+to the same message are “siblings” of each other.  Any message that has
+replies to it is an “ancestor” of those replies.
 
    There are several commands that you can use to navigate and operate
 on threads.
@@ -4686,11 +4685,11 @@ messages a day and still get some real work done’.  This chapter could
 be entitled, ‘How to process 1000 spams a day and still get some real
 work done’.
 
-   We use the terms "junk mail" and "spam" interchangeably for any
-unwanted message which includes spam, "viruses", and "worms".  The
-opposite of spam is "ham".  The act of classifying a sender as one who
-sends junk mail is called "blacklisting"; the opposite is called
-"whitelisting".
+   We use the terms “junk mail” and “spam” interchangeably for any
+unwanted message which includes spam, “viruses”, and “worms”.  The
+opposite of spam is “ham”.  The act of classifying a sender as one who
+sends junk mail is called “blacklisting”; the opposite is called
+“whitelisting”.
 
 ‘J ?’
      Display cheat sheet for the commands of the current prefix in
@@ -4868,7 +4867,7 @@ distribution or from the bogofilter web site
 
      bogofilter -s < spam-message
 
-   on every spam message.  This is called a "full training"; three other
+   on every spam message.  This is called a “full training”; three other
 training methods are described in the FAQ that is distributed with
 bogofilter.  Note that most Bayesian filters need 1000 to 5000 of each
 type of message to start doing a good job.
@@ -5259,7 +5258,8 @@ expressions, see *note Syntax of Regular Expressions: (emacs)Regexps.
      number after ‘Re:’, such as in ‘Re[2]:’ (and is thus a
      sub-expression of the first expression).  The third is expected to
      match the subject line itself which is highlighted with the face
-     ‘mh-folder-subject’.  For example, the default is ‘"^ *[0-9]+........[ ]*...................’
+     ‘mh-folder-subject’.  For example, the default is
+     ‘"^ *[0-9]+........[ ]*...................’
      ‘\\([Rr][Ee]\\(\\[[0-9]+\\]\\)?:\\s-*\\)*\\([^<\n]*\\)"’.  This
      regular expression should be correct as it is needed by
      non-fontification functions.  Note that this example is broken up
@@ -5780,7 +5780,7 @@ Appendix E GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -6230,7 +6230,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -7334,16 +7334,16 @@ Key (Character) Index
 * M-x mh-version <1>:                    Bug Reports.         (line   6)
 * M-x mh-version <2>:                    Getting MH-E.        (line  22)
 * M-x speedbar:                          Speedbar.            (line   6)
-* Mouse-1:                               Reading Mail.        (line 122)
-* Mouse-1 <1>:                           Viewing Attachments. (line  25)
-* Mouse-2:                               Reading Mail.        (line 116)
-* Mouse-2 <1>:                           Reading Mail.        (line 122)
-* Mouse-2 <2>:                           Viewing.             (line   6)
-* Mouse-2 <3>:                           Viewing.             (line 111)
-* Mouse-2 <4>:                           Viewing Attachments. (line  25)
-* Mouse-2 <5>:                           HTML.                (line  30)
-* Mouse-2 <6>:                           Speedbar.            (line   6)
-* Mouse-3:                               Speedbar.            (line  34)
+* mouse-1:                               Reading Mail.        (line 122)
+* mouse-1 <1>:                           Viewing Attachments. (line  25)
+* mouse-2:                               Reading Mail.        (line 116)
+* mouse-2 <1>:                           Reading Mail.        (line 122)
+* mouse-2 <2>:                           Viewing.             (line   6)
+* mouse-2 <3>:                           Viewing.             (line 111)
+* mouse-2 <4>:                           Viewing Attachments. (line  25)
+* mouse-2 <5>:                           HTML.                (line  68)
+* mouse-2 <6>:                           Speedbar.            (line   6)
+* mouse-3:                               Speedbar.            (line  34)
 * n:                                     Reading Mail Tour.   (line  19)
 * n <1>:                                 Processing Mail Tour.
                                                               (line  63)
@@ -7418,7 +7418,7 @@ Key (Character) Index
 * S w:                                   Sequences.           (line  32)
 * S w <1>:                               Sequences.           (line  73)
 * S w <2>:                               Sequences.           (line 115)
-* S-Mouse-2:                             HTML.                (line  87)
+* S-mouse-2:                             HTML.                (line  90)
 * S-<TAB>:                               Editing Drafts.      (line  19)
 * S-<TAB> <1>:                           Editing Message.     (line  19)
 * S-<TAB> <2>:                           Searching.           (line  55)
@@ -7490,7 +7490,7 @@ Command Index
 * add-hook:                              Conventions.         (line  70)
 * backward-char:                         Processing Mail Tour.
                                                               (line  42)
-* browse-url-at-mouse:                   HTML.                (line  87)
+* browse-url-at-mouse:                   HTML.                (line  90)
 * call-process:                          Junk.                (line  90)
 * customize-face:                        Conventions.         (line  65)
 * customize-group:                       Conventions.         (line  60)
@@ -7795,7 +7795,7 @@ Command Index
 * mh-send-letter <1>:                    Sending Message.     (line   6)
 * mh-set-cmd-note:                       Scan Line Formats.   (line  32)
 * mh-set-cmd-note <1>:                   Scan Line Formats.   (line  93)
-* mh-set-cmd-note <2>:                   Scan Line Formats.   (line 240)
+* mh-set-cmd-note <2>:                   Scan Line Formats.   (line 241)
 * mh-show:                               Reading Mail.        (line  24)
 * mh-show <1>:                           Viewing.             (line   6)
 * mh-show, example:                      Incorporating Mail.  (line  89)
@@ -7908,8 +7908,8 @@ Option (Variable) Index
 * mh-adaptive-cmd-note-flag <1>:         Scan Line Formats.   (line  22)
 * mh-adaptive-cmd-note-flag <2>:         Scan Line Formats.   (line  32)
 * mh-adaptive-cmd-note-flag <3>:         Scan Line Formats.   (line  41)
-* mh-adaptive-cmd-note-flag <4>:         Scan Line Formats.   (line 240)
-* mh-adaptive-cmd-note-flag <5>:         Scan Line Formats.   (line 283)
+* mh-adaptive-cmd-note-flag <4>:         Scan Line Formats.   (line 241)
+* mh-adaptive-cmd-note-flag <5>:         Scan Line Formats.   (line 284)
 * mh-after-commands-processed-hook:      Folders.             (line  76)
 * mh-after-commands-processed-hook <1>:  Folders.             (line 193)
 * mh-alias-completion-ignore-case-flag:  Aliases.             (line  28)
@@ -7956,7 +7956,7 @@ Option (Variable) Index
 * mh-bury-show-buffer-flag, example:     Options.             (line  15)
 * mh-clean-message-header-flag:          Reading Mail.        (line 132)
 * mh-clean-message-header-flag <1>:      Viewing.             (line  30)
-* mh-cmd-note:                           Scan Line Formats.   (line 240)
+* mh-cmd-note:                           Scan Line Formats.   (line 241)
 * mh-compose-forward-as-mime-flag:       Sending Mail.        (line  41)
 * mh-compose-forward-as-mime-flag <1>:   Forwarding.          (line  14)
 * mh-compose-insertion:                  Editing Drafts.      (line 127)
@@ -8140,18 +8140,18 @@ Option (Variable) Index
 * mh-new-messages-folders <1>:           Folders.             (line 240)
 * mh-new-messages-folders <2>:           Folders.             (line 254)
 * mh-new-messages-folders <3>:           Folders.             (line 260)
-* mh-note-copied:                        Scan Line Formats.   (line 246)
+* mh-note-copied:                        Scan Line Formats.   (line 247)
 * mh-note-cur:                           Scan Line Formats.   (line 119)
-* mh-note-cur <1>:                       Scan Line Formats.   (line 249)
+* mh-note-cur <1>:                       Scan Line Formats.   (line 250)
 * mh-note-deleted:                       Scan Line Formats.   (line 140)
-* mh-note-deleted <1>:                   Scan Line Formats.   (line 253)
-* mh-note-dist:                          Scan Line Formats.   (line 256)
-* mh-note-forw:                          Scan Line Formats.   (line 259)
-* mh-note-printed:                       Scan Line Formats.   (line 262)
+* mh-note-deleted <1>:                   Scan Line Formats.   (line 254)
+* mh-note-dist:                          Scan Line Formats.   (line 257)
+* mh-note-forw:                          Scan Line Formats.   (line 260)
+* mh-note-printed:                       Scan Line Formats.   (line 263)
 * mh-note-refiled:                       Scan Line Formats.   (line 196)
-* mh-note-refiled <1>:                   Scan Line Formats.   (line 265)
-* mh-note-repl:                          Scan Line Formats.   (line 268)
-* mh-note-seq:                           Scan Line Formats.   (line 271)
+* mh-note-refiled <1>:                   Scan Line Formats.   (line 266)
+* mh-note-repl:                          Scan Line Formats.   (line 269)
+* mh-note-seq:                           Scan Line Formats.   (line 272)
 * mh-pack-folder-hook:                   Folders.             (line  90)
 * mh-pack-folder-hook <1>:               Folders.             (line 278)
 * mh-path:                               Getting Started.     (line  47)
@@ -8182,20 +8182,20 @@ Option (Variable) Index
 * mh-reply-show-message-flag <1>:        Replying.            (line  51)
 * mh-scan-body-regexp:                   Scan Line Formats.   (line 112)
 * mh-scan-cur-msg-number-regexp:         Scan Line Formats.   (line 120)
-* mh-scan-cur-msg-number-regexp <1>:     Scan Line Formats.   (line 248)
-* mh-scan-cur-msg-number-regexp, example: Scan Line Formats.  (line 309)
+* mh-scan-cur-msg-number-regexp <1>:     Scan Line Formats.   (line 249)
+* mh-scan-cur-msg-number-regexp, example: Scan Line Formats.  (line 310)
 * mh-scan-date-regexp:                   Scan Line Formats.   (line 132)
 * mh-scan-deleted-msg-regexp:            Scan Line Formats.   (line 141)
-* mh-scan-deleted-msg-regexp <1>:        Scan Line Formats.   (line 252)
-* mh-scan-deleted-msg-regexp, example:   Scan Line Formats.   (line 314)
+* mh-scan-deleted-msg-regexp <1>:        Scan Line Formats.   (line 253)
+* mh-scan-deleted-msg-regexp, example:   Scan Line Formats.   (line 315)
 * mh-scan-format-file:                   Scan Line Formats.   (line  16)
 * mh-scan-format-file <1>:               Scan Line Formats.   (line  32)
 * mh-scan-format-file <2>:               Scan Line Formats.   (line  41)
 * mh-scan-format-file <3>:               Scan Line Formats.   (line  51)
 * mh-scan-format-file <4>:               Scan Line Formats.   (line 161)
 * mh-scan-format-file <5>:               Scan Line Formats.   (line 167)
-* mh-scan-format-file <6>:               Scan Line Formats.   (line 283)
-* mh-scan-format-file, example:          Scan Line Formats.   (line 283)
+* mh-scan-format-file <6>:               Scan Line Formats.   (line 284)
+* mh-scan-format-file, example:          Scan Line Formats.   (line 284)
 * mh-scan-format-mh:                     Scan Line Formats.   (line  41)
 * mh-scan-format-mh <1>:                 Scan Line Formats.   (line  51)
 * mh-scan-format-mh <2>:                 Scan Line Formats.   (line  72)
@@ -8205,27 +8205,27 @@ Option (Variable) Index
 * mh-scan-format-nmh <3>:                Scan Line Formats.   (line  51)
 * mh-scan-format-nmh <4>:                Scan Line Formats.   (line 207)
 * mh-scan-good-msg-regexp:               Scan Line Formats.   (line 152)
-* mh-scan-good-msg-regexp, example:      Scan Line Formats.   (line 303)
+* mh-scan-good-msg-regexp, example:      Scan Line Formats.   (line 304)
 * mh-scan-msg-format-regexp:             Scan Line Formats.   (line 162)
 * mh-scan-msg-format-string:             Scan Line Formats.   (line 168)
 * mh-scan-msg-number-regexp:             Scan Line Formats.   (line 173)
-* mh-scan-msg-number-regexp, example:    Scan Line Formats.   (line 298)
+* mh-scan-msg-number-regexp, example:    Scan Line Formats.   (line 299)
 * mh-scan-msg-overflow-regexp:           Scan Line Formats.   (line 178)
 * mh-scan-msg-search-regexp:             Scan Line Formats.   (line 181)
-* mh-scan-msg-search-regexp, example:    Scan Line Formats.   (line 298)
+* mh-scan-msg-search-regexp, example:    Scan Line Formats.   (line 299)
 * mh-scan-prog:                          Scan Line Formats.   (line  19)
 * mh-scan-prog <1>:                      Scan Line Formats.   (line  86)
 * mh-scan-rcpt-regexp:                   Scan Line Formats.   (line 186)
 * mh-scan-refiled-msg-regexp:            Scan Line Formats.   (line 197)
-* mh-scan-refiled-msg-regexp <1>:        Scan Line Formats.   (line 264)
-* mh-scan-refiled-msg-regexp, example:   Scan Line Formats.   (line 314)
+* mh-scan-refiled-msg-regexp <1>:        Scan Line Formats.   (line 265)
+* mh-scan-refiled-msg-regexp, example:   Scan Line Formats.   (line 315)
 * mh-scan-sent-to-me-sender-regexp:      Folders.             (line 117)
 * mh-scan-sent-to-me-sender-regexp <1>:  Folders.             (line 122)
 * mh-scan-sent-to-me-sender-regexp <2>:  Scan Line Formats.   (line 131)
 * mh-scan-sent-to-me-sender-regexp <3>:  Scan Line Formats.   (line 208)
 * mh-scan-subject-regexp:                Scan Line Formats.   (line 221)
 * mh-scan-valid-regexp:                  Scan Line Formats.   (line 105)
-* mh-scan-valid-regexp, example:         Scan Line Formats.   (line 291)
+* mh-scan-valid-regexp, example:         Scan Line Formats.   (line 292)
 * mh-search-folder:                      Searching.           (line  75)
 * mh-search-folder <1>:                  Searching.           (line 152)
 * mh-search-mode-hook:                   Searching.           (line  70)
@@ -8332,12 +8332,12 @@ Option (Variable) Index
 * mm-discouraged-alternatives:           Viewing Attachments. (line 120)
 * mm-text-html-renderer:                 HTML.                (line  17)
 * mm-text-html-renderer <1>:             HTML.                (line  26)
-* mm-text-html-renderer <2>:             HTML.                (line  82)
+* mm-text-html-renderer <2>:             HTML.                (line  85)
 * nnmail-keep-last-article:              Procmail.            (line  94)
 * pgg-encrypt-for-me:                    Sending PGP.         (line  42)
 * ps-print-color-p:                      Printing.            (line  18)
 * read-mail-command:                     Reading Mail.        (line  11)
-* set-mh-cmd-note, example:              Scan Line Formats.   (line 309)
+* set-mh-cmd-note, example:              Scan Line Formats.   (line 310)
 * text-mode-hook:                        Composing.           (line  34)
 * transient-mark-mode:                   Ranges.              (line  35)
 
@@ -8350,49 +8350,49 @@ Concept Index
  [index ]
 * Menu:
 
-* ‘*MH-E Folders*’:                      Folders.             (line 266)
-* ‘*MH-E Folders*’ <1>:                  Miscellaneous.       (line  24)
-* ‘*MH-E Help*’:                         Miscellaneous.       (line  26)
-* ‘*MH-E Info*’:                         Miscellaneous.       (line  12)
-* ‘*MH-E Info*’ <1>:                     Miscellaneous.       (line  29)
-* ‘*MH-E Log*’:                          Junk.                (line  90)
-* ‘*MH-E Log*’ <1>:                      Miscellaneous.       (line  31)
-* ‘*MH-E Mail Delivery*’:                Sending Message.     (line   6)
-* ‘*MH-E Mail Delivery*’ <1>:            Miscellaneous.       (line  34)
-* ‘*MH-E Recipients*’:                   Checking Recipients. (line   6)
-* ‘*MH-E Recipients*’ <1>:               Miscellaneous.       (line  37)
-* ‘*MH-E Sequences*’:                    Sequences.           (line  83)
-* ‘*MH-E Sequences*’ <1>:                Miscellaneous.       (line  40)
-* ‘*mh-temp*’:                           Miscellaneous.       (line  43)
-* ‘+inbox’:                              Incorporating Mail.  (line  26)
-* ‘+inbox’ <1>:                          Reading Mail.        (line   6)
-* ‘+mhe-index’:                          Searching.           (line 152)
-* ‘.emacs’:                              Conventions.         (line  57)
-* ‘.emacs’ <1>:                          Getting Started.     (line  63)
-* ‘.emacs’ <2>:                          Incorporating Mail.  (line  34)
-* ‘.emacs’ <3>:                          HTML.                (line  87)
-* ‘.emacs’ <4>:                          Miscellaneous Commands and Options.
+* *MH-E Folders*:                        Folders.             (line 266)
+* *MH-E Folders* <1>:                    Miscellaneous.       (line  24)
+* *MH-E Help*:                           Miscellaneous.       (line  26)
+* *MH-E Info*:                           Miscellaneous.       (line  12)
+* *MH-E Info* <1>:                       Miscellaneous.       (line  29)
+* *MH-E Log*:                            Junk.                (line  90)
+* *MH-E Log* <1>:                        Miscellaneous.       (line  31)
+* *MH-E Mail Delivery*:                  Sending Message.     (line   6)
+* *MH-E Mail Delivery* <1>:              Miscellaneous.       (line  34)
+* *MH-E Recipients*:                     Checking Recipients. (line   6)
+* *MH-E Recipients* <1>:                 Miscellaneous.       (line  37)
+* *MH-E Sequences*:                      Sequences.           (line  83)
+* *MH-E Sequences* <1>:                  Miscellaneous.       (line  40)
+* *mh-temp*:                             Miscellaneous.       (line  43)
+* +inbox:                                Incorporating Mail.  (line  26)
+* +inbox <1>:                            Reading Mail.        (line   6)
+* +mhe-index:                            Searching.           (line 152)
+* .emacs:                                Conventions.         (line  57)
+* .emacs <1>:                            Getting Started.     (line  63)
+* .emacs <2>:                            Incorporating Mail.  (line  34)
+* .emacs <3>:                            HTML.                (line  90)
+* .emacs <4>:                            Miscellaneous Commands and Options.
                                                               (line  35)
-* ‘.emacs’ <5>:                          Composing.           (line   6)
-* ‘.face’:                               Picture.             (line   6)
-* ‘.mhe-x-image-cache’:                  Viewing.             (line  83)
-* ‘.mh_profile’:                         Folders.             (line 301)
-* ‘.mh_profile’ <1>:                     Forwarding.          (line  14)
-* ‘.procmailrc’:                         Incorporating Mail.  (line  56)
-* ‘.procmailrc’ <1>:                     Junk.                (line  98)
-* ‘.procmailrc’ <2>:                     Procmail.            (line  11)
-* ‘.signature’:                          Signature.           (line   9)
-* ‘.spamassassin/user_prefs’:            Junk.                (line 147)
-* ‘/etc/mailcap’:                        Viewing Attachments. (line  48)
-* ‘/etc/mime.types’:                     Adding Attachments.  (line  32)
-* ‘/etc/nmh/MailAliases’:                Aliases.             (line 106)
-* ‘/etc/passwd’:                         Aliases.             (line 111)
+* .emacs <5>:                            Composing.           (line   6)
+* .face:                                 Picture.             (line   6)
+* .mhe-x-image-cache:                    Viewing.             (line  83)
+* .mh_profile:                           Folders.             (line 301)
+* .mh_profile <1>:                       Forwarding.          (line  14)
+* .procmailrc:                           Incorporating Mail.  (line  56)
+* .procmailrc <1>:                       Junk.                (line  98)
+* .procmailrc <2>:                       Procmail.            (line  11)
+* .signature:                            Signature.           (line   9)
+* .spamassassin/user_prefs:              Junk.                (line 147)
+* /etc/mailcap:                          Viewing Attachments. (line  48)
+* /etc/mime.types:                       Adding Attachments.  (line  32)
+* /etc/nmh/MailAliases:                  Aliases.             (line 106)
+* /etc/passwd:                           Aliases.             (line 111)
 * ~:                                     Conventions.         (line 103)
 * abnormal hooks:                        Conventions.         (line  70)
-* ‘ali’:                                 Aliases.             (line 106)
+* ali:                                   Aliases.             (line 106)
 * alias completion:                      Editing Message.     (line  32)
 * aliases:                               Aliases.             (line   6)
-* ‘Aliasfile’ MH profile component:      Aliases.             (line 106)
+* Aliasfile MH profile component:        Aliases.             (line 106)
 * alternatives:                          Viewing Attachments. (line 113)
 * ancestor, in threads:                  Threading.           (line  12)
 * attachments:                           Viewing Attachments. (line   6)
@@ -8401,7 +8401,7 @@ Concept Index
 * attachments, inserting:                Adding Attachments.  (line 101)
 * attachments, saving:                   Viewing Attachments. (line  63)
 * attachments, viewing:                  Viewing Attachments. (line  37)
-* ‘Bcc’ header field:                    Editing Message.     (line   6)
+* Bcc header field:                      Editing Message.     (line   6)
 * Bill Wohler:                           Preface.             (line  39)
 * Bill Wohler <1>:                       History.             (line   6)
 * Bill Wohler <2>:                       From Bill Wohler.    (line   6)
@@ -8412,31 +8412,33 @@ Concept Index
 * boldface, showing:                     Viewing.             (line 118)
 * Brian Reid:                            History.             (line   6)
 * Brian Reid <1>:                        From Brian Reid.     (line   6)
-* browser, ‘html2text’:                  HTML.                (line  74)
-* browser, ‘links’:                      HTML.                (line  45)
-* browser, ‘lynx’:                       HTML.                (line  52)
-* browser, ‘w3’:                         HTML.                (line  63)
-* browser, ‘w3m’:                        HTML.                (line  30)
-* browser, ‘w3m-standalone’:             HTML.                (line  37)
-* buffers, ‘*MH-E Folders*’:             Folders.             (line 266)
-* buffers, ‘*MH-E Folders*’ <1>:         Miscellaneous.       (line  24)
-* buffers, ‘*MH-E Help*’:                Miscellaneous.       (line  26)
-* buffers, ‘*MH-E Info*’:                Miscellaneous.       (line  12)
-* buffers, ‘*MH-E Info*’ <1>:            Miscellaneous.       (line  29)
-* buffers, ‘*MH-E Log*’:                 Junk.                (line  90)
-* buffers, ‘*MH-E Log*’ <1>:             Miscellaneous.       (line  31)
-* buffers, ‘*MH-E Mail Delivery*’:       Sending Message.     (line   6)
-* buffers, ‘*MH-E Mail Delivery*’ <1>:   Miscellaneous.       (line  34)
-* buffers, ‘*MH-E Recipients*’:          Checking Recipients. (line   6)
-* buffers, ‘*MH-E Recipients*’ <1>:      Miscellaneous.       (line  37)
-* buffers, ‘*MH-E Sequences*’:           Sequences.           (line  83)
-* buffers, ‘*MH-E Sequences*’ <1>:       Miscellaneous.       (line  40)
-* buffers, ‘*mh-temp*’:                  Miscellaneous.       (line  43)
+* browser, gnus-w3m:                     HTML.                (line  29)
+* browser, html2text:                    HTML.                (line  33)
+* browser, links:                        HTML.                (line  37)
+* browser, lynx:                         HTML.                (line  45)
+* browser, w3m:                          HTML.                (line  29)
+* browser, w3m <1>:                      HTML.                (line  68)
+* browser, w3m <2>:                      HTML.                (line  78)
+* browser, w3m-standalone:               HTML.                (line  78)
+* buffers, *MH-E Folders*:               Folders.             (line 266)
+* buffers, *MH-E Folders* <1>:           Miscellaneous.       (line  24)
+* buffers, *MH-E Help*:                  Miscellaneous.       (line  26)
+* buffers, *MH-E Info*:                  Miscellaneous.       (line  12)
+* buffers, *MH-E Info* <1>:              Miscellaneous.       (line  29)
+* buffers, *MH-E Log*:                   Junk.                (line  90)
+* buffers, *MH-E Log* <1>:               Miscellaneous.       (line  31)
+* buffers, *MH-E Mail Delivery*:         Sending Message.     (line   6)
+* buffers, *MH-E Mail Delivery* <1>:     Miscellaneous.       (line  34)
+* buffers, *MH-E Recipients*:            Checking Recipients. (line   6)
+* buffers, *MH-E Recipients* <1>:        Miscellaneous.       (line  37)
+* buffers, *MH-E Sequences*:             Sequences.           (line  83)
+* buffers, *MH-E Sequences* <1>:         Miscellaneous.       (line  40)
+* buffers, *mh-temp*:                    Miscellaneous.       (line  43)
 * bugs:                                  Bug Reports.         (line   6)
 * built-in help:                         Using This Manual.   (line   9)
-* ‘burst’:                               Digests.             (line  13)
+* burst:                                 Digests.             (line  13)
 * buttons:                               Viewing Attachments. (line  21)
-* ‘Cc’ header field:                     Editing Message.     (line   6)
+* Cc header field:                       Editing Message.     (line   6)
 * change log:                            Getting MH-E.        (line  11)
 * checking recipients:                   Checking Recipients. (line   6)
 * citations, highlighting:               Viewing.             (line 103)
@@ -8444,62 +8446,61 @@ Concept Index
 * commands, MH:                          Conventions.         (line  10)
 * commands, shell:                       Conventions.         (line  10)
 * commands, Unix:                        Conventions.         (line  10)
-* ‘compface’:                            Picture.             (line  17)
+* compface:                              Picture.             (line  17)
 * completion:                            Conventions.         (line  88)
 * completion <1>:                        Editing Message.     (line  32)
 * completion, folders:                   Folder Selection.    (line   6)
-* ‘components’:                          Composing.           (line  34)
+* components:                            Composing.           (line  34)
 * composing mail:                        Composing.           (line   6)
 * content description:                   Adding Attachments.  (line  45)
-* ‘Content-Disposition’ header field:    Viewing Attachments. (line 104)
-* ‘Content-Transfer-Encoding’ header field: Junk.             (line 265)
-* ‘Content-Type’ header field:           Junk.                (line 265)
+* Content-Disposition header field:      Viewing Attachments. (line 104)
+* Content-Transfer-Encoding header field: Junk.               (line 265)
+* Content-Type header field:             Junk.                (line 265)
 * contributed software:                  Getting MH-E.        (line  29)
 * conventions, Emacs:                    Conventions.         (line   6)
 * conventions, key names:                Conventions.         (line  17)
-* ‘convert’:                             Viewing.             (line  59)
-* ‘cur’ sequence:                        Sequences.           (line  90)
-* ‘cur’ sequence <1>:                    Sequences.           (line 102)
-* ‘cur’ sequence <2>:                    Junk.                (line  85)
-* customization group, ‘mh’:             Options.             (line  33)
-* customization group, ‘mh-alias’:       Aliases.             (line  25)
-* customization group, ‘mh-folder’:      Folders.             (line  57)
-* customization group, ‘mh-folder-selection’: Folder Selection.
-                                                              (line  12)
-* customization group, ‘mh-identity’:    Identities.          (line  19)
-* customization group, ‘mh-inc’:         Incorporating Mail.  (line  13)
-* customization group, ‘mh-junk’:        Junk.                (line  27)
-* customization group, ‘mh-letter’:      Editing Drafts.      (line 124)
-* customization group, ‘mh-range’:       Ranges.              (line  39)
-* customization group, ‘mh-scan-line-formats’: Scan Line Formats.
+* convert:                               Viewing.             (line  59)
+* cur sequence:                          Sequences.           (line  90)
+* cur sequence <1>:                      Sequences.           (line 102)
+* cur sequence <2>:                      Junk.                (line  85)
+* customization group, mh:               Options.             (line  33)
+* customization group, mh-alias:         Aliases.             (line  25)
+* customization group, mh-folder:        Folders.             (line  57)
+* customization group, mh-folder-selection: Folder Selection. (line  12)
+* customization group, mh-identity:      Identities.          (line  19)
+* customization group, mh-inc:           Incorporating Mail.  (line  13)
+* customization group, mh-junk:          Junk.                (line  27)
+* customization group, mh-letter:        Editing Drafts.      (line 124)
+* customization group, mh-range:         Ranges.              (line  39)
+* customization group, mh-scan-line-formats: Scan Line Formats.
                                                               (line  10)
-* customization group, ‘mh-search’:      Searching.           (line  62)
-* customization group, ‘mh-sending-mail’: Sending Mail.       (line  37)
-* customization group, ‘mh-sequences’:   Sequences.           (line  38)
-* customization group, ‘mh-sequences’ <1>: Junk.              (line  37)
-* customization group, ‘mh-show’:        Reading Mail.        (line 127)
-* customization group, ‘mh-speedbar’:    Speedbar.            (line  37)
-* customization group, ‘mh-thread’:      Threading.           (line  35)
-* customization group, ‘mh-tool-bar’:    Tool Bar.            (line   9)
-* customization group, ‘pgg’:            Reading PGP.         (line  75)
-* customization group, ‘pgg’ <1>:        Sending PGP.         (line  39)
+* customization group, mh-search:        Searching.           (line  62)
+* customization group, mh-sending-mail:  Sending Mail.        (line  37)
+* customization group, mh-sequences:     Sequences.           (line  38)
+* customization group, mh-sequences <1>: Junk.                (line  37)
+* customization group, mh-show:          Reading Mail.        (line 127)
+* customization group, mh-speedbar:      Speedbar.            (line  37)
+* customization group, mh-thread:        Threading.           (line  35)
+* customization group, mh-tool-bar:      Tool Bar.            (line   9)
+* customization group, pgg:              Reading PGP.         (line  75)
+* customization group, pgg <1>:          Sending PGP.         (line  39)
 * customizing MH-E:                      Options.             (line   6)
-* ‘Dcc’ header field:                    Editing Message.     (line   6)
+* Dcc header field:                      Editing Message.     (line   6)
 * Debian:                                Getting Started.     (line  26)
 * Debian <1>:                            Getting MH-E.        (line  19)
 * decoding RFC 2047:                     Scan Line Formats.   (line  72)
 * decrypting messages:                   Reading PGP.         (line  31)
 * deleting messages:                     Navigating.          (line  23)
 * digests:                               Digests.             (line   6)
-* ‘dist’:                                Redistributing.      (line   6)
+* dist:                                  Redistributing.      (line   6)
 * documentation:                         Getting MH-E.        (line  29)
 * draft:                                 Composing.           (line   6)
 * draft <1>:                             Replying.            (line  30)
 * draft <2>:                             Forwarding.          (line   6)
-* ‘draft’:                               Editing Again.       (line   6)
-* draft <3>:                             Editing Drafts.      (line   6)
+* draft <3>:                             Editing Again.       (line   6)
+* draft <4>:                             Editing Drafts.      (line   6)
 * draft folder:                          Composing.           (line  16)
-* ‘Draft-Folder’ MH profile component:   Getting Started.     (line  70)
+* Draft-Folder MH profile component:     Getting Started.     (line  70)
 * editing draft:                         Editing Drafts.      (line   6)
 * editing header:                        Editing Message.     (line   6)
 * editing message:                       Miscellaneous Commands and Options.
@@ -8537,7 +8538,7 @@ Concept Index
 * Emacs, setting options:                Options.             (line   6)
 * Emacs, terms:                          Conventions.         (line   6)
 * Emacs, variables:                      Conventions.         (line  57)
-* ‘emacsclient’:                         Incorporating Mail.  (line  71)
+* emacsclient:                           Incorporating Mail.  (line  71)
 * email addresses, highlighting:         Viewing.             (line 111)
 * emphasis:                              Viewing.             (line 118)
 * encrypted messages:                    Reading PGP.         (line   6)
@@ -8545,123 +8546,124 @@ Concept Index
 * exiting:                               Folders.             (line 307)
 * exporting folders:                     Leaving MH-E.        (line  16)
 * expunging refiles and deletes:         Folders.             (line 177)
-* ‘Face’ header field:                   Viewing.             (line  43)
-* ‘Face’ header field <1>:               Picture.             (line  12)
+* Face header field:                     Viewing.             (line  43)
+* Face header field <1>:                 Picture.             (line  12)
 * faces:                                 Conventions.         (line  65)
 * FAQ:                                   MH FAQ and Support.  (line   6)
-* ‘Fcc’ header field:                    Sending PGP.         (line  42)
-* ‘Fcc’ header field <1>:                Identities.          (line  92)
-* ‘file’:                                Adding Attachments.  (line  32)
+* Fcc header field:                      Sending PGP.         (line  42)
+* Fcc header field <1>:                  Identities.          (line  92)
+* file:                                  Adding Attachments.  (line  32)
 * file completion:                       Conventions.         (line  88)
 * files:                                 Files and Pipes.     (line   6)
-* files, ‘.emacs’:                       Conventions.         (line  57)
-* files, ‘.emacs’ <1>:                   Getting Started.     (line  63)
-* files, ‘.emacs’ <2>:                   Incorporating Mail.  (line  34)
-* files, ‘.emacs’ <3>:                   HTML.                (line  87)
-* files, ‘.emacs’ <4>:                   Miscellaneous Commands and Options.
+* files, .emacs:                         Conventions.         (line  57)
+* files, .emacs <1>:                     Getting Started.     (line  63)
+* files, .emacs <2>:                     Incorporating Mail.  (line  34)
+* files, .emacs <3>:                     HTML.                (line  90)
+* files, .emacs <4>:                     Miscellaneous Commands and Options.
                                                               (line  35)
-* files, ‘.emacs’ <5>:                   Composing.           (line   6)
-* files, ‘.face’:                        Picture.             (line   6)
-* files, ‘.mhe-x-image-cache’:           Viewing.             (line  83)
-* files, ‘.mh_profile’:                  Folders.             (line 301)
-* files, ‘.mh_profile’ <1>:              Forwarding.          (line  14)
-* files, ‘.procmailrc’:                  Incorporating Mail.  (line  56)
-* files, ‘.procmailrc’ <1>:              Junk.                (line  98)
-* files, ‘.procmailrc’ <2>:              Procmail.            (line  11)
-* files, ‘.signature’:                   Signature.           (line   9)
-* files, ‘.spamassassin/user_prefs’:     Junk.                (line 147)
-* files, ‘/etc/mailcap’:                 Viewing Attachments. (line  48)
-* files, ‘/etc/mime.types’:              Adding Attachments.  (line  32)
-* files, ‘/etc/nmh/MailAliases’:         Aliases.             (line 106)
-* files, ‘/etc/passwd’:                  Aliases.             (line 111)
-* files, ‘components’:                   Composing.           (line  34)
-* files, ‘draft’:                        Editing Again.       (line   6)
-* files, ‘MH-E-NEWS’:                    Getting MH-E.        (line  22)
-* files, ‘mhl.reply’:                    Replying.            (line   6)
-* files, ‘README’:                       Getting MH-E.        (line  22)
+* files, .emacs <5>:                     Composing.           (line   6)
+* files, .face:                          Picture.             (line   6)
+* files, .mhe-x-image-cache:             Viewing.             (line  83)
+* files, .mh_profile:                    Folders.             (line 301)
+* files, .mh_profile <1>:                Forwarding.          (line  14)
+* files, .procmailrc:                    Incorporating Mail.  (line  56)
+* files, .procmailrc <1>:                Junk.                (line  98)
+* files, .procmailrc <2>:                Procmail.            (line  11)
+* files, .signature:                     Signature.           (line   9)
+* files, .spamassassin/user_prefs:       Junk.                (line 147)
+* files, /etc/mailcap:                   Viewing Attachments. (line  48)
+* files, /etc/mime.types:                Adding Attachments.  (line  32)
+* files, /etc/nmh/MailAliases:           Aliases.             (line 106)
+* files, /etc/passwd:                    Aliases.             (line 111)
+* files, components:                     Composing.           (line  34)
+* files, draft:                          Editing Again.       (line   6)
+* files, MH-E-NEWS:                      Getting MH-E.        (line  22)
+* files, mhl.reply:                      Replying.            (line   6)
+* files, README:                         Getting MH-E.        (line  22)
 * filling paragraphs:                    Editing Message.     (line  61)
 * filters:                               Limits.              (line   6)
-* ‘flists’:                              Speedbar.            (line  37)
-* ‘folder’:                              Folders.             (line 163)
-* ‘Folder > Incorporate New Mail’ menu item: Incorporating Mail.
+* flists:                                Speedbar.            (line  37)
+* folder:                                Folders.             (line 163)
+* Folder > Incorporate New Mail menu item: Incorporating Mail.
                                                               (line  10)
-* ‘Folder > List Folders’ menu item:     Folders.             (line  24)
-* ‘Folder > Pack Folder’ menu item:      Folders.             (line  28)
-* ‘Folder > Quit MH-E’ menu item:        Folders.             (line  45)
-* ‘Folder > Rescan Folder’ menu item:    Folders.             (line  32)
-* ‘Folder > Search...’ menu item:        Folders.             (line  34)
-* ‘Folder > Sort Folder’ menu item:      Folders.             (line  36)
-* ‘Folder > Toggle Show/Folder’ menu item: Folders.           (line  47)
-* ‘Folder > View New Messages’ menu item: Folders.            (line  26)
-* ‘Folder > Visit a Folder...’ menu item: Folders.            (line  41)
+* Folder > List Folders menu item:       Folders.             (line  24)
+* Folder > Pack Folder menu item:        Folders.             (line  28)
+* Folder > Quit MH-E menu item:          Folders.             (line  45)
+* Folder > Rescan Folder menu item:      Folders.             (line  32)
+* Folder > Search... menu item:          Folders.             (line  34)
+* Folder > Sort Folder menu item:        Folders.             (line  36)
+* Folder > Toggle Show/Folder menu item: Folders.             (line  47)
+* Folder > View New Messages menu item:  Folders.             (line  26)
+* Folder > Visit a Folder... menu item:  Folders.             (line  41)
 * folder completion:                     Conventions.         (line  88)
-* ‘Folder’ menu:                         Incorporating Mail.  (line   6)
-* ‘Folder’ menu <1>:                     Folders.             (line   6)
-* ‘Folder’ menu <2>:                     Menu Bar.            (line   6)
-* Folder menu:                           Menu Bar.            (line   6)
+* Folder menu:                           Incorporating Mail.  (line   6)
+* Folder menu <1>:                       Folders.             (line   6)
+* Folder menu <2>:                       Menu Bar.            (line   6)
+* Folder menu <3>:                       Menu Bar.            (line   6)
 * folder navigation:                     Speedbar.            (line   6)
 * folders:                               Processing Mail Tour.
                                                               (line  51)
 * folders <1>:                           Folders.             (line   6)
-* folders, ‘+mhe-index’:                 Searching.           (line 152)
+* folders, +mhe-index:                   Searching.           (line 152)
 * folders, completion:                   Folder Selection.    (line   6)
 * folders, exporting:                    Leaving MH-E.        (line  16)
 * folders, renaming:                     Folders.             (line 340)
 * folders, selecting:                    Folder Selection.    (line   6)
-* ‘formail’:                             Junk.                (line 238)
-* ‘forw’:                                Forwarding.          (line   6)
-* ‘forw’ MH profile component:           Forwarding.          (line  14)
+* formail:                               Junk.                (line 238)
+* forw:                                  Forwarding.          (line   6)
+* forw MH profile component:             Forwarding.          (line  14)
 * forwarding:                            Forwarding.          (line   6)
-* ‘From’ header field:                   Editing Message.     (line   6)
-* ‘From’ header field <1>:               Identities.          (line  45)
-* ‘ftp’:                                 Adding Attachments.  (line 120)
-* ‘ftp’ <1>:                             Adding Attachments.  (line 128)
+* From header field:                     Editing Message.     (line   6)
+* From header field <1>:                 Identities.          (line  45)
+* ftp:                                   Adding Attachments.  (line 120)
+* ftp <1>:                               Adding Attachments.  (line 128)
 * full training:                         Junk.                (line 193)
 * functions:                             Conventions.         (line  10)
 * getting MH-E:                          Getting MH-E.        (line   6)
 * Gildea, Stephen:                       History.             (line   6)
 * Gildea, Stephen <1>:                   From Stephen Gildea. (line   6)
 * GNU mailutils MH:                      Getting Started.     (line  26)
-* ‘gnuclient’:                           Incorporating Mail.  (line  71)
+* gnuclient:                             Incorporating Mail.  (line  71)
 * GnuPG:                                 Reading PGP.         (line   6)
 * Gnus:                                  HTML.                (line   6)
 * Gnus <1>:                              Reading PGP.         (line   6)
 * Gnus <2>:                              Procmail.            (line   6)
-* ‘gnuserv’:                             Incorporating Mail.  (line  71)
+* gnus-w3m:                              HTML.                (line  29)
+* gnuserv:                               Incorporating Mail.  (line  71)
 * GPG:                                   Reading PGP.         (line   6)
-* ‘grep’:                                Searching.           (line 191)
-* ‘grep’ <1>:                            Searching.           (line 336)
+* grep:                                  Searching.           (line 191)
+* grep <1>:                              Searching.           (line 336)
 * ham:                                   Junk.                (line  11)
-* header field, ‘Bcc’:                   Editing Message.     (line   6)
-* header field, ‘Cc’:                    Editing Message.     (line   6)
-* header field, ‘Content-Disposition’:   Viewing Attachments. (line 104)
-* header field, ‘Content-Transfer-Encoding’: Junk.            (line 265)
-* header field, ‘Content-Type’:          Junk.                (line 265)
-* header field, ‘Dcc’:                   Editing Message.     (line   6)
-* header field, ‘Face’:                  Viewing.             (line  43)
-* header field, ‘Face’ <1>:              Picture.             (line  12)
-* header field, ‘Fcc’:                   Sending PGP.         (line  42)
-* header field, ‘Fcc’ <1>:               Identities.          (line  92)
-* header field, ‘From’:                  Editing Message.     (line   6)
-* header field, ‘From’ <1>:              Identities.          (line  45)
-* header field, ‘Mail-Followup-To’:      Editing Message.     (line   6)
-* header field, ‘Mail-Followup-To’ <1>:  Identities.          (line  96)
-* header field, ‘Mail-Reply-To’:         Editing Message.     (line   6)
-* header field, ‘Organization’:          Identities.          (line  50)
-* header field, ‘Reply-To’:              Editing Message.     (line   6)
-* header field, ‘Subject’:               Editing Message.     (line   6)
-* header field, ‘Subject’ <1>:           Junk.                (line 265)
-* header field, ‘To’:                    Editing Message.     (line   6)
-* header field, ‘X-Bogosity’:            Junk.                (line 200)
-* header field, ‘X-Face’:                Viewing.             (line  43)
-* header field, ‘X-Face’ <1>:            Picture.             (line  12)
-* header field, ‘X-Image-URL’:           Viewing.             (line  43)
-* header field, ‘X-Image-URL’ <1>:       Picture.             (line  12)
-* header field, ‘X-Mailer’:              Composing.           (line  29)
-* header field, ‘X-MHE-Checksum’:        Searching.           (line 177)
-* header field, ‘X-Spam-Level’:          Junk.                (line 107)
-* header field, ‘X-Spam-Status’:         Junk.                (line 107)
-* header field, ‘X-SpamProbe’:           Junk.                (line 238)
+* header field, Bcc:                     Editing Message.     (line   6)
+* header field, Cc:                      Editing Message.     (line   6)
+* header field, Content-Disposition:     Viewing Attachments. (line 104)
+* header field, Content-Transfer-Encoding: Junk.              (line 265)
+* header field, Content-Type:            Junk.                (line 265)
+* header field, Dcc:                     Editing Message.     (line   6)
+* header field, Face:                    Viewing.             (line  43)
+* header field, Face <1>:                Picture.             (line  12)
+* header field, Fcc:                     Sending PGP.         (line  42)
+* header field, Fcc <1>:                 Identities.          (line  92)
+* header field, From:                    Editing Message.     (line   6)
+* header field, From <1>:                Identities.          (line  45)
+* header field, Mail-Followup-To:        Editing Message.     (line   6)
+* header field, Mail-Followup-To <1>:    Identities.          (line  96)
+* header field, Mail-Reply-To:           Editing Message.     (line   6)
+* header field, Organization:            Identities.          (line  50)
+* header field, Reply-To:                Editing Message.     (line   6)
+* header field, Subject:                 Editing Message.     (line   6)
+* header field, Subject <1>:             Junk.                (line 265)
+* header field, To:                      Editing Message.     (line   6)
+* header field, X-Bogosity:              Junk.                (line 200)
+* header field, X-Face:                  Viewing.             (line  43)
+* header field, X-Face <1>:              Picture.             (line  12)
+* header field, X-Image-URL:             Viewing.             (line  43)
+* header field, X-Image-URL <1>:         Picture.             (line  12)
+* header field, X-Mailer:                Composing.           (line  29)
+* header field, X-MHE-Checksum:          Searching.           (line 177)
+* header field, X-Spam-Level:            Junk.                (line 107)
+* header field, X-Spam-Status:           Junk.                (line 107)
+* header field, X-SpamProbe:             Junk.                (line 238)
 * help:                                  Sending Mail Tour.   (line  44)
 * help <1>:                              Processing Mail Tour.
                                                               (line  75)
@@ -8673,25 +8675,25 @@ Concept Index
 * history of MH-E:                       History.             (line   6)
 * hooks:                                 Conventions.         (line  70)
 * HTML:                                  HTML.                (line   6)
-* ‘html2text’:                           HTML.                (line  74)
+* html2text:                             HTML.                (line  33)
 * identities:                            Identities.          (line   6)
-* ‘Identity > Customize Identities’ menu item: Identities.    (line  72)
-* ‘Identity > Insert Auto Fields’ menu item: Identities.      (line  14)
-* ‘Identity > Save as Default’ menu item: Identities.         (line  72)
-* ‘Identity > Set Default for Session’ menu item: Identities. (line  72)
-* ‘Identity’ menu:                       Identities.          (line  10)
-* Identity menu:                         Identities.          (line  67)
-* ‘Identity’ menu <1>:                   Menu Bar.            (line   6)
-* Identity menu <1>:                     Menu Bar.            (line   6)
+* Identity > Customize Identities menu item: Identities.      (line  72)
+* Identity > Insert Auto Fields menu item: Identities.        (line  14)
+* Identity > Save as Default menu item:  Identities.          (line  72)
+* Identity > Set Default for Session menu item: Identities.   (line  72)
+* Identity menu:                         Identities.          (line  10)
+* Identity menu <1>:                     Identities.          (line  67)
+* Identity menu <2>:                     Menu Bar.            (line   6)
+* Identity menu <3>:                     Menu Bar.            (line   6)
 * ImageMagick:                           Viewing.             (line  59)
 * images:                                Adding Attachments.  (line 101)
-* ‘inc’:                                 Reading Mail Tour.   (line   6)
-* ‘inc’ <1>:                             Incorporating Mail.  (line  40)
-* ‘inc’ <2>:                             Scan Line Formats.   (line 105)
+* inc:                                   Reading Mail Tour.   (line   6)
+* inc <1>:                               Incorporating Mail.  (line  40)
+* inc <2>:                               Scan Line Formats.   (line 105)
 * incorporating:                         Incorporating Mail.  (line   6)
 * incorporating <1>:                     Incorporating Mail.  (line  40)
-* ‘index’:                               Searching.           (line 229)
-* ‘index++’:                             Searching.           (line 229)
+* index:                                 Searching.           (line 229)
+* index++:                               Searching.           (line 229)
 * info:                                  Preface.             (line  28)
 * info <1>:                              Using This Manual.   (line   9)
 * info <2>:                              Using This Manual.   (line  35)
@@ -8699,7 +8701,7 @@ Concept Index
 * inline images:                         Viewing Attachments. (line 104)
 * inserting messages:                    Inserting Letter.    (line   6)
 * inserting messages <1>:                Inserting Messages.  (line   6)
-* ‘install-mh’:                          Getting Started.     (line  33)
+* install-mh:                            Getting Started.     (line  33)
 * interrupting:                          Conventions.         (line 109)
 * introduction:                          Tour Through MH-E.   (line   6)
 * italics, showing:                      Viewing.             (line 118)
@@ -8713,271 +8715,266 @@ Concept Index
 * killing draft:                         Killing Draft.       (line   6)
 * Larus, Jim:                            History.             (line   6)
 * Larus, Jim <1>:                        From Jim Larus.      (line   6)
-* ‘Letter > Check Recipient’ menu item:  Editing Drafts.      (line 113)
-* ‘Letter > Compose Compressed tar (MH)...’ menu item: Editing Drafts.
+* Letter > Check Recipient menu item:    Editing Drafts.      (line 113)
+* Letter > Compose Compressed tar (MH)... menu item: Editing Drafts.
                                                               (line  84)
-* ‘Letter > Compose Forward...’ menu item: Editing Drafts.    (line  65)
-* ‘Letter > Compose Get File (MH)...’ menu item: Editing Drafts.
+* Letter > Compose Forward... menu item: Editing Drafts.      (line  65)
+* Letter > Compose Get File (MH)... menu item: Editing Drafts.
                                                               (line  68)
-* ‘Letter > Compose Insertion...’ menu item: Editing Drafts.  (line  72)
-* ‘Letter > Insert a Message...’ menu item: Editing Drafts.   (line  61)
-* ‘Letter > Insert Signature’ menu item: Editing Drafts.      (line 108)
-* ‘Letter > Kill This Draft’ menu item:  Editing Drafts.      (line 106)
-* ‘Letter > Pull in All Compositions (MH)’ menu item: Editing Drafts.
+* Letter > Compose Insertion... menu item: Editing Drafts.    (line  72)
+* Letter > Insert a Message... menu item: Editing Drafts.     (line  61)
+* Letter > Insert Signature menu item:   Editing Drafts.      (line 108)
+* Letter > Kill This Draft menu item:    Editing Drafts.      (line 106)
+* Letter > Pull in All Compositions (MH) menu item: Editing Drafts.
                                                               (line  29)
-* ‘Letter > Pull in All Compositions (MML)’ menu item: Editing Drafts.
+* Letter > Pull in All Compositions (MML) menu item: Editing Drafts.
                                                               (line  76)
-* ‘Letter > Revert to Non-MIME Edit (MH)’ menu item: Editing Drafts.
+* Letter > Revert to Non-MIME Edit (MH) menu item: Editing Drafts.
                                                               (line  88)
-* ‘Letter > Send This Draft’ menu item:  Editing Drafts.      (line  24)
-* ‘Letter > Split Current Line’ menu item: Editing Drafts.    (line 104)
-* ‘Letter > Yank Current Message’ menu item: Editing Drafts.  (line 116)
-* ‘Letter’ menu:                         Editing Drafts.      (line   6)
-* ‘Letter’ menu <1>:                     Menu Bar.            (line   6)
-* Letter menu:                           Menu Bar.            (line   6)
+* Letter > Send This Draft menu item:    Editing Drafts.      (line  24)
+* Letter > Split Current Line menu item: Editing Drafts.      (line 104)
+* Letter > Yank Current Message menu item: Editing Drafts.    (line 116)
+* Letter menu:                           Editing Drafts.      (line   6)
+* Letter menu <1>:                       Menu Bar.            (line   6)
+* Letter menu <2>:                       Menu Bar.            (line   6)
 * limits:                                Limits.              (line   6)
-* ‘links’:                               HTML.                (line  45)
+* links:                                 HTML.                (line  37)
 * links, following:                      Viewing.             (line 111)
-* ‘lpr’:                                 Printing.            (line  35)
-* ‘lynx’:                                HTML.                (line  52)
+* lpr:                                   Printing.            (line  35)
+* lynx:                                  HTML.                (line  45)
 * Mail mode:                             Composing.           (line  34)
-* ‘Mail-Followup-To’ header field:       Editing Message.     (line   6)
-* ‘Mail-Followup-To’ header field <1>:   Identities.          (line  96)
-* ‘Mail-Reply-To’ header field:          Editing Message.     (line   6)
+* Mail-Followup-To header field:         Editing Message.     (line   6)
+* Mail-Followup-To header field <1>:     Identities.          (line  96)
+* Mail-Reply-To header field:            Editing Message.     (line   6)
 * Mailer-Daemon:                         Editing Again.       (line  17)
 * mailing lists:                         Mailing Lists.       (line   6)
 * mailing lists, reading:                Procmail.            (line   6)
-* ‘mairix’:                              Searching.           (line 191)
-* ‘mairix’ <1>:                          Searching.           (line 280)
+* mairix:                                Searching.           (line 191)
+* mairix <1>:                            Searching.           (line 280)
 * manual:                                Getting MH-E.        (line  29)
 * mark:                                  Conventions.         (line  80)
-* ‘mark’:                                Sequences.           (line 115)
+* mark <1>:                              Sequences.           (line 115)
 * Marshall Rose:                         Junk.                (line   6)
 * mbox-style folder:                     Leaving MH-E.        (line  16)
 * media types:                           Adding Attachments.  (line  27)
 * menu bar:                              Menu Bar.            (line   6)
-* menu item, ‘Folder > Incorporate New Mail’: Incorporating Mail.
+* menu item, Folder > Incorporate New Mail: Incorporating Mail.
                                                               (line  10)
-* menu item, ‘Folder > List Folders’:    Folders.             (line  24)
-* menu item, ‘Folder > Pack Folder’:     Folders.             (line  28)
-* menu item, ‘Folder > Quit MH-E’:       Folders.             (line  45)
-* menu item, ‘Folder > Rescan Folder’:   Folders.             (line  32)
-* menu item, ‘Folder > Search...’:       Folders.             (line  34)
-* menu item, ‘Folder > Sort Folder’:     Folders.             (line  36)
-* menu item, ‘Folder > Toggle Show/Folder’: Folders.          (line  47)
-* menu item, ‘Folder > View New Messages’: Folders.           (line  26)
-* menu item, ‘Folder > Visit a Folder...’: Folders.           (line  41)
-* menu item, ‘Identity > Customize Identities’: Identities.   (line  72)
-* menu item, ‘Identity > Insert Auto Fields’: Identities.     (line  14)
-* menu item, ‘Identity > Save as Default’: Identities.        (line  72)
-* menu item, ‘Identity > Set Default for Session’: Identities.
-                                                              (line  72)
-* menu item, ‘Letter > Check Recipient’: Editing Drafts.      (line 113)
-* menu item, ‘Letter > Compose Compressed tar (MH)...’: Editing Drafts.
+* menu item, Folder > List Folders:      Folders.             (line  24)
+* menu item, Folder > Pack Folder:       Folders.             (line  28)
+* menu item, Folder > Quit MH-E:         Folders.             (line  45)
+* menu item, Folder > Rescan Folder:     Folders.             (line  32)
+* menu item, Folder > Search...:         Folders.             (line  34)
+* menu item, Folder > Sort Folder:       Folders.             (line  36)
+* menu item, Folder > Toggle Show/Folder: Folders.            (line  47)
+* menu item, Folder > View New Messages: Folders.             (line  26)
+* menu item, Folder > Visit a Folder...: Folders.             (line  41)
+* menu item, Identity > Customize Identities: Identities.     (line  72)
+* menu item, Identity > Insert Auto Fields: Identities.       (line  14)
+* menu item, Identity > Save as Default: Identities.          (line  72)
+* menu item, Identity > Set Default for Session: Identities.  (line  72)
+* menu item, Letter > Check Recipient:   Editing Drafts.      (line 113)
+* menu item, Letter > Compose Compressed tar (MH)...: Editing Drafts.
                                                               (line  84)
-* menu item, ‘Letter > Compose Forward...’: Editing Drafts.   (line  65)
-* menu item, ‘Letter > Compose Get File (MH)...’: Editing Drafts.
+* menu item, Letter > Compose Forward...: Editing Drafts.     (line  65)
+* menu item, Letter > Compose Get File (MH)...: Editing Drafts.
                                                               (line  68)
-* menu item, ‘Letter > Compose Insertion...’: Editing Drafts. (line  72)
-* menu item, ‘Letter > Insert a Message...’: Editing Drafts.  (line  61)
-* menu item, ‘Letter > Insert Signature’: Editing Drafts.     (line 108)
-* menu item, ‘Letter > Kill This Draft’: Editing Drafts.      (line 106)
-* menu item, ‘Letter > Pull in All Compositions (MH)’: Editing Drafts.
+* menu item, Letter > Compose Insertion...: Editing Drafts.   (line  72)
+* menu item, Letter > Insert a Message...: Editing Drafts.    (line  61)
+* menu item, Letter > Insert Signature:  Editing Drafts.      (line 108)
+* menu item, Letter > Kill This Draft:   Editing Drafts.      (line 106)
+* menu item, Letter > Pull in All Compositions (MH): Editing Drafts.
                                                               (line  29)
-* menu item, ‘Letter > Pull in All Compositions (MML)’: Editing Drafts.
+* menu item, Letter > Pull in All Compositions (MML): Editing Drafts.
                                                               (line  76)
-* menu item, ‘Letter > Revert to Non-MIME Edit (MH)’: Editing Drafts.
+* menu item, Letter > Revert to Non-MIME Edit (MH): Editing Drafts.
                                                               (line  88)
-* menu item, ‘Letter > Send This Draft’: Editing Drafts.      (line  24)
-* menu item, ‘Letter > Split Current Line’: Editing Drafts.   (line 104)
-* menu item, ‘Letter > Yank Current Message’: Editing Drafts. (line 116)
-* menu item, ‘Message > Burst Digest Message’: Reading Mail.  (line  54)
-* menu item, ‘Message > Compose a New Message’: Sending Mail. (line  27)
-* menu item, ‘Message > Copy Message to Folder...’: Folders.  (line  13)
-* menu item, ‘Message > Delete Message’: Reading Mail.        (line  45)
-* menu item, ‘Message > Edit Message Again’: Sending Mail.    (line  19)
-* menu item, ‘Message > Execute Delete/Refile’: Folders.      (line  52)
-* menu item, ‘Message > Forward Message...’: Sending Mail.    (line  23)
-* menu item, ‘Message > Go to First Message’: Reading Mail.   (line  83)
-* menu item, ‘Message > Go to Last Message’: Reading Mail.    (line  85)
-* menu item, ‘Message > Go to Message by Number...’: Reading Mail.
+* menu item, Letter > Send This Draft:   Editing Drafts.      (line  24)
+* menu item, Letter > Split Current Line: Editing Drafts.     (line 104)
+* menu item, Letter > Yank Current Message: Editing Drafts.   (line 116)
+* menu item, Message > Burst Digest Message: Reading Mail.    (line  54)
+* menu item, Message > Compose a New Message: Sending Mail.   (line  27)
+* menu item, Message > Copy Message to Folder...: Folders.    (line  13)
+* menu item, Message > Delete Message:   Reading Mail.        (line  45)
+* menu item, Message > Edit Message Again: Sending Mail.      (line  19)
+* menu item, Message > Execute Delete/Refile: Folders.        (line  52)
+* menu item, Message > Forward Message...: Sending Mail.      (line  23)
+* menu item, Message > Go to First Message: Reading Mail.     (line  83)
+* menu item, Message > Go to Last Message: Reading Mail.      (line  85)
+* menu item, Message > Go to Message by Number...: Reading Mail.
                                                               (line  56)
-* menu item, ‘Message > Modify Message’: Reading Mail.        (line  81)
-* menu item, ‘Message > Next Message’:   Reading Mail.        (line  91)
-* menu item, ‘Message > Pipe Message to Command...’: Reading Mail.
+* menu item, Message > Modify Message:   Reading Mail.        (line  81)
+* menu item, Message > Next Message:     Reading Mail.        (line  91)
+* menu item, Message > Pipe Message to Command...: Reading Mail.
                                                               (line  40)
-* menu item, ‘Message > Previous Message’: Reading Mail.      (line  93)
-* menu item, ‘Message > Print Message’:  Reading Mail.        (line 106)
-* menu item, ‘Message > Re-edit a Bounced Message’: Sending Mail.
+* menu item, Message > Previous Message: Reading Mail.        (line  93)
+* menu item, Message > Print Message:    Reading Mail.        (line 106)
+* menu item, Message > Re-edit a Bounced Message: Sending Mail.
                                                               (line  20)
-* menu item, ‘Message > Redistribute Message...’: Sending Mail.
-                                                              (line  29)
-* menu item, ‘Message > Refile Message’: Folders.             (line  43)
-* menu item, ‘Message > Reply to Message...’: Sending Mail.   (line  25)
-* menu item, ‘Message > Show Message’:   Reading Mail.        (line  24)
-* menu item, ‘Message > Show Message with Header’: Reading Mail.
+* menu item, Message > Redistribute Message...: Sending Mail. (line  29)
+* menu item, Message > Refile Message:   Folders.             (line  43)
+* menu item, Message > Reply to Message...: Sending Mail.     (line  25)
+* menu item, Message > Show Message:     Reading Mail.        (line  24)
+* menu item, Message > Show Message with Header: Reading Mail.
                                                               (line  26)
-* menu item, ‘Message > Show Message with Preferred Alternative’: Reading Mail.
+* menu item, Message > Show Message with Preferred Alternative: Reading Mail.
                                                               (line  28)
-* menu item, ‘Message > Undo Delete/Refile’: Folders.         (line  50)
-* menu item, ‘Message > Unpack Uuencoded Message...’: Reading Mail.
+* menu item, Message > Undo Delete/Refile: Folders.           (line  50)
+* menu item, Message > Unpack Uuencoded Message...: Reading Mail.
                                                               (line 113)
-* menu item, ‘Message > Write Message to File...’: Reading Mail.
+* menu item, Message > Write Message to File...: Reading Mail.
                                                               (line  38)
-* menu item, ‘Search > Perform Search’:  Searching.           (line  13)
-* menu item, ‘Search > Search with pick’: Searching.          (line  15)
-* menu item, ‘Sequence > Add Message to Sequence...’: Sequences.
+* menu item, Search > Perform Search:    Searching.           (line  13)
+* menu item, Search > Search with pick:  Searching.           (line  15)
+* menu item, Sequence > Add Message to Sequence...: Sequences.
                                                               (line  27)
-* menu item, ‘Sequence > Delete Message from Sequence...’: Sequences.
+* menu item, Sequence > Delete Message from Sequence...: Sequences.
                                                               (line  19)
-* menu item, ‘Sequence > Delete Sequence...’: Sequences.      (line  21)
-* menu item, ‘Sequence > List Sequences for Message’: Sequences.
+* menu item, Sequence > Delete Sequence...: Sequences.        (line  21)
+* menu item, Sequence > List Sequences for Message: Sequences.
                                                               (line  29)
-* menu item, ‘Sequence > List Sequences in Folder...’: Sequences.
+* menu item, Sequence > List Sequences in Folder...: Sequences.
                                                               (line  23)
-* menu item, ‘Sequence > Narrow to Sequence...’: Sequences.   (line  25)
-* menu item, ‘Sequence > Narrow to Subject Sequence’: Limits. (line  22)
-* menu item, ‘Sequence > Narrow to Tick Sequence’: Limits.    (line  13)
-* menu item, ‘Sequence > Narrow to Tick Sequence’ <1>: Sequences.
+* menu item, Sequence > Narrow to Sequence...: Sequences.     (line  25)
+* menu item, Sequence > Narrow to Subject Sequence: Limits.   (line  22)
+* menu item, Sequence > Narrow to Tick Sequence: Limits.      (line  13)
+* menu item, Sequence > Narrow to Tick Sequence <1>: Sequences.
                                                               (line  17)
-* menu item, ‘Sequence > Toggle Tick Mark’: Sequences.        (line  13)
-* menu item, ‘Sequence > Widen from Sequence’: Limits.        (line  27)
-* menu item, ‘Sequence > Widen from Sequence’ <1>: Sequences. (line  32)
-* menu, ‘Folder’:                        Incorporating Mail.  (line   6)
-* menu, ‘Folder’ <1>:                    Folders.             (line   6)
-* menu, Folder:                          Menu Bar.            (line   6)
-* menu, ‘Folder’ <2>:                    Menu Bar.            (line   6)
-* menu, ‘Identity’:                      Identities.          (line  10)
-* menu, Identity:                        Identities.          (line  67)
-* menu, Identity <1>:                    Menu Bar.            (line   6)
-* menu, ‘Identity’ <1>:                  Menu Bar.            (line   6)
-* menu, ‘Letter’:                        Editing Drafts.      (line   6)
-* menu, Letter:                          Menu Bar.            (line   6)
-* menu, ‘Letter’ <1>:                    Menu Bar.            (line   6)
-* menu, ‘Message’:                       Reading Mail.        (line  16)
-* menu, ‘Message’ <1>:                   Folders.             (line   6)
-* menu, ‘Message’ <2>:                   Sending Mail.        (line  16)
-* menu, Message:                         Menu Bar.            (line   6)
-* menu, ‘Message’ <3>:                   Menu Bar.            (line   6)
+* menu item, Sequence > Toggle Tick Mark: Sequences.          (line  13)
+* menu item, Sequence > Widen from Sequence: Limits.          (line  27)
+* menu item, Sequence > Widen from Sequence <1>: Sequences.   (line  32)
+* menu, Folder:                          Incorporating Mail.  (line   6)
+* menu, Folder <1>:                      Folders.             (line   6)
+* menu, Folder <2>:                      Menu Bar.            (line   6)
+* menu, Folder <3>:                      Menu Bar.            (line   6)
+* menu, Identity:                        Identities.          (line  10)
+* menu, Identity <1>:                    Identities.          (line  67)
+* menu, Identity <2>:                    Menu Bar.            (line   6)
+* menu, Identity <3>:                    Menu Bar.            (line   6)
+* menu, Letter:                          Editing Drafts.      (line   6)
+* menu, Letter <1>:                      Menu Bar.            (line   6)
+* menu, Letter <2>:                      Menu Bar.            (line   6)
+* menu, Message:                         Reading Mail.        (line  16)
+* menu, Message <1>:                     Folders.             (line   6)
+* menu, Message <2>:                     Sending Mail.        (line  16)
+* menu, Message <3>:                     Menu Bar.            (line   6)
+* menu, Message <4>:                     Menu Bar.            (line   6)
 * menu, Search:                          Menu Bar.            (line   6)
-* menu, ‘Search’:                        Menu Bar.            (line   6)
-* menu, ‘Search’ <1>:                    Searching.           (line   6)
+* menu, Search <1>:                      Menu Bar.            (line   6)
+* menu, Search <2>:                      Searching.           (line   6)
 * menu, Sequence:                        Menu Bar.            (line   6)
-* menu, ‘Sequence’:                      Menu Bar.            (line   6)
-* menu, ‘Sequence’ <1>:                  Sequences.           (line   6)
-* ‘Message > Burst Digest Message’ menu item: Reading Mail.   (line  54)
-* ‘Message > Compose a New Message’ menu item: Sending Mail.  (line  27)
-* ‘Message > Copy Message to Folder...’ menu item: Folders.   (line  13)
-* ‘Message > Delete Message’ menu item:  Reading Mail.        (line  45)
-* ‘Message > Edit Message Again’ menu item: Sending Mail.     (line  19)
-* ‘Message > Execute Delete/Refile’ menu item: Folders.       (line  52)
-* ‘Message > Forward Message...’ menu item: Sending Mail.     (line  23)
-* ‘Message > Go to First Message’ menu item: Reading Mail.    (line  83)
-* ‘Message > Go to Last Message’ menu item: Reading Mail.     (line  85)
-* ‘Message > Go to Message by Number...’ menu item: Reading Mail.
+* menu, Sequence <1>:                    Menu Bar.            (line   6)
+* menu, Sequence <2>:                    Sequences.           (line   6)
+* Message > Burst Digest Message menu item: Reading Mail.     (line  54)
+* Message > Compose a New Message menu item: Sending Mail.    (line  27)
+* Message > Copy Message to Folder... menu item: Folders.     (line  13)
+* Message > Delete Message menu item:    Reading Mail.        (line  45)
+* Message > Edit Message Again menu item: Sending Mail.       (line  19)
+* Message > Execute Delete/Refile menu item: Folders.         (line  52)
+* Message > Forward Message... menu item: Sending Mail.       (line  23)
+* Message > Go to First Message menu item: Reading Mail.      (line  83)
+* Message > Go to Last Message menu item: Reading Mail.       (line  85)
+* Message > Go to Message by Number... menu item: Reading Mail.
                                                               (line  56)
-* ‘Message > Modify Message’ menu item:  Reading Mail.        (line  81)
-* ‘Message > Next Message’ menu item:    Reading Mail.        (line  91)
-* ‘Message > Pipe Message to Command...’ menu item: Reading Mail.
+* Message > Modify Message menu item:    Reading Mail.        (line  81)
+* Message > Next Message menu item:      Reading Mail.        (line  91)
+* Message > Pipe Message to Command... menu item: Reading Mail.
                                                               (line  40)
-* ‘Message > Previous Message’ menu item: Reading Mail.       (line  93)
-* ‘Message > Print Message’ menu item:   Reading Mail.        (line 106)
-* ‘Message > Re-edit a Bounced Message’ menu item: Sending Mail.
+* Message > Previous Message menu item:  Reading Mail.        (line  93)
+* Message > Print Message menu item:     Reading Mail.        (line 106)
+* Message > Re-edit a Bounced Message menu item: Sending Mail.
                                                               (line  20)
-* ‘Message > Redistribute Message...’ menu item: Sending Mail.
-                                                              (line  29)
-* ‘Message > Refile Message’ menu item:  Folders.             (line  43)
-* ‘Message > Reply to Message...’ menu item: Sending Mail.    (line  25)
-* ‘Message > Show Message’ menu item:    Reading Mail.        (line  24)
-* ‘Message > Show Message with Header’ menu item: Reading Mail.
-                                                              (line  26)
-* ‘Message > Show Message with Preferred Alternative’ menu item: Reading Mail.
+* Message > Redistribute Message... menu item: Sending Mail.  (line  29)
+* Message > Refile Message menu item:    Folders.             (line  43)
+* Message > Reply to Message... menu item: Sending Mail.      (line  25)
+* Message > Show Message menu item:      Reading Mail.        (line  24)
+* Message > Show Message with Header menu item: Reading Mail. (line  26)
+* Message > Show Message with Preferred Alternative menu item: Reading Mail.
                                                               (line  28)
-* ‘Message > Undo Delete/Refile’ menu item: Folders.          (line  50)
-* ‘Message > Unpack Uuencoded Message...’ menu item: Reading Mail.
+* Message > Undo Delete/Refile menu item: Folders.            (line  50)
+* Message > Unpack Uuencoded Message... menu item: Reading Mail.
                                                               (line 113)
-* ‘Message > Write Message to File...’ menu item: Reading Mail.
-                                                              (line  38)
+* Message > Write Message to File... menu item: Reading Mail. (line  38)
 * message abbreviations:                 Ranges.              (line   6)
-* ‘Message’ menu:                        Reading Mail.        (line  16)
-* ‘Message’ menu <1>:                    Folders.             (line   6)
-* ‘Message’ menu <2>:                    Sending Mail.        (line  16)
-* ‘Message’ menu <3>:                    Menu Bar.            (line   6)
-* Message menu:                          Menu Bar.            (line   6)
+* Message menu:                          Reading Mail.        (line  16)
+* Message menu <1>:                      Folders.             (line   6)
+* Message menu <2>:                      Sending Mail.        (line  16)
+* Message menu <3>:                      Menu Bar.            (line   6)
+* Message menu <4>:                      Menu Bar.            (line   6)
 * message numbers:                       Scan Line Formats.   (line  32)
 * message ranges:                        Ranges.              (line   6)
-* ‘MH & nmh - Email for Users & Programmers’: Preface.        (line  28)
+* MH & nmh - Email for Users & Programmers: Preface.          (line  28)
 * MH book:                               Preface.             (line  28)
 * MH book <1>:                           Getting Started.     (line  33)
 * MH commands:                           Conventions.         (line  10)
-* MH commands, ‘ali’:                    Aliases.             (line 106)
-* MH commands, ‘burst’:                  Digests.             (line  13)
-* MH commands, ‘dist’:                   Redistributing.      (line   6)
-* MH commands, ‘flists’:                 Speedbar.            (line  37)
-* MH commands, ‘folder’:                 Folders.             (line 163)
-* MH commands, ‘forw’:                   Forwarding.          (line   6)
-* MH commands, ‘inc’:                    Reading Mail Tour.   (line   6)
-* MH commands, ‘inc’ <1>:                Incorporating Mail.  (line  40)
-* MH commands, ‘inc’ <2>:                Scan Line Formats.   (line 105)
-* MH commands, ‘install-mh’:             Getting Started.     (line  33)
-* MH commands, ‘mark’:                   Sequences.           (line 115)
-* MH commands, ‘mhbuild’:                Adding Attachments.  (line   6)
-* MH commands, ‘mhbuild’ <1>:            Adding Attachments.  (line 205)
-* MH commands, ‘mhl’:                    Viewing.             (line  87)
-* MH commands, ‘mhl’ <1>:                Printing.            (line  35)
-* MH commands, ‘mhl’ <2>:                Replying.            (line   6)
-* MH commands, ‘mhn’:                    Viewing Attachments. (line  72)
-* MH commands, ‘mhn’ <1>:                Adding Attachments.  (line   6)
-* MH commands, ‘mhn’ <2>:                Adding Attachments.  (line 205)
-* MH commands, ‘mhparam’:                Getting Started.     (line  47)
-* MH commands, ‘mhshow’:                 Viewing Attachments. (line   6)
-* MH commands, ‘mhstore’:                Viewing Attachments. (line  72)
-* MH commands, ‘packf’:                  Leaving MH-E.        (line  16)
-* MH commands, ‘pick’:                   Searching.           (line  84)
-* MH commands, ‘pick’ <1>:               Searching.           (line 116)
-* MH commands, ‘pick’ <2>:               Searching.           (line 327)
-* MH commands, ‘pick’ <3>:               Limits.              (line  33)
-* MH commands, ‘pick’ <4>:               Sequences.           (line  59)
-* MH commands, ‘rcvstore’:               Procmail.            (line  33)
-* MH commands, ‘refile’:                 Processing Mail Tour.
+* MH commands, ali:                      Aliases.             (line 106)
+* MH commands, burst:                    Digests.             (line  13)
+* MH commands, dist:                     Redistributing.      (line   6)
+* MH commands, flists:                   Speedbar.            (line  37)
+* MH commands, folder:                   Folders.             (line 163)
+* MH commands, forw:                     Forwarding.          (line   6)
+* MH commands, inc:                      Reading Mail Tour.   (line   6)
+* MH commands, inc <1>:                  Incorporating Mail.  (line  40)
+* MH commands, inc <2>:                  Scan Line Formats.   (line 105)
+* MH commands, install-mh:               Getting Started.     (line  33)
+* MH commands, mark:                     Sequences.           (line 115)
+* MH commands, mhbuild:                  Adding Attachments.  (line   6)
+* MH commands, mhbuild <1>:              Adding Attachments.  (line 205)
+* MH commands, mhl:                      Viewing.             (line  87)
+* MH commands, mhl <1>:                  Printing.            (line  35)
+* MH commands, mhl <2>:                  Replying.            (line   6)
+* MH commands, mhn:                      Viewing Attachments. (line  72)
+* MH commands, mhn <1>:                  Adding Attachments.  (line   6)
+* MH commands, mhn <2>:                  Adding Attachments.  (line 205)
+* MH commands, mhparam:                  Getting Started.     (line  47)
+* MH commands, mhshow:                   Viewing Attachments. (line   6)
+* MH commands, mhstore:                  Viewing Attachments. (line  72)
+* MH commands, packf:                    Leaving MH-E.        (line  16)
+* MH commands, pick:                     Searching.           (line  84)
+* MH commands, pick <1>:                 Searching.           (line 116)
+* MH commands, pick <2>:                 Searching.           (line 327)
+* MH commands, pick <3>:                 Limits.              (line  33)
+* MH commands, pick <4>:                 Sequences.           (line  59)
+* MH commands, rcvstore:                 Procmail.            (line  33)
+* MH commands, refile:                   Processing Mail Tour.
                                                               (line  51)
-* MH commands, ‘refile’ <1>:             Folders.             (line 163)
-* MH commands, ‘repl’:                   Composing.           (line  34)
-* MH commands, ‘repl’ <1>:               Replying.            (line  21)
-* MH commands, ‘scan’:                   Reading Mail Tour.   (line   6)
-* MH commands, ‘scan’ <1>:               Reading Mail.        (line  16)
-* MH commands, ‘scan’ <2>:               Scan Line Formats.   (line  86)
-* MH commands, ‘scan’ <3>:               Scan Line Formats.   (line 105)
-* MH commands, ‘send’:                   Redistributing.      (line  16)
-* MH commands, ‘send’ <1>:               Sending Message.     (line  16)
-* MH commands, ‘show’:                   Viewing Attachments. (line   6)
-* MH commands, ‘slocal’:                 Procmail.            (line   6)
-* MH commands, ‘sortm’:                  Folders.             (line 301)
-* MH commands, ‘whom’:                   Checking Recipients. (line   6)
-* ‘mh’ customization group:              Options.             (line  33)
+* MH commands, refile <1>:               Folders.             (line 163)
+* MH commands, repl:                     Composing.           (line  34)
+* MH commands, repl <1>:                 Replying.            (line  21)
+* MH commands, scan:                     Reading Mail Tour.   (line   6)
+* MH commands, scan <1>:                 Reading Mail.        (line  16)
+* MH commands, scan <2>:                 Scan Line Formats.   (line  86)
+* MH commands, scan <3>:                 Scan Line Formats.   (line 105)
+* MH commands, send:                     Redistributing.      (line  16)
+* MH commands, send <1>:                 Sending Message.     (line  16)
+* MH commands, show:                     Viewing Attachments. (line   6)
+* MH commands, slocal:                   Procmail.            (line   6)
+* MH commands, sortm:                    Folders.             (line 301)
+* MH commands, whom:                     Checking Recipients. (line   6)
+* mh customization group:                Options.             (line  33)
 * MH FAQ:                                MH FAQ and Support.  (line   6)
 * MH profile:                            Getting Started.     (line  41)
 * MH profile component:                  Getting Started.     (line  41)
-* MH profile component, ‘Aliasfile’:     Aliases.             (line 106)
-* MH profile component, ‘Draft-Folder’:  Getting Started.     (line  70)
-* MH profile component, ‘forw’:          Forwarding.          (line  14)
-* MH profile component, ‘Path’:          Getting Started.     (line  41)
-* MH profile component, ‘Path’ <1>:      Getting Started.     (line  70)
-* MH profile component, ‘Previous-Sequence’: Getting Started. (line  70)
-* MH profile component, ‘Previous-Sequence’ <1>: Sequences.   (line  90)
-* MH profile component, ‘Previous-Sequence’ <2>: Junk.        (line  85)
-* MH profile component, ‘repl’:          Replying.            (line  30)
-* MH profile component, ‘sortm’:         Folders.             (line 301)
-* MH profile component, ‘Unseen-Sequence’: Getting Started.   (line  70)
-* MH profile component, ‘Unseen-Sequence’ <1>: Sequences.     (line 102)
-* MH profile component, ‘Unseen-Sequence’ <2>: Procmail.      (line  42)
-* ‘mh-alias’ customization group:        Aliases.             (line  25)
+* MH profile component, Aliasfile:       Aliases.             (line 106)
+* MH profile component, Draft-Folder:    Getting Started.     (line  70)
+* MH profile component, forw:            Forwarding.          (line  14)
+* MH profile component, Path:            Getting Started.     (line  41)
+* MH profile component, Path <1>:        Getting Started.     (line  70)
+* MH profile component, Previous-Sequence: Getting Started.   (line  70)
+* MH profile component, Previous-Sequence <1>: Sequences.     (line  90)
+* MH profile component, Previous-Sequence <2>: Junk.          (line  85)
+* MH profile component, repl:            Replying.            (line  30)
+* MH profile component, sortm:           Folders.             (line 301)
+* MH profile component, Unseen-Sequence: Getting Started.     (line  70)
+* MH profile component, Unseen-Sequence <1>: Sequences.       (line 102)
+* MH profile component, Unseen-Sequence <2>: Procmail.        (line  42)
+* mh-alias customization group:          Aliases.             (line  25)
 * MH-E version:                          Miscellaneous.       (line  12)
 * MH-E, obtaining:                       Getting MH-E.        (line   6)
 * MH-E, versions:                        Getting Started.     (line   6)
 * MH-E, versions <1>:                    History.             (line   6)
-* ‘MH-E-NEWS’:                           Getting MH-E.        (line  22)
-* ‘mh-folder’ customization group:       Folders.             (line  57)
+* MH-E-NEWS:                             Getting MH-E.        (line  22)
+* mh-folder customization group:         Folders.             (line  57)
 * MH-Folder mode:                        Reading Mail Tour.   (line   6)
 * MH-Folder mode <1>:                    Processing Mail Tour.
                                                               (line  63)
@@ -8992,12 +8989,11 @@ Concept Index
 * MH-Folder mode <9>:                    Sequences.           (line  73)
 * MH-Folder Show mode:                   Digests.             (line  13)
 * MH-Folder Show mode <1>:               Folders.             (line 210)
-* ‘mh-folder-selection’ customization group: Folder Selection.
-                                                              (line  12)
-* ‘mh-identity’ customization group:     Identities.          (line  19)
-* ‘mh-inc’ customization group:          Incorporating Mail.  (line  13)
-* ‘mh-junk’ customization group:         Junk.                (line  27)
-* ‘mh-letter’ customization group:       Editing Drafts.      (line 124)
+* mh-folder-selection customization group: Folder Selection.  (line  12)
+* mh-identity customization group:       Identities.          (line  19)
+* mh-inc customization group:            Incorporating Mail.  (line  13)
+* mh-junk customization group:           Junk.                (line  27)
+* mh-letter customization group:         Editing Drafts.      (line 124)
 * MH-Letter mode:                        Sending Mail Tour.   (line   6)
 * MH-Letter mode <1>:                    Composing.           (line  16)
 * MH-Letter mode <2>:                    Composing.           (line  34)
@@ -9005,45 +9001,45 @@ Concept Index
 * MH-Letter mode <4>:                    Editing Drafts.      (line   6)
 * MH-Letter mode <5>:                    Aliases.             (line  10)
 * MH-Letter mode <6>:                    Menu Bar.            (line   6)
-* ‘mh-range’ customization group:        Ranges.              (line  39)
-* ‘mh-scan-line-formats’ customization group: Scan Line Formats.
+* mh-range customization group:          Ranges.              (line  39)
+* mh-scan-line-formats customization group: Scan Line Formats.
                                                               (line  10)
-* ‘mh-search’ customization group:       Searching.           (line  62)
+* mh-search customization group:         Searching.           (line  62)
 * MH-Search mode:                        Menu Bar.            (line   6)
 * MH-Search mode <1>:                    Searching.           (line  94)
-* ‘mh-sending-mail’ customization group: Sending Mail.        (line  37)
-* ‘mh-sequences’ customization group:    Sequences.           (line  38)
-* ‘mh-sequences’ customization group <1>: Junk.               (line  37)
-* ‘mh-show’ customization group:         Reading Mail.        (line 127)
+* mh-sending-mail customization group:   Sending Mail.        (line  37)
+* mh-sequences customization group:      Sequences.           (line  38)
+* mh-sequences customization group <1>:  Junk.                (line  37)
+* mh-show customization group:           Reading Mail.        (line 127)
 * MH-Show mode:                          Reading Mail.        (line   6)
 * MH-Show mode <1>:                      Viewing.             (line 145)
 * MH-Show mode <2>:                      Folders.             (line 217)
 * MH-Show mode <3>:                      Replying.            (line  30)
-* ‘mh-speedbar’ customization group:     Speedbar.            (line  37)
-* ‘mh-thread’ customization group:       Threading.           (line  35)
-* ‘mh-tool-bar’ customization group:     Tool Bar.            (line   9)
-* ‘mhbuild’:                             Adding Attachments.  (line   6)
-* ‘mhbuild’ <1>:                         Adding Attachments.  (line 205)
-* ‘mhl’:                                 Viewing.             (line  87)
-* ‘mhl’ <1>:                             Printing.            (line  35)
-* ‘mhl’ <2>:                             Replying.            (line   6)
-* ‘mhl.reply’:                           Replying.            (line   6)
-* ‘mhn’:                                 Viewing Attachments. (line  72)
-* ‘mhn’ <1>:                             Adding Attachments.  (line   6)
-* ‘mhn’ <2>:                             Adding Attachments.  (line 205)
-* ‘mhparam’:                             Getting Started.     (line  47)
-* ‘mhshow’:                              Viewing Attachments. (line   6)
-* ‘mhstore’:                             Viewing Attachments. (line  72)
+* mh-speedbar customization group:       Speedbar.            (line  37)
+* mh-thread customization group:         Threading.           (line  35)
+* mh-tool-bar customization group:       Tool Bar.            (line   9)
+* mhbuild:                               Adding Attachments.  (line   6)
+* mhbuild <1>:                           Adding Attachments.  (line 205)
+* mhl:                                   Viewing.             (line  87)
+* mhl <1>:                               Printing.            (line  35)
+* mhl <2>:                               Replying.            (line   6)
+* mhl.reply:                             Replying.            (line   6)
+* mhn:                                   Viewing Attachments. (line  72)
+* mhn <1>:                               Adding Attachments.  (line   6)
+* mhn <2>:                               Adding Attachments.  (line 205)
+* mhparam:                               Getting Started.     (line  47)
+* mhshow:                                Viewing Attachments. (line   6)
+* mhstore:                               Viewing Attachments. (line  72)
 * MIME:                                  Viewing Attachments. (line   6)
 * MIME <1>:                              Adding Attachments.  (line   6)
 * MIME Meta Language (MML):              Adding Attachments.  (line  21)
 * MIME, content description:             Adding Attachments.  (line  45)
-* MIME, ‘ftp’:                           Adding Attachments.  (line 120)
-* MIME, ‘ftp’ <1>:                       Adding Attachments.  (line 128)
+* MIME, ftp:                             Adding Attachments.  (line 120)
+* MIME, ftp <1>:                         Adding Attachments.  (line 128)
 * MIME, images:                          Adding Attachments.  (line 101)
 * MIME, media types:                     Adding Attachments.  (line  27)
 * MIME, sound:                           Adding Attachments.  (line 101)
-* MIME, ‘tar’:                           Adding Attachments.  (line 128)
+* MIME, tar:                             Adding Attachments.  (line 128)
 * MIME, video:                           Adding Attachments.  (line 101)
 * minibuffer:                            Conventions.         (line  88)
 * mm-decode package:                     Viewing Attachments. (line  11)
@@ -9082,8 +9078,8 @@ Concept Index
 * multimedia mail:                       Viewing Attachments. (line   6)
 * multimedia mail <1>:                   Adding Attachments.  (line   6)
 * multiple personalities:                Identities.          (line   6)
-* ‘namazu’:                              Searching.           (line 191)
-* ‘namazu’ <1>:                          Searching.           (line 303)
+* namazu:                                Searching.           (line 191)
+* namazu <1>:                            Searching.           (line 303)
 * navigation:                            Navigating.          (line   6)
 * new mail:                              Incorporating Mail.  (line  34)
 * news:                                  Getting MH-E.        (line  22)
@@ -9100,133 +9096,132 @@ Concept Index
 * OpenPGP:                               Reading PGP.         (line   6)
 * option, turning on and off:            Options.             (line  15)
 * options:                               Conventions.         (line  60)
-* ‘Organization’ header field:           Identities.          (line  50)
-* ‘packf’:                               Leaving MH-E.        (line  16)
+* Organization header field:             Identities.          (line  50)
+* packf:                                 Leaving MH-E.        (line  16)
 * paragraphs, filling:                   Editing Message.     (line  61)
-* ‘Path’ MH profile component:           Getting Started.     (line  41)
-* ‘Path’ MH profile component <1>:       Getting Started.     (line  70)
+* Path MH profile component:             Getting Started.     (line  41)
+* Path MH profile component <1>:         Getting Started.     (line  70)
 * PGG:                                   Reading PGP.         (line  75)
 * PGG <1>:                               Sending PGP.         (line  39)
-* ‘pgg’ customization group:             Reading PGP.         (line  75)
-* ‘pgg’ customization group <1>:         Sending PGP.         (line  39)
+* pgg customization group:               Reading PGP.         (line  75)
+* pgg customization group <1>:           Sending PGP.         (line  39)
 * PGP:                                   Reading PGP.         (line   6)
-* ‘pick’:                                Searching.           (line  84)
-* ‘pick’ <1>:                            Searching.           (line 116)
-* ‘pick’ <2>:                            Searching.           (line 191)
-* ‘pick’ <3>:                            Searching.           (line 327)
-* ‘pick’ <4>:                            Limits.              (line  33)
-* ‘pick’ <5>:                            Sequences.           (line  59)
+* pick:                                  Searching.           (line  84)
+* pick <1>:                              Searching.           (line 116)
+* pick <2>:                              Searching.           (line 191)
+* pick <3>:                              Searching.           (line 327)
+* pick <4>:                              Limits.              (line  33)
+* pick <5>:                              Sequences.           (line  59)
 * pipes:                                 Files and Pipes.     (line   6)
 * point:                                 Conventions.         (line  80)
 * preface:                               Preface.             (line   6)
 * prefix argument:                       Conventions.         (line  39)
 * prefix characters:                     Processing Mail Tour.
                                                               (line  75)
-* ‘Previous-Sequence’ MH profile component: Getting Started.  (line  70)
-* ‘Previous-Sequence’ MH profile component <1>: Sequences.    (line  90)
-* ‘Previous-Sequence’ MH profile component <2>: Junk.         (line  85)
+* Previous-Sequence MH profile component: Getting Started.    (line  70)
+* Previous-Sequence MH profile component <1>: Sequences.      (line  90)
+* Previous-Sequence MH profile component <2>: Junk.           (line  85)
 * printing:                              Printing.            (line   6)
 * processing mail:                       Processing Mail Tour.
                                                               (line   6)
-* ‘procmail’:                            Incorporating Mail.  (line  56)
-* ‘procmail’ <1>:                        Folders.             (line 240)
-* ‘procmail’ <2>:                        Searching.           (line 177)
-* ‘procmail’ <3>:                        Procmail.            (line   6)
+* procmail:                              Incorporating Mail.  (line  56)
+* procmail <1>:                          Folders.             (line 240)
+* procmail <2>:                          Searching.           (line 177)
+* procmail <3>:                          Procmail.            (line   6)
 * ps-print package:                      Printing.            (line  31)
 * quitting:                              Conventions.         (line 109)
 * quitting <1>:                          Leaving MH-E.        (line   6)
 * quitting <2>:                          Folders.             (line 307)
 * ranges:                                Ranges.              (line   6)
-* ‘rcvstore’:                            Procmail.            (line  33)
+* rcvstore:                              Procmail.            (line  33)
 * re-editing drafts:                     Editing Again.       (line   6)
 * reading mail:                          Reading Mail Tour.   (line   6)
 * reading mail <1>:                      Reading Mail.        (line   6)
 * reading mail <2>:                      Miscellaneous Commands and Options.
                                                               (line  35)
-* ‘README’:                              Getting MH-E.        (line  22)
+* README:                                Getting MH-E.        (line  22)
 * recipients, checking:                  Checking Recipients. (line   6)
 * redistributing:                        Redistributing.      (line   6)
-* ‘refile’:                              Processing Mail Tour.
+* refile:                                Processing Mail Tour.
                                                               (line  51)
-* ‘refile’ <1>:                          Folders.             (line 163)
+* refile <1>:                            Folders.             (line 163)
 * region:                                Conventions.         (line  80)
-* regular expressions, ‘mh-alias-apropos’: Aliases.           (line 212)
-* regular expressions, ‘mh-auto-fields-list’: Identities.     (line  81)
-* regular expressions, ‘mh-invisible-header-fields’: Viewing. (line  30)
+* regular expressions, mh-alias-apropos: Aliases.             (line 212)
+* regular expressions, mh-auto-fields-list: Identities.       (line  81)
+* regular expressions, mh-invisible-header-fields: Viewing.   (line  30)
 * regular expressions, scan line formats: Scan Line Formats.  (line  93)
 * Reid, Brian:                           History.             (line   6)
 * Reid, Brian <1>:                       From Brian Reid.     (line   6)
 * release notes:                         Getting MH-E.        (line  11)
 * renaming folders:                      Folders.             (line 340)
-* ‘repl’:                                Composing.           (line  34)
-* ‘repl’ <1>:                            Replying.            (line  21)
-* ‘repl’ MH profile component:           Replying.            (line  30)
-* ‘Reply-To’ header field:               Editing Message.     (line   6)
+* repl:                                  Composing.           (line  34)
+* repl <1>:                              Replying.            (line  21)
+* repl MH profile component:             Replying.            (line  30)
+* Reply-To header field:                 Editing Message.     (line   6)
 * replying:                              Replying.            (line   6)
 * replying to messages:                  Inserting Letter.    (line   6)
 * RFC 2047, decoding:                    Scan Line Formats.   (line  72)
 * RFC 3156:                              Reading PGP.         (line   6)
 * RFC 3156 <1>:                          Sending PGP.         (line   6)
 * root, in threads:                      Threading.           (line  12)
-* ‘sa-learn’:                            Junk.                (line 147)
+* sa-learn:                              Junk.                (line 147)
 * saving attachments:                    Viewing Attachments. (line  63)
-* ‘scan’:                                Reading Mail Tour.   (line   6)
-* ‘scan’ <1>:                            Reading Mail.        (line  16)
-* ‘scan’ <2>:                            Scan Line Formats.   (line  86)
-* ‘scan’ <3>:                            Scan Line Formats.   (line 105)
+* scan:                                  Reading Mail Tour.   (line   6)
+* scan <1>:                              Reading Mail.        (line  16)
+* scan <2>:                              Scan Line Formats.   (line  86)
+* scan <3>:                              Scan Line Formats.   (line 105)
 * scan line formats:                     Scan Line Formats.   (line   6)
 * scan line notations:                   Scan Line Formats.   (line  76)
 * scan lines:                            Reading Mail.        (line  16)
-* ‘Search > Perform Search’ menu item:   Searching.           (line  13)
-* ‘Search > Search with pick’ menu item: Searching.           (line  15)
-* ‘Search’ menu:                         Menu Bar.            (line   6)
+* Search > Perform Search menu item:     Searching.           (line  13)
+* Search > Search with pick menu item:   Searching.           (line  15)
 * Search menu:                           Menu Bar.            (line   6)
-* ‘Search’ menu <1>:                     Searching.           (line   6)
+* Search menu <1>:                       Menu Bar.            (line   6)
+* Search menu <2>:                       Searching.           (line   6)
 * searching:                             Searching.           (line   6)
 * security:                              Reading PGP.         (line   6)
-* ‘send’:                                Redistributing.      (line  16)
-* ‘send’ <1>:                            Sending Message.     (line  16)
+* send:                                  Redistributing.      (line  16)
+* send <1>:                              Sending Message.     (line  16)
 * sending mail:                          Sending Mail Tour.   (line   6)
 * sending mail <1>:                      Sending Mail.        (line   6)
 * sending mail <2>:                      Composing.           (line   6)
 * sending mail <3>:                      Sending Message.     (line   6)
 * sending mail <4>:                      Sending Message.     (line  12)
-* ‘Sequence > Add Message to Sequence...’ menu item: Sequences.
-                                                              (line  27)
-* ‘Sequence > Delete Message from Sequence...’ menu item: Sequences.
+* Sequence > Add Message to Sequence... menu item: Sequences. (line  27)
+* Sequence > Delete Message from Sequence... menu item: Sequences.
                                                               (line  19)
-* ‘Sequence > Delete Sequence...’ menu item: Sequences.       (line  21)
-* ‘Sequence > List Sequences for Message’ menu item: Sequences.
-                                                              (line  29)
-* ‘Sequence > List Sequences in Folder...’ menu item: Sequences.
+* Sequence > Delete Sequence... menu item: Sequences.         (line  21)
+* Sequence > List Sequences for Message menu item: Sequences. (line  29)
+* Sequence > List Sequences in Folder... menu item: Sequences.
                                                               (line  23)
-* ‘Sequence > Narrow to Sequence...’ menu item: Sequences.    (line  25)
-* ‘Sequence > Narrow to Subject Sequence’ menu item: Limits.  (line  22)
-* ‘Sequence > Narrow to Tick Sequence’ menu item: Limits.     (line  13)
-* ‘Sequence > Narrow to Tick Sequence’ menu item <1>: Sequences.
+* Sequence > Narrow to Sequence... menu item: Sequences.      (line  25)
+* Sequence > Narrow to Subject Sequence menu item: Limits.    (line  22)
+* Sequence > Narrow to Tick Sequence menu item: Limits.       (line  13)
+* Sequence > Narrow to Tick Sequence menu item <1>: Sequences.
                                                               (line  17)
-* ‘Sequence > Toggle Tick Mark’ menu item: Sequences.         (line  13)
-* ‘Sequence > Widen from Sequence’ menu item: Limits.         (line  27)
-* ‘Sequence > Widen from Sequence’ menu item <1>: Sequences.  (line  32)
-* ‘Sequence’ menu:                       Menu Bar.            (line   6)
+* Sequence > Toggle Tick Mark menu item: Sequences.           (line  13)
+* Sequence > Widen from Sequence menu item: Limits.           (line  27)
+* Sequence > Widen from Sequence menu item <1>: Sequences.    (line  32)
 * Sequence menu:                         Menu Bar.            (line   6)
-* ‘Sequence’ menu <1>:                   Sequences.           (line   6)
-* sequence, ‘cur’:                       Sequences.           (line  90)
-* sequence, ‘cur’ <1>:                   Sequences.           (line 102)
-* sequence, ‘cur’ <2>:                   Junk.                (line  85)
-* sequence, ‘Previous-Sequence’:         Sequences.           (line  90)
-* sequence, ‘Previous-Sequence’ <1>:     Junk.                (line  85)
-* sequence, ‘tick’:                      Folders.             (line 248)
-* sequence, ‘tick’ <1>:                  Limits.              (line  39)
-* sequence, ‘tick’ <2>:                  Sequences.           (line  64)
-* sequence, ‘tick’ <3>:                  Sequences.           (line 102)
-* sequence, ‘unseen’:                    Folders.             (line 240)
-* sequence, ‘Unseen-Sequence’:           Sequences.           (line 102)
+* Sequence menu <1>:                     Menu Bar.            (line   6)
+* Sequence menu <2>:                     Sequences.           (line   6)
+* sequence, cur:                         Sequences.           (line  90)
+* sequence, cur <1>:                     Sequences.           (line 102)
+* sequence, cur <2>:                     Junk.                (line  85)
+* sequence, Previous-Sequence:           Sequences.           (line  90)
+* sequence, Previous-Sequence <1>:       Junk.                (line  85)
+* sequence, tick:                        Folders.             (line 248)
+* sequence, tick <1>:                    Limits.              (line  39)
+* sequence, tick <2>:                    Sequences.           (line  64)
+* sequence, tick <3>:                    Sequences.           (line 102)
+* sequence, unseen:                      Folders.             (line 240)
+* sequence, Unseen-Sequence:             Sequences.           (line 102)
 * sequences:                             Sequences.           (line   6)
 * setting options:                       Options.             (line   6)
-* ‘shar’:                                Files and Pipes.     (line  21)
+* shar:                                  Files and Pipes.     (line  21)
 * shell commands:                        Conventions.         (line  10)
-* ‘show’:                                Viewing Attachments. (line   6)
+* show:                                  Viewing Attachments. (line   6)
+* shr:                                   HTML.                (line  60)
 * siblings, in threads:                  Threading.           (line  12)
 * signature:                             Signature.           (line   6)
 * signature <1>:                         Identities.          (line  59)
@@ -9235,10 +9230,10 @@ Concept Index
 * signed messages:                       Reading PGP.         (line   6)
 * signed messages <1>:                   Reading PGP.         (line  17)
 * signing messages:                      Sending PGP.         (line   6)
-* ‘slocal’:                              Procmail.            (line   6)
+* slocal:                                Procmail.            (line   6)
 * smileys:                               Viewing.             (line 118)
-* ‘sortm’:                               Folders.             (line 301)
-* ‘sortm’ MH profile component:          Folders.             (line 301)
+* sortm:                                 Folders.             (line 301)
+* sortm MH profile component:            Folders.             (line 301)
 * sound:                                 Adding Attachments.  (line 101)
 * SourceForge:                           Bug Reports.         (line   6)
 * SourceForge <1>:                       Mailing Lists.       (line   6)
@@ -9253,7 +9248,7 @@ Concept Index
 * spam filters, SpamProbe <1>:           Junk.                (line 232)
 * Spamassassin:                          Junk.                (line  60)
 * Spamassassin <1>:                      Junk.                (line 101)
-* ‘spamc’:                               Junk.                (line 107)
+* spamc:                                 Junk.                (line 107)
 * SpamProbe:                             Junk.                (line  60)
 * SpamProbe <1>:                         Junk.                (line 232)
 * speedbar:                              Speedbar.            (line   6)
@@ -9262,80 +9257,80 @@ Concept Index
 * starting from command line:            Sending Mail.        (line   9)
 * Stephen Gildea:                        History.             (line   6)
 * Stephen Gildea <1>:                    From Stephen Gildea. (line   6)
-* ‘Subject’ header field:                Editing Message.     (line   6)
-* ‘Subject’ header field <1>:            Junk.                (line 265)
+* Subject header field:                  Editing Message.     (line   6)
+* Subject header field <1>:              Junk.                (line 265)
 * supercite package:                     Inserting Letter.    (line  36)
 * support:                               MH FAQ and Support.  (line  12)
-* ‘swish++’:                             Searching.           (line 191)
-* ‘swish++’ <1>:                         Searching.           (line 204)
-* ‘swish-e’:                             Searching.           (line 191)
-* ‘swish-e’ <1>:                         Searching.           (line 235)
-* ‘swish-e’ <2>:                         Searching.           (line 272)
+* swish++:                               Searching.           (line 191)
+* swish++ <1>:                           Searching.           (line 204)
+* swish-e:                               Searching.           (line 191)
+* swish-e <1>:                           Searching.           (line 235)
+* swish-e <2>:                           Searching.           (line 272)
 * t:                                     Options.             (line  15)
-* ‘tar’:                                 Adding Attachments.  (line 128)
+* tar:                                   Adding Attachments.  (line 128)
 * terms, Emacs:                          Conventions.         (line   6)
 * threading:                             Threading.           (line   6)
-* ‘tick’ sequence:                       Folders.             (line 248)
-* ‘tick’ sequence <1>:                   Limits.              (line  39)
-* ‘tick’ sequence <2>:                   Sequences.           (line  64)
-* ‘tick’ sequence <3>:                   Sequences.           (line 102)
+* tick sequence:                         Folders.             (line 248)
+* tick sequence <1>:                     Limits.              (line  39)
+* tick sequence <2>:                     Sequences.           (line  64)
+* tick sequence <3>:                     Sequences.           (line 102)
 * ticked messages, viewing:              Folders.             (line 248)
 * ticked messages, viewing <1>:          Limits.              (line  39)
 * ticking messages:                      Sequences.           (line  64)
-* ‘To’ header field:                     Editing Message.     (line   6)
+* To header field:                       Editing Message.     (line   6)
 * tool bar:                              Tool Bar.            (line   6)
 * tour:                                  Tour Through MH-E.   (line   6)
 * trivial-cite package:                  Inserting Letter.    (line  74)
 * tutorial:                              Tour Through MH-E.   (line   6)
 * typesetting:                           Viewing.             (line 118)
-* ‘uncompface’:                          Viewing.             (line  55)
+* uncompface:                            Viewing.             (line  55)
 * underline, showing:                    Viewing.             (line 118)
 * undo effects of mh-mh-to-mime:         Adding Attachments.  (line 205)
 * undo effects of mh-mml-to-mime:        Adding Attachments.  (line 203)
 * undoing refiles and deletes:           Folders.             (line 177)
 * Unix commands:                         Conventions.         (line  10)
-* Unix commands, ‘compface’:             Picture.             (line  17)
-* Unix commands, ‘convert’:              Viewing.             (line  59)
+* Unix commands, compface:               Picture.             (line  17)
+* Unix commands, convert:                Viewing.             (line  59)
 * Unix commands, Emacs:                  Preface.             (line   6)
 * Unix commands, Emacs <1>:              Conventions.         (line   6)
-* Unix commands, ‘emacsclient’:          Incorporating Mail.  (line  71)
-* Unix commands, ‘file’:                 Adding Attachments.  (line  32)
-* Unix commands, ‘ftp’:                  Adding Attachments.  (line 120)
-* Unix commands, ‘ftp’ <1>:              Adding Attachments.  (line 128)
-* Unix commands, ‘gnuclient’:            Incorporating Mail.  (line  71)
-* Unix commands, ‘grep’:                 Searching.           (line 191)
-* Unix commands, ‘grep’ <1>:             Searching.           (line 336)
-* Unix commands, ‘index’:                Searching.           (line 229)
-* Unix commands, ‘index++’:              Searching.           (line 229)
-* Unix commands, ‘lpr’:                  Printing.            (line  35)
-* Unix commands, ‘mairix’:               Searching.           (line 191)
-* Unix commands, ‘mairix’ <1>:           Searching.           (line 280)
-* Unix commands, ‘namazu’:               Searching.           (line 191)
-* Unix commands, ‘namazu’ <1>:           Searching.           (line 303)
-* Unix commands, ‘pick’:                 Searching.           (line 191)
-* Unix commands, ‘procmail’:             Incorporating Mail.  (line  56)
-* Unix commands, ‘procmail’ <1>:         Folders.             (line 240)
-* Unix commands, ‘procmail’ <2>:         Searching.           (line 177)
-* Unix commands, ‘procmail’ <3>:         Procmail.            (line   6)
-* Unix commands, ‘shar’:                 Files and Pipes.     (line  21)
-* Unix commands, ‘swish++’:              Searching.           (line 191)
-* Unix commands, ‘swish++’ <1>:          Searching.           (line 204)
-* Unix commands, ‘swish-e’:              Searching.           (line 191)
-* Unix commands, ‘swish-e’ <1>:          Searching.           (line 235)
-* Unix commands, ‘swish-e’ <2>:          Searching.           (line 272)
-* Unix commands, ‘tar’:                  Adding Attachments.  (line 128)
-* Unix commands, ‘uncompface’:           Viewing.             (line  55)
-* Unix commands, ‘uuencode’:             Files and Pipes.     (line  21)
-* Unix commands, ‘wget’:                 Viewing.             (line  59)
-* Unix commands, ‘xbuffy’:               Incorporating Mail.  (line  71)
+* Unix commands, emacsclient:            Incorporating Mail.  (line  71)
+* Unix commands, file:                   Adding Attachments.  (line  32)
+* Unix commands, ftp:                    Adding Attachments.  (line 120)
+* Unix commands, ftp <1>:                Adding Attachments.  (line 128)
+* Unix commands, gnuclient:              Incorporating Mail.  (line  71)
+* Unix commands, grep:                   Searching.           (line 191)
+* Unix commands, grep <1>:               Searching.           (line 336)
+* Unix commands, index:                  Searching.           (line 229)
+* Unix commands, index++:                Searching.           (line 229)
+* Unix commands, lpr:                    Printing.            (line  35)
+* Unix commands, mairix:                 Searching.           (line 191)
+* Unix commands, mairix <1>:             Searching.           (line 280)
+* Unix commands, namazu:                 Searching.           (line 191)
+* Unix commands, namazu <1>:             Searching.           (line 303)
+* Unix commands, pick:                   Searching.           (line 191)
+* Unix commands, procmail:               Incorporating Mail.  (line  56)
+* Unix commands, procmail <1>:           Folders.             (line 240)
+* Unix commands, procmail <2>:           Searching.           (line 177)
+* Unix commands, procmail <3>:           Procmail.            (line   6)
+* Unix commands, shar:                   Files and Pipes.     (line  21)
+* Unix commands, swish++:                Searching.           (line 191)
+* Unix commands, swish++ <1>:            Searching.           (line 204)
+* Unix commands, swish-e:                Searching.           (line 191)
+* Unix commands, swish-e <1>:            Searching.           (line 235)
+* Unix commands, swish-e <2>:            Searching.           (line 272)
+* Unix commands, tar:                    Adding Attachments.  (line 128)
+* Unix commands, uncompface:             Viewing.             (line  55)
+* Unix commands, uuencode:               Files and Pipes.     (line  21)
+* Unix commands, wget:                   Viewing.             (line  59)
+* Unix commands, xbuffy:                 Incorporating Mail.  (line  71)
 * unseen messages, viewing:              Folders.             (line 240)
-* ‘unseen’ sequence:                     Folders.             (line 240)
-* ‘Unseen-Sequence’ MH profile component: Getting Started.    (line  70)
-* ‘Unseen-Sequence’ MH profile component <1>: Sequences.      (line 102)
-* ‘Unseen-Sequence’ MH profile component <2>: Procmail.       (line  42)
+* unseen sequence:                       Folders.             (line 240)
+* Unseen-Sequence MH profile component:  Getting Started.     (line  70)
+* Unseen-Sequence MH profile component <1>: Sequences.        (line 102)
+* Unseen-Sequence MH profile component <2>: Procmail.         (line  42)
 * URLs, highlighting:                    Viewing.             (line 111)
 * using folders:                         Folders.             (line   6)
-* ‘uuencode’:                            Files and Pipes.     (line  21)
+* uuencode:                              Files and Pipes.     (line  21)
 * variables:                             Conventions.         (line  57)
 * vCard:                                 Viewing.             (line 132)
 * vCard <1>:                             Signature.           (line   9)
@@ -9345,168 +9340,168 @@ Concept Index
 * video:                                 Adding Attachments.  (line 101)
 * viewing attachments:                   Viewing Attachments. (line  37)
 * viruses:                               Junk.                (line  11)
-* ‘w3’:                                  HTML.                (line  63)
-* ‘w3m’:                                 HTML.                (line  30)
-* ‘w3m-standalone’:                      HTML.                (line  37)
-* ‘wget’:                                Viewing.             (line  59)
+* w3m:                                   HTML.                (line  29)
+* w3m <1>:                               HTML.                (line  68)
+* w3m <2>:                               HTML.                (line  78)
+* w3m-standalone:                        HTML.                (line  78)
+* wget:                                  Viewing.             (line  59)
 * whitelisting:                          Junk.                (line  11)
-* ‘whom’:                                Checking Recipients. (line   6)
+* whom:                                  Checking Recipients. (line   6)
 * Wohler, Bill:                          Preface.             (line  39)
 * Wohler, Bill <1>:                      History.             (line   6)
 * Wohler, Bill <2>:                      From Bill Wohler.    (line   6)
 * worms:                                 Junk.                (line  11)
-* ‘X-Bogosity’ header field:             Junk.                (line 200)
-* ‘X-Face’ header field:                 Viewing.             (line  43)
-* ‘X-Face’ header field <1>:             Picture.             (line  12)
+* X-Bogosity header field:               Junk.                (line 200)
+* X-Face header field:                   Viewing.             (line  43)
+* X-Face header field <1>:               Picture.             (line  12)
 * x-face package:                        Viewing.             (line  55)
-* ‘X-Image-URL’ header field:            Viewing.             (line  43)
-* ‘X-Image-URL’ header field <1>:        Picture.             (line  12)
-* ‘X-Mailer’ header field:               Composing.           (line  29)
-* ‘X-MHE-Checksum’ header field:         Searching.           (line 177)
-* ‘X-Spam-Level’ header field:           Junk.                (line 107)
-* ‘X-Spam-Status’ header field:          Junk.                (line 107)
-* ‘X-SpamProbe’ header field:            Junk.                (line 238)
-* ‘xbuffy’:                              Incorporating Mail.  (line  71)
-* ‘xmh’, in MH-E history:                From Jim Larus.      (line  31)
+* X-Image-URL header field:              Viewing.             (line  43)
+* X-Image-URL header field <1>:          Picture.             (line  12)
+* X-Mailer header field:                 Composing.           (line  29)
+* X-MHE-Checksum header field:           Searching.           (line 177)
+* X-Spam-Level header field:             Junk.                (line 107)
+* X-Spam-Status header field:            Junk.                (line 107)
+* X-SpamProbe header field:              Junk.                (line 238)
+* xbuffy:                                Incorporating Mail.  (line  71)
+* xmh, in MH-E history:                  From Jim Larus.      (line  31)
 * yanking messages:                      Inserting Letter.    (line   6)
-* ‘ypcat passwd’:                        Aliases.             (line 142)
+* ypcat passwd:                          Aliases.             (line 142)
 
 
 
 Tag Table:
 Node: Top1266
 Node: Preface4934
-Ref: Preface-Footnote-16980
-Node: Conventions7325
-Ref: Conventions-Footnote-113009
-Node: Getting Started13102
-Ref: Getting Started-Footnote-117304
-Ref: Getting Started-Footnote-217630
-Node: Tour Through MH-E17747
-Ref: Tour Through MH-E-Footnote-118491
-Node: Sending Mail Tour18733
-Ref: Sending Mail Tour-Footnote-120397
-Ref: Sending Mail Tour-Footnote-220481
-Ref: Sending Mail Tour-Footnote-320667
-Node: Reading Mail Tour20822
-Ref: Reading Mail Tour-Footnote-122476
-Ref: Reading Mail Tour-Footnote-222602
-Node: Processing Mail Tour22746
-Node: Leaving MH-E26723
-Node: More About MH-E27957
-Node: Using This Manual29486
-Ref: Using This Manual-Footnote-132307
-Ref: Using This Manual-Footnote-232395
-Node: Options32592
-Node: Ranges34635
-Node: Folder Selection36466
-Node: Incorporating Mail38823
-Node: Reading Mail43021
-Ref: Reading Mail-Footnote-151788
-Node: Viewing52065
-Ref: Viewing-Footnote-160625
-Ref: Viewing-Footnote-260758
-Ref: Viewing-Footnote-361106
-Node: Viewing Attachments61340
-Ref: Viewing Attachments-Footnote-169382
-Ref: Viewing Attachments-Footnote-269508
-Ref: Viewing Attachments-Footnote-369626
-Ref: Viewing Attachments-Footnote-469840
-Node: HTML69910
-Ref: HTML-Footnote-174734
-Node: Digests74807
-Ref: Digests-Footnote-176271
-Node: Reading PGP76382
-Ref: Reading PGP-Footnote-179183
-Ref: Reading PGP-Footnote-279432
-Node: Printing79611
-Ref: Printing-Footnote-182511
-Node: Files and Pipes82621
-Node: Navigating84649
-Node: Miscellaneous Commands and Options87461
-Ref: Miscellaneous Commands and Options-Footnote-191445
-Ref: Miscellaneous Commands and Options-Footnote-291754
-Node: Folders91843
-Ref: Folders-Footnote-1107592
-Ref: Folders-Footnote-2107815
-Ref: Folders-Footnote-3107890
-Node: Sending Mail108007
-Node: Composing111199
-Ref: Composing-Footnote-1114648
-Ref: Composing-Footnote-2114898
-Node: Replying115078
-Ref: Replying-Footnote-1117926
-Node: Forwarding118046
-Ref: Forwarding-Footnote-1120055
-Node: Redistributing120174
-Ref: Redistributing-Footnote-1121376
-Ref: Redistributing-Footnote-2121501
-Node: Editing Again121623
-Node: Editing Drafts122754
-Node: Editing Message129977
-Node: Inserting Letter135034
-Ref: Inserting Letter-Footnote-1139119
-Ref: Inserting Letter-Footnote-2139242
-Ref: Inserting Letter-Footnote-3139423
-Node: Inserting Messages139525
-Node: Signature140411
-Node: Picture142153
-Node: Adding Attachments143752
-Ref: Adding Attachments-Footnote-1153723
-Ref: Adding Attachments-Footnote-2153804
-Ref: Adding Attachments-Footnote-3153922
-Ref: Adding Attachments-Footnote-4153979
-Ref: Adding Attachments-Footnote-5154066
-Node: Sending PGP154184
-Node: Checking Recipients156190
-Ref: Checking Recipients-Footnote-1156619
-Node: Sending Message156755
-Ref: Sending Message-Footnote-1157718
-Node: Killing Draft157840
-Node: Aliases158246
-Ref: Aliases-Footnote-1167606
-Node: Identities167706
-Ref: Identities-Footnote-1175050
-Node: Speedbar175103
-Ref: Speedbar-Footnote-1177669
-Node: Menu Bar177803
-Node: Tool Bar178795
-Node: Searching181460
-Node: Threading193713
-Ref: Threading-Footnote-1196740
-Node: Limits197339
-Ref: Limits-Footnote-1199344
-Node: Sequences199481
-Ref: Sequences-Footnote-1204941
-Ref: Sequences-Footnote-2205055
-Ref: Sequences-Footnote-3205089
-Node: Junk205214
-Ref: Junk-Footnote-1216110
-Node: Miscellaneous216446
-Node: Scan Line Formats218349
-Ref: Scan Line Formats-Footnote-1235083
-Ref: Scan Line Formats-Footnote-2235227
-Node: Procmail235353
-Ref: Procmail-Footnote-1240921
-Ref: Procmail-Footnote-2241067
-Ref: Procmail-Footnote-3241229
-Node: Odds and Ends241311
-Node: Bug Reports241729
-Node: Mailing Lists242238
-Node: MH FAQ and Support242756
-Node: Getting MH-E243484
-Node: History245154
-Node: From Brian Reid245784
-Ref: From Brian Reid-Footnote-1246956
-Node: From Jim Larus247437
-Node: From Stephen Gildea249731
-Node: From Bill Wohler251906
-Node: GFDL253844
-Node: GPL279155
-Node: Key Index316907
-Node: Command Index353850
-Node: Option Index382701
-Node: Concept Index415622
+Ref: Preface-Footnote-16984
+Node: Conventions7329
+Ref: Conventions-Footnote-113069
+Node: Getting Started13162
+Ref: Getting Started-Footnote-117372
+Ref: Getting Started-Footnote-217698
+Node: Tour Through MH-E17815
+Ref: Tour Through MH-E-Footnote-118559
+Node: Sending Mail Tour18801
+Ref: Sending Mail Tour-Footnote-120465
+Ref: Sending Mail Tour-Footnote-220553
+Ref: Sending Mail Tour-Footnote-320739
+Node: Reading Mail Tour20894
+Ref: Reading Mail Tour-Footnote-122552
+Ref: Reading Mail Tour-Footnote-222678
+Node: Processing Mail Tour22822
+Node: Leaving MH-E26807
+Node: More About MH-E28041
+Node: Using This Manual29570
+Ref: Using This Manual-Footnote-132391
+Ref: Using This Manual-Footnote-232479
+Node: Options32676
+Node: Ranges34719
+Node: Folder Selection36550
+Node: Incorporating Mail38907
+Node: Reading Mail43105
+Ref: Reading Mail-Footnote-151876
+Node: Viewing52153
+Ref: Viewing-Footnote-160721
+Ref: Viewing-Footnote-260854
+Ref: Viewing-Footnote-361201
+Node: Viewing Attachments61435
+Ref: Viewing Attachments-Footnote-169493
+Ref: Viewing Attachments-Footnote-269619
+Ref: Viewing Attachments-Footnote-369737
+Ref: Viewing Attachments-Footnote-469951
+Node: HTML70021
+Node: Digests74949
+Ref: Digests-Footnote-176413
+Node: Reading PGP76524
+Ref: Reading PGP-Footnote-179325
+Ref: Reading PGP-Footnote-279574
+Node: Printing79753
+Ref: Printing-Footnote-182653
+Node: Files and Pipes82763
+Node: Navigating84791
+Node: Miscellaneous Commands and Options87603
+Ref: Miscellaneous Commands and Options-Footnote-191591
+Ref: Miscellaneous Commands and Options-Footnote-291900
+Node: Folders91989
+Ref: Folders-Footnote-1107738
+Ref: Folders-Footnote-2107961
+Ref: Folders-Footnote-3108036
+Node: Sending Mail108153
+Node: Composing111345
+Ref: Composing-Footnote-1114798
+Ref: Composing-Footnote-2115052
+Node: Replying115232
+Ref: Replying-Footnote-1118080
+Node: Forwarding118200
+Ref: Forwarding-Footnote-1120209
+Node: Redistributing120328
+Ref: Redistributing-Footnote-1121530
+Ref: Redistributing-Footnote-2121655
+Node: Editing Again121777
+Node: Editing Drafts122908
+Node: Editing Message130135
+Node: Inserting Letter135192
+Ref: Inserting Letter-Footnote-1139277
+Ref: Inserting Letter-Footnote-2139400
+Ref: Inserting Letter-Footnote-3139581
+Node: Inserting Messages139683
+Node: Signature140569
+Node: Picture142315
+Node: Adding Attachments143914
+Ref: Adding Attachments-Footnote-1153897
+Ref: Adding Attachments-Footnote-2153978
+Ref: Adding Attachments-Footnote-3154096
+Ref: Adding Attachments-Footnote-4154153
+Ref: Adding Attachments-Footnote-5154240
+Node: Sending PGP154358
+Node: Checking Recipients156364
+Ref: Checking Recipients-Footnote-1156793
+Node: Sending Message156929
+Ref: Sending Message-Footnote-1157892
+Node: Killing Draft158014
+Node: Aliases158420
+Ref: Aliases-Footnote-1167780
+Node: Identities167880
+Ref: Identities-Footnote-1175224
+Node: Speedbar175277
+Ref: Speedbar-Footnote-1177843
+Node: Menu Bar177977
+Node: Tool Bar178969
+Node: Searching181634
+Node: Threading193887
+Ref: Threading-Footnote-1196930
+Node: Limits197529
+Ref: Limits-Footnote-1199534
+Node: Sequences199671
+Ref: Sequences-Footnote-1205131
+Ref: Sequences-Footnote-2205245
+Ref: Sequences-Footnote-3205279
+Node: Junk205404
+Ref: Junk-Footnote-1216332
+Node: Miscellaneous216668
+Node: Scan Line Formats218571
+Ref: Scan Line Formats-Footnote-1235310
+Ref: Scan Line Formats-Footnote-2235454
+Node: Procmail235580
+Ref: Procmail-Footnote-1241148
+Ref: Procmail-Footnote-2241294
+Ref: Procmail-Footnote-3241456
+Node: Odds and Ends241538
+Node: Bug Reports241956
+Node: Mailing Lists242465
+Node: MH FAQ and Support242983
+Node: Getting MH-E243711
+Node: History245381
+Node: From Brian Reid246011
+Ref: From Brian Reid-Footnote-1247183
+Node: From Jim Larus247664
+Node: From Stephen Gildea249958
+Node: From Bill Wohler252133
+Node: GFDL254071
+Node: GPL279386
+Node: Key Index317138
+Node: Command Index354081
+Node: Option Index382932
+Node: Concept Index415853
 
 End Tag Table
 

@@ -1,7 +1,7 @@
-This is autotype.info, produced by makeinfo version 5.2 from
+This is autotype.info, produced by makeinfo version 6.3 from
 autotype.texi.
 
-Copyright © 1994–1995, 1999, 2001–2015 Free Software Foundation, Inc.
+Copyright © 1994–1995, 1999, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -51,7 +51,7 @@ can be defined for inserting and navigating between text more generally.
 A sort of meta-expansion facility can be used to try a set of
 alternative completions and expansions of text at point.
 
-   Copyright © 1994–1995, 1999, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1994–1995, 1999, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -184,7 +184,7 @@ Or you can edit the output from ‘M-x list-abbrevs’ to make it look like
 this:
 
      (c-mode-abbrev-table)
-     "if"           0    ""         c-if
+     "ifst"           0    ""         c-if
 
 (Some blank lines of no semantic significance, and other abbrev tables,
 have been omitted.)
@@ -304,21 +304,21 @@ the following character is part of a word.  If you want pairing to occur
 even then, set ‘skeleton-pair-on-word’ to some non-‘nil’ value.
 
    Pairing is possible for all visible characters.  By default the
-parenthesis ‘(’, the square bracket ‘[’, the brace ‘{’, the pointed
-bracket ‘<’ and the backquote ‘`’ all pair with the symmetrical
-character.  All other characters pair themselves.  This behavior can be
-modified by the variable ‘skeleton-pair-alist’.  This is in fact an
-alist of skeletons (*note Skeleton Language::), with the first part of
-each sublist matching the typed character.  This is the position of the
-interactor, but since pairs don’t need the ‘str’ element, this is
-ignored.
+parenthesis ‘(’, the square bracket ‘[’, the brace ‘{’ and the pointed
+bracket ‘<’ all pair with the symmetrical character, and the grave
+accent ‘`’ pairs with the apostrophe ‘'’.  All other characters pair
+themselves.  This behavior can be modified by the variable
+‘skeleton-pair-alist’.  This is in fact an alist of skeletons (*note
+Skeleton Language::), with the first part of each sublist matching the
+typed character.  This is the position of the interactor, but since
+pairs don’t need the ‘str’ element, this is ignored.
 
    Some modes have bound the command ‘skeleton-pair-insert-maybe’ to
 relevant keys.  These modes also configure the pairs as appropriate.
-For example, when typing english prose, you’d expect the backquote (‘`’)
-to pair with the quote (‘'’), while in Shell script mode it must pair to
-itself.  They can also inhibit pairing in certain contexts.  For example
-an escaped character stands for itself.
+For example, when typing TeX input, you’d expect the grave accent (‘`’)
+to pair with the apostrophe (‘'’), while in Shell script mode it must
+pair to itself.  They can also inhibit pairing in certain contexts.  For
+example an escaped character stands for itself.
 
 
 File: autotype.info,  Node: Autoinserting,  Next: Copyrights,  Prev: Inserting Pairs,  Up: Top
@@ -353,7 +353,7 @@ function can simply insert some text, indeed, it can be skeleton command
 example conditionally call another function.  Or it can even reset the
 mode for the buffer.  If you want to perform several such actions in
 order, you use a vector, i.e., several of the above elements between
-square brackets (‘[…]’).
+square brackets (‘[...]’).
 
    By default C and C++ headers insert a definition of a symbol derived
 from the filename to prevent multiple inclusions.  C and C++ sources
@@ -472,11 +472,6 @@ are queried whenever ‘executable-set-magic’ is called as a function,
 such as when Emacs puts a buffer in Shell script mode.  Otherwise you
 are always queried.
 
-   ‘M-x executable-self-display’ adds a magic number to the buffer,
-which will turn it into a self displaying text file, when called as a
-Un*x command.  The “interpreter” used is ‘executable-self-display’ with
-argument ‘+2’.
-
 
 File: autotype.info,  Node: Timestamps,  Next: QuickURL,  Prev: Executables,  Up: Top
 
@@ -492,7 +487,8 @@ listed as an option in the customization buffer.
    The time stamp is updated only if the customizable variable
 ‘time-stamp-active’ is on, which it is by default; the command
 ‘time-stamp-toggle-active’ can be used to toggle it.  The format of the
-time stamp is set by the customizable variable ‘time-stamp-format’.
+time stamp is set by the customizable variables ‘time-stamp-format’ and
+‘time-stamp-time-zone’.
 
    The variables ‘time-stamp-line-limit’, ‘time-stamp-start’,
 ‘time-stamp-end’, ‘time-stamp-count’, and ‘time-stamp-inserts-lines’
@@ -562,7 +558,7 @@ Tempo package.
 
 File: autotype.info,  Node: Hippie Expand,  Next: GNU Free Documentation License,  Prev: Tempo,  Up: Top
 
-12 ‘Hippie’ Expansion
+12 “Hippie” Expansion
 *********************
 
 ‘M-x hippie-expand’ is a single command providing a variety of
@@ -601,7 +597,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1051,7 +1047,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1103,7 +1099,6 @@ Command Index
 * copyright-update:                      Copyrights.           (line 12)
 * define-auto-insert:                    Autoinserting.        (line 51)
 * define-skeleton:                       Skeleton Language.    (line 79)
-* executable-self-display:               Executables.          (line 35)
 * executable-set-magic:                  Executables.          (line 28)
 * hippie-expand:                         Hippie Expand.        (line  6)
 * quickurl:                              QuickURL.             (line  6)
@@ -1116,6 +1111,7 @@ Command Index
 * tempo-define-template:                 Tempo.                (line 22)
 * tempo-forward-mark:                    Tempo.                (line 11)
 * time-stamp:                            Timestamps.           (line  6)
+* time-stamp-toggle-active:              Timestamps.           (line 12)
 
 
 File: autotype.info,  Node: Variable Index,  Prev: Command Index,  Up: Top
@@ -1146,12 +1142,13 @@ Variable Index
 * skeleton-pair-on-word:                 Inserting Pairs.      (line 23)
 * skeleton-transformation:               Skeleton Language.    (line 18)
 * time-stamp-active:                     Timestamps.           (line 12)
-* time-stamp-count:                      Timestamps.           (line 17)
-* time-stamp-end:                        Timestamps.           (line 17)
+* time-stamp-count:                      Timestamps.           (line 18)
+* time-stamp-end:                        Timestamps.           (line 18)
 * time-stamp-format:                     Timestamps.           (line 12)
-* time-stamp-inserts-lines:              Timestamps.           (line 17)
-* time-stamp-line-limit:                 Timestamps.           (line 17)
-* time-stamp-start:                      Timestamps.           (line 12)
+* time-stamp-inserts-lines:              Timestamps.           (line 18)
+* time-stamp-line-limit:                 Timestamps.           (line 18)
+* time-stamp-start:                      Timestamps.           (line 18)
+* time-stamp-time-zone:                  Timestamps.           (line 12)
 
 
 
@@ -1160,19 +1157,19 @@ Node: Top933
 Node: Using Skeletons4101
 Node: Wrapping Skeletons5602
 Node: Skeletons as Abbrevs8224
-Node: Skeleton Language9136
-Node: Inserting Pairs13157
-Node: Autoinserting15620
-Node: Copyrights19513
-Node: Executables21455
-Node: Timestamps23231
-Node: QuickURL24662
-Node: Tempo25561
-Node: Hippie Expand26765
-Node: GNU Free Documentation License27842
-Node: Concept Index53199
-Node: Command Index54315
-Node: Variable Index55780
+Node: Skeleton Language9138
+Node: Inserting Pairs13159
+Node: Autoinserting15667
+Node: Copyrights19560
+Node: Executables21502
+Node: Timestamps23036
+Node: QuickURL24499
+Node: Tempo25398
+Node: Hippie Expand26602
+Node: GNU Free Documentation License27679
+Node: Concept Index53040
+Node: Command Index54156
+Node: Variable Index55621
 
 End Tag Table
 

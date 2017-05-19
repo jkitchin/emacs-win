@@ -1,8 +1,8 @@
-This is ses.info, produced by makeinfo version 5.2 from ses.texi.
+This is ses.info, produced by makeinfo version 6.3 from ses.texi.
 
 This file documents SES: the Simple Emacs Spreadsheet.
 
-   Copyright © 2002–2015 Free Software Foundation, Inc.
+   Copyright © 2002–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -33,7 +33,7 @@ SES: Simple Emacs Spreadsheet
 
    This file documents SES: the Simple Emacs Spreadsheet.
 
-   Copyright © 2002–2015 Free Software Foundation, Inc.
+   Copyright © 2002–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -159,7 +159,7 @@ File: ses.info,  Node: The Basics,  Next: Advanced Features,  Prev: Quick Tutori
 To create a new spreadsheet, visit a nonexistent file whose name ends
 with ".ses".  For example, ‘C-x C-f test.ses RET’.
 
-   A "cell identifier" is a symbol with a column letter and a row
+   A “cell identifier” is a symbol with a column letter and a row
 number.  Cell B7 is the 2nd column of the 7th row.  For very wide
 spreadsheets, there are two column letters: cell AB7 is the 28th column
 of the 7th row.  Super wide spreadsheets get AAA1, etc.  You move around
@@ -344,6 +344,13 @@ default-printer if ‘nil’) and then center the result:
 
 ‘ses-tildefill-span’
      Centering with tildes (~) and spill-over.
+
+   You can define printer function local to a sheet with the command
+‘ses-define-local-printer’.  For instance, define a printer ‘foo’ to
+‘"%.2f"’, and then use symbol ‘foo’ as a printer function.  Then, if you
+call again ‘ses-define-local-printer’ on ‘foo’ to redefine it as
+‘"%.3f"’, all the cells using printer ‘foo’ will be reprinted
+accordingly.
 
 
 File: ses.info,  Node: Clearing cells,  Next: Copy/cut/paste,  Prev: Printer functions,  Up: The Basics
@@ -817,7 +824,7 @@ relocates none of the cell-references.  What about mixed cases?
 
    You can use
      (symbol-value 'B3)
-   to make an "absolute reference".  The formula relocator skips over
+   to make an “absolute reference”.  The formula relocator skips over
 quoted things, so this will not be relocated when pasted or when
 rows/columns are inserted/deleted.  However, B3 will not be recorded as
 a dependency of this cell, so this cell will not be updated
@@ -870,7 +877,7 @@ data area, such as hidden constants you want to refer to in your
 formulas.
 
    You can override the variable ‘ses--symbolic-formulas’ to be a list
-of symbols (as parenthesized strings) to show as completions for the ’
+of symbols (as parenthesized strings) to show as completions for the ‘'’
 command.  This initial completions list is used instead of the actual
 set of symbols-as-formulas in the spreadsheet.
 
@@ -995,6 +1002,7 @@ Index
 * ses-clear-cell-forward:                Clearing cells.       (line  6)
 * ses-dashfill:                          Printer functions.    (line  6)
 * ses-dashfill-span:                     Printer functions.    (line  6)
+* ses-define-local-printer:              Printer functions.    (line  6)
 * ses-delete-blanks:                     Standard formula functions.
                                                                (line  6)
 * ses-delete-column:                     Resizing.             (line  6)
@@ -1094,7 +1102,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1544,7 +1552,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1566,30 +1574,30 @@ Node: Top890
 Node: Sales Pitch2432
 Node: Quick Tutorial3272
 Node: The Basics5915
-Node: Formulas7356
-Node: Resizing8889
-Node: Printer functions10109
-Node: Clearing cells11939
-Node: Copy/cut/paste12292
-Node: Customizing SES14624
-Node: Advanced Features16037
-Node: The print area17350
-Node: Ranges in formulas18037
-Node: Sorting by column21491
-Node: Standard formula functions22442
-Node: More on cell printing23144
-Node: Import and export25213
-Node: Virus protection25838
-Node: Spreadsheets with details and summary27263
-Node: For Gurus28476
-Node: Deferred updates28738
-Node: Nonrelocatable references30280
-Node: The data area31201
-Node: Buffer-local variables in spreadsheets32452
-Node: Uses of defadvice in SES33926
-Node: Index34774
-Node: Acknowledgments44693
-Node: GNU Free Documentation License45270
+Node: Formulas7360
+Node: Resizing8893
+Node: Printer functions10113
+Node: Clearing cells12327
+Node: Copy/cut/paste12680
+Node: Customizing SES15012
+Node: Advanced Features16425
+Node: The print area17738
+Node: Ranges in formulas18425
+Node: Sorting by column21879
+Node: Standard formula functions22830
+Node: More on cell printing23532
+Node: Import and export25601
+Node: Virus protection26226
+Node: Spreadsheets with details and summary27651
+Node: For Gurus28864
+Node: Deferred updates29126
+Node: Nonrelocatable references30668
+Node: The data area31593
+Node: Buffer-local variables in spreadsheets32844
+Node: Uses of defadvice in SES34322
+Node: Index35170
+Node: Acknowledgments45162
+Node: GNU Free Documentation License45739
 
 End Tag Table
 

@@ -1,8 +1,8 @@
-This is forms.info, produced by makeinfo version 5.2 from forms.texi.
+This is forms.info, produced by makeinfo version 6.3 from forms.texi.
 
 This file documents Forms mode, a form-editing major mode for GNU Emacs.
 
-   Copyright © 1989, 1997, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1989, 1997, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -39,7 +39,7 @@ data to be presented.  The control file describes how to present it.
    This file documents Forms mode, a form-editing major mode for GNU
 Emacs.
 
-   Copyright © 1989, 1997, 2001–2015 Free Software Foundation, Inc.
+   Copyright © 1989, 1997, 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -122,9 +122,9 @@ File: forms.info,  Node: Entering and Exiting Forms Mode,  Next: Forms Commands,
 also visits it in Forms mode.  What you see in its buffer is not the
 contents of this file, but rather a single record of the corresponding
 data file that is visited in its own buffer.  So there are two buffers
-involved in Forms mode: the "forms buffer" that is initially used to
+involved in Forms mode: the “forms buffer” that is initially used to
 visit the control file and that shows the records being browsed, and the
-"data buffer" that holds the data file being visited.  The latter buffer
+“data buffer” that holds the data file being visited.  The latter buffer
 is normally not visible.
 
    Initially, the first record is displayed in the forms buffer.  The
@@ -267,9 +267,9 @@ File: forms.info,  Node: Data File Format,  Next: Control File Format,  Prev: Fo
 4 Data File Format
 ******************
 
-Files for use with Forms mode are very simple—each "record" (usually one
+Files for use with Forms mode are very simple—each “record” (usually one
 line) forms the contents of one form.  Each record consists of a number
-of "fields", which are separated by the value of the string
+of “fields”, which are separated by the value of the string
 ‘forms-field-sep’, which is ‘"\t"’ (a Tab) by default.
 
    If the format of the data file is not suitable enough you can define
@@ -296,7 +296,7 @@ File: forms.info,  Node: Control File Format,  Next: Format Description,  Prev: 
 5 Control File Format
 *********************
 
-The Forms mode "control file" serves two purposes.  First, it names the
+The Forms mode “control file” serves two purposes.  First, it names the
 data file to use, and defines its format and properties.  Second, the
 Emacs buffer it occupies is used by Forms mode to display the forms.
 
@@ -346,7 +346,7 @@ applications.
           (set forms-read-only t)
 
 ‘forms-multi-line’
-     This variable specifies the "pseudo newline" separator that allows
+     This variable specifies the “pseudo newline” separator that allows
      multi-line fields.  This separator goes between the “lines” within
      a field—thus, the field doesn’t really contain multiple lines, but
      it appears that way when displayed in Forms mode.  If the value is
@@ -411,7 +411,7 @@ File: forms.info,  Node: Format Description,  Next: Modifying Forms Contents,  P
 
 The variable ‘forms-format-list’ specifies the format of the data in the
 data file, and how to convert the data for display in Forms mode.  Its
-value must be a list of Forms mode "formatting elements", each of which
+value must be a list of Forms mode “formatting elements”, each of which
 can be a string, a number, a Lisp list, or a Lisp symbol that evaluates
 to one of those.  The formatting elements are processed in the order
 they appear in the list.
@@ -477,7 +477,7 @@ usually either quote the whole value, like this,
             "====== " forms-file " ======\n\n"
             "User : "    1
             (make-string 20 ?-)
-            …
+            ...
            ))
 
 or quote the elements which are lists, like this:
@@ -487,7 +487,7 @@ or quote the elements which are lists, like this:
             "====== " forms-file " ======\n\n"
             "User : "    1
             '(make-string 20 ?-)
-            …
+            ...
            ))
 
    Forms mode validates the contents of ‘forms-format-list’ when you
@@ -563,7 +563,7 @@ function returns the highest number used, so it can be used to set
 
      (setq forms-number-of-fields
            (forms-enumerate
-            '(field1 field2 field3 …)))
+            '(field1 field2 field3 ...)))
 
    This sets ‘field1’ to 1, ‘field2’ to 2, and so on.
 
@@ -682,7 +682,7 @@ format error’.
 ‘Problem saving buffers?’
      An error occurred while saving the data file buffer.  Most likely,
      Emacs did ask to confirm deleting the buffer because it had been
-     modified, and you said ‘no’.
+     modified, and you said “no”.
 
 
 File: forms.info,  Node: Long Example,  Next: Credits,  Prev: Error Messages,  Up: Top
@@ -811,7 +811,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1261,7 +1261,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1356,17 +1356,17 @@ Tag Table:
 Node: Top990
 Node: Forms Example3190
 Node: Entering and Exiting Forms Mode4416
-Node: Forms Commands6680
-Node: Data File Format10667
-Node: Control File Format12065
-Node: Format Description16815
-Node: Modifying Forms Contents20191
-Node: Miscellaneous22106
-Node: Error Messages23697
-Node: Long Example28108
-Node: Credits31245
-Node: GNU Free Documentation License32065
-Node: Index57405
+Node: Forms Commands6688
+Node: Data File Format10675
+Node: Control File Format12081
+Node: Format Description16839
+Node: Modifying Forms Contents20219
+Node: Miscellaneous22134
+Node: Error Messages23725
+Node: Long Example28136
+Node: Credits31273
+Node: GNU Free Documentation License32093
+Node: Index57437
 
 End Tag Table
 

@@ -1,8 +1,8 @@
-This is ccmode.info, produced by makeinfo version 5.2 from cc-mode.texi.
+This is ccmode.info, produced by makeinfo version 6.3 from cc-mode.texi.
 
 This manual is for CC Mode in Emacs.
 
-   Copyright © 1995–2015 Free Software Foundation, Inc.
+   Copyright © 1995–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -35,7 +35,7 @@ classes, etc.; there are other packages for that.
 
    This manual is for CC Mode in Emacs.
 
-   Copyright © 1995–2015 Free Software Foundation, Inc.
+   Copyright © 1995–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -186,11 +186,11 @@ version 5.30.
 
    This manual describes CC Mode version 5.32.
 
-   CC Mode supports the editing of K&R and ANSI C, C++, Objective-C,
-Java, CORBA’s Interface Definition Language, Pike(1) and AWK files.  In
-this way, you can easily set up consistent font locking and coding
-styles for use in editing all of these languages, although AWK is not
-yet as uniformly integrated as the other languages.
+   CC Mode supports the editing of C, C++, Objective-C, Java, CORBA’s
+Interface Definition Language, Pike(1) and AWK files.  In this way, you
+can easily set up consistent font locking and coding styles for use in
+editing all of these languages, although AWK is not yet as uniformly
+integrated as the other languages.
 
    Note that the name of this package is “CC Mode”, but there is no top
 level ‘cc-mode’ entry point.  All of the variables, commands, and
@@ -299,8 +299,8 @@ The (indentation) style
 Electric Indentation
      Normally, when you type “punctuation” characters such as ‘;’ or
      ‘{’, CC Mode instantly reindents the current line.  This can be
-     disconcerting until you get used to it.  To disable "electric
-     indentation" in the current buffer, type ‘C-c C-l’.  Type the same
+     disconcerting until you get used to it.  To disable “electric
+     indentation” in the current buffer, type ‘C-c C-l’.  Type the same
      thing to enable it again.  To have electric indentation disabled by
      default, put the following into your ‘.emacs’ file(1):
 
@@ -361,8 +361,8 @@ File: ccmode.info,  Node: Commands,  Next: Font Locking,  Prev: Getting Started,
 
 This chapter specifies all of CC Mode’s commands, and thus contains
 nearly everything you need to know to _use_ CC Mode (as contrasted with
-configuring it).  "Commands" here means both control key sequences and
-"electric keys", these being characters such as ‘;’ which, as well as
+configuring it).  “Commands” here means both control key sequences and
+“electric keys”, these being characters such as ‘;’ which, as well as
 inserting themselves into the buffer, also do other things.
 
    You might well want to review *note (emacs)Moving by Parens::, which
@@ -594,7 +594,7 @@ CC Mode contains some useful commands for moving around in C code.
      point not to move at all.
 
      By default, these commands will recognize functions contained
-     within a "declaration scope" such as a C++ ‘class’ or ‘namespace’
+     within a “declaration scope” such as a C++ ‘class’ or ‘namespace’
      construct, should the point start inside it.  If CC Mode fails to
      find function beginnings or ends inside the current declaration
      scope, it will search the enclosing scopes.  If you want CC Mode to
@@ -612,7 +612,7 @@ CC Mode contains some useful commands for moving around in C code.
      These commands can take prefix-arguments, their functionality being
      entirely equivalent to ‘beginning-of-defun’ and ‘end-of-defun’.
 
-     AWK Mode "defuns" are either pattern/action pairs (either of which
+     AWK Mode “defuns” are either pattern/action pairs (either of which
      might be implicit) or user defined functions.  Having the ‘{’ and
      ‘}’ (if there are any) in column zero, as is suggested for some
      modes, is neither necessary nor helpful in AWK mode.
@@ -703,7 +703,7 @@ File: ccmode.info,  Node: Filling and Breaking,  Next: Minor Modes,  Prev: Movem
 Since there’s a lot of normal text in comments and string literals, CC
 Mode provides features to edit these like in text mode.  The goal is to
 do it seamlessly, i.e., you can use auto fill mode, sentence and
-paragraph movement, paragraph filling, adaptive filling etc.  wherever
+paragraph movement, paragraph filling, adaptive filling etc. wherever
 there’s a piece of normal text without having to think much about it.
 CC Mode keeps the indentation, fixes suitable comment line prefixes, and
 so on.
@@ -863,7 +863,7 @@ File: ccmode.info,  Node: Electric Keys,  Next: Auto-newlines,  Prev: Minor Mode
 4.6 Electric Keys and Keywords
 ==============================
 
-Most punctuation keys provide "electric" behavior: as well as inserting
+Most punctuation keys provide “electric” behavior: as well as inserting
 themselves they perform some other action, such as reindenting the line.
 This reindentation saves you from having to reindent a line manually
 after typing, say, a ‘}’.  A few keywords, such as ‘else’, also trigger
@@ -991,7 +991,7 @@ File: ccmode.info,  Node: Auto-newlines,  Next: Hungry WS Deletion,  Prev: Elect
 4.7 Auto-newline Insertion
 ==========================
 
-When you have "Auto-newline minor mode" enabled (*note Minor Modes::),
+When you have “Auto-newline minor mode” enabled (*note Minor Modes::),
 CC Mode inserts newlines for you automatically (in certain syntactic
 contexts) when you type a left or right brace, a colon, a semicolon, or
 a comma.  Sometimes a newline appears before the character you type,
@@ -1021,15 +1021,15 @@ won’t have to bother.
    Sometimes CC Mode inserts an auto-newline where you don’t want one,
 such as after a ‘}’ when you’re about to type a ‘;’.  Hungry deletion
 can help here (*note Hungry WS Deletion::), or you can activate an
-appropriate "clean-up", which will remove the excess whitespace after
+appropriate “clean-up”, which will remove the excess whitespace after
 you’ve typed the ‘;’.  See *note Clean-ups:: for a full description.
 See also *note Electric Keys:: for a summary of clean-ups listed by key.
 
    ---------- Footnotes ----------
 
-   (1) A "literal" is defined as any comment, string, or preprocessor
-macro definition.  These constructs are also known as "syntactic
-whitespace" since they are usually ignored when scanning C code.
+   (1) A “literal” is defined as any comment, string, or preprocessor
+macro definition.  These constructs are also known as “syntactic
+whitespace” since they are usually ignored when scanning C code.
 
 
 File: ccmode.info,  Node: Hungry WS Deletion,  Next: Subword Movement,  Prev: Auto-newlines,  Up: Commands
@@ -1038,7 +1038,7 @@ File: ccmode.info,  Node: Hungry WS Deletion,  Next: Subword Movement,  Prev: Au
 =================================
 
 If you want to delete an entire block of whitespace at point, you can
-use "hungry deletion".  This deletes all the contiguous whitespace
+use “hungry deletion”.  This deletes all the contiguous whitespace
 either before point or after point in a single operation.  “Whitespace”
 here includes tabs and newlines, but not comments or preprocessor
 commands.  Hungry deletion can markedly cut down on the number of times
@@ -1049,13 +1049,13 @@ on the preceding line and have already pressed ‘C-j’.
 useful.  In fact, you might find yourself wanting it in *all* your
 editing modes!
 
-   Loosely speaking, in what follows, "<DEL>" means “the backspace key”
-and "<DELETE>" means “the forward delete key”.  This is discussed in
+   Loosely speaking, in what follows, “<DEL>” means “the backspace key”
+and “<DELETE>” means “the forward delete key”.  This is discussed in
 more detail below.
 
    There are two different ways you can use hungry deletion:
 
-Using "Hungry Delete Mode" with ‘<DEL>’ and ‘C-d’
+Using “Hungry Delete Mode” with ‘<DEL>’ and ‘C-d’
      Here you toggle Hungry Delete minor mode with ‘M-x
      c-toggle-hungry-state’(1) (*note Minor Modes::.)  This makes
      ‘<DEL>’ and ‘C-d’ do backwards and forward hungry deletion.
@@ -1156,8 +1156,8 @@ File: ccmode.info,  Node: Subword Movement,  Next: Other Commands,  Prev: Hungry
 In spite of the GNU Coding Standards, it is popular to name a symbol by
 mixing uppercase and lowercase letters, e.g., ‘GtkWidget’,
 ‘EmacsFrameClass’, or ‘NSGraphicsContext’.  Here we call these mixed
-case symbols "nomenclatures".  Also, each capitalized (or completely
-uppercase) part of a nomenclature is called a "subword".  Here are some
+case symbols “nomenclatures”.  Also, each capitalized (or completely
+uppercase) part of a nomenclature is called a “subword”.  Here are some
 examples:
 
 Nomenclature          Subwords
@@ -1570,8 +1570,8 @@ Emacs initialization file.  This file might be ‘site-start.el’ or
 “your ‘.emacs’” throughout the rest of the manual.
 
    Several of these variables (currently 16), are known collectively as
-"style variables".  CC Mode provides a special mechanism, known as
-"styles" to make it easier to set these variables as a group, to
+“style variables”.  CC Mode provides a special mechanism, known as
+“styles” to make it easier to set these variables as a group, to
 “inherit” settings from one style into another, and so on.  Style
 variables remain ordinary Lisp variables, whose values can be read and
 changed independently of the style system.  *Note Style Variables::.
@@ -1623,7 +1623,7 @@ Top-level commands or the “customization interface”
      both) of CC Mode’s more sophisticated facilities, hooks and styles.
 
 Hooks
-     An Emacs "hook" is a place to put Lisp functions that you want
+     An Emacs “hook” is a place to put Lisp functions that you want
      Emacs to execute later in specific circumstances.  *Note
      (elisp)Hooks::.  CC Mode supplies a main hook and a
      language-specific hook for each language it supports; any functions
@@ -1646,7 +1646,7 @@ Hooks
      See *note CC Hooks:: for more details on the use of CC Mode hooks.
 
 Styles
-     A CC Mode "style" is a coherent collection of customizations with a
+     A CC Mode “style” is a coherent collection of customizations with a
      name.  At any time, exactly one style is active in each CC Mode
      buffer, either the one you have selected or a default.  CC Mode is
      delivered with several existing styles.  Additionally, you can
@@ -1663,13 +1663,13 @@ Styles
      how to create them.
 
 File Local Variable setting
-     A "file local variable setting" is a setting which applies to an
-     individual source file.  You put this in a "local variables list",
+     A “file local variable setting” is a setting which applies to an
+     individual source file.  You put this in a “local variables list”,
      a special block at the end of the source file (*note
      (emacs)Specifying File Variables::).
 
 File Styles
-     A "file style" is a rarely used variant of the “style” mechanism
+     A “file style” is a rarely used variant of the “style” mechanism
      described above, which applies to an individual source file.  *Note
      File Styles::.  You use this by setting certain special variables
      in a local variables list (*note (emacs)Specifying File
@@ -1777,13 +1777,13 @@ File: ccmode.info,  Node: Style Variables,  Next: Styles,  Prev: CC Hooks,  Up: 
 6.2 Style Variables
 ===================
 
-The variables that CC Mode’s style system control are called "style
-variables".  Note that style variables are ordinary Lisp variables,
+The variables that CC Mode’s style system control are called “style
+variables”.  Note that style variables are ordinary Lisp variables,
 which the style system initializes; you can change their values at any
 time (e.g., in a hook function).  The style system can also set other
 variables, to some extent.  *Note Styles::.
 
-   "Style variables" are handled specially in several ways:
+   “Style variables” are handled specially in several ways:
 
    • Style variables are by default buffer-local variables.  However,
      they can instead be made global by setting
@@ -1805,7 +1805,7 @@ variables, to some extent.  *Note Styles::.
      It’s default global binding is the empty list ‘nil’, rather than
      ‘set-from-style’.  Before the style system is initialized, you can
      add individual elements to ‘c-offsets-alist’ by calling
-     ‘c-set-offset’(*note c-offsets-alist::) just like you would set
+     ‘c-set-offset’ (*note c-offsets-alist::) just like you would set
      other style variables with ‘setq’.  Those elements will then
      prevail when the style system later initializes a buffer-local copy
      of ‘c-offsets-alist’.
@@ -1854,7 +1854,7 @@ File: ccmode.info,  Node: Styles,  Prev: Style Variables,  Up: Config Basics
 6.3 Styles
 ==========
 
-By "style" we mean the layout of the code—things like how many columns
+By “style” we mean the layout of the code—things like how many columns
 to indent a block of code, whether an opening brace gets indented to the
 level of the code it encloses, or of the construct that introduces it,
 or “hangs” at the end of a line.
@@ -1866,12 +1866,12 @@ Similarly, people who work on GNU software will have to use the GNU
 coding style.  Some shops are more lenient, allowing a variety of coding
 styles, and as programmers come and go, there could be a number of
 styles in use.  For this reason, CC Mode makes it convenient for you to
-set up logical groupings of customizations called "styles", associate a
+set up logical groupings of customizations called “styles”, associate a
 single name for any particular style, and pretty easily start editing
 new or existing code using these styles.
 
    As an alternative to writing a style definition yourself, you can
-have CC Mode "guess" (at least part of) your style by looking at an
+have CC Mode “guess” (at least part of) your style by looking at an
 already formatted piece of your code, *note Guessing the Style::.
 
 * Menu:
@@ -1896,7 +1896,9 @@ you’re looking for.  These are:
      GNU programs.
 
 ‘k&r’
-     The classic Kernighan and Ritchie style for C code.
+     The classic Kernighan and Ritchie style for C code.  If you’re
+     looking for the style used in the 2nd edition of their book “The C
+     Programming Language”, then check out the ‘stroustrup’ style.
 
 ‘bsd’
      Also known as “Allman style” after Eric Allman.
@@ -1999,17 +2001,17 @@ File: ccmode.info,  Node: Adding Styles,  Next: Guessing the Style,  Prev: Choos
 --------------------------------
 
 If none of the built-in styles is appropriate, you’ll probably want to
-create a new "style definition", possibly based on an existing style.
+create a new “style definition”, possibly based on an existing style.
 To do this, put the new style’s settings into a list with the following
 format; the list can then be passed as an argument to the function
 ‘c-add-style’.  You can see an example of a style definition in *note
 Sample Init File::.
 
 Structure of a Style Definition List
-     ([BASE-STYLE] [(VARIABLE .  VALUE) …])
+     ([BASE-STYLE] [(VARIABLE .  VALUE) ...])
 
      Optional BASE-STYLE, if present, must be a string which is the name
-     of the "base style" from which this style inherits.  At most one
+     of the “base style” from which this style inherits.  At most one
      BASE-STYLE is allowed in a style definition.  If BASE-STYLE is not
      specified, the style inherits from the table of factory default
      values(1) instead.  All styles eventually inherit from this
@@ -2079,14 +2081,14 @@ File: ccmode.info,  Node: Guessing the Style,  Next: File Styles,  Prev: Adding 
 6.3.4 Guessing the Style
 ------------------------
 
-Instead of specifying a style, you can get CC Mode to "guess" your style
+Instead of specifying a style, you can get CC Mode to “guess” your style
 by examining an already formatted code buffer.  CC Mode then determines
 the ”most frequent” offset (*note c-offsets-alist::) for each of the
 syntactic symbols (*note Indentation Engine Basics::) encountered in the
 buffer, and the ”most frequent” value of c-basic-offset (*note
 Customizing Indentation::), then merges the current style with these
 ”guesses” to form a new style.  This combined style is known as the
-"guessed style".
+“guessed style”.
 
    To do this, call ‘c-guess’ (or one of the other 5 guessing commands)
 on your sample buffer.  The analysis of your code may take some time.
@@ -2175,7 +2177,7 @@ File: ccmode.info,  Node: File Styles,  Prev: Guessing the Style,  Up: Styles
 -----------------
 
 The Emacs manual describes how you can customize certain variables on a
-per-file basis by including a "file local variable" block at the end of
+per-file basis by including a “file local variable” block at the end of
 the file (*note Local Variables in Files: (emacs)File Variables.).
 
    So far, you’ve only seen a functional interface for setting styles in
@@ -2229,7 +2231,7 @@ prefix.
 
  -- User Option: c-comment-prefix-regexp
      This style variable contains the regexp used to recognize the
-     "comment line prefix", which is the line decoration that starts
+     “comment line prefix”, which is the line decoration that starts
      every line in a comment.  The variable is either the comment line
      prefix itself, or (more usually) an association list with different
      values for different languages.  The symbol for the major mode is
@@ -2403,8 +2405,8 @@ Semicolons and Commas
      typed semicolon or comma.  *Note Hanging Semicolons and Commas::.
 
    The names of these configuration variables contain ‘hanging’ because
-they let you "hang" the pertinent characters.  A character which
-introduces a C construct is said to "hang on the right" when it appears
+they let you “hang” the pertinent characters.  A character which
+introduces a C construct is said to “hang on the right” when it appears
 at the end of a line after other code, being separated by a line break
 from the construct it introduces, like the opening brace in:
 
@@ -2413,7 +2415,7 @@ from the construct it introduces, like the opening brace in:
          entry [i++] = 0;
      }
 
-A character "hangs on the left" when it appears at the start of the line
+A character “hangs on the left” when it appears at the start of the line
 after the construct it closes off, like the above closing brace.
 
    The next chapter, “Clean-ups”, describes how to configure CC Mode to
@@ -2443,7 +2445,7 @@ Variables::.
 
      if (foo < 17) {
 
-First you need to find the "syntactic context" of the brace—type a <RET>
+First you need to find the “syntactic context” of the brace—type a <RET>
 before the brace to get it on a line of its own(1), then type ‘C-c C-s’.
 That will tell you something like:
 
@@ -2504,7 +2506,7 @@ depend on the code around the brace.
           contains only the symbol ‘after’, then the brace hangs on the
           right side of the line, as in:
 
-               // here, open braces always `hang'
+               // here, open braces always 'hang'
                void spam( int i ) {
                    if( i == 7 ) {
                        dosomething(i);
@@ -2576,7 +2578,7 @@ with the lisp equivalent of callback functions.  Remember that ACTIONs
 are usually a list containing some combination of the symbols ‘before’
 and ‘after’ (*note Hanging Braces::).  For more flexibility, you can
 instead specify brace “hanginess” by giving a syntactic symbol an
-"action function" in ‘c-hanging-braces-alist’; this function determines
+“action function” in ‘c-hanging-braces-alist’; this function determines
 the “hanginess” of a brace, usually by looking at the code near it.
 
    An action function is called with two arguments: the syntactic symbol
@@ -2669,7 +2671,7 @@ are inserted around the newly typed colon.
 
    In C++, double-colons are used as a scope operator but because these
 colons always appear right next to each other, newlines before and after
-them are controlled by a different mechanism, called "clean-ups" in CC
+them are controlled by a different mechanism, called “clean-ups” in CC
 Mode.  *Note Clean-ups::, for details.
 
 
@@ -2718,10 +2720,11 @@ File: ccmode.info,  Node: Hanging Semicolons and Commas,  Prev: Hanging Colons, 
 
           (defun c-semi&comma-no-newlines-before-nonblanks ()
             (save-excursion
-              (if (and (eq last-command-char ?\;)
-                       (zerop (forward-line 1))
-                       (not (looking-at "^[ \t]*$")))
-                  'stop
+              (if (and (= (c-last-command-char) ?\;)
+          	     (zerop (forward-line 1))
+          	     (bolp)      ; forward-line has funny behavior at eob.
+          	     (not (looking-at "^[ \t]*$")))
+          	'stop
                 nil)))
 
  -- Function: c-semi&comma-inside-parenlist
@@ -2745,7 +2748,7 @@ File: ccmode.info,  Node: Clean-ups,  Next: Indentation Engine Basics,  Prev: Cu
 9 Clean-ups
 ***********
 
-"Clean-ups" are mechanisms which remove (or exceptionally, add)
+“Clean-ups” are mechanisms which remove (or exceptionally, add)
 whitespace in specific circumstances and are complementary to colon and
 brace hanging.  You enable a clean-up by adding its symbol into
 ‘c-cleanup-list’, e.g., like this:
@@ -2946,14 +2949,14 @@ the details are in *note Customizing Indentation::.
 general mechanism for customizing indentation.  When CC Mode indents a
 line of code, it separates its calculations into two steps:
 
-  1. It analyzes the line to determine its "syntactic symbol(s)" (the
-     kind of language construct it’s looking at) and its "anchor
-     position" (the position earlier in the file that CC Mode will
+  1. It analyzes the line to determine its “syntactic symbol(s)” (the
+     kind of language construct it’s looking at) and its “anchor
+     position” (the position earlier in the file that CC Mode will
      indent the line relative to).  The anchor position might be the
      location of an opening brace in the previous line, for example.
      *Note Syntactic Analysis::.
   2. It looks up the syntactic symbol(s) in the configuration to get the
-     corresponding "offset(s)".  The symbol ‘+’, which means “indent
+     corresponding “offset(s)”.  The symbol ‘+’, which means “indent
      this line one more level” is a typical offset.  CC Mode then
      applies these offset(s) to the anchor position, giving the
      indentation for the line.  The different sorts of offsets are
@@ -2987,15 +2990,23 @@ File: ccmode.info,  Node: Syntactic Analysis,  Next: Syntactic Symbols,  Prev: I
 =======================
 
 The first thing CC Mode does when indenting a line of code, is to
-analyze the line, determining the "syntactic context" of the (first)
-construct on that line.  It’s a list of "syntactic elements", where each
+analyze the line by calling ‘c-guess-basic-syntax’, determining the
+syntactic context of the (first) construct on that line.  Although this
+function is mainly used internally, it can sometimes be useful in
+Line-up functions (*note Custom Line-Up::) or in functions on
+‘c-special-indent-hook’ (*note Other Indentation::).
+
+ -- Function: c-guess-basic-syntax
+     Determine the syntactic context of the current line.
+
+   The “syntactic context” is a list of “syntactic elements”, where each
 syntactic element in turn is a list(1) Here is a brief and typical
 example:
 
      ((defun-block-intro 1959))
 
-The first thing inside each syntactic element is always a "syntactic
-symbol".  It describes the kind of construct that was recognized, e.g.,
+The first thing inside each syntactic element is always a “syntactic
+symbol”.  It describes the kind of construct that was recognized, e.g.,
 ‘statement’, ‘substatement’, ‘class-open’, ‘class-close’, etc.  *Note
 Syntactic Symbols::, for a complete list of currently recognized
 syntactic symbols and their semantics.  The remaining entries are
@@ -3004,7 +3015,7 @@ zero or more.
 
    Conceptually, a line of code is always indented relative to some
 position higher up in the buffer (typically the indentation of the
-previous line).  That position is the "anchor position" in the syntactic
+previous line).  That position is the “anchor position” in the syntactic
 element.  If there is an entry after the syntactic symbol in the
 syntactic element list then it’s either ‘nil’ or that anchor position.
 
@@ -3057,12 +3068,12 @@ Hitting ‘C-c C-s’ on line 4 gives us:
 
      ((substatement-open 46))
 
-which tells us that this is a brace that _opens_ a substatement block.
-(4)
+which tells us that this is a brace that _opens_ a substatement
+block.(4)
 
    Syntactic contexts can contain more than one element, and syntactic
 elements need not have anchor positions.  The most common example of
-this is a "comment-only line":
+this is a “comment-only line”:
 
       1: void draw_list( List<Drawables>& drawables )
       2: {
@@ -3094,8 +3105,8 @@ appear in the buffer, of course!
    (3) With a universal argument (i.e., ‘C-u C-c C-s’) the analysis is
 inserted into the buffer as a comment on the current line.
 
-   (4) A "substatement" is the line after a conditional statement, such
-as ‘if’, ‘else’, ‘while’, ‘do’, ‘switch’, etc.  A "substatement block"
+   (4) A “substatement” is the line after a conditional statement, such
+as ‘if’, ‘else’, ‘while’, ‘do’, ‘switch’, etc.  A “substatement block”
 is a brace block following one of these conditional statements.
 
 
@@ -3442,7 +3453,7 @@ continue the member initialization list started on line 7.
      ((inclass 58) (inline-open))
 
    This line is assigned a syntax of both ‘inline-open’ and ‘inclass’
-because it opens an "in-class" C++ inline method definition.  This is
+because it opens an “in-class” C++ inline method definition.  This is
 distinct from, but related to, the C++ notion of an inline function in
 that its definition occurs inside an enclosing class definition, which
 in C++ implies that the function should be inlined.  However, if the
@@ -3746,10 +3757,10 @@ covered are illustrated by this C++ example:
       2: const
       3: {
       4:     /* this line starts a multiline
-      5:      * comment.  This line should get `c' syntax */
+      5:      * comment.  This line should get 'c' syntax */
       6:
       7:     char* a_multiline_string = "This line starts a multiline \
-      8: string.  This line should get `string' syntax.";
+      8: string.  This line should get 'string' syntax.";
       9:
      10:   note:
      11:     {
@@ -3776,8 +3787,8 @@ covered are illustrated by this C++ example:
    • Line 6 which, even though it contains nothing but whitespace, is
      assigned ‘defun-block-intro’.  Note that the appearance of the
      comment on lines 4 and 5 do not cause line 6 to be assigned
-     ‘statement’ syntax because comments are considered to be "syntactic
-     whitespace", which are ignored when analyzing code.
+     ‘statement’ syntax because comments are considered to be “syntactic
+     whitespace”, which are ignored when analyzing code.
 
    • Line 8 is assigned ‘string’ syntax.
 
@@ -4066,7 +4077,7 @@ File: ccmode.info,  Node: Customizing Indentation,  Next: Custom Macros,  Prev: 
 **************************
 
 The principal variable for customizing indentation is the style variable
-‘c-offsets-alist’, which gives an "offset" (an indentation rule) for
+‘c-offsets-alist’, which gives an “offset” (an indentation rule) for
 each syntactic symbol.  Its structure and semantics are completely
 described in *note c-offsets-alist::.  The various ways you can set the
 variable, including the use of the CC Mode style system, are described
@@ -4113,7 +4124,7 @@ system are given in *note Style Variables::.
 
  -- User Option: c-offsets-alist
      This is an alist which associates an offset with each syntactic
-     symbol.  This "offset" is a rule specifying how to indent a line
+     symbol.  This “offset” is a rule specifying how to indent a line
      whose syntactic context matches the symbol.  *Note Syntactic
      Analysis::.
 
@@ -4137,7 +4148,7 @@ system are given in *note Style Variables::.
            (topmost-intro-cont . c-lineup-topmost-intro-cont)
            (statement-block-intro . (add c-lineup-whitesmith-in-block
                                          c-indent-multi-line-block))
-           …
+           ...
 
           )
 
@@ -4146,13 +4157,13 @@ system are given in *note Style Variables::.
      current binding of ‘c-offsets-alist’, or it inserts a new entry if
      there isn’t already one for that syntactic symbol.
 
-     You can use ‘c-set-offsets’ interactively within a CC Mode buffer
-     to make experimental changes to your indentation settings.  ‘C-c
-     C-o’ prompts you for the syntactic symbol to change (defaulting to
-     that of the current line) and the new offset (defaulting to the
-     current offset).
+     You can use ‘c-set-offset’ interactively within a CC Mode buffer to
+     make experimental changes to your indentation settings.  ‘C-c C-o’
+     prompts you for the syntactic symbol to change (defaulting to that
+     of the current line) and the new offset (defaulting to the current
+     offset).
 
-     ‘c-set-offsets’ takes two arguments when used programmatically:
+     ‘c-set-offset’ takes two arguments when used programmatically:
      SYMBOL, the syntactic element symbol to change and OFFSET, the new
      offset for that syntactic element.  You can call the command in
      your ‘.emacs’ to change the global binding of ‘c-offsets-alist’
@@ -4355,7 +4366,7 @@ Often there are cases when a simple offset setting on a syntactic symbol
 isn’t enough to get the desired indentation—for example, you might want
 to line up a closing parenthesis with the matching opening one rather
 than indenting relative to its “anchor point”.  CC Mode provides this
-flexibility with "line-up functions".
+flexibility with “line-up functions”.
 
    The way you associate a line-up function with a syntactic symbol is
 described in *note c-offsets-alist::.  CC Mode comes with many
@@ -5025,8 +5036,8 @@ specification: for example, an integer, a symbol such as ‘+’, a vector,
 in *note c-offsets-alist::.
 
    Line-up functions must not move point or change the content of the
-buffer (except temporarily).  They are however allowed to do "hidden
-buffer changes", i.e., setting text properties for caching purposes etc.
+buffer (except temporarily).  They are however allowed to do “hidden
+buffer changes”, i.e., setting text properties for caching purposes etc.
 Buffer undo recording is disabled while they run.
 
    The syntactic element passed as the parameter to a line-up function
@@ -5077,6 +5088,11 @@ in the line-up function argument and the new list form used in
      LANGELEM is in the old cons cell form.  Thus this function is only
      meaningful when used on syntactic elements taken from
      ‘c-syntactic-element’ or ‘c-syntactic-context’.
+
+   Sometimes you may need to use the syntactic context of a line other
+than the one being indented.  You can determine this by (temporarily)
+moving point onto this line and calling ‘c-guess-basic-syntax’ (*note
+Syntactic Analysis::).
 
    Custom line-up functions can be as simple or as complex as you like,
 and any syntactic symbol that appears in ‘c-offsets-alist’ can have a
@@ -5220,7 +5236,7 @@ File: ccmode.info,  Node: Macros with ;,  Prev: Macro Backslashes,  Up: Custom M
 ===========================
 
 Macros which needn’t (or mustn’t) be followed by a semicolon when you
-invoke them, "macros with semicolons", are very common.  These can cause
+invoke them, “macros with semicolons”, are very common.  These can cause
 CC Mode to parse the next line wrongly as a ‘statement-cont’ (*note
 Function Symbols::) and thus mis-indent it.
 
@@ -5356,8 +5372,8 @@ want to change some of the actual values.
 
 File: ccmode.info,  Node: Performance Issues,  Next: Limitations and Known Bugs,  Prev: Sample Init File,  Up: Top
 
-B Performance Issues
-********************
+Appendix B Performance Issues
+*****************************
 
 C and its derivative languages are highly complex creatures.  Often,
 ambiguous code situations arise that require CC Mode to scan large
@@ -5460,8 +5476,8 @@ Java.
 
 File: ccmode.info,  Node: Limitations and Known Bugs,  Next: FAQ,  Prev: Performance Issues,  Up: Top
 
-C Limitations and Known Bugs
-****************************
+Appendix C Limitations and Known Bugs
+*************************************
 
    • CC Mode doesn’t support trigraphs.  (These are character sequences
      such as ‘??(’, which represents ‘[’.  They date from a time when
@@ -5489,7 +5505,7 @@ C Limitations and Known Bugs
      workaround is to refontify the expression after typing the closing
      ‘>’.
 
-   • In a "k&r region" (the part of an old-fashioned C function
+   • In a “k&r region” (the part of an old-fashioned C function
      declaration which specifies the types of its parameters, coming
      between the parameter list and the opening brace), there should be
      at most 20 top-level parenthesis and bracket pairs.  This limit has
@@ -5593,7 +5609,7 @@ XEmacs since 19.16.
    Due to release schedule skew, it is likely that all of these Emacsen
 have old versions of CC Mode and so should be upgraded.  Access to the
 CC Mode source code, as well as more detailed information on Emacsen
-compatibility, etc.  are all available on the web site:
+compatibility, etc. are all available on the web site:
 
      <http://cc-mode.sourceforge.net/>
 
@@ -5619,10 +5635,12 @@ faulty customizations in either your own or your site configuration.  In
 that case, we’d appreciate it if you isolate the Emacs Lisp code that
 triggers the bug and include it in your report.
 
-   Bug reports should be sent to <bug-cc-mode@gnu.org>.  You can also
-send other questions and suggestions (kudos?  ;-) to that address.  It’s
-a mailing list which you can join or browse an archive of; see the web
-site at <http://cc-mode.sourceforge.net/> for further details.
+   Reporting a bug using ‘c-submit-bug-report’ files it in the GNU Bug
+Tracker at <http://debbugs.gnu.org>, then sends it on to
+<bug-cc-mode@gnu.org>.  You can also send reports, other questions, and
+suggestions (kudos? ;-) to that address.  It’s a mailing list which you
+can join or browse an archive of; see the web site at
+<http://cc-mode.sourceforge.net/> for further details.
 
    If you want to get announcements of new CC Mode releases, send the
 word _subscribe_ in the body of a message to
@@ -5650,7 +5668,7 @@ Appendix G GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -6100,7 +6118,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -6182,6 +6200,7 @@ appears under its ‘c-THING’ name and its ‘THING (c-)’ name.
 * c-forward-subword:                     Subword Movement.    (line  23)
 * c-gnu-impose-minimum:                  Other Indentation.   (line  16)
 * c-guess:                               Guessing the Style.  (line  41)
+* c-guess-basic-syntax:                  Syntactic Analysis.  (line  13)
 * c-guess-buffer:                        Guessing the Style.  (line  41)
 * c-guess-buffer-no-install:             Guessing the Style.  (line  26)
 * c-guess-install:                       Guessing the Style.  (line  67)
@@ -6244,11 +6263,11 @@ appears under its ‘c-THING’ name and its ‘THING (c-)’ name.
 * c-mode:                                Introduction.        (line  28)
 * c-scope-operator:                      Other Commands.      (line  25)
 * c-semi&comma-inside-parenlist:         Hanging Semicolons and Commas.
-                                                              (line  52)
+                                                              (line  53)
 * c-semi&comma-no-newlines-before-nonblanks: Hanging Semicolons and Commas.
                                                               (line  37)
 * c-semi&comma-no-newlines-for-oneline-inliners: Hanging Semicolons and Commas.
-                                                              (line  53)
+                                                              (line  54)
 * c-set-offset:                          c-offsets-alist.     (line  41)
 * c-set-offset <1>:                      Interactive Customization.
                                                               (line  71)
@@ -6258,7 +6277,7 @@ appears under its ‘c-THING’ name and its ‘THING (c-)’ name.
                                                               (line  72)
 * c-setup-paragraph-variables:           Custom Filling and Breaking.
                                                               (line  46)
-* c-show-syntactic-information:          Syntactic Analysis.  (line  42)
+* c-show-syntactic-information:          Syntactic Analysis.  (line  50)
 * c-snug-do-while:                       Custom Braces.       (line  67)
 * c-submit-bug-report:                   Mailing Lists and Bug Reports.
                                                               (line   6)
@@ -6306,6 +6325,7 @@ appears under its ‘c-THING’ name and its ‘THING (c-)’ name.
 * forward-subword (c-):                  Subword Movement.    (line  23)
 * gnu-impose-minimum (c-):               Other Indentation.   (line  16)
 * guess (c-):                            Guessing the Style.  (line  41)
+* guess-basic-syntax (c-):               Syntactic Analysis.  (line  14)
 * guess-buffer (c-):                     Guessing the Style.  (line  41)
 * guess-buffer-no-install (c-):          Guessing the Style.  (line  26)
 * guess-install (c-):                    Guessing the Style.  (line  67)
@@ -6375,11 +6395,11 @@ appears under its ‘c-THING’ name and its ‘THING (c-)’ name.
 * pike-mode:                             Introduction.        (line  28)
 * scope-operator (c-):                   Other Commands.      (line  25)
 * semi&comma-inside-parenlist (c-):      Hanging Semicolons and Commas.
-                                                              (line  53)
+                                                              (line  54)
 * semi&comma-no-newlines-before-nonblanks (c-): Hanging Semicolons and Commas.
                                                               (line  38)
 * semi&comma-no-newlines-for-oneline-inliners (c-): Hanging Semicolons and Commas.
-                                                              (line  54)
+                                                              (line  55)
 * set-offset (c-):                       c-offsets-alist.     (line  42)
 * set-offset (c-) <1>:                   Interactive Customization.
                                                               (line  72)
@@ -6389,7 +6409,7 @@ appears under its ‘c-THING’ name and its ‘THING (c-)’ name.
                                                               (line  72)
 * setup-paragraph-variables (c-):        Custom Filling and Breaking.
                                                               (line  46)
-* show-syntactic-information (c-):       Syntactic Analysis.  (line  42)
+* show-syntactic-information (c-):       Syntactic Analysis.  (line  50)
 * snug-do-while (c-):                    Custom Braces.       (line  67)
 * submit-bug-report (c-):                Mailing Lists and Bug Reports.
                                                               (line   6)
@@ -6629,7 +6649,7 @@ Concept and Key Index
 * Menu:
 
 * #:                                     Electric Keys.       (line  24)
-* ‘#define’:                             Macro Backslashes.   (line   6)
+* #define:                               Macro Backslashes.   (line   6)
 * (:                                     Electric Keys.       (line  62)
 * ):                                     Electric Keys.       (line  63)
 * *:                                     Electric Keys.       (line  37)
@@ -6655,11 +6675,11 @@ Concept and Key Index
                                                               (line  58)
 * anchor position:                       Indentation Engine Basics.
                                                               (line  15)
-* anchor position <1>:                   Syntactic Analysis.  (line  22)
+* anchor position <1>:                   Syntactic Analysis.  (line  30)
 * annotation-top-cont:                   Java Symbols.        (line  27)
 * annotation-var-cont:                   Java Symbols.        (line  27)
 * announcement mailing list:             Mailing Lists and Bug Reports.
-                                                              (line  27)
+                                                              (line  29)
 * arglist-close:                         Paren List Symbols.  (line  29)
 * arglist-cont:                          Paren List Symbols.  (line  34)
 * arglist-cont-nonempty:                 Paren List Symbols.  (line  34)
@@ -6667,7 +6687,7 @@ Concept and Key Index
 * Auto Fill mode:                        Filling and Breaking.
                                                               (line  19)
 * auto-newline:                          Auto-newlines.       (line   6)
-* AWK style:                             Built-in Styles.     (line  42)
+* AWK style:                             Built-in Styles.     (line  44)
 * awk-mode.el:                           Introduction.        (line   6)
 * block-close:                           Conditional Construct Symbols.
                                                               (line  28)
@@ -6679,7 +6699,7 @@ Concept and Key Index
 * brace-list-entry:                      Brace List Symbols.  (line  19)
 * brace-list-intro:                      Brace List Symbols.  (line  19)
 * brace-list-open:                       Brace List Symbols.  (line  19)
-* BSD style:                             Built-in Styles.     (line  17)
+* BSD style:                             Built-in Styles.     (line  19)
 * bug report mailing list:               Mailing Lists and Bug Reports.
                                                               (line  22)
 * bugs:                                  Limitations and Known Bugs.
@@ -6707,7 +6727,7 @@ Concept and Key Index
 * C-c C-p:                               Movement Commands.   (line  96)
 * C-c C-q:                               Indentation Commands.
                                                               (line 102)
-* C-c C-s:                               Syntactic Analysis.  (line  42)
+* C-c C-s:                               Syntactic Analysis.  (line  50)
 * C-c C-u:                               Movement Commands.   (line  66)
 * C-c C-w:                               Minor Modes.         (line  68)
 * C-c C-\:                               Other Commands.      (line  30)
@@ -6739,7 +6759,7 @@ Concept and Key Index
 * comment line prefix:                   Custom Filling and Breaking.
                                                               (line  11)
 * comment-intro:                         Literal Symbols.     (line  33)
-* comment-only line:                     Syntactic Analysis.  (line  80)
+* comment-only line:                     Syntactic Analysis.  (line  88)
 * comments (insertion of):               Comment Commands.    (line   6)
 * composition-close:                     External Scope Symbols.
                                                               (line  38)
@@ -6770,7 +6790,7 @@ Concept and Key Index
                                                               (line  50)
 * documentation comments:                Doc Comments.        (line   6)
 * electric characters:                   Electric Keys.       (line   6)
-* Ellemtel style:                        Built-in Styles.     (line  27)
+* Ellemtel style:                        Built-in Styles.     (line  29)
 * else-clause:                           Conditional Construct Symbols.
                                                               (line  44)
 * Emacs Initialization File:             Config Basics.       (line   6)
@@ -6832,7 +6852,7 @@ Concept and Key Index
                                                               (line  32)
 * interactive customization:             Interactive Customization.
                                                               (line   6)
-* Java style:                            Built-in Styles.     (line  38)
+* Java style:                            Built-in Styles.     (line  40)
 * Javadoc markup:                        Filling and Breaking.
                                                               (line  26)
 * Javadoc markup <1>:                    Doc Comments.        (line  44)
@@ -6851,7 +6871,7 @@ Concept and Key Index
 * line breaking:                         Filling and Breaking.
                                                               (line   6)
 * line-up function:                      Line-Up Functions.   (line   6)
-* Linux style:                           Built-in Styles.     (line  32)
+* Linux style:                           Built-in Styles.     (line  34)
 * literal:                               Indentation Commands.
                                                               (line  67)
 * literal <1>:                           Auto-newlines.       (line  23)
@@ -6898,7 +6918,7 @@ Concept and Key Index
                                                               (line  26)
 * Pike autodoc markup <1>:               Doc Comments.        (line  47)
 * preprocessor directives:               Custom Macros.       (line   6)
-* Python style:                          Built-in Styles.     (line  35)
+* Python style:                          Built-in Styles.     (line  37)
 * RET:                                   FAQ.                 (line  10)
 * statement:                             Function Symbols.    (line  28)
 * statement-block-intro:                 Conditional Construct Symbols.
@@ -6910,7 +6930,7 @@ Concept and Key Index
 * statement-cont:                        Function Symbols.    (line  28)
 * stream-op:                             Literal Symbols.     (line  64)
 * string:                                Literal Symbols.     (line  46)
-* Stroustrup style:                      Built-in Styles.     (line  24)
+* Stroustrup style:                      Built-in Styles.     (line  26)
 * style definition:                      Adding Styles.       (line  13)
 * style variables:                       Style Variables.     (line   6)
 * styles:                                Style Variables.     (line   6)
@@ -6919,8 +6939,8 @@ Concept and Key Index
 * styles, file local:                    File Styles.         (line   6)
 * substatement:                          Conditional Construct Symbols.
                                                               (line  35)
-* substatement <1>:                      Syntactic Analysis.  (line  77)
-* substatement block:                    Syntactic Analysis.  (line  77)
+* substatement <1>:                      Syntactic Analysis.  (line  85)
+* substatement block:                    Syntactic Analysis.  (line  85)
 * substatement-label:                    Conditional Construct Symbols.
                                                               (line  39)
 * substatement-open:                     Conditional Construct Symbols.
@@ -6931,7 +6951,7 @@ Concept and Key Index
 * syntactic element:                     Syntactic Analysis.  (line   6)
 * syntactic symbol:                      Indentation Engine Basics.
                                                               (line  15)
-* syntactic symbol <1>:                  Syntactic Analysis.  (line  14)
+* syntactic symbol <1>:                  Syntactic Analysis.  (line  22)
 * syntactic symbols, brief list:         Syntactic Symbols.   (line   6)
 * syntactic whitespace:                  Auto-newlines.       (line  23)
 * syntactic whitespace <1>:              Literal Symbols.     (line  40)
@@ -6948,143 +6968,143 @@ Concept and Key Index
                                                               (line  54)
 * user defined types:                    Font Locking Preliminaries.
                                                               (line  54)
-* User style:                            Built-in Styles.     (line  46)
+* User style:                            Built-in Styles.     (line  48)
 * web site:                              Updating CC Mode.    (line   9)
-* Whitesmith style:                      Built-in Styles.     (line  20)
+* Whitesmith style:                      Built-in Styles.     (line  22)
 
 
 
 Tag Table:
 Node: Top968
 Node: Introduction4079
-Ref: Introduction-Footnote-16106
-Node: Overview6235
-Node: Getting Started8180
-Ref: Getting Started-Footnote-112411
-Node: Commands12489
-Node: Indentation Commands13315
-Ref: Indentation Commands-Footnote-120062
-Node: Comment Commands20183
-Ref: Comment Commands-Footnote-122650
-Node: Movement Commands22717
-Ref: Movement Commands-Footnote-128349
-Node: Filling and Breaking28410
-Ref: Filling and Breaking-Footnote-131916
-Ref: Filling and Breaking-Footnote-232061
-Node: Minor Modes32125
-Ref: Minor Modes-Footnote-135691
-Ref: Minor Modes-Footnote-235813
-Ref: Minor Modes-Footnote-335885
-Node: Electric Keys35957
-Node: Auto-newlines41760
-Ref: Auto-newlines-Footnote-143618
-Node: Hungry WS Deletion43819
-Ref: Hungry WS Deletion-Footnote-149551
-Ref: Hungry WS Deletion-Footnote-249700
-Node: Subword Movement49769
-Node: Other Commands52169
-Node: Font Locking55177
-Node: Font Locking Preliminaries56029
-Node: Faces60098
-Node: Doc Comments62821
-Node: AWK Mode Font Locking65736
-Node: Config Basics68228
-Ref: Config Basics-Footnote-175063
-Ref: Config Basics-Footnote-275112
-Node: CC Hooks75254
-Node: Style Variables77707
-Ref: Style Variables-Footnote-181088
-Ref: Style Variables-Footnote-281494
-Node: Styles81539
-Node: Built-in Styles82881
-Ref: Built-in Styles-Footnote-184668
-Ref: Built-in Styles-Footnote-284773
-Node: Choosing a Style84917
-Node: Adding Styles87022
-Ref: Adding Styles-Footnote-190404
-Ref: Adding Styles-Footnote-290478
-Node: Guessing the Style90712
-Node: File Styles94946
-Ref: File Styles-Footnote-196553
-Node: Custom Filling and Breaking96855
-Ref: Custom Filling and Breaking-Footnote-1103628
-Ref: Custom Filling and Breaking-Footnote-2103884
-Ref: Custom Filling and Breaking-Footnote-3104175
-Ref: Custom Filling and Breaking-Footnote-4104359
-Node: Custom Auto-newlines104638
-Node: Hanging Braces106492
-Ref: Hanging Braces-Footnote-1112064
-Ref: Hanging Braces-Footnote-2112151
-Ref: Hanging Braces-Footnote-3112310
-Node: Custom Braces112527
-Node: Hanging Colons115950
-Node: Hanging Semicolons and Commas117541
-Ref: Hanging Semicolons and Commas-Footnote-1120581
-Node: Clean-ups120632
-Ref: Clean-ups-Footnote-1127448
-Node: Indentation Engine Basics127653
-Node: Syntactic Analysis129959
-Ref: Syntactic Analysis-Footnote-1133552
-Ref: Syntactic Analysis-Footnote-2133829
-Ref: Syntactic Analysis-Footnote-3133932
-Ref: Syntactic Analysis-Footnote-4134067
-Node: Syntactic Symbols134295
-Node: Function Symbols144465
-Node: Class Symbols145667
-Ref: Class Symbols-Footnote-1150113
-Node: Conditional Construct Symbols150340
-Ref: Conditional Construct Symbols-Footnote-1152674
-Node: Switch Statement Symbols152807
-Node: Brace List Symbols153751
-Node: External Scope Symbols155462
-Ref: External Scope Symbols-Footnote-1156932
-Node: Paren List Symbols157080
-Node: Literal Symbols159201
-Node: Multiline Macro Symbols161791
-Ref: Multiline Macro Symbols-Footnote-1163387
-Node: Objective-C Method Symbols163449
-Node: Java Symbols164231
-Node: Statement Block Symbols165537
-Ref: Statement Block Symbols-Footnote-1167616
-Node: K&R Symbols167941
-Ref: K&R Symbols-Footnote-1168576
-Node: Indentation Calculation168623
-Node: Customizing Indentation171943
-Node: c-offsets-alist173586
-Ref: c-offsets-alist-Footnote-1180316
-Ref: c-offsets-alist-Footnote-2180435
-Node: Interactive Customization180782
-Ref: Interactive Customization-Footnote-1183790
-Node: Line-Up Functions183933
-Node: Brace/Paren Line-Up185771
-Ref: c-lineup-arglist-close-under-paren186858
-Ref: Brace/Paren Line-Up-Footnote-1192361
-Node: List Line-Up192503
-Node: Operator Line-Up197411
-Node: Comment Line-Up201594
-Node: Misc Line-Up204441
-Ref: Misc Line-Up-Footnote-1208988
-Node: Custom Line-Up209311
-Ref: Custom Line-Up-Footnote-1213724
-Node: Other Indentation213885
-Ref: Other Indentation-Footnote-1215941
-Node: Custom Macros216143
-Node: Macro Backslashes217624
-Node: Macros with ;219625
-Node: Odds and Ends221540
-Node: Sample Init File223233
-Node: Performance Issues225573
-Ref: Performance Issues-Footnote-1231148
-Ref: Performance Issues-Footnote-2231225
-Node: Limitations and Known Bugs231289
-Node: FAQ233792
-Ref: FAQ-Footnote-1236643
-Node: Updating CC Mode236715
-Node: Mailing Lists and Bug Reports237316
-Node: GNU Free Documentation License239252
-Node: Command and Function Index264636
-Node: Variable Index285157
-Node: Concept and Key Index299799
+Ref: Introduction-Footnote-16093
+Node: Overview6222
+Node: Getting Started8167
+Ref: Getting Started-Footnote-112402
+Node: Commands12480
+Node: Indentation Commands13314
+Ref: Indentation Commands-Footnote-120061
+Node: Comment Commands20182
+Ref: Comment Commands-Footnote-122649
+Node: Movement Commands22716
+Ref: Movement Commands-Footnote-128356
+Node: Filling and Breaking28417
+Ref: Filling and Breaking-Footnote-131922
+Ref: Filling and Breaking-Footnote-232067
+Node: Minor Modes32131
+Ref: Minor Modes-Footnote-135697
+Ref: Minor Modes-Footnote-235819
+Ref: Minor Modes-Footnote-335891
+Node: Electric Keys35963
+Node: Auto-newlines41770
+Ref: Auto-newlines-Footnote-143636
+Node: Hungry WS Deletion43845
+Ref: Hungry WS Deletion-Footnote-149593
+Ref: Hungry WS Deletion-Footnote-249742
+Node: Subword Movement49811
+Node: Other Commands52219
+Node: Font Locking55227
+Node: Font Locking Preliminaries56079
+Node: Faces60148
+Node: Doc Comments62871
+Node: AWK Mode Font Locking65786
+Node: Config Basics68278
+Ref: Config Basics-Footnote-175141
+Ref: Config Basics-Footnote-275190
+Node: CC Hooks75332
+Node: Style Variables77785
+Ref: Style Variables-Footnote-181175
+Ref: Style Variables-Footnote-281581
+Node: Styles81626
+Node: Built-in Styles82980
+Ref: Built-in Styles-Footnote-184927
+Ref: Built-in Styles-Footnote-285032
+Node: Choosing a Style85176
+Node: Adding Styles87281
+Ref: Adding Styles-Footnote-190671
+Ref: Adding Styles-Footnote-290745
+Node: Guessing the Style90979
+Node: File Styles95221
+Ref: File Styles-Footnote-196832
+Node: Custom Filling and Breaking97134
+Ref: Custom Filling and Breaking-Footnote-1103911
+Ref: Custom Filling and Breaking-Footnote-2104167
+Ref: Custom Filling and Breaking-Footnote-3104458
+Ref: Custom Filling and Breaking-Footnote-4104642
+Node: Custom Auto-newlines104921
+Node: Hanging Braces106787
+Ref: Hanging Braces-Footnote-1112363
+Ref: Hanging Braces-Footnote-2112450
+Ref: Hanging Braces-Footnote-3112609
+Node: Custom Braces112826
+Node: Hanging Colons116253
+Node: Hanging Semicolons and Commas117848
+Ref: Hanging Semicolons and Commas-Footnote-1120940
+Node: Clean-ups120991
+Ref: Clean-ups-Footnote-1127811
+Node: Indentation Engine Basics128016
+Node: Syntactic Analysis130334
+Ref: Syntactic Analysis-Footnote-1134299
+Ref: Syntactic Analysis-Footnote-2134576
+Ref: Syntactic Analysis-Footnote-3134679
+Ref: Syntactic Analysis-Footnote-4134814
+Node: Syntactic Symbols135050
+Node: Function Symbols145220
+Node: Class Symbols146422
+Ref: Class Symbols-Footnote-1150872
+Node: Conditional Construct Symbols151099
+Ref: Conditional Construct Symbols-Footnote-1153433
+Node: Switch Statement Symbols153566
+Node: Brace List Symbols154510
+Node: External Scope Symbols156221
+Ref: External Scope Symbols-Footnote-1157691
+Node: Paren List Symbols157839
+Node: Literal Symbols159960
+Node: Multiline Macro Symbols162554
+Ref: Multiline Macro Symbols-Footnote-1164150
+Node: Objective-C Method Symbols164212
+Node: Java Symbols164994
+Node: Statement Block Symbols166300
+Ref: Statement Block Symbols-Footnote-1168379
+Node: K&R Symbols168704
+Ref: K&R Symbols-Footnote-1169339
+Node: Indentation Calculation169386
+Node: Customizing Indentation172706
+Node: c-offsets-alist174353
+Ref: c-offsets-alist-Footnote-1181085
+Ref: c-offsets-alist-Footnote-2181204
+Node: Interactive Customization181551
+Ref: Interactive Customization-Footnote-1184559
+Node: Line-Up Functions184702
+Node: Brace/Paren Line-Up186544
+Ref: c-lineup-arglist-close-under-paren187631
+Ref: Brace/Paren Line-Up-Footnote-1193134
+Node: List Line-Up193276
+Node: Operator Line-Up198184
+Node: Comment Line-Up202367
+Node: Misc Line-Up205214
+Ref: Misc Line-Up-Footnote-1209761
+Node: Custom Line-Up210084
+Ref: Custom Line-Up-Footnote-1214740
+Node: Other Indentation214901
+Ref: Other Indentation-Footnote-1216957
+Node: Custom Macros217159
+Node: Macro Backslashes218640
+Node: Macros with ;220641
+Node: Odds and Ends222560
+Node: Sample Init File224253
+Node: Performance Issues226593
+Ref: Performance Issues-Footnote-1232186
+Ref: Performance Issues-Footnote-2232263
+Node: Limitations and Known Bugs232327
+Node: FAQ234852
+Ref: FAQ-Footnote-1237703
+Node: Updating CC Mode237775
+Node: Mailing Lists and Bug Reports238375
+Node: GNU Free Documentation License240419
+Node: Command and Function Index265807
+Node: Variable Index286474
+Node: Concept and Key Index301116
 
 End Tag Table
 

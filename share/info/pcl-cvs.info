@@ -1,7 +1,7 @@
-This is pcl-cvs.info, produced by makeinfo version 5.2 from
+This is pcl-cvs.info, produced by makeinfo version 6.3 from
 pcl-cvs.texi.
 
-Copyright © 1991–2015 Free Software Foundation, Inc.
+Copyright © 1991–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -29,7 +29,7 @@ nowhere near complete, so you are advised to use ‘M-x customize-group
 RET pcl-cvs <RET>’ and to look at the documentation strings of the
 various commands and major modes for further information.
 
-   Copyright © 1991–2015 Free Software Foundation, Inc.
+   Copyright © 1991–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -44,7 +44,7 @@ various commands and major modes for further information.
 
 * Menu:
 
-* About PCL-CVS::               Credits, history, …
+* About PCL-CVS::               Credits, history, ...
 
 * Getting started::             An introduction with a walk-through example.
 * Buffer contents::             An explanation of the buffer contents.
@@ -133,7 +133,7 @@ me to this package (*note Bugs::).
    The following persons have made contributions to PCL-CVS.
 
    • Brian Berliner wrote CVS, together with some other contributors.
-     Without his work on CVS this package would be useless…
+     Without his work on CVS this package would be useless...
 
    • Per Cederqvist wrote most of the otherwise unattributed functions
      in PCL-CVS as well as all the documentation.
@@ -253,9 +253,9 @@ columns are, from left to right:
      version found in the repository.  It might also contain (instead of
      the head revision) a sub status which typically gives further
      information about how we got to the current state, for example
-     ‘patched’, ‘merged’, …
+     ‘patched’, ‘merged’, ...
 
-   • An asterisk when the file is "marked" (*note Selected files::).
+   • An asterisk when the file is “marked” (*note Selected files::).
 
    • The actual status of the file wrt the repository.  See below.
 
@@ -360,7 +360,7 @@ File: pcl-cvs.info,  Node: Selected files,  Next: Commands,  Prev: Buffer conten
 4 Selected files
 ****************
 
-Many of the commands work on the current set of "selected" files which
+Many of the commands work on the current set of “selected” files which
 can be either the set of marked files (if any file is marked and marks
 are not ignored) or whichever file or directory the cursor is on.
 
@@ -369,7 +369,7 @@ directory, then it will be applied to the set of files under this
 directory which are in the ‘*cvs*’ buffer.
 
    Furthermore, each command only operates on a subset of the selected
-files, depending on whether or not the command is "applicable" to each
+files, depending on whether or not the command is “applicable” to each
 file (based on the file’s status).  For example, ‘cvs-mode-commit’ is
 not applicable to a file whose status is ‘Need-Update’.  If it should
 happen that PCL-CVS guesses the applicability wrong, you can override it
@@ -500,7 +500,7 @@ will be performed, and the default flags will be set to ‘("-u")’.  You
 can of course override this flag for a single diff by using a single
 ‘C-u’ prefix argument.
 
-   In addition to this, some commands can take "special prefix"
+   In addition to this, some commands can take “special prefix”
 arguments.  These work as follows: When called with a ‘C-u’ prefix, the
 user is prompted for a new value of the special prefix and the special
 prefix is activated for the next command.  When called without the ‘C-u’
@@ -587,7 +587,7 @@ File: pcl-cvs.info,  Node: Marking files,  Next: Committing changes,  Prev: Move
 5.5 Marking files
 =================
 
-PCL-CVS works on a set of "selected files" (*note Selected files::).
+PCL-CVS works on a set of “selected files” (*note Selected files::).
 You can mark and unmark files with these commands:
 
 ‘m’
@@ -1001,7 +1001,7 @@ us, see *note Bugs::.
 ‘cvs-cvsroot’
      This variable can be set to override ‘CVSROOT’.  It should be a
      string.  If it is set, then every time a ‘cvs’ command is run, it
-     will be called as ‘cvs -d CVS-CVSROOT…’.  This can be useful if
+     will be called as ‘cvs -d CVS-CVSROOT...’.  This can be useful if
      your site has several repositories.
 
 ‘log-edit-require-final-newline’
@@ -1021,7 +1021,7 @@ us, see *note Bugs::.
      set in the local variables section of a ‘ChangeLog’ file, to
      indicate the policy for that ‘ChangeLog’.
 
-     A "‘ChangeLog’ paragraph" is a bunch of log text containing no
+     A “‘ChangeLog’ paragraph” is a bunch of log text containing no
      blank lines; a paragraph usually describes a set of changes with a
      single purpose, but perhaps spanning several functions in several
      files.  Changes in different paragraphs are unrelated.
@@ -1130,7 +1130,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1580,7 +1580,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1656,7 +1656,7 @@ manual.
 * cvs-mode-ignore:                       Removing handled entries.
                                                                (line  6)
 * cvs-mode-ignore <1>:                   Ignoring files.       (line  6)
-* cvs-mode-ignore, and ‘.cvsignore’ sorting: Customization.    (line 73)
+* cvs-mode-ignore, and .cvsignore sorting: Customization.      (line 73)
 * cvs-mode-imerge:                       Invoking Ediff.       (line  6)
 * cvs-mode-log:                          Getting info about files.
                                                                (line  6)
@@ -1718,9 +1718,9 @@ This is an index of concepts discussed in this manual.
  [index ]
 * Menu:
 
-* ‘*cvs*’ buffer contents:               Buffer contents.      (line  6)
-* ‘-u’ option in modules file:           Customization.        (line  6)
-* ‘.cvsignore’ file, sorting:            Customization.        (line  6)
+* *cvs* buffer contents:                 Buffer contents.      (line  6)
+* -u option in modules file:             Customization.        (line  6)
+* .cvsignore file, sorting:              Customization.        (line  6)
 * About PCL-CVS:                         About PCL-CVS.        (line  6)
 * Active files:                          Selected files.       (line  6)
 * Adding files:                          Adding and removing files.
@@ -1730,13 +1730,13 @@ This is an index of concepts discussed in this manual.
 * Authors:                               Contributors.         (line  6)
 * Automatically inserting newline:       Customization.        (line  6)
 * Automatically remove handled files:    Customization.        (line  6)
-* Automatically sorting ‘.cvsignore’:    Customization.        (line  6)
+* Automatically sorting .cvsignore:      Customization.        (line  6)
 * Buffer contents:                       Buffer contents.      (line  6)
 * Bugs, how to report them:              Bugs.                 (line  6)
 * Bugs, known:                           Bugs.                 (line  6)
 * Byte compilation:                      Miscellaneous commands.
                                                                (line  6)
-* ‘ChangeLog’ paragraphs:                Customization.        (line 57)
+* ChangeLog paragraphs:                  Customization.        (line 57)
 * Command-line options to CVS:           Setting flags.        (line  6)
 * Commit buffer:                         Committing changes.   (line  6)
 * Commit message, inserting newline:     Customization.        (line  6)
@@ -1747,7 +1747,7 @@ This is an index of concepts discussed in this manual.
 * Contributors:                          Contributors.         (line  6)
 * Creating the *cvs* buffer:             Entering PCL-CVS.     (line  6)
 * Customization:                         Customization.        (line  6)
-* ‘CVSROOT’, overriding:                 Customization.        (line  6)
+* CVSROOT, overriding:                   Customization.        (line  6)
 * Deleting files:                        Adding and removing files.
                                                                (line  6)
 * Diff:                                  Viewing differences.  (line  6)
@@ -1777,7 +1777,7 @@ This is an index of concepts discussed in this manual.
                                                                (line  6)
 * Ignoring files:                        Ignoring files.       (line  6)
 * Introduction:                          Getting started.      (line  6)
-* Invoking ‘diff’:                       Viewing differences.  (line  6)
+* Invoking diff:                         Viewing differences.  (line  6)
 * Invoking dired:                        Editing files.        (line  6)
 * Invoking ediff:                        Invoking Ediff.       (line  6)
 * Known bugs:                            Bugs.                 (line  6)
@@ -1790,10 +1790,10 @@ This is an index of concepts discussed in this manual.
 * Log View mode:                         Log View Mode.        (line  6)
 * Marked files:                          Selected files.       (line  6)
 * Marking files:                         Marking files.        (line  6)
-* Merging with ‘ediff’ and ‘emerge’:     Invoking Ediff.       (line 13)
+* Merging with ediff and emerge:         Invoking Ediff.       (line 13)
 * mode, Log Edit:                        Log Edit Mode.        (line  6)
 * mode, Log View:                        Log View Mode.        (line  6)
-* Modules file (‘-u’ option):            Customization.        (line  6)
+* Modules file (-u option):              Customization.        (line  6)
 * Movement Commands:                     Movement commands.    (line  6)
 * Optional switches to CVS:              Setting flags.        (line  6)
 * output, logs:                          Log View Mode.        (line  6)
@@ -1818,7 +1818,7 @@ This is an index of concepts discussed in this manual.
 * Sample session:                        Getting started.      (line  6)
 * Selected files:                        Selected files.       (line  6)
 * Selecting files (commands to mark files): Marking files.     (line  6)
-* Sorting ‘.cvsignore’ file:             Customization.        (line  6)
+* Sorting .cvsignore file:               Customization.        (line  6)
 * Special prefix:                        Setting flags.        (line 27)
 * Status (cvs command):                  Getting info about files.
                                                                (line  6)
@@ -1827,7 +1827,7 @@ This is an index of concepts discussed in this manual.
 * Unidiff, how to get:                   Customization.        (line  6)
 * Uninteresting entries, getting rid of them: Removing handled entries.
                                                                (line  6)
-* Update program (‘-u’ option in modules file): Customization. (line  6)
+* Update program (-u option in modules file): Customization.   (line  6)
 * Updating files:                        Updating files.       (line  6)
 * Variables, list of all:                Customization.        (line  6)
 * Viewing differences:                   Viewing differences.  (line  6)
@@ -1846,17 +1846,17 @@ this manual.
 * Menu:
 
 * %–mark files matching regexp:          Marking files.         (line 6)
-* =–run ‘cvs diff’:                      Viewing differences.   (line 6)
+* =–run cvs diff:                        Viewing differences.   (line 6)
 * ?–help:                                Miscellaneous commands.
                                                                 (line 6)
 * a–add a file:                          Adding and removing files.
                                                                 (line 6)
-* A–add ‘ChangeLog’ entry:               Editing files.         (line 6)
+* A–add ChangeLog entry:                 Editing files.         (line 6)
 * c–commit files:                        Committing changes.    (line 6)
-* C–commit files with ‘ChangeLog’ message: Committing changes.  (line 6)
+* C–commit files with ChangeLog message: Committing changes.    (line 6)
 * C-k–remove selected entries:           Removing handled entries.
                                                                 (line 6)
-* d=–run ‘cvs diff’:                     Viewing differences.   (line 6)
+* d=–run cvs diff:                       Viewing differences.   (line 6)
 * db–diff against base version:          Viewing differences.   (line 6)
 * DEL–unmark previous file:              Marking files.         (line 6)
 * dh–diff against head of repository:    Viewing differences.   (line 6)
@@ -1864,13 +1864,13 @@ this manual.
                                                                 (line 6)
 * dv–diff against vendor branch:         Viewing differences.   (line 6)
 * dy–diff against yesterday’s head:      Viewing differences.   (line 6)
-* e–invoke ‘ediff’:                      Invoking Ediff.        (line 6)
+* e–invoke ediff:                        Invoking Ediff.        (line 6)
 * ESC DEL–unmark all files:              Marking files.         (line 6)
 * f–find file or directory:              Editing files.         (line 6)
 * h–help:                                Miscellaneous commands.
                                                                 (line 6)
 * i–ignoring files:                      Ignoring files.        (line 6)
-* l–run ‘cvs log’:                       Getting info about files.
+* l–run cvs log:                         Getting info about files.
                                                                 (line 6)
 * m–marking a file:                      Marking files.         (line 6)
 * M–marking all files:                   Marking files.         (line 6)
@@ -1884,7 +1884,7 @@ this manual.
 * r–remove a file:                       Adding and removing files.
                                                                 (line 6)
 * S–mark files in a particular state:    Marking files.         (line 6)
-* s–run ‘cvs status’:                    Getting info about files.
+* s–run cvs status:                      Getting info about files.
                                                                 (line 6)
 * SPC–Move down one file:                Movement commands.     (line 6)
 * t–tag files:                           Tagging files.         (line 6)
@@ -1902,34 +1902,34 @@ Node: About PCL-CVS3995
 Node: Contributors5083
 Node: Getting started7461
 Node: Buffer contents10291
-Node: Selected files14717
-Node: Commands16406
-Node: Entering PCL-CVS17825
-Node: Setting flags20135
-Node: Updating the buffer22705
-Node: Movement commands23846
-Node: Marking files24448
-Node: Committing changes25662
-Node: Editing files27659
-Node: Getting info about files28615
-Node: Adding and removing files29166
-Node: Undoing changes30501
-Node: Removing handled entries30987
-Node: Ignoring files31883
-Node: Viewing differences32459
-Node: Invoking Ediff34138
-Node: Updating files35039
-Node: Tagging files35321
-Node: Miscellaneous commands36143
-Node: Log Edit Mode37165
-Node: Log View Mode38537
-Node: Customization39137
-Node: Customizing Faces42928
-Node: Bugs43746
-Node: GNU Free Documentation License45358
-Node: Function and Variable Index70719
-Node: Concept Index78134
-Node: Key Index86606
+Node: Selected files14721
+Node: Commands16418
+Node: Entering PCL-CVS17837
+Node: Setting flags20147
+Node: Updating the buffer22721
+Node: Movement commands23862
+Node: Marking files24464
+Node: Committing changes25682
+Node: Editing files27679
+Node: Getting info about files28635
+Node: Adding and removing files29186
+Node: Undoing changes30521
+Node: Removing handled entries31007
+Node: Ignoring files31903
+Node: Viewing differences32479
+Node: Invoking Ediff34158
+Node: Updating files35059
+Node: Tagging files35341
+Node: Miscellaneous commands36163
+Node: Log Edit Mode37185
+Node: Log View Mode38557
+Node: Customization39157
+Node: Customizing Faces42952
+Node: Bugs43770
+Node: GNU Free Documentation License45382
+Node: Function and Variable Index70747
+Node: Concept Index78158
+Node: Key Index86582
 
 End Tag Table
 

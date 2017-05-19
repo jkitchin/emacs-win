@@ -1,7 +1,7 @@
-This is smtpmail.info, produced by makeinfo version 5.2 from
+This is smtpmail.info, produced by makeinfo version 6.3 from
 smtpmail.texi.
 
-Copyright © 2003–2015 Free Software Foundation, Inc.
+Copyright © 2003–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -24,7 +24,7 @@ File: smtpmail.info,  Node: Top,  Next: How Mail Works,  Up: (dir)
 Emacs SMTP Library
 ******************
 
-Copyright © 2003–2015 Free Software Foundation, Inc.
+Copyright © 2003–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -246,7 +246,7 @@ an encrypted channel for the rest of the process.
 the SMTP library uses.  The default value is ‘nil’, which means to use a
 plain connection, but try to switch to a STARTTLS encrypted connection
 if the server supports it.  Other possible values are: ‘starttls’ to
-insist on STARTTLS; ‘ssl’ to use TLS/SSL; and ‘plain’ for encryption.
+insist on STARTTLS; ‘ssl’ to use TLS/SSL; and ‘plain’ for no encryption.
 
    Use of any form of TLS/SSL requires support in Emacs.  You can either
 use the built-in support (in Emacs 24.1 and later), or the ‘starttls.el’
@@ -319,7 +319,7 @@ implement support for common requirements.
 ‘smtpmail-local-domain’
      The variable ‘smtpmail-local-domain’ controls the hostname sent in
      the first ‘EHLO’ or ‘HELO’ command sent to the server.  It should
-     only be set if the ‘system-name’ function returns a name that isn’t
+     be set only if the ‘system-name’ function returns a name that isn’t
      accepted by the server.  Do not set this variable unless your
      server complains.
 
@@ -381,7 +381,7 @@ File: smtpmail.info,  Node: GNU Free Documentation License,  Next: Index,  Prev:
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -831,7 +831,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -909,12 +909,12 @@ Node: How Mail Works2179
 Node: Emacs Speaks SMTP4961
 Node: Authentication8605
 Node: Encryption10675
-Ref: Encryption-Footnote-112973
-Node: Queued delivery13019
-Node: Server workarounds14329
-Node: Debugging15569
-Node: GNU Free Documentation License16746
-Node: Index42073
+Ref: Encryption-Footnote-112976
+Node: Queued delivery13022
+Node: Server workarounds14332
+Node: Debugging15572
+Node: GNU Free Documentation License16749
+Node: Index42080
 
 End Tag Table
 

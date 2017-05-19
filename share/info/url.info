@@ -1,8 +1,8 @@
-This is url.info, produced by makeinfo version 5.2 from url.texi.
+This is url.info, produced by makeinfo version 6.3 from url.texi.
 
 This is the manual for the ‘url’ Emacs Lisp library.
 
-   Copyright © 1993–1999, 2002, 2004–2015 Free Software Foundation, Inc.
+   Copyright © 1993–1999, 2002, 2004–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,7 +27,7 @@ URL
 
 This is the manual for the ‘url’ Emacs Lisp library.
 
-   Copyright © 1993–1999, 2002, 2004–2015 Free Software Foundation, Inc.
+   Copyright © 1993–1999, 2002, 2004–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -60,10 +60,10 @@ File: url.info,  Node: Introduction,  Next: URI Parsing,  Prev: Top,  Up: Top
 1 Introduction
 **************
 
-A "Uniform Resource Identifier" (URI) is a specially-formatted name,
+A “Uniform Resource Identifier” (URI) is a specially-formatted name,
 such as an Internet address, that identifies some name or resource.  The
 format of URIs is described in RFC 3986, which updates and replaces the
-earlier RFCs 2732, 2396, 1808, and 1738.  A "Uniform Resource Locator"
+earlier RFCs 2732, 2396, 1808, and 1738.  A “Uniform Resource Locator”
 (URL) is an older but still-common term, which basically refers to a URI
 corresponding to a resource that can be accessed (usually over a
 network) in a specific way.
@@ -91,7 +91,7 @@ File: url.info,  Node: URI Parsing,  Next: Retrieving URLs,  Prev: Introduction,
 2 URI Parsing
 *************
 
-A URI consists of several "components", each having a different meaning.
+A URI consists of several “components”, each having a different meaning.
 For example, the URI
 
      http://www.gnu.org/software/emacs/
@@ -112,7 +112,7 @@ which converts a parsed URI back into a URI string.
      string.
 
    The return value of ‘url-generic-parse-url’, and the argument
-expected by ‘url-recreate-url’, is a "parsed URI": a CL structure whose
+expected by ‘url-recreate-url’, is a “parsed URI”: a CL structure whose
 slots hold the various components of the URI.  *Note the CL Manual:
 (cl)Top, for details about CL structures.  Most of the other functions
 in the ‘url’ library act on parsed URIs.
@@ -191,7 +191,7 @@ respect: it allows non-ASCII characters in URI strings.
 
    Strictly speaking, RFC 3986 compatible URIs may only consist of ASCII
 characters; non-ASCII characters are represented by converting them to
-UTF-8 byte sequences, and performing "percent encoding" on the bytes.
+UTF-8 byte sequences, and performing “percent encoding” on the bytes.
 For example, the o-umlaut character is converted to the UTF-8 byte
 sequence ‘\xD3\xA7’, then percent encoded to ‘%D3%A7’.  (Certain
 “reserved” ASCII characters must also be percent encoded when they
@@ -203,7 +203,7 @@ in accordance with RFC 3986.
 
  -- Function: url-encode-url url-string
      This function return a properly URI-encoded version of URL-STRING.
-     It also performs "URI normalization", e.g., converting the scheme
+     It also performs “URI normalization”, e.g., converting the scheme
      component to lowercase if it was previously uppercase.
 
    To convert between a string containing arbitrary characters and a
@@ -221,7 +221,7 @@ and ‘url-unhex-string’:
 
      The allowed characters are specified by ALLOWED-CHARS.  If this
      argument is ‘nil’, the allowed characters are those specified as
-     "unreserved characters" by RFC 3986 (see the variable
+     “unreserved characters” by RFC 3986 (see the variable
      ‘url-unreserved-chars’).  Otherwise, ALLOWED-CHARS should be a
      vector whose N-th element is non-‘nil’ if character N is allowed.
 
@@ -249,11 +249,15 @@ or a parsed URL structure.  If it is a string, that string is passed
 through ‘url-encode-url’ before using it, to ensure that it is properly
 URI-encoded (*note URI Encoding::).
 
- -- Function: url-retrieve-synchronously url
+ -- Function: url-retrieve-synchronously url silent no-cookies
      This function synchronously retrieves the data specified by URL,
      and returns a buffer containing the data.  The return value is
      ‘nil’ if there is no data associated with the URL (as is the case
      for ‘dired’, ‘info’, and ‘mailto’ URLs).
+
+     If the optional argument SILENT is non-‘nil’, progress messages are
+     suppressed.  If the optional argument NO-COOKIES is non-‘nil’,
+     cookies are not stored or sent.
 
  -- Function: url-retrieve url callback &optional cbargs silent
           no-cookies
@@ -327,9 +331,10 @@ for specific schemes.
 * rlogin/telnet/tn3270::        Remote host connectivity.
 * irc::                         Internet Relay Chat.
 * data::                        Embedded data URLs.
-* nfs::                         Networked File System
-* ldap::                        Lightweight Directory Access Protocol
+* nfs::                         Networked File System.
+* ldap::                        Lightweight Directory Access Protocol.
 * man::                         Unix man pages.
+* Tramp::                       Schemes supported via Tramp.
 
 
 File: url.info,  Node: http/https,  Next: file/ftp,  Up: Supported URL Types
@@ -377,7 +382,7 @@ File: url.info,  Node: Cookies,  Next: HTTP language/coding,  Up: http/https
      the directory specified by ‘url-configuration-directory’.
 
  -- User Option: url-cookie-confirmation
-     Specifies whether confirmation is require to accept cookies.
+     Specifies whether confirmation is required to accept cookies.
 
  -- User Option: url-cookie-multiple-line
      Specifies whether to put all cookies for the server on one line in
@@ -461,7 +466,7 @@ URL.
           fetches.
 
      ‘p3p’
-          The "Platform For Privacy Protection" description for the
+          The “Platform For Privacy Protection” description for the
           resource.  Currently this is just the raw header contents.
 
 
@@ -488,7 +493,8 @@ treats ‘ftp:’ and ‘file:’ as synonymous.  Such URLs have the form
 
 If the URL specifies a local file, it is retrieved by reading the file
 contents in the usual way.  If it specifies a remote file, it is
-retrieved using the Ange-FTP package.  *Note (emacs)Remote Files::.
+retrieved using either the Tramp or the Ange-FTP package.  *Note
+(emacs)Remote Files::.
 
    When retrieving a compressed file, it is automatically uncompressed
 if it has the file suffix ‘.z’, ‘.gz’, ‘.Z’, ‘.bz2’, or ‘.xz’.  (The
@@ -526,7 +532,7 @@ to ‘foo@bar.com’.  The “retrieval method” for such URLs is to open a
 mail composition buffer in which the appropriate content (e.g., the
 recipient address) has been filled in.
 
-   As defined in RFC 2368, a ‘mailto’ URL has the form
+   As defined in RFC 6068, a ‘mailto’ URL can have the form
 
      ‘mailto:MAILBOX[?HEADER=CONTENTS[&HEADER=CONTENTS]]’
 
@@ -596,7 +602,8 @@ via a terminal emulator.  They have the form
 
      telnet://USER:PASSWORD@HOST:PORT
 
-but the PASSWORD component is ignored.
+but the PASSWORD component is ignored.  By default, the ‘telnet’ scheme
+is handled via Tramp (*note Tramp::).
 
    To handle rlogin, telnet and tn3270 URLs, a ‘rlogin’, ‘telnet’ or
 ‘tn3270’ (the program names and arguments are hardcoded) session is run
@@ -685,7 +692,7 @@ File: url.info,  Node: ldap,  Next: man,  Prev: nfs,  Up: Supported URL Types
 The LDAP scheme is defined in RFC 2255.
 
 
-File: url.info,  Node: man,  Prev: ldap,  Up: Supported URL Types
+File: url.info,  Node: man,  Next: Tramp,  Prev: ldap,  Up: Supported URL Types
 
 4.11 man
 ========
@@ -695,6 +702,32 @@ The ‘man’ scheme is a non-standard one.  Such URLs have the form
      ‘man:PAGE-SPEC’
 
 and are retrieved by passing PAGE-SPEC to the Lisp function ‘man’.
+
+
+File: url.info,  Node: Tramp,  Prev: man,  Up: Supported URL Types
+
+4.12 URL Types Supported via Tramp
+==================================
+
+Some additional URL types are supported by passing them to Tramp (*note
+The Tramp Manual: (tramp)Top.).  These protocols are listed in the
+‘url-tramp-protocols’ variable, which you can customize.  The default
+value includes the following protocols:
+
+‘ftp’
+     The file transfer protocol.  *Note file/ftp::.
+
+‘ssh’
+     The secure shell protocol.  *Note (tramp)Inline methods::.
+
+‘scp’
+     The secure file copy protocol.  *Note (tramp)External methods::.
+
+‘rsync’
+     The remote sync protocol.
+
+‘telnet’
+     The telnet protocol.
 
 
 File: url.info,  Node: General Facilities,  Next: Customization,  Prev: Supported URL Types,  Up: Top
@@ -887,8 +920,9 @@ connections is ‘url-open-stream’.
      This is a regular expression that matches the shell prompt.
 
  -- User Option: socks-server
-     This specifies the default server, it takes the form ‘("Default server" SERVER PORT VERSION)’
-     where VERSION can be either 4 or 5.
+     This specifies the default server, it takes the form
+     ‘("Default server" SERVER PORT VERSION)’ where VERSION can be
+     either 4 or 5.
  -- Variable: socks-password
      If this is ‘nil’ then you will be asked for the password, otherwise
      it will be used as the password for authenticating you to the SOCKS
@@ -1034,6 +1068,13 @@ library.
      ‘native’
           Connect directly.
 
+ -- User Option: url-user-agent
+     The User Agent string used for sending HTTP/HTTPS requests.  The
+     value should be a string or a function of no arguments that returns
+     a string.  The default value is
+     ‘User-Agent: PACKAGE-NAME URL/Emacs’, where PACKAGE-NAME is the
+     value of ‘url-package-name’ and its version, if they are non-‘nil’.
+
 
 File: url.info,  Node: GNU Free Documentation License,  Next: Function Index,  Prev: Customization,  Up: Top
 
@@ -1051,7 +1092,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1501,7 +1542,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1551,9 +1592,9 @@ Command and Function Index
 * url-open-stream:                       Gateways in general.  (line 13)
 * url-password:                          Parsed URIs.          (line 49)
 * url-port:                              Parsed URIs.          (line 49)
-* url-queue-retrieve:                    Retrieving URLs.      (line 54)
+* url-queue-retrieve:                    Retrieving URLs.      (line 58)
 * url-recreate-url:                      URI Parsing.          (line 22)
-* url-retrieve:                          Retrieving URLs.      (line 23)
+* url-retrieve:                          Retrieving URLs.      (line 27)
 * url-retrieve-synchronously:            Retrieving URLs.      (line 17)
 * url-target:                            Parsed URIs.          (line 49)
 * url-type:                              Parsed URIs.          (line 49)
@@ -1573,11 +1614,11 @@ Variable Index
 * mail-user-agent:                       mailto.               (line 23)
 * NNTPSERVER:                            news/nntp/snews.      (line 32)
 * NO_PROXY:                              Proxies.              (line 18)
-* socks-nslookup-program:                Gateways in general.  (line 90)
-* socks-password:                        Gateways in general.  (line 80)
+* socks-nslookup-program:                Gateways in general.  (line 91)
+* socks-password:                        Gateways in general.  (line 81)
 * socks-server:                          Gateways in general.  (line 77)
-* socks-timeout:                         Gateways in general.  (line 87)
-* socks-username:                        Gateways in general.  (line 84)
+* socks-timeout:                         Gateways in general.  (line 88)
+* socks-username:                        Gateways in general.  (line 85)
 * TMPDIR:                                Customization.        (line 10)
 * url-automatic-caching:                 Disk Caching.         (line 13)
 * url-bad-port-list:                     Customization.        (line 36)
@@ -1593,7 +1634,7 @@ Variable Index
 * url-cookie-trusted-urls:               Cookies.              (line 23)
 * url-cookie-untrusted-urls:             Cookies.              (line 27)
 * url-debug:                             Customization.        (line 26)
-* url-directory-index-file:              file/ftp.             (line 21)
+* url-directory-index-file:              file/ftp.             (line 22)
 * url-gateway-local-host-regexp:         Gateways in general.  (line 18)
 * url-gateway-method:                    Gateways in general.  (line 23)
 * url-gateway-method <1>:                Customization.        (line 45)
@@ -1626,16 +1667,18 @@ Variable Index
 * url-personal-mail-address:             Customization.        (line 31)
 * url-privacy-level:                     Customization.        (line 32)
 * url-proxy-services:                    Proxies.              (line 32)
-* url-queue-parallel-processes:          Retrieving URLs.      (line 64)
-* url-queue-parallel-processes <1>:      Retrieving URLs.      (line 64)
-* url-queue-timeout:                     Retrieving URLs.      (line 70)
-* url-queue-timeout <1>:                 Retrieving URLs.      (line 70)
+* url-queue-parallel-processes:          Retrieving URLs.      (line 68)
+* url-queue-parallel-processes <1>:      Retrieving URLs.      (line 68)
+* url-queue-timeout:                     Retrieving URLs.      (line 74)
+* url-queue-timeout <1>:                 Retrieving URLs.      (line 74)
 * url-show-status:                       Customization.        (line 39)
 * url-standalone-mode:                   Customization.        (line 35)
 * url-temporary-directory:               Customization.        (line 10)
 * url-temporary-directory <1>:           Customization.        (line 38)
+* url-tramp-protocols:                   Tramp.                (line  6)
 * url-uncompressor-alist:                Customization.        (line 33)
 * url-unreserved-chars:                  URI Encoding.         (line 39)
+* url-user-agent:                        Customization.        (line 60)
 
 
 File: url.info,  Node: Concept Index,  Prev: Variable Index,  Up: Top
@@ -1673,7 +1716,7 @@ Concept Index
 * firewalls:                             Gateways in general.  (line  6)
 * FTP:                                   file/ftp.             (line  6)
 * gateways:                              Gateways in general.  (line  6)
-* HTML ‘bugs’:                           Suppressing network connections.
+* HTML “bugs”:                           Suppressing network connections.
                                                                (line  6)
 * Info:                                  info.                 (line  6)
 * Internet Relay Chat:                   irc.                  (line  6)
@@ -1682,7 +1725,7 @@ Concept Index
 * LDAP:                                  ldap.                 (line  6)
 * Lightweight Directory Access Protocol: ldap.                 (line  6)
 * mailto:                                mailto.               (line  6)
-* ‘man’:                                 man.                  (line  6)
+* man:                                   man.                  (line  6)
 * MD5:                                   Disk Caching.         (line 31)
 * network connections, suppressing:      Suppressing network connections.
                                                                (line  6)
@@ -1691,7 +1734,7 @@ Concept Index
 * news:                                  news/nntp/snews.      (line  6)
 * NFS:                                   nfs.                  (line  6)
 * NNTP:                                  news/nntp/snews.      (line  6)
-* ‘nslookup’:                            Gateways in general.  (line 91)
+* nslookup:                              Gateways in general.  (line 92)
 * opening a stream:                      Gateways in general.  (line 14)
 * P3P:                                   HTTP URL Options.     (line 29)
 * parsed URI:                            URI Parsing.          (line 26)
@@ -1702,14 +1745,17 @@ Concept Index
 * proxy servers:                         Proxies.              (line  6)
 * rcirc:                                 irc.                  (line  6)
 * rlogin:                                rlogin/telnet/tn3270. (line  6)
-* ‘rlogin’:                              Gateways in general.  (line 34)
+* rlogin <1>:                            Gateways in general.  (line 34)
+* rsync:                                 Tramp.                (line 21)
+* scp:                                   Tramp.                (line 18)
 * snews:                                 news/nntp/snews.      (line  6)
 * SOCKS:                                 Gateways in general.  (line 39)
+* ssh:                                   Tramp.                (line 15)
 * stream, opening:                       Gateways in general.  (line 14)
 * suppressing network connections:       Suppressing network connections.
                                                                (line  6)
 * telnet:                                rlogin/telnet/tn3270. (line  6)
-* ‘telnet’:                              Gateways in general.  (line 29)
+* telnet <1>:                            Gateways in general.  (line 29)
 * terminal emulation:                    rlogin/telnet/tn3270. (line  6)
 * Texinfo:                               info.                 (line  6)
 * tn3270:                                rlogin/telnet/tn3270. (line  6)
@@ -1728,38 +1774,39 @@ Concept Index
 Tag Table:
 Node: Top907
 Node: Introduction2297
-Node: URI Parsing3577
-Node: Parsed URIs4929
-Node: URI Encoding7064
-Node: Retrieving URLs9462
-Node: Supported URL Types12889
-Node: http/https13747
-Node: Cookies14873
-Node: HTTP language/coding16095
-Node: HTTP URL Options17755
-Node: Dealing with HTTP documents18719
-Node: file/ftp19090
-Node: info20251
-Node: mailto20587
-Node: news/nntp/snews21965
-Node: rlogin/telnet/tn327023591
-Node: irc24211
-Node: data25156
-Node: nfs25665
-Node: ldap26473
-Node: man26616
-Node: General Facilities26872
-Node: Disk Caching27095
-Node: Proxies29655
-Node: Gateways in general31770
-Ref: Gateways in general-Footnote-135883
-Node: Suppressing network connections35958
-Node: History36626
-Node: Customization38521
-Node: GNU Free Documentation License40842
-Node: Function Index66195
-Node: Variable Index68867
-Node: Concept Index73908
+Node: URI Parsing3585
+Node: Parsed URIs4945
+Node: URI Encoding7080
+Node: Retrieving URLs9490
+Node: Supported URL Types13122
+Node: http/https14043
+Node: Cookies15169
+Node: HTTP language/coding16392
+Node: HTTP URL Options18052
+Node: Dealing with HTTP documents19020
+Node: file/ftp19391
+Node: info20572
+Node: mailto20908
+Node: news/nntp/snews22291
+Node: rlogin/telnet/tn327023917
+Node: irc24612
+Node: data25557
+Node: nfs26066
+Node: ldap26874
+Node: man27017
+Node: Tramp27287
+Node: General Facilities27985
+Node: Disk Caching28208
+Node: Proxies30768
+Node: Gateways in general32883
+Ref: Gateways in general-Footnote-137001
+Node: Suppressing network connections37076
+Node: History37744
+Node: Customization39639
+Node: GNU Free Documentation License42327
+Node: Function Index67684
+Node: Variable Index70356
+Node: Concept Index75543
 
 End Tag Table
 

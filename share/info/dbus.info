@@ -1,6 +1,6 @@
-This is dbus.info, produced by makeinfo version 5.2 from dbus.texi.
+This is dbus.info, produced by makeinfo version 6.3 from dbus.texi.
 
-Copyright © 2007–2015 Free Software Foundation, Inc.
+Copyright © 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -28,7 +28,7 @@ message bus system, a simple way for applications to talk to one
 another.  An overview of D-Bus can be found at
 <http://dbus.freedesktop.org/>.
 
-   Copyright © 2007–2015 Free Software Foundation, Inc.
+   Copyright © 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -63,24 +63,24 @@ File: dbus.info,  Node: Overview,  Next: Inspection,  Up: Top
 **********************
 
 D-Bus is an inter-process communication mechanism for applications
-residing on the same host.  The communication is based on "messages".
+residing on the same host.  The communication is based on “messages”.
 Data in the messages is carried in a structured way, it is not just a
 byte stream.
 
    The communication is connection oriented to two kinds of message
-buses: a so called "system bus", and a "session bus".  On a given
+buses: a so called “system bus”, and a “session bus”.  On a given
 machine, there is always one single system bus for miscellaneous
 system-wide communication, like changing of hardware configuration.  On
 the other hand, the session bus is always related to a single user’s
 session.
 
    Every client application, which is connected to a bus, registers
-under a "unique name" at the bus.  This name is used for identifying the
+under a “unique name” at the bus.  This name is used for identifying the
 client application.  Such a unique name starts always with a colon, and
 looks like ‘:1.42’.
 
    Additionally, a client application can register itself to a so called
-"known name", which is a series of identifiers separated by dots, as in
+“known name”, which is a series of identifiers separated by dots, as in
 ‘org.gnu.Emacs’.  If several applications register to the same known
 name, these registrations are queued, and only the first application
 which has registered for the known name is reachable via this name.  If
@@ -88,20 +88,20 @@ this application disconnects from the bus, the next queued unique name
 becomes the owner of this known name.
 
    An application can install one or several objects under its name.
-Such objects are identified by an "object path", which looks similar to
+Such objects are identified by an “object path”, which looks similar to
 paths in a filesystem.  An example of such an object path could be
 ‘/org/gnu/Emacs/’.
 
    Applications might send a request to an object, that means sending a
 message with some data as input parameters, and receiving a message from
 that object with the result of this message, the output parameters.
-Such a request is called "method" in D-Bus.
+Such a request is called “method” in D-Bus.
 
-   The other form of communication are "signals".  The underlying
+   The other form of communication are “signals”.  The underlying
 message is emitted from an object and will be received by all other
 applications which have registered for such a signal.
 
-   All methods and signals an object supports are called "interface" of
+   All methods and signals an object supports are called “interface” of
 the object.  Interfaces are specified under a hierarchical name in
 D-Bus; an object can support several interfaces.  Such an interface name
 could be ‘org.gnu.Emacs.TextEditor’ or ‘org.gnu.Emacs.FileManager’.
@@ -129,8 +129,8 @@ File: dbus.info,  Node: Version,  Next: Bus names,  Up: Inspection
 ==================
 
 D-Bus has evolved over the years.  New features have been added with new
-D-Bus versions.  There are two variables, which allow to determine the
-used D-Bus version.
+D-Bus versions.  There are two variables, which allow the determination
+of the D-Bus version used.
 
  -- Variable: dbus-compiled-version
      This variable, a string, determines the version of D-Bus Emacs is
@@ -254,16 +254,16 @@ full name of that interface.  The default interface
 
      <node name="/org/bluez">
        <interface name="org.freedesktop.DBus.Introspectable">
-         …
+         ...
        </interface>
        <interface name="org.bluez.Manager">
-         …
+         ...
        </interface>
        <interface name="org.bluez.Database">
-         …
+         ...
        </interface>
        <interface name="org.bluez.Security">
-         …
+         ...
        </interface>
        <node name="service_audio"/>
        <node name="service_input"/>
@@ -293,7 +293,7 @@ arguments of a method.  Example:
 
    ‘arg’ elements can have the attributes ‘name’, ‘type’ and
 ‘direction’.  The ‘name’ attribute is optional.  The ‘type’ attribute
-stands for the "signature" of the argument in D-Bus.  For a discussion
+stands for the “signature” of the argument in D-Bus.  For a discussion
 of D-Bus types and their Lisp representation see *note Type
 Conversion::.(1)  The ‘direction’ attribute of an ‘arg’ element can be
 only ‘in’ or ‘out’; in case it is omitted, it defaults to ‘in’.
@@ -346,13 +346,13 @@ strings.
                   <method name="GetAllProperties">
                     <arg name="properties" direction="out" type="a{sv}"/>
                   </method>
-                  …
+                  ...
                   <signal name="PropertyModified">
                     <arg name="num_updates" type="i"/>
                     <arg name="updates" type="a(sbb)"/>
                   </signal>
                 </interface>
-                …
+                ...
               </node>"
 
      This example informs us, that the service ‘org.freedesktop.Hal’ at
@@ -384,13 +384,13 @@ strings.
                    (arg ((name . "fields") (type . "as") (direction . "in")))
                    (arg ((name . "hit_data") (type . "aav") (direction . "out")))
                  )
-                 …
+                 ...
                  (signal ((name . "HitsAdded"))
                    (arg ((name . "search") (type . "s")))
                    (arg ((name . "count") (type . "u")))
                  )
                )
-               …
+               ...
              )
 
  -- Function: dbus-introspect-get-attribute object attribute
@@ -491,7 +491,7 @@ object paths and interfaces.
                  (arg ((name . "fields") (type . "as") (direction . "in")))
                  (arg ((name . "hit_data") (type . "aav") (direction . "out")))
                )
-               …
+               ...
                (signal ((name . "HitsAdded"))
                  (arg ((name . "search") (type . "s")))
                  (arg ((name . "count") (type . "u")))
@@ -709,7 +709,7 @@ the interface for a given language binding.
                ("org.freedesktop.DBus.Introspectable")
                ("org.freedesktop.DBus.Properties")
                ("org.freedesktop.DBus.ObjectManager"))
-              …)
+              ...)
 
      If possible, ‘org.freedesktop.DBus.ObjectManager.GetManagedObjects’
      is used for retrieving the information.  Otherwise, the information
@@ -896,15 +896,15 @@ types are represented by the type symbols ‘:byte’, ‘:boolean’, ‘:int16
 
 Example:
 
-     (dbus-call-method … NAT-NUMBER STRING)
+     (dbus-call-method ... NAT-NUMBER STRING)
 
    is equivalent to
 
-     (dbus-call-method … :uint32 NAT-NUMBER :string STRING)
+     (dbus-call-method ... :uint32 NAT-NUMBER :string STRING)
 
    but different to
 
-     (dbus-call-method … :int32 NAT-NUMBER :signature STRING)
+     (dbus-call-method ... :int32 NAT-NUMBER :signature STRING)
 
    The value for a byte D-Bus type can be any integer in the range 0
 through 255.  If a character is used as argument, modifiers represented
@@ -1018,7 +1018,7 @@ same rules.
 Inspection::, would offer as Lisp data the following object (BOOL stands
 here for either ‘nil’ or ‘t’):
 
-     (INTEGER ((STRING BOOL BOOL) (STRING BOOL BOOL) …))
+     (INTEGER ((STRING BOOL BOOL) (STRING BOOL BOOL) ...))
 
  -- Function: dbus-byte-array-to-string byte-array &optional multibyte
      If a D-Bus method or signal returns an array of bytes, which are
@@ -1056,8 +1056,8 @@ File: dbus.info,  Node: Synchronous Methods,  Next: Asynchronous Methods,  Prev:
 4 Calling methods in a blocking way.
 ************************************
 
-Methods can be called synchronously ("blocking") or asynchronously
-("non-blocking").
+Methods can be called synchronously (“blocking”) or asynchronously
+(“non-blocking”).
 
    At D-Bus level, a method call consist of two messages: one message
 which carries the input parameters to the object owning the method to be
@@ -1143,7 +1143,7 @@ from the object.
                 system.chassis.manufacturer = \"COMPAL\"
                 system.chassis.type = \"Notebook\"
                 system.firmware.release_date = \"03/19/2005\"
-                …"
+                ..."
 
 
 File: dbus.info,  Node: Asynchronous Methods,  Next: Receiving Method Calls,  Prev: Synchronous Methods,  Up: Top
@@ -1728,7 +1728,7 @@ raised.
 ‘dbus-error’.  If possible, error messages from D-Bus are appended to
 the ‘dbus-error’.
 
- -- Special Form: dbus-ignore-errors forms…
+ -- Special Form: dbus-ignore-errors forms...
      This executes FORMS exactly like a ‘progn’, except that
      ‘dbus-error’ errors are ignored during the FORMS.  These errors can
      be made visible when ‘dbus-debug’ is set to ‘t’.
@@ -1948,7 +1948,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2398,7 +2398,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2418,30 +2418,30 @@ their use in free software.
 Tag Table:
 Node: Top830
 Node: Overview2517
-Node: Inspection4877
-Node: Version5482
-Node: Bus names6200
-Node: Introspection10137
-Ref: Introspection-Footnote-117999
-Ref: Introspection-Footnote-218152
-Node: Nodes and Interfaces18336
-Node: Methods and Signal22640
-Node: Properties and Annotations25643
-Ref: Properties and Annotations-Footnote-134040
-Ref: Properties and Annotations-Footnote-234141
-Ref: Properties and Annotations-Footnote-334245
-Node: Arguments and Signatures34336
-Node: Type Conversion36582
-Node: Synchronous Methods44437
-Node: Asynchronous Methods48669
-Node: Receiving Method Calls50502
-Node: Signals62352
-Ref: Signals-Footnote-167483
-Ref: Signals-Footnote-267628
-Node: Alternative Buses67871
-Node: Errors and Events71987
-Node: Index76709
-Node: GNU Free Documentation License84171
+Node: Inspection4913
+Node: Version5518
+Node: Bus names6244
+Node: Introspection10181
+Ref: Introspection-Footnote-118047
+Ref: Introspection-Footnote-218200
+Node: Nodes and Interfaces18384
+Node: Methods and Signal22688
+Node: Properties and Annotations25691
+Ref: Properties and Annotations-Footnote-134088
+Ref: Properties and Annotations-Footnote-234189
+Ref: Properties and Annotations-Footnote-334293
+Node: Arguments and Signatures34384
+Node: Type Conversion36630
+Node: Synchronous Methods44485
+Node: Asynchronous Methods48725
+Node: Receiving Method Calls50558
+Node: Signals62408
+Ref: Signals-Footnote-167539
+Ref: Signals-Footnote-267684
+Node: Alternative Buses67927
+Node: Errors and Events72043
+Node: Index76765
+Node: GNU Free Documentation License84227
 
 End Tag Table
 

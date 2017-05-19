@@ -1,9 +1,9 @@
-This is ediff.info, produced by makeinfo version 5.2 from ediff.texi.
+This is ediff.info, produced by makeinfo version 6.3 from ediff.texi.
 
 This file documents Ediff, a comprehensive visual interface to Unix diff
 and patch utilities.
 
-   Copyright © 1995–2015 Free Software Foundation, Inc.
+   Copyright © 1995–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -30,7 +30,7 @@ Ediff
 This file documents Ediff, a comprehensive visual interface to Unix diff
 and patch utilities.
 
-   Copyright © 1995–2015 Free Software Foundation, Inc.
+   Copyright © 1995–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -289,8 +289,7 @@ maintained separately for each type of file, A, B, or C).
 find differences between two files.  They process the ‘diff’ output and
 display it in a convenient form.  At present, Ediff understands only the
 plain output from diff.  Options such as ‘-c’ are not supported, nor is
-the format produced by incompatible file comparison programs such as the
-VMS version of ‘diff’.
+the format produced by incompatible file comparison programs.
 
    The functions ‘ediff-files’, ‘ediff-buffers’, ‘ediff-files3’,
 ‘ediff-buffers3’ first display the coarse, line-based difference
@@ -599,7 +598,7 @@ File: ediff.info,  Node: Quick Help Commands,  Next: Other Session Commands,  Up
      workplace...
 
      Quite often differences are due to identical replacements (e.g.,
-     the word ‘foo’ is replaced with the word ‘bar’ everywhere).  If the
+     the word “foo” is replaced with the word “bar” everywhere).  If the
      number of regions with such boring differences exceeds your
      tolerance threshold, you may be tempted to tell Ediff to skip these
      regions altogether (you will still be able to jump to them via the
@@ -698,8 +697,8 @@ File: ediff.info,  Node: Quick Help Commands,  Next: Other Session Commands,  Up
      region in buffer A is as old as that in the ancestor buffer, so the
      contents of that region in buffer B represents real change.
 
-     You may want to ignore such ‘obvious’ merges and concentrate on
-     difference regions where both files ‘clash’ with the ancestor,
+     You may want to ignore such “obvious” merges and concentrate on
+     difference regions where both files “clash” with the ancestor,
      since this means that two different people have been changing this
      region independently and they had different ideas on how to do
      this.
@@ -717,10 +716,10 @@ File: ediff.info,  Node: Quick Help Commands,  Next: Other Session Commands,  Up
      To be more precise, this toggles the check for whether the current
      merge is identical to its default setting, as originally decided by
      Ediff.  For instance, if Ediff is merging according to the
-     ‘combined’ policy, then the merge region is skipped over if it is
+     “combined” policy, then the merge region is skipped over if it is
      different from the combination of the regions in buffers A and B.
      (Warning: swapping buffers A and B will confuse things in this
-     respect.)  If the merge region is marked as ‘prefer-A’ then this
+     respect.)  If the merge region is marked as “prefer-A” then this
      region will be skipped if it differs from the current difference
      region in buffer A, etc.
 
@@ -1057,7 +1056,7 @@ customization and faces) can be done by putting appropriate lines in
 ‘.Xdefaults’, ‘.xrdb’, or whatever X resource file is in use.
 
    With respect to the latter, please note that the X resource for Ediff
-customization is ‘Ediff’, _not_ ‘emacs’.  *Note Window and Frame
+customization is “Ediff”, _not_ “emacs”.  *Note Window and Frame
 Configuration::, *Note Highlighting Difference Regions::, for further
 details.  Please also refer to Emacs manual for the information on how
 to set Emacs X resources.
@@ -1131,8 +1130,12 @@ The bulk of customization can be done via the following hooks:
 ‘ediff-cleanup-hook’
      This hook is run just before ‘ediff-quit-hook’.  This is a good
      place to do various cleanups, such as deleting the variant buffers.
-     Ediff provides a function, ‘ediff-janitor’, as one such possible
-     hook, which you can add to ‘ediff-cleanup-hook’ with ‘add-hook’.
+     Ediff provides a helper function, ‘ediff-janitor’, that you can
+     invoke from a private hook function.  For example:
+
+          (defun my-ediff-janitor ()
+            (ediff-janitor nil nil))
+          (add-hook 'ediff-cleanup-hook #'my-ediff-janitor)
 
      This function kills buffers A, B, and, possibly, C, if these
      buffers aren’t modified.  In merge jobs, buffer C is never deleted.
@@ -1254,7 +1257,7 @@ seen in different frames.  Ediff respects these arrangements,
 automatically adapting itself to the multi-frame mode.
 
    Ediff uses the following variables to set up its control panel
-(a.k.a. control buffer, a.k.a. quick help window):
+(a.k.a. “control buffer”, a.k.a. “quick help window”):
 
 ‘ediff-control-frame-parameters’
      You can change or augment this variable including the font, color,
@@ -1361,7 +1364,7 @@ difference regions you want to focus on.  We shall call these regular
 expressions REGEXP-A, REGEXP-B and REGEXP-C.  Ediff will then start
 stepping through only those difference regions where the region in
 buffer A matches REGEXP-A and/or the region in buffer B matches
-REGEXP-B, etc.  Whether ‘and’ or ‘or’ will be used depends on how you
+REGEXP-B, etc.  Whether “and” or “or” will be used depends on how you
 respond to a question.
 
    When scanning difference regions for the aforesaid regular
@@ -1553,7 +1556,7 @@ faces, you can modify them when Ediff is being loaded using
                    ediff-current-diff-face-B)))
 
    *Please note:* to set Ediff’s faces, use only ‘copy-face’ or
-‘set/make-face-…’ as shown above.  Emacs’s low-level face-manipulation
+‘set/make-face-...’ as shown above.  Emacs’s low-level face-manipulation
 functions should be avoided.
 
 
@@ -1578,9 +1581,9 @@ narrowing on and off with the ‘%’ command.
 
 ‘ediff-start-narrowed’
      If ‘t’, Ediff narrows the display to the appropriate range when it
-     is invoked with an ‘ediff-regions…’ or ‘ediff-windows…’ command.
-     If ‘nil’, these commands do not automatically narrow, but you can
-     still toggle narrowing on and off by typing ‘%’.
+     is invoked with an ‘ediff-regions...’ or ‘ediff-windows...’
+     command.  If ‘nil’, these commands do not automatically narrow, but
+     you can still toggle narrowing on and off by typing ‘%’.
 
 ‘ediff-quit-widened’
      Controls whether on quitting Ediff should restore the accessible
@@ -1708,20 +1711,20 @@ the fine difference regions):
 ‘ediff-backup-specs’
      Backup directives to pass to the patch program.  Ediff requires
      that the old version of the file (before applying the patch) is
-     saved in a file named ‘the-patch-file.extension’.  Usually
-     ‘extension’ is ‘.orig’, but this can be changed by the user, and
-     may also be system-dependent.  Therefore, Ediff needs to know the
+     saved in a file named ‘the-patch-file.EXTENSION’.  Usually
+     EXTENSION is ‘.orig’, but this can be changed by the user, and may
+     also be system-dependent.  Therefore, Ediff needs to know the
      backup extension used by the patch program.
 
      Some versions of the patch program let the user specify ‘-b
-     backup-extension’.  Other versions only permit ‘-b’, which
-     (usually) assumes the extension ‘.orig’.  Yet others force you to
-     use ‘-z<backup-extension>’.
+     EXTENSION’ to specify a backup file name extension.  Other versions
+     only permit ‘-b’, which (usually) assumes the extension ‘.orig’.
+     Yet others force you to use ‘-zEXTENSION’.
 
-     Note that both ‘ediff-backup-extension’ and ‘ediff-backup-specs’
-     must be properly set.  If your patch program takes the option ‘-b’,
-     but not ‘-b extension’, the variable ‘ediff-backup-extension’ must
-     still be set so Ediff will know which extension to use.
+     Both ‘ediff-backup-extension’ and EDIFF-BACKUP-SPECS must be
+     properly set.  If your patch program takes the option ‘-b’, but not
+     ‘-b EXTENSION’, the variable ‘ediff-backup-extension’ must still be
+     set so Ediff will know which extension to use.
 
 ‘ediff-custom-diff-program’
 ‘ediff-custom-diff-options’
@@ -1744,10 +1747,6 @@ the fine difference regions):
 
 ‘ediff-patch-default-directory’
      Specifies the default directory to look for patches.
-
-*Warning:* Ediff does not support the output format of VMS ‘diff’.
-Instead, make sure you are using some implementation of POSIX ‘diff’,
-such as ‘gnudiff’.
 
 
 File: ediff.info,  Node: Merging and diff3,  Next: Support for Version Control,  Prev: Patch and Diff Programs,  Up: Customization
@@ -1899,7 +1898,7 @@ typing ‘s’.  This change is temporary, until Ediff finds a reason to
 redraw the screen.  Typing ‘s’ again restores the original window size.
 
    With a positive prefix argument, the ‘s’ command will make the merge
-window slightly taller.  This change is persistent.  With ‘‘-’’ or with
+window slightly taller.  This change is persistent.  With “‘-’” or with
 a negative prefix argument, the command ‘s’ makes the merge window
 slightly shorter.  This change also persistent.
 
@@ -2118,11 +2117,11 @@ them local to the panel by calling make-local-variable from within
 ‘ediff-startup-hook’.
 
    Second, the function ‘ediff-setup’ accepts an optional sixth argument
-which has the form ‘((VAR-NAME-1 . VAL-1) (VAR-NAME-2 . VAL-2) …)’.  The
-function ‘ediff-setup’ sets the variables in the list to the respective
-values, locally in the Ediff control buffer.  This is an easy way to
-throw in custom variables (which usually should be buffer-local) that
-can then be tested in various hooks.
+which has the form ‘((VAR-NAME-1 . VAL-1) (VAR-NAME-2 . VAL-2) ...)’.
+The function ‘ediff-setup’ sets the variables in the list to the
+respective values, locally in the Ediff control buffer.  This is an easy
+way to throw in custom variables (which usually should be buffer-local)
+that can then be tested in various hooks.
 
    Make sure the variable ‘ediff-job-name’ and ‘ediff-word-mode’ are set
 properly in this case, as some things in Ediff depend on this.
@@ -2251,7 +2250,7 @@ today.  Here is a hopefully full list of contributors:
      Dan Nicolaescu (dann at ics.uci.edu),
      David Petchey (petchey_david at jpmorgan.com),
      Benjamin Pierce (benjamin.pierce at cl.cam.ac.uk),
-     Francois Pinard (pinard at iro.umontreal.ca),
+     François Pinard (pinard at iro.umontreal.ca),
      Tibor Polgar (tlp00 at spg.amdahl.com),
      David Prince (dave0d at fegs.co.uk),
      Paul Raines (raines at slac.stanford.edu),
@@ -2304,7 +2303,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2754,7 +2753,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2820,23 +2819,23 @@ Index
                                                               (line  13)
 * ediff-after-flag-mol:                  Highlighting Difference Regions.
                                                               (line  13)
-* ediff-after-session-group-setup-hook:  Hooks.               (line 110)
-* ediff-after-setup-control-frame-hook:  Hooks.               (line  69)
+* ediff-after-session-group-setup-hook:  Hooks.               (line 114)
+* ediff-after-setup-control-frame-hook:  Hooks.               (line  73)
 * ediff-after-setup-windows-hook:        Hooks.               (line  24)
 * ediff-auto-refine:                     Refinement of Difference Regions.
                                                               (line  11)
 * ediff-auto-refine-limit:               Refinement of Difference Regions.
                                                               (line  30)
 * ediff-autostore-merges:                Session Groups.      (line  64)
-* ediff-autostore-merges <1>:            Hooks.               (line  62)
+* ediff-autostore-merges <1>:            Hooks.               (line  66)
 * ediff-autostore-merges <2>:            Merging and diff3.   (line 165)
 * ediff-backup:                          Major Entry Points.  (line  26)
 * ediff-before-flag-bol:                 Highlighting Difference Regions.
                                                               (line  13)
 * ediff-before-flag-mol:                 Highlighting Difference Regions.
                                                               (line  13)
-* ediff-before-session-group-setup-hook: Hooks.               (line 106)
-* ediff-before-setup-control-frame-hook: Hooks.               (line  69)
+* ediff-before-session-group-setup-hook: Hooks.               (line 110)
+* ediff-before-setup-control-frame-hook: Hooks.               (line  73)
 * ediff-before-setup-hook:               Hooks.               (line  12)
 * ediff-before-setup-windows-hook:       Hooks.               (line  24)
 * ediff-brief-help-message-function:     Notes on Heavy-duty Customization.
@@ -2880,7 +2879,7 @@ Index
 * ediff-directories:                     Major Entry Points.  (line  46)
 * ediff-directories3:                    Major Entry Points.  (line  49)
 * ediff-directory-revisions:             Major Entry Points.  (line  52)
-* ediff-display-help-hook:               Hooks.               (line  93)
+* ediff-display-help-hook:               Hooks.               (line  97)
 * ediff-documentation:                   Major Entry Points.  (line 165)
 * ediff-even-diff-face-A:                Highlighting Difference Regions.
                                                               (line  39)
@@ -2904,7 +2903,7 @@ Index
                                                               (line  38)
 * ediff-forward-word-function <1>:       Refinement of Difference Regions.
                                                               (line  42)
-* ‘ediff-grab-mouse’:                    Miscellaneous.       (line  97)
+* ediff-grab-mouse:                      Miscellaneous.       (line  97)
 * ediff-help-message:                    Quick Help Customization.
                                                               (line   6)
 * ediff-highlight-all-diffs:             Highlighting Difference Regions.
@@ -2916,11 +2915,11 @@ Index
 * ediff-ignore-case-option3:             Quick Help Commands. (line 216)
 * ediff-ignore-case-option3 <1>:         Selective Browsing.  (line  86)
 * ediff-ignore-similar-regions:          Selective Browsing.  (line  69)
-* ediff-janitor:                         Hooks.               (line  54)
+* ediff-janitor:                         Hooks.               (line  58)
 * ediff-job-name:                        Notes on Heavy-duty Customization.
                                                               (line  27)
-* ‘ediff-keep-tmp-versions’:             Miscellaneous.       (line  91)
-* ‘ediff-keep-variants’:                 Miscellaneous.       (line  71)
+* ediff-keep-tmp-versions:               Miscellaneous.       (line  91)
+* ediff-keep-variants:                   Miscellaneous.       (line  71)
 * ediff-keymap-setup-hook:               Hooks.               (line  16)
 * ediff-load-hook:                       Hooks.               (line   9)
 * ediff-long-help-message-function:      Notes on Heavy-duty Customization.
@@ -2929,7 +2928,7 @@ Index
 * ediff-make-frame-position:             Window and Frame Configuration.
                                                               (line  55)
 * ediff-make-wide-display-function:      Miscellaneous.       (line  32)
-* ediff-maybe-save-and-delete-merge:     Hooks.               (line  62)
+* ediff-maybe-save-and-delete-merge:     Hooks.               (line  66)
 * ediff-maybe-save-and-delete-merge <1>: Merging and diff3.   (line 165)
 * ediff-merge:                           Major Entry Points.  (line 137)
 * ediff-merge-buffers:                   Major Entry Points.  (line 144)
@@ -2947,9 +2946,9 @@ Index
 * ediff-merge-split-window-function:     Miscellaneous.       (line  26)
 * ediff-merge-window-share:              Merging and diff3.   (line 134)
 * ediff-merge-with-ancestor:             Major Entry Points.  (line 141)
-* ediff-meta-buffer-keymap-setup-hook:   Hooks.               (line 115)
-* ediff-meta-buffer-map:                 Hooks.               (line 115)
-* ediff-mode-hook:                       Hooks.               (line  98)
+* ediff-meta-buffer-keymap-setup-hook:   Hooks.               (line 119)
+* ediff-meta-buffer-map:                 Hooks.               (line 119)
+* ediff-mode-hook:                       Hooks.               (line 102)
 * ediff-mode-map:                        Hooks.               (line  16)
 * ediff-narrow-control-frame-leftward-shift: Window and Frame Configuration.
                                                               (line  59)
@@ -2970,25 +2969,25 @@ Index
                                                               (line  12)
 * ediff-prefer-iconified-control-frame:  Window and Frame Configuration.
                                                               (line  73)
-* ediff-prepare-buffer-hook:             Hooks.               (line  89)
+* ediff-prepare-buffer-hook:             Hooks.               (line  93)
 * ediff-prepare-buffer-hook <1>:         Customizing the Mode Line.
                                                               (line  17)
 * ediff-profile:                         Other Session Commands.
                                                               (line  56)
 * ediff-quit-hook:                       Hooks.               (line  31)
-* ediff-quit-merge-hook:                 Hooks.               (line  62)
+* ediff-quit-merge-hook:                 Hooks.               (line  66)
 * ediff-quit-merge-hook <1>:             Merging and diff3.   (line 165)
-* ediff-quit-session-group-hook:         Hooks.               (line 113)
+* ediff-quit-session-group-hook:         Hooks.               (line 117)
 * ediff-quit-widened:                    Narrowing.           (line  27)
 * ediff-regions-linewise:                Major Entry Points.  (line  79)
 * ediff-regions-wordwise:                Major Entry Points.  (line  71)
-* ediff-registry-setup-hook:             Hooks.               (line 103)
+* ediff-registry-setup-hook:             Hooks.               (line 107)
 * ediff-revert-buffers-then-recompute-diffs: Other Session Commands.
                                                               (line  46)
 * ediff-revision:                        Major Entry Points.  (line  83)
 * ediff-save-buffer:                     Patch and Diff Programs.
                                                               (line  74)
-* ediff-select-hook:                     Hooks.               (line  82)
+* ediff-select-hook:                     Hooks.               (line  86)
 * ediff-setup:                           Notes on Heavy-duty Customization.
                                                               (line  27)
 * ediff-setup-windows:                   Window and Frame Configuration.
@@ -3002,7 +3001,7 @@ Index
                                                               (line  11)
 * ediff-split-window-function:           Miscellaneous.       (line   9)
 * ediff-start-narrowed:                  Narrowing.           (line  21)
-* ediff-startup-hook:                    Hooks.               (line  79)
+* ediff-startup-hook:                    Hooks.               (line  83)
 * ediff-startup-hook <1>:                Quick Help Customization.
                                                               (line   6)
 * ediff-startup-hook <2>:                Notes on Heavy-duty Customization.
@@ -3015,9 +3014,9 @@ Index
 * ediff-toggle-read-only-function:       Miscellaneous.       (line  59)
 * ediff-toggle-use-toolbar:              Other Session Commands.
                                                               (line  33)
-* ediff-unselect-hook:                   Hooks.               (line  85)
-* ‘ediff-use-last-dir’:                  Major Entry Points.  (line 180)
-* ediff-use-last-dir:                    Miscellaneous.       (line  45)
+* ediff-unselect-hook:                   Hooks.               (line  89)
+* ediff-use-last-dir:                    Major Entry Points.  (line 180)
+* ediff-use-last-dir <1>:                Miscellaneous.       (line  45)
 * ediff-use-long-help-message:           Quick Help Customization.
                                                               (line   6)
 * ediff-use-toolbar-p:                   Other Session Commands.
@@ -3057,7 +3056,7 @@ Index
 * ga:                                    Quick Help Commands. (line 106)
 * gb:                                    Quick Help Commands. (line 117)
 * gc:                                    Quick Help Commands. (line 123)
-* ‘generic-sc.el’:                       Support for Version Control.
+* generic-sc.el:                         Support for Version Control.
                                                               (line  29)
 * h:                                     Quick Help Commands. (line 178)
 * i:                                     Quick Help Commands. (line 262)
@@ -3066,13 +3065,13 @@ Index
 * m:                                     Quick Help Commands. (line 156)
 * M:                                     Quick Help Commands. (line 288)
 * Merging files and buffers:             Introduction.        (line   6)
-* ‘mode-line.el’:                        Customizing the Mode Line.
+* mode-line.el:                          Customizing the Mode Line.
                                                               (line  17)
 * Multi-file patches:                    Session Groups.      (line  81)
 * n:                                     Quick Help Commands. (line  94)
 * p:                                     Quick Help Commands. (line  91)
 * Patching files and buffers:            Introduction.        (line   6)
-* ‘pcl-cvs.el’:                          Support for Version Control.
+* pcl-cvs.el:                            Support for Version Control.
                                                               (line  29)
 * q:                                     Quick Help Commands. (line 302)
 * r:                                     Quick Help Commands. (line 184)
@@ -3080,15 +3079,15 @@ Index
 * ra:                                    Quick Help Commands. (line 192)
 * rb:                                    Quick Help Commands. (line 197)
 * rc:                                    Quick Help Commands. (line 202)
-* ‘rcs.el’:                              Support for Version Control.
+* rcs.el:                                Support for Version Control.
                                                               (line  29)
 * s:                                     Quick Help Commands. (line 375)
 * SPC:                                   Quick Help Commands. (line  94)
-* ‘uniquify.el’:                         Customizing the Mode Line.
+* uniquify.el:                           Customizing the Mode Line.
                                                               (line  17)
 * v:                                     Quick Help Commands. (line  18)
 * V:                                     Quick Help Commands. (line  21)
-* ‘vc.el’:                               Support for Version Control.
+* vc.el:                                 Support for Version Control.
                                                               (line  29)
 * wa:                                    Quick Help Commands. (line  38)
 * wb:                                    Quick Help Commands. (line  40)
@@ -3102,29 +3101,29 @@ Tag Table:
 Node: Top996
 Node: Introduction2397
 Node: Major Entry Points4815
-Node: Session Commands14925
-Node: Quick Help Commands16509
-Node: Other Session Commands35538
-Node: Registry of Ediff Sessions38405
-Node: Session Groups39992
-Node: Remote and Compressed Files46366
-Node: Customization47636
-Node: Hooks49618
-Node: Quick Help Customization55079
-Node: Window and Frame Configuration56127
-Node: Selective Browsing62240
-Node: Highlighting Difference Regions67545
-Node: Narrowing72437
-Node: Refinement of Difference Regions73771
-Node: Patch and Diff Programs76771
-Node: Merging and diff381560
-Node: Support for Version Control91645
-Node: Customizing the Mode Line93309
-Node: Miscellaneous94196
-Node: Notes on Heavy-duty Customization99605
-Node: Credits102271
-Node: GNU Free Documentation License107679
-Node: Index133019
+Node: Session Commands14887
+Node: Quick Help Commands16471
+Node: Other Session Commands35500
+Node: Registry of Ediff Sessions38367
+Node: Session Groups39954
+Node: Remote and Compressed Files46328
+Node: Customization47598
+Node: Hooks49580
+Node: Quick Help Customization55153
+Node: Window and Frame Configuration56201
+Node: Selective Browsing62326
+Node: Highlighting Difference Regions67631
+Node: Narrowing72523
+Node: Refinement of Difference Regions73858
+Node: Patch and Diff Programs76858
+Node: Merging and diff381479
+Node: Support for Version Control91564
+Node: Customizing the Mode Line93228
+Node: Miscellaneous94115
+Node: Notes on Heavy-duty Customization99524
+Node: Credits102189
+Node: GNU Free Documentation License107598
+Node: Index132942
 
 End Tag Table
 

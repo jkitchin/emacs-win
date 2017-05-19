@@ -1,7 +1,7 @@
-This is ada-mode.info, produced by makeinfo version 5.2 from
+This is ada-mode.info, produced by makeinfo version 6.3 from
 ada-mode.texi.
 
-Copyright © 1999–2015 Free Software Foundation, Inc.
+Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -24,7 +24,7 @@ File: ada-mode.info,  Node: Top,  Next: Overview,  Up: (dir)
 Ada Mode
 ********
 
-Copyright © 1999–2015 Free Software Foundation, Inc.
+Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -520,7 +520,7 @@ directory ‘"."’ is the project file directory.
 ‘build_dir’ [default: ‘"."’]
      The compile commands will be issued in this directory.
 
-‘casing’ [default: ‘("~/.emacs_case_exceptions")’
+‘casing’ [default: ‘("~/.emacs_case_exceptions")’]
      List of files containing casing exceptions.  See the help on
      ‘ada-case-exception-file’ for more info.
 
@@ -1417,7 +1417,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1867,7 +1867,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1959,21 +1959,21 @@ Node: Project files13082
 Node: Project File Overview13795
 Node: GUI Editor16150
 Node: Project file variables16642
-Node: Compiling Examples23981
-Node: No project files24779
-Node: Set compiler options29650
-Node: Set source search path31695
-Node: Use GNAT project file34043
-Node: Use multiple GNAT project files36287
-Node: Moving Through Ada Code38238
-Node: Identifier completion40279
-Node: Automatic Smart Indentation41883
-Node: Formatting Parameter Lists44753
-Node: Automatic Casing45183
-Node: Statement Templates48583
-Node: Comment Handling50246
-Node: GNU Free Documentation License50801
-Node: Index76153
+Node: Compiling Examples23982
+Node: No project files24780
+Node: Set compiler options29651
+Node: Set source search path31696
+Node: Use GNAT project file34044
+Node: Use multiple GNAT project files36288
+Node: Moving Through Ada Code38239
+Node: Identifier completion40280
+Node: Automatic Smart Indentation41884
+Node: Formatting Parameter Lists44754
+Node: Automatic Casing45184
+Node: Statement Templates48584
+Node: Comment Handling50247
+Node: GNU Free Documentation License50802
+Node: Index76158
 
 End Tag Table
 

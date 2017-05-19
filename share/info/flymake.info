@@ -1,10 +1,10 @@
-This is flymake.info, produced by makeinfo version 5.2 from
+This is flymake.info, produced by makeinfo version 6.3 from
 flymake.texi.
 
 This manual is for GNU Flymake (version 0.3, April 2004), which is a
 universal on-the-fly syntax checker for GNU Emacs.
 
-   Copyright © 2004–2015 Free Software Foundation, Inc.
+   Copyright © 2004–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -30,7 +30,7 @@ GNU Flymake
 This manual is for GNU Flymake (version 0.3, April 2004), which is a
 universal on-the-fly syntax checker for GNU Emacs.
 
-   Copyright © 2004–2015 Free Software Foundation, Inc.
+   Copyright © 2004–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -678,7 +678,7 @@ which shows error messages first.
    Flymake is also able to interpret error message patterns missing
 err-text-idx information.  This is done by merely taking the rest of the
 matched line (‘(substring line (match-end 0))’) as error text.  This
-trick allows to make use of a huge collection of error message line
+trick allows making use of a huge collection of error message line
 patterns from ‘compile.el’.  All these error patterns are appended to
 the end of ‘flymake-err-line-patterns’.
 
@@ -748,7 +748,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1198,7 +1198,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1300,10 +1300,10 @@ Node: Getting the include directories23779
 Node: Locating the buildfile24860
 Node: Starting the syntax check process26202
 Node: Parsing the output26748
-Node: Highlighting erroneous lines28228
-Node: Interaction with other modes28988
-Node: GNU Free Documentation License30085
-Node: Index55442
+Node: Highlighting erroneous lines28227
+Node: Interaction with other modes28987
+Node: GNU Free Documentation License30084
+Node: Index55445
 
 End Tag Table
 

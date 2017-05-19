@@ -1,7 +1,7 @@
-This is mairix-el.info, produced by makeinfo version 5.2 from
+This is mairix-el.info, produced by makeinfo version 6.3 from
 mairix-el.texi.
 
-Copyright © 2008–2015 Free Software Foundation, Inc.
+Copyright © 2008–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -33,7 +33,7 @@ the currently displayed mail, save regularly used searches in your
 ‘.emacs’ for future use and lets you call mairix for updating the
 database.
 
-   Copyright © 2008–2015 Free Software Foundation, Inc.
+   Copyright © 2008–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -64,7 +64,7 @@ File: mairix-el.info,  Node: About,  Next: Configuring mairix,  Prev: Top,  Up: 
 Mairix is a tool for indexing and searching words in locally stored
 mail.  It was written by Richard Curnow and is licensed under the GPL.
 Mairix comes with most popular GNU/Linux distributions, but it also runs
-under Windows (with cygwin), Mac OS X and Solaris.  The homepage can be
+under Windows (with cygwin), macOS and Solaris.  The homepage can be
 found at <http://www.rpcurnow.force9.co.uk/mairix/index.html>
 
    Though mairix might not be as flexible as other search tools like
@@ -210,7 +210,7 @@ in your ‘.emacs’ and adapt to your needs:
      ‘mairix-file-path’.  The results will then be displayed with the
      chosen mail program.  The command used to call mairix is specified
      by the variable ‘mairix-command’, together with the options
-     ‘mairix-search-options’.  The latter has the default “-F” for
+     ‘mairix-search-options’.  The latter has the default ‘-F’ for
      making searching faster.
 
 ‘mairix-widget-search’
@@ -268,7 +268,7 @@ in your ‘.emacs’ and adapt to your needs:
 
 ‘mairix-update-database’
      Call mairix to update the database.  Mairix will be called with the
-     options ‘mairix-update-options’; the default is “-F” and “-Q” to
+     options ‘mairix-update-options’; the default is ‘-F’ and ‘-Q’ to
      make updates as fast as possible.  Note that by using these
      options, absolutely no integrity checking is done.  If your
      database somehow gets corrupted, simply delete it and update.  If
@@ -327,7 +327,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -777,7 +777,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -797,11 +797,11 @@ their use in free software.
 Tag Table:
 Node: Top864
 Node: About2469
-Node: Configuring mairix4583
-Node: Setting up the mairix interface6614
-Node: Using7595
-Node: Extending12863
-Node: GNU Free Documentation License14192
+Node: Configuring mairix4580
+Node: Setting up the mairix interface6611
+Node: Using7592
+Node: Extending12860
+Node: GNU Free Documentation License14189
 
 End Tag Table
 

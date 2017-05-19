@@ -1,7 +1,7 @@
-This is speedbar.info, produced by makeinfo version 5.2 from
+This is speedbar.info, produced by makeinfo version 6.3 from
 speedbar.texi.
 
-Copyright © 1999–2015 Free Software Foundation, Inc.
+Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -26,16 +26,16 @@ Speedbar
 
 Speedbar is a program for Emacs which can be used to summarize
 information related to the current buffer.  Its original inspiration is
-the ‘explorer’ often used in modern development environments, office
+the “explorer” often used in modern development environments, office
 packages, and web browsers.
 
    Speedbar displays a narrow frame in which a tree view is shown.  This
 tree view defaults to containing a list of files and directories.  Files
-can be ‘expanded’ to list tags inside.  Directories can be expanded to
+can be “expanded” to list tags inside.  Directories can be expanded to
 list the files within itself.  Each file or tag can be jumped to
 immediately.
 
-   Speedbar expands upon ‘explorer’ windows by maintaining context with
+   Speedbar expands upon “explorer” windows by maintaining context with
 the user.  For example, when using the file view, the current buffer’s
 file is highlighted.  Speedbar also mimics the explorer windows by
 providing multiple display modes.  These modes come in two flavors.
@@ -44,13 +44,13 @@ modes appear only when a buffer of the applicable type is shown.  This
 allows authors of other packages to provide speedbar summaries
 customized to the needs of that mode.
 
-   Throughout this manual, activities are defined as ‘clicking on’, or
-‘expanding’ items.  Clicking means using ‘Mouse-2’ on a button.
+   Throughout this manual, activities are defined as “clicking on”, or
+“expanding” items.  Clicking means using ‘mouse-2’ on a button.
 Expanding refers to clicking on an expansion button to display an
 expanded summary of the entry the expansion button is on.  *Note Basic
 Navigation::.
 
-   Copyright © 1999–2015 Free Software Foundation, Inc.
+   Copyright © 1999–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -90,7 +90,7 @@ to the left or right of the frame you started it from.
 
    To use speedbar effectively, it is important to understand its
 relationship with the frame you started it from.  This frame is the
-"attached frame" which speedbar will use as a reference point.  Once
+“attached frame” which speedbar will use as a reference point.  Once
 started, speedbar watches the contents of this frame, and attempts to
 make its contents relevant to the buffer loaded into the attached frame.
 In addition, all requests made in speedbar that require the display of
@@ -98,7 +98,7 @@ another buffer will display in the attached frame.
 
    When used in terminal mode, the new frame appears the same size as
 the terminal.  Since it is not visible while working in the attached
-frame, speedbar will save time by using the "slowbar mode", where no
+frame, speedbar will save time by using the “slowbar mode”, where no
 tracking is done until speedbar is requested to show itself (i.e., the
 speedbar’s frame becomes the selected frame).
 
@@ -218,9 +218,9 @@ Groups summarize information in a single line, and provide a high level
 view of more complex systems, like a directory tree, or manual chapters.
 
    Groups appear at different indentation levels, and are prefixed with
-a ‘+’ in some sort of ‘box’.  The group name will summarize the
+a ‘+’ in some sort of “box”.  The group name will summarize the
 information within it, and the expansion box will display that
-information inline.  In File mode, directories and files are ‘groups’
+information inline.  In File mode, directories and files are “groups”
 where the ‘+’ is surrounded by brackets like this:
 
      <+> include
@@ -231,7 +231,7 @@ where the ‘+’ is surrounded by brackets like this:
 to a file.  The directories have a box consisting of angle brackets, and
 a file uses square brackets.
 
-   In all modes, a group can be ‘edited’ by pressing ‘RET’, meaning a
+   In all modes, a group can be “edited” by pressing ‘RET’, meaning a
 file will be opened, or a directory explicitly opened in speedbar.  A
 group can be expanded or contracted using ‘+’ or ‘-’.  *Note Basic Key
 Bindings::.
@@ -278,7 +278,7 @@ buffers, and invisible buffers.)
 
 Each type of Group, item indicator, and label is given a different
 color.  The colors chosen are dependent on whether the background color
-is light or dark.  Of important note is that the ‘current item’, which
+is light or dark.  Of important note is that the “current item”, which
 may be a buffer or file name, is highlighted red, and underlined.
 
    Colors can be customized from the group ‘speedbar-faces’.  Some
@@ -303,26 +303,26 @@ with the mouse, or affected by the menu.
 
    The mouse bindings are:
 
-‘Mouse-1’
+‘mouse-1’
      Move cursor to that location.
-‘Mouse-2’
-‘Double-Mouse-1’
-     Activate the current button.  ‘Double-Mouse-1’ is called a "double
-     click" on other platforms, and is useful for windows users with two
+‘mouse-2’
+‘Double-mouse-1’
+     Activate the current button.  ‘Double-mouse-1’ is called a “double
+     click” on other platforms, and is useful for windows users with two
      button mice.
-‘S-Mouse-2’
-‘S-Double-Mouse-1’
-     This has the same effect as ‘Mouse-2’, except it is called a power
+‘S-mouse-2’
+‘S-Double-mouse-1’
+     This has the same effect as ‘mouse-2’, except it is called a power
      click.  This means that if a group with an expansion button ‘+’ is
      clicked, any caches are flushed, and subitems re-read.  If it is a
      name, it will be opened in a new frame.
-‘Mouse-3’
+‘mouse-3’
      Activate the speedbar menu.  The item selected affects the line
      clicked, not the line where the cursor was.
-‘Mouse-1 (mode line)’
+‘mouse-1 (mode line)’
      Activate the menu.  This affects the item the cursor is on before
      the click, since the mouse was not clicked on anything.
-‘C-Mouse-1’
+‘C-mouse-1’
      Buffers sub-menu.  The buffer in the attached frame is switched.
 
    When the mouse moves over buttons in speedbar, details of that item
@@ -340,7 +340,7 @@ You can display different data by using different display modes.  These
 specialized modes make it easier to navigate the relevant pieces of
 information, such as files and directories, or buffers.
 
-   In the main menu, found by clicking ‘Mouse-3’, there is a submenu
+   In the main menu, found by clicking ‘mouse-3’, there is a submenu
 labeled ‘Displays’.  This submenu lets you easily choose between
 different display modes.
 
@@ -481,8 +481,8 @@ File: speedbar.info,  Node: File Key Bindings,  Prev: Hidden Files,  Up: File Mo
 =====================
 
 File mode has key bindings permitting different file system operations
-such as copy or rename.  These commands all operate on the "current
-file".  In this case, the current file is the file at point, or clicked
+such as copy or rename.  These commands all operate on the “current
+file”.  In this case, the current file is the file at point, or clicked
 on when pulling up the menu.
 
 ‘U’
@@ -851,7 +851,7 @@ File: speedbar.info,  Node: Minor Display Modes,  Next: Major Display Modes,  Up
 7.1 Minor Display Modes
 =======================
 
-A "minor display mode" is a mode useful when using a specific type of
+A “minor display mode” is a mode useful when using a specific type of
 buffer.  This mode might not be useful for any other kind of data or
 mode, or may just be more useful that a files or buffers based mode when
 working with a specialized mode.
@@ -900,7 +900,7 @@ File: speedbar.info,  Node: Major Display Modes,  Next: Tagging Extensions,  Pre
 7.2 Major Display Modes
 =======================
 
-Creating a "Major Display Mode" for speedbar requires authoring a
+Creating a “Major Display Mode” for speedbar requires authoring a
 keymap, an easy-menu segment, and writing several functions.  These
 items can be given any name, and are made the same way as in a minor
 display mode (*note Minor Display Modes::).  Once this is done, these
@@ -1056,7 +1056,7 @@ Major Display Modes::, you have control to ‘insert’ anything you want.
 helper functions are provided to make it easy to create the standardized
 buttons.
 
-   To understand the built in functions, each ‘button’ in speedbar
+   To understand the built in functions, each “button” in speedbar
 consists of four important pieces of data.  The text to be displayed,
 token data to be associated with the text, a function to call, and some
 face to display it in.
@@ -1157,7 +1157,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1607,7 +1607,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1664,58 +1664,58 @@ Concept Index
 * refresh speedbar display:              Basic Key Bindings.   (line 14)
 * RMAIL:                                 RMAIL.                (line  6)
 * slowbar mode:                          Basic Key Bindings.   (line 16)
-* ‘speedbar-before-delete-hook’:         Hooks.                (line 21)
-* ‘speedbar-before-popup-hook’:          Hooks.                (line 18)
-* ‘speedbar-button-face’:                Frames and Faces.     (line 10)
-* ‘speedbar-contract-line’:              Major Display Modes.  (line 26)
-* ‘speedbar-create-tag-hierarchy’:       Tagging Extensions.   (line 22)
-* ‘speedbar-directory-face’:             Frames and Faces.     (line 14)
-* ‘speedbar-directory-unshown-regexp’:   Version Control.      (line 13)
-* ‘speedbar-dynamic-tags-function-list’: Tagging Extensions.   (line 26)
-* ‘speedbar-edit-line’:                  Major Display Modes.  (line 22)
-* ‘speedbar-expand-line’:                Major Display Modes.  (line 23)
-* ‘speedbar-file-face’:                  Frames and Faces.     (line 11)
-* ‘speedbar-frame-parameters’, Emacs:    Frames and Faces.     (line 29)
-* ‘speedbar-frame-plist’, XEmacs:        Frames and Faces.     (line 34)
-* ‘speedbar-get-focus’:                  Introduction.         (line 27)
-* ‘speedbar-highlight-face’:             Frames and Faces.     (line 22)
+* speedbar-before-delete-hook:           Hooks.                (line 21)
+* speedbar-before-popup-hook:            Hooks.                (line 18)
+* speedbar-button-face:                  Frames and Faces.     (line 10)
+* speedbar-contract-line:                Major Display Modes.  (line 26)
+* speedbar-create-tag-hierarchy:         Tagging Extensions.   (line 22)
+* speedbar-directory-face:               Frames and Faces.     (line 14)
+* speedbar-directory-unshown-regexp:     Version Control.      (line 13)
+* speedbar-dynamic-tags-function-list:   Tagging Extensions.   (line 26)
+* speedbar-edit-line:                    Major Display Modes.  (line 22)
+* speedbar-expand-line:                  Major Display Modes.  (line 23)
+* speedbar-file-face:                    Frames and Faces.     (line 11)
+* speedbar-frame-parameters, Emacs:      Frames and Faces.     (line 29)
+* speedbar-frame-plist, XEmacs:          Frames and Faces.     (line 34)
+* speedbar-get-focus:                    Introduction.         (line 27)
+* speedbar-highlight-face:               Frames and Faces.     (line 22)
 * speedbar-insert-button:                Creating a display.   (line 27)
 * speedbar-insert-generic-list:          Creating a display.   (line 63)
-* ‘speedbar-item-info’:                  Major Display Modes.  (line 85)
-* ‘speedbar-item-info-file-helper’:      Major Display Modes.  (line 93)
-* ‘speedbar-item-info-tag-helper’:       Major Display Modes.  (line 96)
-* ‘speedbar-line-path’:                  Major Display Modes.  (line 30)
-* ‘speedbar-load-hook’:                  Hooks.                (line 12)
-* ‘speedbar-make-specialized-keymap’:    Major Display Modes.  (line 17)
+* speedbar-item-info:                    Major Display Modes.  (line 85)
+* speedbar-item-info-file-helper:        Major Display Modes.  (line 93)
+* speedbar-item-info-tag-helper:         Major Display Modes.  (line 96)
+* speedbar-line-path:                    Major Display Modes.  (line 30)
+* speedbar-load-hook:                    Hooks.                (line 12)
+* speedbar-make-specialized-keymap:      Major Display Modes.  (line 17)
 * speedbar-make-tag-line:                Creating a display.   (line 40)
-* ‘speedbar-mode-hook’:                  Hooks.                (line 23)
-* ‘speedbar-obj-alist’:                  Directory Display.    (line 53)
-* ‘speedbar-prefix-group-tag-hierarchy’: Tag Hierarchy Methods.
+* speedbar-mode-hook:                    Hooks.                (line 23)
+* speedbar-obj-alist:                    Directory Display.    (line 53)
+* speedbar-prefix-group-tag-hierarchy:   Tag Hierarchy Methods.
                                                                (line 17)
-* ‘speedbar-reconfigure-keymaps-hook’:   Hooks.                (line 14)
-* ‘speedbar-scanner-reset-hook’:         Hooks.                (line 27)
-* ‘speedbar-selected-face’:              Frames and Faces.     (line 19)
-* ‘speedbar-simple-group-tag-hierarchy’: Tag Hierarchy Methods.
+* speedbar-reconfigure-keymaps-hook:     Hooks.                (line 14)
+* speedbar-scanner-reset-hook:           Hooks.                (line 27)
+* speedbar-selected-face:                Frames and Faces.     (line 19)
+* speedbar-simple-group-tag-hierarchy:   Tag Hierarchy Methods.
                                                                (line 20)
-* ‘speedbar-sort-tag-hierarchy’:         Tag Hierarchy Methods.
+* speedbar-sort-tag-hierarchy:           Tag Hierarchy Methods.
                                                                (line 23)
-* ‘speedbar-tag-face’:                   Frames and Faces.     (line 17)
-* ‘speedbar-tag-group-name-minimum-length’: Tag Hierarchy Methods.
+* speedbar-tag-face:                     Frames and Faces.     (line 17)
+* speedbar-tag-group-name-minimum-length: Tag Hierarchy Methods.
                                                                (line 32)
-* ‘speedbar-tag-hierarchy-method’:       Tag Hierarchy Methods.
+* speedbar-tag-hierarchy-method:         Tag Hierarchy Methods.
                                                                (line 11)
-* ‘speedbar-tag-regroup-maximum-length’: Tag Hierarchy Methods.
+* speedbar-tag-regroup-maximum-length:   Tag Hierarchy Methods.
                                                                (line 56)
-* ‘speedbar-tag-split-minimum-length’:   Tag Hierarchy Methods.
+* speedbar-tag-split-minimum-length:     Tag Hierarchy Methods.
                                                                (line 49)
-* ‘speedbar-timer-hook’:                 Hooks.                (line 25)
-* ‘speedbar-trim-words-tag-hierarchy’:   Tag Hierarchy Methods.
+* speedbar-timer-hook:                   Hooks.                (line 25)
+* speedbar-trim-words-tag-hierarchy:     Tag Hierarchy Methods.
                                                                (line 16)
-* ‘speedbar-vc-in-control-hook’:         Version Control.      (line 23)
-* ‘speedbar-vc-indicator’:               Version Control.      (line 27)
-* ‘speedbar-vc-path-enable-hook’:        Version Control.      (line 17)
-* ‘speedbar-visiting-file-hook’:         Hooks.                (line  9)
-* ‘speedbar-visiting-tag-hook’:          Hooks.                (line 10)
+* speedbar-vc-in-control-hook:           Version Control.      (line 23)
+* speedbar-vc-indicator:                 Version Control.      (line 27)
+* speedbar-vc-path-enable-hook:          Version Control.      (line 17)
+* speedbar-visiting-file-hook:           Hooks.                (line  9)
+* speedbar-visiting-tag-hook:            Hooks.                (line 10)
 * tag groups:                            Tag Hierarchy Methods.
                                                                (line  6)
 * tag hierarchy:                         Tag Hierarchy Methods.
@@ -1732,32 +1732,32 @@ Concept Index
 Tag Table:
 Node: Top845
 Node: Introduction3385
-Node: Basic Navigation4941
-Node: Basic Key Bindings5386
-Node: Basic Visuals7573
-Node: Mouse Bindings11596
-Node: Displays Submenu13260
-Node: File Mode13948
-Node: Directory Display14555
-Node: Hidden Files17657
-Node: File Key Bindings18904
-Node: Buffer Mode20391
-Node: Minor Modes21520
-Node: RMAIL22381
-Node: Info23271
-Node: GDB23894
-Node: Customizing24654
-Node: Frames and Faces25479
-Node: Tag Hierarchy Methods26792
-Node: Version Control29056
-Node: Hooks30440
-Node: Extending31712
-Node: Minor Display Modes32787
-Node: Major Display Modes34785
-Node: Tagging Extensions39608
-Node: Creating a display41033
-Node: GNU Free Documentation License45697
-Node: Index71042
+Node: Basic Navigation4949
+Node: Basic Key Bindings5394
+Node: Basic Visuals7581
+Node: Mouse Bindings11604
+Node: Displays Submenu13272
+Node: File Mode13960
+Node: Directory Display14567
+Node: Hidden Files17669
+Node: File Key Bindings18916
+Node: Buffer Mode20407
+Node: Minor Modes21536
+Node: RMAIL22397
+Node: Info23287
+Node: GDB23910
+Node: Customizing24670
+Node: Frames and Faces25495
+Node: Tag Hierarchy Methods26808
+Node: Version Control29072
+Node: Hooks30456
+Node: Extending31728
+Node: Minor Display Modes32803
+Node: Major Display Modes34805
+Node: Tagging Extensions39632
+Node: Creating a display41057
+Node: GNU Free Documentation License45721
+Node: Index71070
 
 End Tag Table
 

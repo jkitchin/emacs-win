@@ -1,9 +1,9 @@
-This is emacs-mime.info, produced by makeinfo version 5.2 from
+This is emacs-mime.info, produced by makeinfo version 6.3 from
 emacs-mime.texi.
 
 This file documents the Emacs MIME interface functionality.
 
-   Copyright © 1998–2015 Free Software Foundation, Inc.
+   Copyright © 1998–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -34,7 +34,7 @@ the MIME encoding/decoding process or want a more detailed picture of
 how the Emacs MIME library works, and people who want to write functions
 and commands that manipulate MIME elements.
 
-   MIME is short for "Multipurpose Internet Mail Extensions".  This
+   MIME is short for “Multipurpose Internet Mail Extensions”.  This
 standard is documented in a number of RFCs; mainly RFC2045 (Format of
 Internet Message Bodies), RFC2046 (Media Types), RFC2047 (Message Header
 Extensions for Non-ASCII Text), RFC2048 (Registration Procedures),
@@ -44,7 +44,7 @@ RFC2045 and RFC2047.
 
    This file documents the Emacs MIME interface functionality.
 
-   Copyright © 1998–2015 Free Software Foundation, Inc.
+   Copyright © 1998–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -77,7 +77,7 @@ This chapter deals with decoding and viewing MIME messages on a higher
 level.
 
    The main idea is to first analyze a MIME article, and then allow
-other programs to do things based on the list of "handles" that are
+other programs to do things based on the list of “handles” that are
 returned as a result of this analysis.
 
 * Menu:
@@ -240,7 +240,7 @@ File: emacs-mime.info,  Node: Display Customization,  Next: Files and Directorie
 
 ‘mm-inline-media-tests’
      This is an alist where the key is a MIME type, the second element
-     is a function to display the part "inline" (i.e., inside Emacs),
+     is a function to display the part “inline” (i.e., inside Emacs),
      and the third element is a form to be ‘eval’ed to say whether the
      part can be displayed inline.
 
@@ -335,19 +335,35 @@ File: emacs-mime.info,  Node: Display Customization,  Next: Files and Directorie
 
 ‘mm-text-html-renderer’
      This selects the function used to render HTML.  The predefined
-     renderers are selected by the symbols ‘gnus-article-html’, ‘w3’,
+     renderers are selected by the symbols ‘gnus-article-html’,
      ‘w3m’(1), ‘links’, ‘lynx’, ‘w3m-standalone’ or ‘html2text’.  If
      ‘nil’ use an external viewer.  You can also specify a function,
      which will be called with a MIME handle as the argument.
 
-‘mm-inline-text-html-with-images’
+‘mm-html-inhibit-images’
+     If this is non-‘nil’, inhibit displaying of images inline in the
+     article body.  It is effective to images in HTML articles rendered
+     when ‘mm-text-html-renderer’ (*note Display Customization::) is
+     ‘shr’ or ‘w3m’.  In Gnus, this is overridden by the value of
+     ‘gnus-inhibit-images’ (*note Misc Article: (gnus)Misc Article.).
+     The default is ‘nil’.
+
+‘mm-html-blocked-images’
+     External images that have URLs that match this regexp won’t be
+     fetched and displayed.  For instance, to block all URLs that have
+     the string “ads” in them, do the following:
+
+          (setq mm-html-blocked-images "ads")
+
+     It is effective when ‘mm-text-html-renderer’ (*note Display
+     Customization::) is ‘shr’.  In Gnus, this is overridden by the
+     value of ‘gnus-blocked-images’ or the return value of the function
+     that ‘gnus-blocked-images’ is set to (*note HTML: (gnus)HTML.).
+
      Some HTML mails might have the trick of spammers using ‘<img>’
      tags.  It is likely to be intended to verify whether you have read
      the mail.  You can prevent your personal information from leaking
-     by setting this option to ‘nil’ (which is the default).  It is
-     currently ignored by Emacs/w3.  For emacs-w3m, you may use the
-     command ‘t’ on the image anchor to show an image even if it is
-     ‘nil’.(2)
+     by setting this option to ‘""’ (which is the default).
 
 ‘mm-w3m-safe-url-regexp’
      A regular expression that matches safe URL names, i.e., URLs that
@@ -383,9 +399,6 @@ File: emacs-mime.info,  Node: Display Customization,  Next: Files and Directorie
 
    (1) See <http://emacs-w3m.namazu.org/> for more information about
 emacs-w3m
-
-   (2) The command ‘T’ will load all images.  If you have set the option
-‘w3m-key-binding’ to ‘info’, use ‘i’ or ‘I’ instead.
 
 
 File: emacs-mime.info,  Node: Files and Directories,  Next: New Viewers,  Prev: Display Customization,  Up: Decoding and Viewing
@@ -530,7 +543,7 @@ File: emacs-mime.info,  Node: MML Definition,  Next: Advanced MML Example,  Prev
 The MML language is very simple.  It looks a bit like an SGML
 application, but it’s not.
 
-   The main concept of MML is the "part".  Each part can be of a
+   The main concept of MML is the “part”.  Each part can be of a
 different type or use a different charset.  The way to delineate a part
 is with a ‘<#part ...>’ tag.  Multipart parts can be introduced with the
 ‘<#multipart ...>’ tag.  Parts are ended by the ‘<#/part>’ or
@@ -556,6 +569,12 @@ be used in.
 ‘filename’
      Use the contents of the file in the body of the part
      (‘Content-Disposition’).
+
+‘recipient-filename’
+     Use this as the file name in the generated MIME message for the
+     recipient.  That is, even if the file is called ‘foo.txt’ locally,
+     use this name instead in the ‘Content-Disposition’ in the sent
+     message.
 
 ‘charset’
      The contents of the body of the part are to be encoded in the
@@ -1130,9 +1149,9 @@ File: emacs-mime.info,  Node: rfc2231,  Next: ietf-drums,  Prev: rfc2045,  Up: B
 ===========
 
 RFC2231 defines a syntax for the ‘Content-Type’ and
-‘Content-Disposition’ headers.  Its snappy name is "MIME Parameter Value
+‘Content-Disposition’ headers.  Its snappy name is “MIME Parameter Value
 and Encoded Word Extensions: Character Sets, Languages, and
-Continuations".
+Continuations”.
 
    In short, these headers look something like this:
 
@@ -1171,7 +1190,7 @@ File: emacs-mime.info,  Node: ietf-drums,  Next: rfc2047,  Prev: rfc2231,  Up: B
 4.3 ietf-drums
 ==============
 
-"drums" is an IETF working group that is working on the replacement for
+“drums” is an IETF working group that is working on the replacement for
 RFC822.
 
    The functions provided by this library include:
@@ -1316,7 +1335,7 @@ time structure, a decoded time list, a second number, and a day number.
      (time-less-p '(13818 19266) '(13818 19145))
      ⇒ nil
 
-     (subtract-time '(13818 19266) '(13818 19145))
+     (time-subtract '(13818 19266) '(13818 19145))
      ⇒ (0 121)
 
      (days-between "Sat Sep 12 12:21:54 1998 +0200"
@@ -1390,15 +1409,16 @@ DECODED TIME
 
 ‘time-less-p’
      Take two times and say whether the first time is less (i.e.,
-     earlier) than the second time.
+     earlier) than the second time.  (This is a built-in function.)
 
 ‘time-since’
      Take a time and return a time saying how long it was since that
      time.
 
-‘subtract-time’
+‘time-subtract’
      Take two times and subtract the second from the first.  I.e.,
-     return the time between the two times.
+     return the time between the two times.  (This is a built-in
+     function.)
 
 ‘days-between’
      Take two days and return the number of days between those two days.
@@ -1574,51 +1594,51 @@ to a (somewhat) large number of RFCs, drafts and standards documents.
 This chapter lists the relevant ones.  They can all be fetched from
 <http://quimby.gnus.org/notes/>.
 
-"RFC822"
-"STD11"
+“RFC822”
+“STD11”
      Standard for the Format of ARPA Internet Text Messages.
 
-"RFC1036"
+“RFC1036”
      Standard for Interchange of USENET Messages
 
-"RFC2045"
+“RFC2045”
      Format of Internet Message Bodies
 
-"RFC2046"
+“RFC2046”
      Media Types
 
-"RFC2047"
+“RFC2047”
      Message Header Extensions for Non-ASCII Text
 
-"RFC2048"
+“RFC2048”
      Registration Procedures
 
-"RFC2049"
+“RFC2049”
      Conformance Criteria and Examples
 
-"RFC2231"
+“RFC2231”
      MIME Parameter Value and Encoded Word Extensions: Character Sets,
      Languages, and Continuations
 
-"RFC1843"
+“RFC1843”
      HZ—A Data Format for Exchanging Files of Arbitrarily Mixed Chinese
      and ASCII characters
 
-"draft-ietf-drums-msg-fmt-05.txt"
+“draft-ietf-drums-msg-fmt-05.txt”
      Draft for the successor of RFC822
 
-"RFC2112"
+“RFC2112”
      The MIME Multipart/Related Content-type
 
-"RFC1892"
+“RFC1892”
      The Multipart/Report Content Type for the Reporting of Mail System
      Administrative Messages
 
-"RFC2183"
+“RFC2183”
      Communicating Presentation Information in Internet Messages: The
      Content-Disposition Header Field
 
-"RFC2646"
+“RFC2646”
      Documentation of the text/plain format parameter for flowed text.
 
 
@@ -1638,7 +1658,7 @@ File: emacs-mime.info,  Node: GNU Free Documentation License,  Next: Index,  Pre
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2088,7 +2108,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2187,9 +2207,9 @@ File: emacs-mime.info,  Node: Index,  Prev: GNU Free Documentation License,  Up:
                                                               (line  42)
 * mm-display-part:                       Display.             (line   9)
 * mm-enable-external:                    Display Customization.
-                                                              (line 133)
+                                                              (line 149)
 * mm-external-terminal-program:          Display Customization.
-                                                              (line 130)
+                                                              (line 146)
 * mm-file-name-collapse-whitespace:      Files and Directories.
                                                               (line  33)
 * mm-file-name-delete-control:           Files and Directories.
@@ -2213,6 +2233,10 @@ File: emacs-mime.info,  Node: Index,  Prev: GNU Free Documentation License,  Up:
 * mm-handle-set-undisplayer:             Handles.             (line  25)
 * mm-handle-type:                        Handles.             (line  15)
 * mm-handle-undisplayer:                 Handles.             (line  21)
+* mm-html-blocked-images:                Display Customization.
+                                                              (line 117)
+* mm-html-inhibit-images:                Display Customization.
+                                                              (line 109)
 * mm-inlinable-p:                        Display.             (line  15)
 * mm-inline-images-max-proportion:       Display Customization.
                                                               (line  89)
@@ -2225,7 +2249,7 @@ File: emacs-mime.info,  Node: Index,  Prev: GNU Free Documentation License,  Up:
 * mm-inline-text-html-with-images:       Display Customization.
                                                               (line 109)
 * mm-inline-text-html-with-w3m-keymap:   Display Customization.
-                                                              (line 126)
+                                                              (line 142)
 * mm-inlined-types:                      Display Customization.
                                                               (line  17)
 * mm-interactively-view-part:            Display.             (line  30)
@@ -2248,7 +2272,7 @@ File: emacs-mime.info,  Node: Index,  Prev: GNU Free Documentation License,  Up:
 * mm-uu-emacs-sources-regexp:            Non-MIME.            (line  45)
 * mm-uu-extract:                         Non-MIME.            (line  60)
 * mm-w3m-safe-url-regexp:                Display Customization.
-                                                              (line 118)
+                                                              (line 134)
 * MML:                                   Composing.           (line   6)
 * mml-generate-mime:                     Composing.           (line  10)
 * mml-to-mime:                           Conversion.          (line  12)
@@ -2297,41 +2321,40 @@ File: emacs-mime.info,  Node: Index,  Prev: GNU Free Documentation License,  Up:
 
 Tag Table:
 Node: Top919
-Node: Decoding and Viewing2967
-Node: Dissection3753
-Node: Non-MIME4136
-Node: Handles5818
-Node: Display6718
-Node: Display Customization7475
-Ref: Display Customization-Footnote-114459
-Ref: Display Customization-Footnote-214539
-Node: Files and Directories14686
-Node: New Viewers16509
-Node: Composing17656
-Node: Simple MML Example18630
-Node: MML Definition19288
-Node: Advanced MML Example23415
-Node: Encoding Customization26172
-Node: Charset Translation30645
-Node: Conversion33216
-Node: Flowed text34367
-Node: Interface Functions35663
-Node: Basic Functions41385
-Node: rfc204542450
-Node: rfc223142988
-Node: ietf-drums44316
-Node: rfc204745433
-Node: time-date48375
-Node: qp51899
-Node: base6452890
-Node: binhex53877
-Node: uudecode54289
-Node: yenc54662
-Node: rfc184354952
-Node: mailcap55573
-Node: Standards56538
-Node: GNU Free Documentation License57962
-Node: Index83291
+Node: Decoding and Viewing2971
+Node: Dissection3761
+Node: Non-MIME4144
+Node: Handles5826
+Node: Display6726
+Node: Display Customization7483
+Ref: Display Customization-Footnote-115246
+Node: Files and Directories15326
+Node: New Viewers17149
+Node: Composing18296
+Node: Simple MML Example19270
+Node: MML Definition19928
+Node: Advanced MML Example24316
+Node: Encoding Customization27073
+Node: Charset Translation31546
+Node: Conversion34117
+Node: Flowed text35268
+Node: Interface Functions36564
+Node: Basic Functions42286
+Node: rfc204543351
+Node: rfc223143889
+Node: ietf-drums45221
+Node: rfc204746342
+Node: time-date49284
+Node: qp52877
+Node: base6453868
+Node: binhex54855
+Node: uudecode55267
+Node: yenc55640
+Node: rfc184355930
+Node: mailcap56551
+Node: Standards57516
+Node: GNU Free Documentation License59000
+Node: Index84333
 
 End Tag Table
 

@@ -1,9 +1,9 @@
-This is woman.info, produced by makeinfo version 5.2 from woman.texi.
+This is woman.info, produced by makeinfo version 6.3 from woman.texi.
 
-This file documents WoMan: A program to browse Unix manual pages ‘W.O.
-(without) man’.
+This file documents WoMan: A program to browse Unix manual pages “W.O.
+(without) man”.
 
-Copyright © 2001–2015 Free Software Foundation, Inc.
+Copyright © 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -26,17 +26,17 @@ File: woman.info,  Node: Top,  Next: Introduction,  Up: (dir)
 WoMan: Browse Unix Manual Pages “W.O. (without) Man”
 ****************************************************
 
-     As distributed with Emacs 24.5.
+     As distributed with Emacs 25.2.
 
      Francis J. Wright <F.J.Wright@qmw.ac.uk>
      School of Mathematical Sciences (http://centaur.maths.qmw.ac.uk/)
      Queen Mary and Westfield College (University of London)
      Mile End Road, London E1 4NS, UK
 
-This file documents WoMan: A program to browse Unix manual pages ‘W.O.
-(without) man’.
+This file documents WoMan: A program to browse Unix manual pages “W.O.
+(without) man”.
 
-Copyright © 2001–2015 Free Software Foundation, Inc.
+Copyright © 2001–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -81,8 +81,8 @@ versions of UNIX and GNU/Linux.
 WoMan is distributed with GNU Emacs.
 
 WoMan implements a subset of the formatting performed by the Emacs ‘man’
-(or ‘manual-entry’) command to format a Unix-style "manual page"
-(usually abbreviated to "man page") for display, but without calling any
+(or ‘manual-entry’) command to format a Unix-style “manual page”
+(usually abbreviated to “man page”) for display, but without calling any
 external programs.  It is intended to emulate the whole of the ‘roff
 -man’ macro package, plus those ‘roff’ requests (*note Background:
 Background.) that are most commonly used in man pages.  However, the
@@ -123,8 +123,8 @@ File: woman.info,  Node: Background,  Next: Finding,  Prev: Introduction,  Up: T
 ************
 
 WoMan is a browser for traditional Unix-style manual page documentation.
-Each such document is conventionally referred to as a "manual page", or
-"man page" for short, even though some are very much longer than one
+Each such document is conventionally referred to as a “manual page”, or
+“man page” for short, even though some are very much longer than one
 page.  A man page is a document written using the Unix “man” macros,
 which are themselves written in the nroff/troff text processing markup
 language.  ‘nroff’ and ‘troff’ are text processors originally written
@@ -133,11 +133,11 @@ Murray Hill, New Jersey, USA.  They are closely related, and except in
 the few cases where the distinction between them is important I will
 refer to them both ambiguously as ‘roff’.
 
-‘roff’ markup consists of "requests" and "escape sequences".  A request
-occupies a complete line and begins with either a period or a single
-forward quote.  An escape sequences is embedded within the input text
-and begins (by default) with a backslash.  The original man macro
-package defines 20 new ‘roff’ requests implemented as macros, which were
+‘roff’ markup consists of “requests” and “escape sequences”.  A request
+occupies a complete line and begins with either a period or an
+apostrophe.  An escape sequence is embedded within the input text and
+begins (by default) with a backslash.  The original man macro package
+defines 20 new ‘roff’ requests implemented as macros, which were
 considered to be sufficient for writing man pages.  But whilst in
 principle man pages use only the man macros, in practice a significant
 number use many other ‘roff’ requests.
@@ -290,7 +290,7 @@ File: woman.info,  Node: Topic,  Next: Filename,  Up: Finding
 The topic interface is accessed principally via the command ‘woman’.
 The same command can be accessed via the menu item ‘Help->Manuals->Read
 Man Page (WoMan)...’ once WoMan has been loaded.  The command reads a
-manual topic in the minibuffer, which can be the "basename" of a man
+manual topic in the minibuffer, which can be the “basename” of a man
 file anywhere in the man file structure.  The “basename” in this context
 means the filename without any directory component and without any
 extension or suffix components that relate to the file type.  So, for
@@ -585,17 +585,17 @@ Man pages usually contain a “SEE ALSO” section containing references to
 other man pages.  If these man pages are installed then WoMan can easily
 be directed to follow the reference, i.e., to find and format the man
 page.  When the mouse is passed over a correctly formatted reference it
-is highlighted, in which case clicking the middle button ‘Mouse-2’ will
+is highlighted, in which case clicking the middle button ‘mouse-2’ will
 cause WoMan to follow the reference.  Alternatively, when point is over
 such a reference the key <RET> will follow the reference.
 
-Any word in the buffer can be used as a reference by clicking ‘Mouse-2’
+Any word in the buffer can be used as a reference by clicking ‘mouse-2’
 over it provided the Meta key is also used (although in general such a
 “reference” will not lead to a man page).  Alternatively, the key ‘r’
 allows completion to be used to select a reference to follow, based on
 the word at point as default.
 
-‘Mouse-2’
+‘mouse-2’
      Run WoMan with word under mouse as topic (‘woman-mouse-2’).  The
      word must be mouse-highlighted unless ‘woman-mouse-2’ is used with
      the Meta key.
@@ -991,7 +991,7 @@ These options control the layout that WoMan uses to format the man page.
      ‘man’ behavior.]
 
 ‘woman-ignore’
-     A boolean value.  If non-‘nil’ then unrecognized requests etc.  are
+     A boolean value.  If non-‘nil’ then unrecognized requests etc. are
      ignored.  Default is ‘t’.  This gives the standard ‘roff’ behavior.
      If ‘nil’ then they are left in the buffer, which may aid debugging.
 
@@ -1176,7 +1176,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -1626,7 +1626,7 @@ notices just after the title page:
        Free Documentation License''.
 
 If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
-replace the “with…Texts.” line with this:
+replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1741,7 +1741,7 @@ Keystroke Index
 * m:                                     Changing.             (line 20)
 * M-n:                                   Changing.             (line 46)
 * M-p:                                   Changing.             (line 43)
-* Mouse-2:                               References.           (line 21)
+* mouse-2:                               References.           (line 21)
 * n:                                     Navigation.           (line 19)
 * p:                                     Navigation.           (line 22)
 * q:                                     Changing.             (line 34)
@@ -1793,8 +1793,8 @@ Concept Index
 * man pages, browsing:                   Browsing.             (line  6)
 * man pages, finding:                    Finding.              (line  6)
 * man pages, formatting:                 Finding.              (line  6)
-* ‘MANPATH’, directory separator:        Interface Options.    (line 52)
-* ‘MANPATH’, environment variable:       Interface Options.    (line 31)
+* MANPATH, directory separator:          Interface Options.    (line 52)
+* MANPATH, environment variable:         Interface Options.    (line 31)
 * navigation:                            Navigation.           (line  6)
 * point, word at:                        Word at point.        (line  6)
 * references:                            References.           (line  6)
@@ -1816,34 +1816,34 @@ Concept Index
 Tag Table:
 Node: Top948
 Node: Introduction2714
-Node: Background4963
-Node: Finding11905
-Node: Topic13496
-Node: Cache18000
-Node: Word at point19730
-Node: Filename20692
-Node: Automatic23001
-Node: Browsing24577
-Node: Fonts25820
-Node: Navigation26476
-Node: References27434
-Node: Changing28882
-Node: Convenience30958
-Node: Imenu31746
-Node: Customization32576
-Node: Interface Options34633
-Node: Formatting Options43717
-Node: Faces45370
-Node: Special symbols46690
-Node: Log47955
-Node: Technical49103
-Node: Bugs49823
-Node: Acknowledgments50575
-Node: GNU Free Documentation License51538
-Node: Command Index76885
-Node: Variable Index78875
-Node: Keystroke Index81509
-Node: Concept Index83342
+Node: Background4971
+Node: Finding11919
+Node: Topic13510
+Node: Cache18018
+Node: Word at point19748
+Node: Filename20710
+Node: Automatic23019
+Node: Browsing24595
+Node: Fonts25838
+Node: Navigation26494
+Node: References27452
+Node: Changing28900
+Node: Convenience30976
+Node: Imenu31764
+Node: Customization32594
+Node: Interface Options34651
+Node: Formatting Options43735
+Node: Faces45387
+Node: Special symbols46707
+Node: Log47972
+Node: Technical49120
+Node: Bugs49840
+Node: Acknowledgments50592
+Node: GNU Free Documentation License51555
+Node: Command Index76906
+Node: Variable Index78896
+Node: Keystroke Index81530
+Node: Concept Index83363
 
 End Tag Table
 

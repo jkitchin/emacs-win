@@ -1,8 +1,8 @@
-This is auth.info, produced by makeinfo version 5.2 from auth.texi.
+This is auth.info, produced by makeinfo version 6.3 from auth.texi.
 
 This file describes the Emacs auth-source library.
 
-   Copyright © 2008–2015 Free Software Foundation, Inc.
+   Copyright © 2008–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -32,7 +32,7 @@ This manual describes the Emacs auth-source library.
 
    This file describes the Emacs auth-source library.
 
-   Copyright © 2008–2015 Free Software Foundation, Inc.
+   Copyright © 2008–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -49,6 +49,7 @@ This manual describes the Emacs auth-source library.
 
 * Overview::                    Overview of the auth-source library.
 * Help for users::
+* Multiple GMail accounts with Gnus::
 * Secret Service API::
 * Help for developers::
 * GnuPG and EasyPG Assistant Configuration::
@@ -79,7 +80,7 @@ see later in this document, or the Secret Service API.  This is done
 with EIEIO-based backends and you can write your own if you want.
 
 
-File: auth.info,  Node: Help for users,  Next: Secret Service API,  Prev: Overview,  Up: Top
+File: auth.info,  Node: Help for users,  Next: Multiple GMail accounts with Gnus,  Prev: Overview,  Up: Top
 
 2 Help for users
 ****************
@@ -97,12 +98,17 @@ in ‘auth-source-search’ queries.
    The ‘user’ is the user name.  It’s known as :USER in
 ‘auth-source-search’ queries.  You can also use ‘login’ and ‘account’.
 
-   Spaces are always OK as far as auth-source is concerned (but other
-programs may not like them).  Just put the data in quotes, escaping
-quotes as you’d expect with ‘\’.
+   You can use spaces inside a password or other token by surrounding
+the token with either single or double quotes.
 
-   All these are optional.  You could just say (but we don’t recommend
-it, we’re just showing that it’s possible)
+   You can use apostrophes inside a password or other token by
+surrounding it with double quotes, e.g., ‘"he'llo"’.  Similarly you can
+use double quotes inside a password or other token by surrounding it
+with apostrophes, e.g., ‘'he"llo'’.  You can’t mix both (so a password
+or other token can’t have both apostrophes and double quotes).
+
+   All this is optional.  You could just say (but we don’t recommend it,
+we’re just showing that it’s possible)
 
      password MYPASSWORD
 
@@ -197,12 +203,31 @@ earlier.  Since Tramp has about 88 connection methods, this may be
 necessary if you have an unusual (see earlier comment on those) setup.
 
 
-File: auth.info,  Node: Secret Service API,  Next: Help for developers,  Prev: Help for users,  Up: Top
+File: auth.info,  Node: Multiple GMail accounts with Gnus,  Next: Secret Service API,  Prev: Help for users,  Up: Top
 
-3 Secret Service API
+3 Multiple GMail accounts with Gnus
+***********************************
+
+For multiple GMail accounts with Gnus, you have to make two nnimap
+entries in your ‘gnus-secondary-select-methods’ with distinct names:
+
+     (setq gnus-secondary-select-methods '((nnimap "gmail"
+                                              (nnimap-address "imap.gmail.com"))
+                                           (nnimap "gmail2"
+                                              (nnimap-address "imap.gmail.com"))))
+
+   Your netrc entries will then be:
+
+     machine gmail login account@gmail.com password "account password" port imap
+     machine gmail2 login account2@gmail.com password "account2 password" port imap
+
+
+File: auth.info,  Node: Secret Service API,  Next: Help for developers,  Prev: Multiple GMail accounts with Gnus,  Up: Top
+
+4 Secret Service API
 ********************
 
-The "Secret Service API" is a standard from freedesktop.org to securely
+The “Secret Service API” is a standard from freedesktop.org to securely
 store passwords and other confidential information.  This API is
 implemented by system daemons such as the GNOME Keyring and the KDE
 Wallet (these are GNOME and KDE packages respectively and should be
@@ -220,14 +245,14 @@ packages, it’s not exclusive to auth-source.
  -- Command: secrets-show-secrets
      This command shows all collections, items, and their attributes.
 
-   The atomic objects managed by the Secret Service API are "secret
-items", which contain things an application wishes to store securely,
-like a password.  Secret items have a label (a name), the "secret"
+   The atomic objects managed by the Secret Service API are “secret
+items”, which contain things an application wishes to store securely,
+like a password.  Secret items have a label (a name), the “secret”
 (which is the string we want, like a password), and a set of lookup
 attributes.  The attributes can be used to search and retrieve a secret
 item at a later date.
 
-   Secret items are grouped in "collections".  A collection is sometimes
+   Secret items are grouped in “collections”.  A collection is sometimes
 called a ‘keyring’ or ‘wallet’ in GNOME Keyring and KDE Wallet but it’s
 the same thing, a group of secrets.  Collections are personal and
 protected so only the owner can open them.
@@ -332,7 +357,7 @@ and then fall back to ‘~/.authinfo.gpg’.
 
 File: auth.info,  Node: Help for developers,  Next: GnuPG and EasyPG Assistant Configuration,  Prev: Secret Service API,  Up: Top
 
-4 Help for developers
+5 Help for developers
 *********************
 
 The auth-source library lets you control logging output easily.
@@ -477,7 +502,7 @@ Appendix B GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -927,7 +952,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -983,22 +1008,23 @@ Variable Index
 * Menu:
 
 * auth-source-debug:                     Help for developers.  (line  8)
-* auth-sources:                          Help for users.       (line 48)
+* auth-sources:                          Help for users.       (line 53)
 * secrets-enabled:                       Secret Service API.   (line 16)
 
 
 
 Tag Table:
 Node: Top894
-Node: Overview2162
-Node: Help for users2915
-Node: Secret Service API7980
-Node: Help for developers14118
-Node: GnuPG and EasyPG Assistant Configuration17936
-Node: GNU Free Documentation License19670
-Node: Index45042
-Node: Function Index45160
-Node: Variable Index46397
+Node: Overview2200
+Node: Help for users2953
+Node: Multiple GMail accounts with Gnus8322
+Node: Secret Service API9144
+Node: Help for developers15317
+Node: GnuPG and EasyPG Assistant Configuration19135
+Node: GNU Free Documentation License20869
+Node: Index46245
+Node: Function Index46363
+Node: Variable Index47600
 
 End Tag Table
 

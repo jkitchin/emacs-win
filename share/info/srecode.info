@@ -1,7 +1,7 @@
-This is srecode.info, produced by makeinfo version 5.2 from
+This is srecode.info, produced by makeinfo version 6.3 from
 srecode.texi.
 
-Copyright © 2007–2015 Free Software Foundation, Inc.
+Copyright © 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -36,7 +36,7 @@ in choosing a template to insert, this is not the main goal of SRecode.
 someone can write a complex code generator, and the underlying template
 commonality allows it to work in multiple languages with ease.
 
-   Copyright © 2007–2015 Free Software Foundation, Inc.
+   Copyright © 2007–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -365,7 +365,7 @@ Variables can be set up and used in templates.  Many variables you may
 use are set up via template arguments, but some may be preferences a
 user can set up that are used in system templates.
 
-   When expanding a template, variables are stored in a "dictionary".
+   When expanding a template, variables are stored in a “dictionary”.
 Dictionary entries are variables.  Variables defined in templates can
 have string like values.
 
@@ -1127,7 +1127,7 @@ insertion point is not on a line by itself.
 If there is an active region via ‘transient-mark-mode’, or
 ‘mouse-drag-region’, then the ‘REGION’ section will be enabled.
 
-   In addition, ‘REGIONTEXT’ will be set the the text in the region, and
+   In addition, ‘REGIONTEXT’ will be set to the text in the region, and
 that region of text will be “killed” from the current buffer.
 
    If standard-output is NOT the current buffer, then the region will
@@ -1634,11 +1634,11 @@ templates to make it work.
      argument, the TAG being inserted.
 
      The rest of the arguments are DICT-ENTRIES.  DICT-ENTRIES is of the
-     form ( NAME1 VALUE1 NAME2 VALUE2 … NAMEn VALUEn).
+     form ( NAME1 VALUE1 NAME2 VALUE2 ... NAMEn VALUEn).
 
      The exact template used is based on the current context.  The
      template used is found within the toplevel context as calculated by
-     "srecode-calculate-context", such as ‘declaration’, ‘classdecl’, or
+     “srecode-calculate-context”, such as ‘declaration’, ‘classdecl’, or
      ‘code’.
 
      For various conditions, this function looks for a template with the
@@ -1649,12 +1649,12 @@ templates to make it work.
      If PROTOTYPE is specified, it will first look for templates with
      the name CLASS-tag-prototype, or CLASS-prototype as above.
 
-     See "srecode-semantic-apply-tag-to-dict" for details on what is in
+     See “srecode-semantic-apply-tag-to-dict” for details on what is in
      the dictionary when the templates are called.
 
      This function returns to location in the buffer where the inserted
      tag ENDS, and will leave point inside the inserted text based on
-     any occurrence of a point-inserter.  Templates such as "function"
+     any occurrence of a point-inserter.  Templates such as “function”
      will leave point where code might be inserted.
 
 
@@ -1684,7 +1684,7 @@ and then the application specific templates.
 
  -- Function: srecode-load-tables-for-mode mmode &optional appname
      Load all the template files for MMODE.  Templates are found in the
-     SRecode Template Map.  See "srecode-get-maps" for more.  APPNAME is
+     SRecode Template Map.  See “srecode-get-maps” for more.  APPNAME is
      the name of an application.  In this case, all template files for
      that application will be loaded.
 
@@ -1707,7 +1707,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -2157,7 +2157,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -2226,52 +2226,52 @@ Node: Parts of SRecode6205
 Node: SRecode Minor Mode10150
 Ref: srecode-insert-ask-variable-method11548
 Node: Template Writing12744
-Ref: ‘SRecode-template-mode’12888
+Ref: SRecode-template-mode12888
 Node: Variables14014
-Node: String Values15039
-Node: Multi-string Values15480
-Node: Section Show16322
-Node: Special Variables16852
-Node: Automatic Loop Variables19977
-Node: Compound Variable Values20621
-Node: Templates21111
-Node: Template Section Dictionaries21988
-Node: Template Macros24518
-Node: Contexts28011
-Node: Prompts29071
-Node: Dictionaries30980
-Node: Create a Dictionary31923
-Ref: srecode-create-dictionary32132
-Node: Setting Dictionary Values32406
-Ref: srecode-dictionary-set-value32882
-Ref: srecode-dictionary-show-section33113
-Ref: srecode-dictionary-add-section-dictionary33280
-Node: Compound Dictionary Values34239
-Ref: srecode-dictionary-compound-value34711
-Ref: srecode-compound-toString35167
-Ref: srecode-dump35543
-Node: Argument Resolution36614
-Ref: srecode-resolve-arguments37084
-Node: Creating new Arguments37198
-Node: Querying a Dictionary38196
-Ref: srecode-dictionary-lookup-name38703
-Node: Template Argument Dictionary Entries38962
-Node: Base Arguments39588
-Node: Semantic Arguments43040
-Ref: srecode-semantic-selected-tag43686
-Node: Language Arguments45479
-Node: Developing Template Functions47900
-Ref: srecode-read-template-name50334
-Ref: srecode-table50713
-Ref: srecode-template-get-table50947
-Ref: srecode-insert-fcn52161
-Node: Template Naming Conventions52272
-Node: Inserting Tag Lists56010
-Ref: srecode-semantic-insert-tag56599
-Node: Application Writing58310
-Ref: srecode-load-tables-for-mode59264
-Node: GNU Free Documentation License59588
-Node: Index84942
+Node: String Values15043
+Node: Multi-string Values15484
+Node: Section Show16326
+Node: Special Variables16856
+Node: Automatic Loop Variables19981
+Node: Compound Variable Values20625
+Node: Templates21115
+Node: Template Section Dictionaries21992
+Node: Template Macros24522
+Node: Contexts28015
+Node: Prompts29075
+Node: Dictionaries30984
+Node: Create a Dictionary31927
+Ref: srecode-create-dictionary32136
+Node: Setting Dictionary Values32410
+Ref: srecode-dictionary-set-value32886
+Ref: srecode-dictionary-show-section33117
+Ref: srecode-dictionary-add-section-dictionary33284
+Node: Compound Dictionary Values34243
+Ref: srecode-dictionary-compound-value34715
+Ref: srecode-compound-toString35171
+Ref: srecode-dump35547
+Node: Argument Resolution36618
+Ref: srecode-resolve-arguments37088
+Node: Creating new Arguments37202
+Node: Querying a Dictionary38200
+Ref: srecode-dictionary-lookup-name38707
+Node: Template Argument Dictionary Entries38966
+Node: Base Arguments39592
+Node: Semantic Arguments43043
+Ref: srecode-semantic-selected-tag43689
+Node: Language Arguments45482
+Node: Developing Template Functions47903
+Ref: srecode-read-template-name50337
+Ref: srecode-table50716
+Ref: srecode-template-get-table50950
+Ref: srecode-insert-fcn52164
+Node: Template Naming Conventions52275
+Node: Inserting Tag Lists56013
+Ref: srecode-semantic-insert-tag56602
+Node: Application Writing58325
+Ref: srecode-load-tables-for-mode59279
+Node: GNU Free Documentation License59607
+Node: Index84965
 
 End Tag Table
 

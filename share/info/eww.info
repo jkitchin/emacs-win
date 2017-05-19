@@ -1,8 +1,8 @@
-This is eww.info, produced by makeinfo version 5.2 from eww.texi.
+This is eww.info, produced by makeinfo version 6.3 from eww.texi.
 
 This file documents the GNU Emacs Web Wowser (EWW) package.
 
-   Copyright © 2014–2015 Free Software Foundation, Inc.
+   Copyright © 2014–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -27,7 +27,7 @@ EWW
 
 This file documents the GNU Emacs Web Wowser (EWW) package.
 
-   Copyright © 2014–2015 Free Software Foundation, Inc.
+   Copyright © 2014–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -62,8 +62,8 @@ File: eww.info,  Node: Overview,  Next: Basics,  Prev: Top,  Up: Top
 1 Overview
 **********
 
-"EWW", the Emacs Web Wowser, is a web browser for GNU Emacs.  It can
-load, parse, and display various web pages using "shr.el".  However a
+“EWW”, the Emacs Web Wowser, is a web browser for GNU Emacs.  It can
+load, parse, and display various web pages using “shr.el”.  However a
 GNU Emacs with ‘libxml2’ support is required.
 
 
@@ -84,22 +84,44 @@ exit the browser by calling ‘eww-quit’.  To reload the web page hit ‘g’
 (‘eww-reload’).  Pressing ‘w’ (‘eww-copy-page-url’) will copy the
 current URL to the kill ring.
 
+   The ‘R’ command (‘eww-readable’) will attempt to determine which part
+of the document contains the “readable” text, and will only display this
+part.  This usually gets rid of menus and the like.
+
+   The ‘F’ command (‘eww-toggle-fonts’) toggles whether to use
+variable-pitch fonts or not.  This sets the ‘shr-use-fonts’ variable.
+
    A URL under the point can be downloaded with ‘d’ (‘eww-download’).
 The file will be written to the directory specified in
 ‘eww-download-directory’ (Default: ‘~/Downloads/’).
 
    EWW remembers the URLs you have visited to allow you to go back and
 forth between them.  By pressing ‘l’ (‘eww-back-url’) you go to the
-previous URL. You can go forward again with ‘r’ (‘eww-forward-url’).  If
-you want an overview of your browsing history press ‘H’
+previous URL.  You can go forward again with ‘r’ (‘eww-forward-url’).
+If you want an overview of your browsing history press ‘H’
 (‘eww-list-histories’) to open the history buffer ‘*eww history*’.  The
 history is lost when EWW is quit.  If you want to remember websites you
 can use bookmarks.
 
-   EWW allows you to "bookmark" URLs.  Simply hit ‘b’
+   Along with the URLs visited, EWW also remembers both the rendered
+page (as it appears in the buffer) and its source.  This can take a
+considerable amount of memory, so EWW discards the history entries to
+keep their number within a set limit, as specified by
+‘eww-history-limit’; the default being 50.  This variable could also be
+set to ‘nil’ to allow for the history list to grow indefinitely.
+
+   PDFs are viewed inline, by default, with ‘doc-view-mode’, but this
+can be customized by using the mailcap (*note (emacs-mime)mailcap::)
+mechanism, in particular ‘mailcap-mime-data’.
+
+   EWW allows you to “bookmark” URLs.  Simply hit ‘b’
 (‘eww-add-bookmark’) to store a bookmark for the current website.  You
 can view stored bookmarks with ‘B’ (‘eww-list-bookmarks’).  This will
 open the bookmark buffer ‘*eww bookmarks*’.
+
+   To get summary of currently opened EWW buffers, press ‘S’
+(‘eww-list-buffers’).  The ‘*eww buffers*’ buffer allows you to quickly
+kill, flip through and switch to specific EWW buffer.
 
    Although EWW and shr.el do their best to render webpages in GNU Emacs
 some websites use features which can not be properly represented or are
@@ -129,6 +151,12 @@ the Cookie handling *Note (url)Cookies::.
 ‘eww-header-line-format’.  The format replaces ‘%t’ with the title of
 the website and ‘%u’ with the URL.
 
+   The ‘D’ command (‘eww-toggle-paragraph-direction’) toggles the
+paragraphs direction between left-to-right and right-to-left text.  This
+can be useful on web pages that display right-to-left test (like Arabic
+and Hebrew), but where the web pages don’t explicitly state the
+directionality.
+
    Loading random images from the web can be problematic due to their
 size or content.  By customizing ‘shr-max-image-proportion’ you can set
 the maximal image proportion in relation to the window they are
@@ -142,6 +170,34 @@ the HTML page, but adjusts them if needed to keep a certain minimum
 contrast.  If that is still too low for you, you can customize the
 variables ‘shr-color-visible-distance-min’ and
 ‘shr-color-visible-luminance-min’ to get a better contrast.
+
+   In addition to maintaining the history at run-time, EWW will also
+save the partial state of its buffers (the URIs and the titles of the
+pages visited) in the desktop file if one is used.  *Note (emacs)Saving
+Emacs Sessions::.
+
+   EWW history may sensibly contain multiple entries for the same page
+URI.  At run-time, these entries may still have different associated
+point positions or the actual Web page contents.  The latter, however,
+tend to be overly large to preserve in the desktop file, so they get
+omitted, thus rendering the respective entries entirely equivalent.  By
+default, such duplicate entries are not saved.  Setting
+‘eww-desktop-remove-duplicates’ to nil will force EWW to save them
+anyway.
+
+   Restoring EWW buffers’ contents may prove to take too long to finish.
+When the ‘eww-restore-desktop’ variable is set to ‘nil’ (the default),
+EWW will not try to reload the last visited Web page when the buffer is
+restored from the desktop file, thus allowing for faster Emacs start-up
+times.  When set to ‘t’, restoring the buffers will also initiate the
+reloading of such pages.
+
+   The EWW buffer restored from the desktop file but not yet reloaded
+will contain a prompt, as specified by the ‘eww-restore-reload-prompt’
+variable.  The value of this variable will be passed through
+‘substitute-command-keys’ upon each use, thus allowing for the use of
+the usual substitutions, such as ‘\[eww-reload]’ for the current key
+binding of the ‘eww-reload’ command.
 
 
 File: eww.info,  Node: History and Acknowledgments,  Next: GNU Free Documentation License,  Prev: Advanced,  Up: Top
@@ -176,7 +232,7 @@ B GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -626,7 +682,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -650,16 +706,19 @@ Key Index
  [index ]
 * Menu:
 
-* &:                                     Basics.               (line 35)
-* b:                                     Basics.               (line 30)
-* B:                                     Basics.               (line 30)
+* &:                                     Basics.               (line 57)
+* b:                                     Basics.               (line 48)
+* B:                                     Basics.               (line 48)
 * C:                                     Advanced.             (line 10)
-* d:                                     Basics.               (line 18)
+* d:                                     Basics.               (line 25)
+* F:                                     Basics.               (line 22)
 * g:                                     Basics.               (line 12)
-* H:                                     Basics.               (line 22)
-* l:                                     Basics.               (line 22)
+* H:                                     Basics.               (line 29)
+* l:                                     Basics.               (line 29)
 * q:                                     Basics.               (line 12)
-* r:                                     Basics.               (line 22)
+* R:                                     Basics.               (line 18)
+* r:                                     Basics.               (line 29)
+* S:                                     Basics.               (line 53)
 * v:                                     Advanced.             (line  6)
 * w:                                     Basics.               (line 12)
 
@@ -669,18 +728,26 @@ File: eww.info,  Node: Variable Index,  Next: Lisp Function Index,  Prev: Key In
 Variable Index
 **************
 
+After eww has rendered the data in the buffer, ‘eww-after-render-hook’
+is called.  It can be used to alter the contents, for instance.
+
  [index ]
 * Menu:
 
-* eww-download-directory:                Basics.               (line 18)
+* eww-after-render-hook:                 Variable Index.       (line  6)
+* eww-desktop-remove-duplicates:         Advanced.             (line 43)
+* eww-download-directory:                Basics.               (line 25)
 * eww-header-line-format:                Advanced.             (line 14)
+* eww-history-limit:                     Basics.               (line 37)
+* eww-restore-desktop:                   Advanced.             (line 52)
+* eww-restore-reload-prompt:             Advanced.             (line 59)
 * eww-search-prefix:                     Basics.               (line  6)
-* eww-use-external-browser-for-content-type: Basics.           (line 35)
-* shr-blocked-images:                    Advanced.             (line 18)
-* shr-color-visible-distance-min:        Advanced.             (line 26)
-* shr-color-visible-luminance-min:       Advanced.             (line 26)
-* shr-external-browser:                  Basics.               (line 35)
-* shr-max-image-proportion:              Advanced.             (line 18)
+* eww-use-external-browser-for-content-type: Basics.           (line 57)
+* shr-blocked-images:                    Advanced.             (line 24)
+* shr-color-visible-distance-min:        Advanced.             (line 32)
+* shr-color-visible-luminance-min:       Advanced.             (line 32)
+* shr-external-browser:                  Basics.               (line 57)
+* shr-max-image-proportion:              Advanced.             (line 24)
 
 
 File: eww.info,  Node: Lisp Function Index,  Next: Concept Index,  Prev: Variable Index,  Up: Top
@@ -692,18 +759,23 @@ Function Index
 * Menu:
 
 * eww:                                   Basics.               (line  6)
-* eww-add-bookmark:                      Basics.               (line 30)
-* eww-back-url:                          Basics.               (line 22)
-* eww-browse-with-external-browser:      Basics.               (line 35)
+* eww-add-bookmark:                      Basics.               (line 48)
+* eww-back-url:                          Basics.               (line 29)
+* eww-browse-with-external-browser:      Basics.               (line 57)
 * eww-copy-page-url:                     Basics.               (line 12)
-* eww-download:                          Basics.               (line 18)
-* eww-forward-url:                       Basics.               (line 22)
-* eww-list-bookmarks:                    Basics.               (line 30)
-* eww-list-histories:                    Basics.               (line 22)
+* eww-download:                          Basics.               (line 25)
+* eww-forward-url:                       Basics.               (line 29)
+* eww-list-bookmarks:                    Basics.               (line 48)
+* eww-list-buffers:                      Basics.               (line 53)
+* eww-list-histories:                    Basics.               (line 29)
 * eww-open-file:                         Basics.               (line  6)
 * eww-quit:                              Basics.               (line 12)
+* eww-readable:                          Basics.               (line 18)
 * eww-reload:                            Basics.               (line 12)
+* eww-toggle-fonts:                      Basics.               (line 22)
+* eww-toggle-paragraph-direction:        Advanced.             (line 18)
 * eww-view-source:                       Advanced.             (line  6)
+* shr-use-fonts:                         Basics.               (line 22)
 * url-cookie-list:                       Advanced.             (line 10)
 
 
@@ -715,15 +787,20 @@ Concept Index
  [index ]
 * Menu:
 
-* Bookmarks:                             Basics.               (line 30)
-* Contrast:                              Advanced.             (line 26)
+* Bookmarks:                             Basics.               (line 48)
+* Contrast:                              Advanced.             (line 32)
 * Cookies:                               Advanced.             (line 10)
-* Download:                              Basics.               (line 18)
+* Desktop Support:                       Advanced.             (line 38)
+* Download:                              Basics.               (line 25)
 * eww:                                   Basics.               (line  6)
-* External Browser:                      Basics.               (line 35)
+* External Browser:                      Basics.               (line 57)
 * Header:                                Advanced.             (line 14)
-* History:                               Basics.               (line 22)
-* Image Display:                         Advanced.             (line 18)
+* History:                               Basics.               (line 29)
+* Image Display:                         Advanced.             (line 24)
+* Multiple Buffers:                      Basics.               (line 53)
+* paragraph direction:                   Advanced.             (line 18)
+* PDF:                                   Basics.               (line 44)
+* Saving Sessions:                       Advanced.             (line 38)
 * Viewing Source:                        Advanced.             (line  6)
 * Web Browsing:                          Basics.               (line  6)
 
@@ -732,14 +809,14 @@ Concept Index
 Tag Table:
 Node: Top873
 Node: Overview1881
-Node: Basics2166
-Node: Advanced4530
-Node: History and Acknowledgments6044
-Node: GNU Free Documentation License6728
-Node: Key Index32072
-Node: Variable Index33099
-Node: Lisp Function Index33906
-Node: Concept Index35082
+Node: Basics2174
+Node: Advanced5700
+Node: History and Acknowledgments9027
+Node: GNU Free Documentation License9711
+Node: Key Index35059
+Node: Variable Index36305
+Node: Lisp Function Index37617
+Node: Concept Index39158
 
 End Tag Table
 

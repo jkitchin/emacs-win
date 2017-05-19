@@ -1,9 +1,9 @@
-This is pgg.info, produced by makeinfo version 5.2 from pgg.texi.
+This is pgg.info, produced by makeinfo version 6.3 from pgg.texi.
 
 This file describes PGG 0.1, an Emacs interface to various PGP
 implementations.
 
-   Copyright © 2001, 2003–2015 Free Software Foundation, Inc.
+   Copyright © 2001, 2003–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -34,7 +34,7 @@ new code we recommend EasyPG instead.  *Note EasyPG: (epa)Top.
    This file describes PGG 0.1, an Emacs interface to various PGP
 implementations.
 
-   Copyright © 2001, 2003–2015 Free Software Foundation, Inc.
+   Copyright © 2001, 2003–2017 Free Software Foundation, Inc.
 
      Permission is granted to copy, distribute and/or modify this
      document under the terms of the GNU Free Documentation License,
@@ -69,7 +69,7 @@ communication.  Even though Mailcrypt has similar feature, it does not
 deal with detached PGP messages, normally used in PGP/MIME
 infrastructure.  This was the main reason why I wrote the new library.
 
-   Note that the PGG library is now obsolete, replaced by EasyPG. *Note
+   Note that the PGG library is now obsolete, replaced by EasyPG.  *Note
 EasyPG: (epa)Top.
 
    PGP/MIME is an application of MIME Object Security Services
@@ -499,7 +499,7 @@ Appendix A GNU Free Documentation License
   0. PREAMBLE
 
      The purpose of this License is to make a manual, textbook, or other
-     functional and useful document "free" in the sense of freedom: to
+     functional and useful document “free” in the sense of freedom: to
      assure everyone the effective freedom to copy and redistribute it,
      with or without modifying it, either commercially or
      noncommercially.  Secondarily, this License preserves for the
@@ -949,7 +949,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with…Texts.” line with this:
+Texts, replace the “with...Texts.” line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1029,21 +1029,21 @@ Variable Index
 Tag Table:
 Node: Top946
 Node: Overview2349
-Node: Prerequisites2930
-Node: How to use3917
-Node: User Commands5125
-Node: Selecting an implementation8389
-Node: Caching passphrase9444
-Ref: Caching passphrase-Footnote-112825
-Node: Default user identity12998
-Node: Architecture14066
-Node: Initializing14722
-Node: Back end methods15480
-Node: Getting output18002
-Node: Parsing OpenPGP packets18642
-Node: GNU Free Documentation License19369
-Node: Function Index44732
-Node: Variable Index46271
+Node: Prerequisites2931
+Node: How to use3918
+Node: User Commands5126
+Node: Selecting an implementation8390
+Node: Caching passphrase9445
+Ref: Caching passphrase-Footnote-112826
+Node: Default user identity12999
+Node: Architecture14067
+Node: Initializing14723
+Node: Back end methods15481
+Node: Getting output18003
+Node: Parsing OpenPGP packets18643
+Node: GNU Free Documentation License19370
+Node: Function Index44737
+Node: Variable Index46276
 
 End Tag Table
 
