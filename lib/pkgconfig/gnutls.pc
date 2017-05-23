@@ -9,7 +9,7 @@
 
 # Author: Simon Josefsson
 
-prefix=d:/usr
+prefix=/mingw64
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -17,8 +17,8 @@ includedir=${prefix}/include
 Name: GnuTLS
 Description: Transport Security Layer implementation for the GNU system
 URL: http://www.gnutls.org/
-Version: 3.3.11
+Version: 3.4.8
 Libs: -L${libdir} -lgnutls
-Libs.private: -Ld:/usr/lib -lhogweed -lnettle -ltasn1 -lgmp -lz -lintl -liconv -lws2_32
-Requires.private: nettle, hogweed, libtasn1, zlib
+Libs.private: /mingw64/lib/libz.dll.a /mingw64/lib/libintl.dll.a -lws2_32  /mingw64/lib/libiconv.dll.a -LC:/building/msys64/mingw64/lib -lp11-kit -lws2_32  -lgmp
+Requires.private: nettle, hogweed, libtasn1, libidn, p11-kit-1, zlib
 Cflags: -I${includedir}

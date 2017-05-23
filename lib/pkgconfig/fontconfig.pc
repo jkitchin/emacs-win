@@ -1,0 +1,18 @@
+prefix=/mingw64
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+sysconfdir=${prefix}/etc
+localstatedir=${prefix}/var
+PACKAGE=fontconfig
+confdir=${sysconfdir}/fonts
+cachedir=/var/cache/fontconfig
+
+Name: Fontconfig
+Description: Font configuration and customization library
+Version: 2.11.94
+Requires:  freetype2
+Requires.private:  expat
+Libs: -L${libdir} -lfontconfig
+Libs.private: -lexpat  -lfreetype  -L/mingw64/lib -liconv 
+Cflags: -I${includedir}  -mms-bitfields -I/mingw64/include/freetype2 -I/mingw64/include/libpng16 -I/mingw64/include/harfbuzz -I/mingw64/include/glib-2.0 -I/mingw64/lib/glib-2.0/include  -I/mingw64/include 

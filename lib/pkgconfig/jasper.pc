@@ -1,0 +1,11 @@
+prefix=/mingw64
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Jasper
+Description: JPEG 2000 encoding and decoding library
+Version: 1.900.1
+
+Libs: -L${libdir} -ljasper
+Cflags: -I${includedir}/jasper
