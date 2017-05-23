@@ -1,0 +1,55 @@
+gnutls_ocsp_resp_print(3)           gnutls           gnutls_ocsp_resp_print(3)
+
+
+
+NNAAMMEE
+       gnutls_ocsp_resp_print - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ooccsspp..hh>>
+
+       iinntt           ggnnuuttllss__ooccsspp__rreesspp__pprriinntt((ggnnuuttllss__ooccsspp__rreesspp__tt           _r_e_s_p,,
+       ggnnuuttllss__ooccsspp__pprriinntt__ffoorrmmaattss__tt _f_o_r_m_a_t,, ggnnuuttllss__ddaattuumm__tt ** _o_u_t));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_ocsp_resp_t resp
+                   The structure to be printed
+
+       gnutls_ocsp_print_formats_t format
+                   Indicate the format to use
+
+       gnutls_datum_t * out
+                   Newly allocated datum with (0) terminated string.
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will pretty print a OCSP response, suitable  for  display
+       to a human.
+
+       If the format is GGNNUUTTLLSS__OOCCSSPP__PPRRIINNTT__FFUULLLL then all fields of the response
+       will be output, on multiple lines.
+
+       The output  _o_u_t ->data needs to be deallocate using ggnnuuttllss__ffrreeee(()).
+
+RREETTUURRNNSS
+       On success, GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0)  is  returned,  otherwise  a  negative
+       error value.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10           gnutls_ocsp_resp_print(3)

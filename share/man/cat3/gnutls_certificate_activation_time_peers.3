@@ -1,0 +1,46 @@
+gnutls_certificate_activation_time_pgegnenurutstl(ls3s_)certificate_activation_time_peers(3)
+
+
+
+NNAAMMEE
+       gnutls_certificate_activation_time_peers - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       ttiimmee__tt  ggnnuuttllss__cceerrttiiffiiccaattee__aaccttiivvaattiioonn__ttiimmee__ppeeeerrss((ggnnuuttllss__sseessssiioonn__tt  _s_e_s_-
+       _s_i_o_n));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a gnutls session
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will return the peer's certificate activation time.  This
+       is the creation time for openpgp keys.
+
+RREETTUURRNNSS
+       (time_t)-1 on error.
+
+DDEEPPRREECCAATTEEDD
+       ggnnuuttllss__cceerrttiiffiiccaattee__vveerriiffyy__ppeeeerrss22(()) now verifies activation times.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                             g3n.u3t.l1s0_certificate_activation_time_peers(3)

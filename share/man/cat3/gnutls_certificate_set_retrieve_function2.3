@@ -1,0 +1,78 @@
+gnutls_certificate_set_retrieve_fungcntguintoulnts2l_(sc3e)rtificate_set_retrieve_function2(3)
+
+
+
+NNAAMMEE
+       gnutls_certificate_set_retrieve_function2 - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//aabbssttrraacctt..hh>>
+
+       vvooiidd  ggnnuuttllss__cceerrttiiffiiccaattee__sseett__rreettrriieevvee__ffuunnccttiioonn22((ggnnuuttllss__cceerrttiiffiiccaattee__ccrree--
+       ddeennttiiaallss__tt _c_r_e_d,, ggnnuuttllss__cceerrttiiffiiccaattee__rreettrriieevvee__ffuunnccttiioonn22 ** _f_u_n_c));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_certificate_credentials_t cred
+                   is a ggnnuuttllss__cceerrttiiffiiccaattee__ccrreeddeennttiiaallss__tt structure.
+
+       gnutls_certificate_retrieve_function2 * func
+                   is the callback function
+
+DDEESSCCRRIIPPTTIIOONN
+       This function sets a callback to be called in  order  to  retrieve  the
+       certificate to be used in the handshake.
+
+       The callback's function prototype is: int (*callback)(gnutls_session_t,
+       const  gnutls_datum_t*  req_ca_dn,  int  nreqs,  const  gnutls_pk_algo-
+       rithm_t*   pk_algos,   int  pk_algos_length,  gnutls_pcert_st**  pcert,
+       unsigned int *pcert_length, gnutls_privkey_t * pkey);
+
+        _r_e_q___c_a___c_e_r_t is only used in X.509 certificates.  Contains a list  with
+       the  CA  names  that  the server considers trusted.  Normally we should
+       send a certificate that is signed by one of these CAs. These names  are
+       DER   encoded.  To  get  a  more  meaningful  value  use  the  function
+       ggnnuuttllss__xx550099__rrddnn__ggeett(()).
+
+        _p_k___a_l_g_o_s contains a list  with  server's  acceptable  signature  algo-
+       rithms.   The  certificate  returned  should support the server's given
+       algorithms.
+
+        _p_c_e_r_t should contain a single certificate and  public  or  a  list  of
+       them.
+
+        _p_c_e_r_t___l_e_n_g_t_h is the size of the previous list.
+
+        _p_k_e_y is the private key.
+
+       If  the  callback function is provided then gnutls will call it, in the
+       handshake, after the certificate request message has been received.
+
+       In server side pk_algos and req_ca_dn are NULL.
+
+       The callback function should set the certificate list to be  sent,  and
+       return  0 on success. If no certificate was selected then the number of
+       certificates should be set to zero. The value (-1) indicates error  and
+       the handshake will be terminated.
+
+SSIINNCCEE
+       3.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                            gn3u.t3l.s1_0certificate_set_retrieve_function2(3)

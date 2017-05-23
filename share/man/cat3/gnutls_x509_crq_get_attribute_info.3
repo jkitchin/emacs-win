@@ -1,0 +1,63 @@
+gnutls_x509_crq_get_attribute_info(3)gnutlsgnutls_x509_crq_get_attribute_info(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_crq_get_attribute_info - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt ggnnuuttllss__xx550099__ccrrqq__ggeett__aattttrriibbuuttee__iinnffoo((ggnnuuttllss__xx550099__ccrrqq__tt _c_r_q,, iinntt _i_n_d_x,,
+       vvooiidd ** _o_i_d,, ssiizzee__tt ** _s_i_z_e_o_f___o_i_d));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_crq_t crq
+                   should contain a ggnnuuttllss__xx550099__ccrrqq__tt structure
+
+       int indx    Specifies which attribute number to get. Use (0) to get the
+                   first one.
+
+       void * oid  a pointer to a structure to hold the OID
+
+       size_t * sizeof_oid
+                   initially  holds the maximum size of  _o_i_d , on return holds
+                   actual size of  _o_i_d .
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will return the requested attribute OID in  the  certifi-
+       cate,  and  the critical flag for it.  The attribute OID will be stored
+       as     a     string     in     the      provided      buffer.       Use
+       ggnnuuttllss__xx550099__ccrrqq__ggeett__aattttrriibbuuttee__ddaattaa(()) to extract the data.
+
+       If  the  buffer  provided is not long enough to hold the output, then *
+       _s_i_z_e_o_f___o_i_d  is  updated  and   GGNNUUTTLLSS__EE__SSHHOORRTT__MMEEMMOORRYY__BBUUFFFFEERR   will   be
+       returned.
+
+RREETTUURRNNSS
+       On  success,  GGNNUUTTLLSS__EE__SSUUCCCCEESSSS  (0)  is  returned, otherwise a negative
+       error code in case of an error.  If your have reached the  last  exten-
+       sion available GGNNUUTTLLSS__EE__RREEQQUUEESSTTEEDD__DDAATTAA__NNOOTT__AAVVAAIILLAABBLLEE will be returned.
+
+SSIINNCCEE
+       2.8.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10gnutls_x509_crq_get_attribute_info(3)

@@ -1,0 +1,59 @@
+gnutls_dh_set_prime_bits(3)         gnutls         gnutls_dh_set_prime_bits(3)
+
+
+
+NNAAMMEE
+       gnutls_dh_set_prime_bits - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       vvooiidd  ggnnuuttllss__ddhh__sseett__pprriimmee__bbiittss((ggnnuuttllss__sseessssiioonn__tt  _s_e_s_s_i_o_n,,  uunnssiiggnneedd iinntt
+       _b_i_t_s));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a ggnnuuttllss__sseessssiioonn__tt structure.
+
+       unsigned int bits
+                   is the number of bits
+
+DDEESSCCRRIIPPTTIIOONN
+       This function sets the number of bits, for use in a Diffie-Hellman  key
+       exchange.   This  is  used both in DH ephemeral and DH anonymous cipher
+       suites.  This will set the minimum size of the prime that will be  used
+       for the handshake.
+
+       In  the  client side it sets the minimum accepted number of bits.  If a
+       server sends a prime with less bits than  that  GGNNUUTTLLSS__EE__DDHH__PPRRIIMMEE__UUNNAACC--
+       CCEEPPTTAABBLLEE will be returned by the handshake.
+
+       Note  that  values  lower  than  512  bits  may allow decryption of the
+       exchanged data.
+
+       The function has no effect in server side.
+
+       Note that since 3.1.7 this function is deprecated. The  minimum  number
+       of  bits  is set by the priority string level.  Also this function must
+       be called after ggnnuuttllss__pprriioorriittyy__sseett__ddiirreecctt(()) or the set  value  may  be
+       overridden by the selected priority options.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10         gnutls_dh_set_prime_bits(3)

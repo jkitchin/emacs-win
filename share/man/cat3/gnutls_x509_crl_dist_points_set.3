@@ -1,0 +1,57 @@
+gnutls_x509_crl_dist_points_set(3)  gnutls  gnutls_x509_crl_dist_points_set(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_crl_dist_points_set - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099--eexxtt..hh>>
+
+       iinntt  ggnnuuttllss__xx550099__ccrrll__ddiisstt__ppooiinnttss__sseett((ggnnuuttllss__xx550099__ccrrll__ddiisstt__ppooiinnttss__tt _c_d_p,,
+       ggnnuuttllss__xx550099__ssuubbjjeecctt__aalltt__nnaammee__tt  _t_y_p_e,,  ccoonnsstt  ggnnuuttllss__ddaattuumm__tt   **   _s_a_n,,
+       uunnssiiggnneedd iinntt _r_e_a_s_o_n_s));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_crl_dist_points_t cdp
+                   The CRL distribution points structure
+
+       gnutls_x509_subject_alt_name_t type
+                   The type of the name (of ggnnuuttllss__ssuubbjjeecctt__aalltt__nnaammeess__tt)
+
+       const gnutls_datum_t * san
+                   The point name data
+
+       unsigned int reasons
+                   Revocation   reasons.   An  ORed  sequence  of  flags  from
+                   ggnnuuttllss__xx550099__ccrrll__rreeaassoonn__ffllaaggss__tt.
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will store the specified CRL distibution point value  the
+       _c_d_p structure.
+
+RREETTUURRNNSS
+       On success, GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0), otherwise a negative error value.
+
+SSIINNCCEE
+       3.3.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10  gnutls_x509_crl_dist_points_set(3)

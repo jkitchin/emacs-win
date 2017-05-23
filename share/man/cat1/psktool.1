@@ -1,0 +1,98 @@
+psktool(1)                       User Commands                      psktool(1)
+
+
+
+NNAAMMEE
+       ppsskkttooooll - GnuTLS PSK tool
+
+SSYYNNOOPPSSIISS
+       ppsskkttooooll [--ffllaaggss] [--ffllaagg [_v_a_l_u_e]] [----ooppttiioonn--nnaammee[[=| ]_v_a_l_u_e]]
+
+       All arguments must be options.
+
+
+DDEESSCCRRIIPPTTIIOONN
+       Program   that generates random keys for use with TLS-PSK. The keys are
+       stored in hexadecimal format in a key file.
+
+OOPPTTIIOONNSS
+       --dd _n_u_m_b_e_r, ----ddeebbuugg=_n_u_m_b_e_r
+              Enable debugging.  This option takes an integer  number  as  its
+              argument.  The value of _n_u_m_b_e_r is constrained to being:
+                  in the range  0 through 9999
+
+              Specifies the debug level.
+
+       --ss _n_u_m_b_e_r, ----kkeeyyssiizzee=_n_u_m_b_e_r
+              specify the key size in bytes.  This option takes an integer
+              number as its argument.  The value of _n_u_m_b_e_r is constrained to
+              being:
+                  in the range  0 through 512
+
+
+       --uu _s_t_r_i_n_g, ----uusseerrnnaammee=_s_t_r_i_n_g
+              specify a username.
+
+
+       --pp _s_t_r_i_n_g, ----ppaasssswwdd=_s_t_r_i_n_g
+              specify a password file.
+
+
+       --hh, ----hheellpp
+              Display usage information and exit.
+
+       --!!, ----mmoorree--hheellpp
+              Pass the extended usage information through a pager.
+
+       --vv [{_v_|_c_|_n ----vveerrssiioonn [{_v_|_c_|_n}]}]
+              Output version of program and exit.  The default mode is `v', a
+              simple version.  The `c' mode will print copyright information
+              and `n' will print the full copyright notice.
+
+EEXXAAMMPPLLEESS
+       To add a user 'psk_identity' in _p_a_s_s_w_d_._p_s_k for use with GnuTLS run:
+           $ ./psktool -u psk_identity -p passwd.psk
+           Generating a random key for user 'psk_identity'
+           Key stored to passwd.psk
+           $ cat psks.txt
+           psk_identity:88f3824b3e5659f52d00e959bacab954b6540344
+           $
+
+       This command will create _p_a_s_s_w_d_._p_s_k if it does not exist and will add
+       user 'psk_identity' (you will also be prompted for a password).
+
+EEXXIITT SSTTAATTUUSS
+       One of the following exit values will be returned:
+
+       0  (EXIT_SUCCESS)
+              Successful program execution.
+
+       1  (EXIT_FAILURE)
+              The operation failed or the command syntax was not valid.
+
+       70  (EX_SOFTWARE)
+              libopts had an internal operational error.  Please report it to
+              autogen-users@lists.sourceforge.net.  Thank you.
+
+SSEEEE AALLSSOO
+           gnutls-cli-debug (1), gnutls-serv (1), srptool (1), certtool (1)
+
+AAUUTTHHOORRSS
+       Nikos Mavrogiannopoulos, Simon Josefsson and others; see
+       /usr/share/doc/gnutls/AUTHORS for a complete list.
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2000-2014 Free Software Foundation, and others all rights
+       reserved.  This program is released under the terms of the GNU General
+       Public License, version 3 or later.
+
+BBUUGGSS
+       Please send bug reports to: bugs@gnutls.org
+
+NNOOTTEESS
+       This manual page was _A_u_t_o_G_e_n-erated from the ppsskkttooooll option defini-
+       tions.
+
+
+
+3.3.11                            11 Dec 2014                       psktool(1)

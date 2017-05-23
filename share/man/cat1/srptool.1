@@ -1,0 +1,130 @@
+srptool(1)                       User Commands                      srptool(1)
+
+
+
+NNAAMMEE
+       ssrrppttooooll - GnuTLS SRP tool
+
+SSYYNNOOPPSSIISS
+       ssrrppttooooll [--ffllaaggss] [--ffllaagg [_v_a_l_u_e]] [----ooppttiioonn--nnaammee[[=| ]_v_a_l_u_e]]
+
+       All arguments must be options.
+
+
+DDEESSCCRRIIPPTTIIOONN
+       Simple  program  that emulates the programs in the Stanford SRP (Secure
+       Remote Password) libraries using GnuTLS.  It is  intended  for  use  in
+       places  where  you  don't  expect SRP authentication to be the used for
+       system users.
+
+       In  brief,  to use SRP you need to create  two  files.  These  are  the
+       password  file  that  holds the users and the verifiers associated with
+       them  and  the configuration file to hold the group parameters  (called
+       tpasswd.conf).
+
+OOPPTTIIOONNSS
+       --dd _n_u_m_b_e_r, ----ddeebbuugg=_n_u_m_b_e_r
+              Enable  debugging.   This  option takes an integer number as its
+              argument.  The value of _n_u_m_b_e_r is constrained to being:
+                  in the range  0 through 9999
+
+              Specifies the debug level.
+
+       --ii _n_u_m_b_e_r, ----iinnddeexx=_n_u_m_b_e_r
+              specify the index of the group parameters in tpasswd.conf to
+              use.  This option takes an integer number as its argument.  The
+              default _n_u_m_b_e_r for this option is:
+                   1
+
+
+       --uu _s_t_r_i_n_g, ----uusseerrnnaammee=_s_t_r_i_n_g
+              specify a username.
+
+
+       --pp _s_t_r_i_n_g, ----ppaasssswwdd=_s_t_r_i_n_g
+              specify a password file.
+
+
+       --ss _n_u_m_b_e_r, ----ssaalltt=_n_u_m_b_e_r
+              specify salt size.  This option takes an integer number as its
+              argument.
+
+
+       ----vveerriiffyy
+              just verify the password..
+
+              Verifies the password provided against the password file.
+
+       --vv _s_t_r_i_n_g, ----ppaasssswwdd--ccoonnff=_s_t_r_i_n_g
+              specify a password conf file..
+
+              Specify a filename or a PKCS #11 URL to read the CAs from.
+
+       ----ccrreeaattee--ccoonnff=_s_t_r_i_n_g
+              Generate a password configuration file..
+
+              This generates a password configuration file (tpasswd.conf) con-
+              taining the required for TLS parameters.
+
+       --hh, ----hheellpp
+              Display usage information and exit.
+
+       --!!, ----mmoorree--hheellpp
+              Pass the extended usage information through a pager.
+
+       --vv [{_v_|_c_|_n ----vveerrssiioonn [{_v_|_c_|_n}]}]
+              Output version of program and exit.  The default mode is `v', a
+              simple version.  The `c' mode will print copyright information
+              and `n' will print the full copyright notice.
+
+EEXXAAMMPPLLEESS
+       To create _t_p_a_s_s_w_d_._c_o_n_f which holds the g and n values for SRP protocol
+       (generator and a large prime), run:
+           $ srptool --create-conf /etc/tpasswd.conf
+
+       This command will create _/_e_t_c_/_t_p_a_s_s_w_d and will add user 'test' (you
+       will also be prompted for a password). Verifiers are stored by default
+       in the way libsrp expects.
+           $ srptool --passwd /etc/tpasswd --passwd-conf /etc/tpasswd.conf -u test
+
+
+       This command will check against a password. If the password matches the
+       one in _/_e_t_c_/_t_p_a_s_s_w_d you will get an ok.
+           $ srptool --passwd /etc/tpasswd --passwd-conf /etc/tpasswd.conf --verify -u test
+
+EEXXIITT SSTTAATTUUSS
+       One of the following exit values will be returned:
+
+       0  (EXIT_SUCCESS)
+              Successful program execution.
+
+       1  (EXIT_FAILURE)
+              The operation failed or the command syntax was not valid.
+
+       70  (EX_SOFTWARE)
+              libopts had an internal operational error.  Please report it to
+              autogen-users@lists.sourceforge.net.  Thank you.
+
+SSEEEE AALLSSOO
+           gnutls-cli-debug (1), gnutls-serv (1), srptool (1), psktool (1),
+       certtool (1)
+
+AAUUTTHHOORRSS
+       Nikos Mavrogiannopoulos, Simon Josefsson and others; see
+       /usr/share/doc/gnutls/AUTHORS for a complete list.
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2000-2014 Free Software Foundation, and others all rights
+       reserved.  This program is released under the terms of the GNU General
+       Public License, version 3 or later.
+
+BBUUGGSS
+       Please send bug reports to: bugs@gnutls.org
+
+NNOOTTEESS
+       This manual page was _A_u_t_o_G_e_n-erated from the ssrrppttooooll option defini-
+       tions.
+
+
+
+3.3.11                            11 Dec 2014                       srptool(1)

@@ -1,0 +1,46 @@
+gnutls_openpgp_send_cert(3)         gnutls         gnutls_openpgp_send_cert(3)
+
+
+
+NNAAMMEE
+       gnutls_openpgp_send_cert - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       vvooiidd         ggnnuuttllss__ooppeennppggpp__sseenndd__cceerrtt((ggnnuuttllss__sseessssiioonn__tt         _s_e_s_s_i_o_n,,
+       ggnnuuttllss__ooppeennppggpp__ccrrtt__ssttaattuuss__tt _s_t_a_t_u_s));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a pointer to a ggnnuuttllss__sseessssiioonn__tt structure.
+
+       gnutls_openpgp_crt_status_t status
+                   is one of GNUTLS_OPENPGP_CERT, or  GNUTLS_OPENPGP_CERT_FIN-
+                   GERPRINT
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function will order gnutls to send the key fingerprint instead of
+       the key in the initial handshake procedure. This should  be  used  with
+       care and only when there is indication or knowledge that the server can
+       obtain the client's key.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10         gnutls_openpgp_send_cert(3)

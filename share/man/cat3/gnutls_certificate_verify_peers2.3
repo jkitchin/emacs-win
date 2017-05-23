@@ -1,0 +1,64 @@
+gnutls_certificate_verify_peers2(3) gnutls gnutls_certificate_verify_peers2(3)
+
+
+
+NNAAMMEE
+       gnutls_certificate_verify_peers2 - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       iinntt ggnnuuttllss__cceerrttiiffiiccaattee__vveerriiffyy__ppeeeerrss22((ggnnuuttllss__sseessssiioonn__tt _s_e_s_s_i_o_n,, uunnssiiggnneedd
+       iinntt ** _s_t_a_t_u_s));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a gnutls session
+
+       unsigned int * status
+                   is the output of the verification
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will verify the peer's certificate and store  the  status
+       in  the   _s_t_a_t_u_s variable as a bitwise or'd gnutls_certificate_status_t
+       values or zero if the certificate is trusted. Note that value in   _s_t_a_-
+       _t_u_s is set only when the return value of this function is success (i.e,
+       failure to trust a certificate does not imply a negative return value).
+       The  default verification flags used by this function can be overridden
+       using ggnnuuttllss__cceerrttiiffiiccaattee__sseett__vveerriiffyy__ffllaaggss(()).
+
+       This function will take into account the OCSP  Certificate  Status  TLS
+       extension,  as well as the following X.509 certificate extensions: Name
+       Constraints, Key Usage, and Basic Constraints (pathlen).
+
+       To avoid denial of service attacks some default upper limits  regarding
+       the  certificate  key size and chain size are set. To override them use
+       ggnnuuttllss__cceerrttiiffiiccaattee__sseett__vveerriiffyy__lliimmiittss(()).
+
+       Note that you must also check the peer's name in order to check if  the
+       verified    certificate    belongs    to    the    actual   peer,   see
+       ggnnuuttllss__xx550099__ccrrtt__cchheecckk__hhoossttnnaammee(()),   or   use    ggnnuuttllss__cceerrttiiffiiccaattee__vveerr--
+       iiffyy__ppeeeerrss33(()).
+
+RREETTUURRNNSS
+       a negative error code on error and GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0) on success.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10 gnutls_certificate_verify_peers2(3)

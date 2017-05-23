@@ -1,0 +1,59 @@
+gnutls_range_split(3)               gnutls               gnutls_range_split(3)
+
+
+
+NNAAMMEE
+       gnutls_range_split - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       iinntt  ggnnuuttllss__rraannggee__sspplliitt((ggnnuuttllss__sseessssiioonn__tt _s_e_s_s_i_o_n,, ccoonnsstt ggnnuuttllss__rraannggee__sstt
+       ** _o_r_i_g,, ggnnuuttllss__rraannggee__sstt ** _n_e_x_t,, ggnnuuttllss__rraannggee__sstt ** _r_e_m_a_i_n_d_e_r));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a ggnnuuttllss__sseessssiioonn__tt structure
+
+       const gnutls_range_st * orig
+                   is the original range provided by the user
+
+       gnutls_range_st * next
+                   is the returned range that can be conveyed in a TLS record
+
+       gnutls_range_st * remainder
+                   is the returned remaining range
+
+DDEESSCCRRIIPPTTIIOONN
+       This function should be used when it is required to hide the length  of
+       very    long    data    that    cannot    be   directly   provided   to
+       ggnnuuttllss__rreeccoorrdd__sseenndd__rraannggee(()).  In  that  case  this  function  should  be
+       called  with  the  desired  length hiding range in  _o_r_i_g . The returned
+       _n_e_x_t   value   should   then   be   used   in   the   next   call    to
+       ggnnuuttllss__rreeccoorrdd__sseenndd__rraannggee(())  with the partial data.  That process should
+       be repeated until  _r_e_m_a_i_n_d_e_r is (0,0).
+
+RREETTUURRNNSS
+       0 in case splitting succeeds, non zero in case  of  error.   Note  that
+       _o_r_i_g is not changed, while the values of  _n_e_x_t and  _r_e_m_a_i_n_d_e_r are modi-
+       fied to store the resulting values.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10               gnutls_range_split(3)

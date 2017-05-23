@@ -1,0 +1,62 @@
+gnutls_handshake_set_post_cligennutt_lhse_lhlgaonn_udftsulhnsacktei_osne(t3_)post_client_hello_function(3)
+
+
+
+NNAAMMEE
+       gnutls_handshake_set_post_client_hello_function - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       vvooiidd   ggnnuuttllss__hhaannddsshhaakkee__sseett__ppoosstt__cclliieenntt__hheelllloo__ffuunnccttiioonn((ggnnuuttllss__sseessssiioonn__tt
+       _s_e_s_s_i_o_n,, ggnnuuttllss__hhaannddsshhaakkee__ppoosstt__cclliieenntt__hheelllloo__ffuunncc       _f_u_n_c));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_session_t session
+                   is a ggnnuuttllss__sseessssiioonn__tt structure.
+
+       gnutls_handshake_post_client_hello_func       func
+                   is the function to be called
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will set a callback to be called after the  client  hello
+       has been received (callback valid in server side only). This allows the
+       server to adjust settings based on received extensions.
+
+       Those settings could be ciphersuites, requesting certificate,  or  any-
+       thing  else  except  for  version  negotiation (this is done before the
+       hello message is parsed).
+
+       This callback must return 0 on success or a gnutls error code to termi-
+       nate the handshake.
+
+       Since  GnuTLS 3.3.5 the callback is allowed to return GGNNUUTTLLSS__EE__AAGGAAIINN or
+       GGNNUUTTLLSS__EE__IINNTTEERRRRUUPPTTEEDD to  put  the  handshake  on  hold.  In  that  case
+       ggnnuuttllss__hhaannddsshhaakkee(())  will return GGNNUUTTLLSS__EE__IINNTTEERRRRUUPPTTEEDD and can be resumed
+       when needed.
+
+WWAARRNNIINNGG
+       You should not use this function to terminate the  handshake  based  on
+       client  input  unless you know what you are doing. Before the handshake
+       is finished there is no way to know if  there  is  a  man-in-the-middle
+       attack being performed.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                      gnutls_h3a.n3d.s1h0ake_set_post_client_hello_function(3)

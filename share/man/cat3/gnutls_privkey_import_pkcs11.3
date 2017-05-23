@@ -1,0 +1,59 @@
+gnutls_privkey_import_pkcs11(3)     gnutls     gnutls_privkey_import_pkcs11(3)
+
+
+
+NNAAMMEE
+       gnutls_privkey_import_pkcs11 - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//aabbssttrraacctt..hh>>
+
+       iinntt         ggnnuuttllss__pprriivvkkeeyy__iimmppoorrtt__ppkkccss1111((ggnnuuttllss__pprriivvkkeeyy__tt         _p_k_e_y,,
+       ggnnuuttllss__ppkkccss1111__pprriivvkkeeyy__tt _k_e_y,, uunnssiiggnneedd iinntt _f_l_a_g_s));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_privkey_t pkey
+                   The private key
+
+       gnutls_pkcs11_privkey_t key
+                   The private key to be imported
+
+       unsigned int flags
+                   Flags for the import
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will  import  the  given  private  key  to  the  abstract
+       ggnnuuttllss__pprriivvkkeeyy__tt structure.
+
+       The  ggnnuuttllss__ppkkccss1111__pprriivvkkeeyy__tt  object must not be deallocated during the
+       lifetime of this structure.
+
+        _f_l_a_g_s might be zero or one of  GGNNUUTTLLSS__PPRRIIVVKKEEYY__IIMMPPOORRTT__AAUUTTOO__RREELLEEAASSEE  and
+       GGNNUUTTLLSS__PPRRIIVVKKEEYY__IIMMPPOORRTT__CCOOPPYY.
+
+RREETTUURRNNSS
+       On  success,  GGNNUUTTLLSS__EE__SSUUCCCCEESSSS  (0)  is  returned, otherwise a negative
+       error value.
+
+SSIINNCCEE
+       2.12.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10     gnutls_privkey_import_pkcs11(3)

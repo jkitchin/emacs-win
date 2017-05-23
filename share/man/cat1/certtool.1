@@ -1,0 +1,665 @@
+certtool(1)                      User Commands                     certtool(1)
+
+
+
+NNAAMMEE
+       cceerrttttooooll - GnuTLS certificate tool
+
+SSYYNNOOPPSSIISS
+       cceerrttttooooll [--ffllaaggss] [--ffllaagg [_v_a_l_u_e]] [----ooppttiioonn--nnaammee[[=| ]_v_a_l_u_e]]
+
+       All arguments must be options.
+
+
+DDEESSCCRRIIPPTTIIOONN
+       Tool  to  parse  and  generate X.509 certificates, requests and private
+       keys.  It can be used interactively or non interactively by  specifying
+       the template command line option.
+
+       The  tool  accepts  files  or  URLs supported by GnuTLS. In case PIN is
+       required for the URL access you can provide it  using  the  environment
+       variables GNUTLS_PIN and GNUTLS_SO_PIN.
+
+
+OOPPTTIIOONNSS
+       --dd _n_u_m_b_e_r, ----ddeebbuugg=_n_u_m_b_e_r
+              Enable  debugging.   This  option takes an integer number as its
+              argument.  The value of _n_u_m_b_e_r is constrained to being:
+                  in the range  0 through 9999
+
+              Specifies the debug level.
+
+       --VV, ----vveerrbboossee
+              More verbose output.  This option may appear an unlimited number
+              of times.
+
+
+       ----iinnffiillee=_f_i_l_e
+              Input file.
+
+
+       ----oouuttffiillee=_s_t_r_i_n_g
+              Output file.
+
+
+       --ss, ----ggeenneerraattee--sseellff--ssiiggnneedd
+              Generate a self-signed certificate.
+
+
+       --cc, ----ggeenneerraattee--cceerrttiiffiiccaattee
+              Generate a signed certificate.
+
+
+       ----ggeenneerraattee--pprrooxxyy
+              Generates a proxy certificate.
+
+
+       ----ggeenneerraattee--ccrrll
+              Generate a CRL.
+
+
+       --uu, ----uuppddaattee--cceerrttiiffiiccaattee
+              Update a signed certificate.
+
+
+       --pp, ----ggeenneerraattee--pprriivvkkeeyy
+              Generate a private key.
+
+
+       --qq, ----ggeenneerraattee--rreeqquueesstt
+              Generate a PKCS #10 certificate request.  This option must not
+              appear in combination with any of the following options: infile.
+
+              Will generate a PKCS #10 certificate request. To specify a pri-
+              vate key use --load-privkey.
+
+       --ee, ----vveerriiffyy--cchhaaiinn
+              Verify a PEM encoded certificate chain.
+
+              The last certificate in the chain must be a self signed one.
+
+       ----vveerriiffyy
+              Verify a PEM encoded certificate chain using a trusted list.
+
+              The trusted certificate list can be loaded with --load-ca-cer-
+              tificate. If no certificate list is provided, then the system's
+              certificate list is used.
+
+       ----vveerriiffyy--ccrrll
+              Verify a CRL using a trusted list.  This option must appear in
+              combination with the following options: load-ca-certificate.
+
+              The trusted certificate list must be loaded with --load-ca-cer-
+              tificate.
+
+       ----ggeenneerraattee--ddhh--ppaarraammss
+              Generate PKCS #3 encoded Diffie-Hellman parameters.
+
+
+       ----ggeett--ddhh--ppaarraammss
+              Get the included PKCS #3 encoded Diffie-Hellman parameters.
+
+              Returns stored DH parameters in GnuTLS. Those parameters are
+              used in the SRP protocol. The parameters returned by fresh gen-
+              eration are more efficient since GnuTLS 3.0.9.
+
+       ----ddhh--iinnffoo
+              Print information PKCS #3 encoded Diffie-Hellman parameters.
+
+
+       ----llooaadd--pprriivvkkeeyy=_s_t_r_i_n_g
+              Loads a private key file.
+
+              This can be either a file or a PKCS #11 URL
+
+       ----llooaadd--ppuubbkkeeyy=_s_t_r_i_n_g
+              Loads a public key file.
+
+              This can be either a file or a PKCS #11 URL
+
+       ----llooaadd--rreeqquueesstt=_s_t_r_i_n_g
+              Loads a certificate request file.
+
+
+       ----llooaadd--cceerrttiiffiiccaattee=_s_t_r_i_n_g
+              Loads a certificate file.
+
+              This can be either a file or a PKCS #11 URL
+
+       ----llooaadd--ccaa--pprriivvkkeeyy=_s_t_r_i_n_g
+              Loads the certificate authority's private key file.
+
+              This can be either a file or a PKCS #11 URL
+
+       ----llooaadd--ccaa--cceerrttiiffiiccaattee=_s_t_r_i_n_g
+              Loads the certificate authority's certificate file.
+
+              This can be either a file or a PKCS #11 URL
+
+       ----ppaasssswwoorrdd=_s_t_r_i_n_g
+              Password to use.
+
+              You can use this option to specify the password in the command
+              line instead of reading it from the tty. Note, that the command
+              line arguments are available for view in others in the system.
+              Specifying password as '' is the same as specifying no password.
+
+       ----nnuullll--ppaasssswwoorrdd
+              Enforce a NULL password.
+
+              This option enforces a NULL password. This is different than the
+              empty or no password in schemas like PKCS #8.
+
+       ----eemmppttyy--ppaasssswwoorrdd
+              Enforce an empty password.
+
+              This option enforces an empty password. This is different than
+              the NULL or no password in schemas like PKCS #8.
+
+       ----hheexx--nnuummbbeerrss
+              Print big number in an easier format to parse.
+
+
+       ----ccpprriinntt
+              In certain operations it prints the information in C-friendly
+              format.
+
+              In certain operations it prints the information in C-friendly
+              format, suitable for including into C programs.
+
+       --ii, ----cceerrttiiffiiccaattee--iinnffoo
+              Print information on the given certificate.
+
+
+       ----cceerrttiiffiiccaattee--ppuubbkkeeyy
+              Print certificate's public key.
+
+
+       ----ppggpp--cceerrttiiffiiccaattee--iinnffoo
+              Print information on the given OpenPGP certificate.
+
+
+       ----ppggpp--rriinngg--iinnffoo
+              Print information on the given OpenPGP keyring structure.
+
+
+       --ll, ----ccrrll--iinnffoo
+              Print information on the given CRL structure.
+
+
+       ----ccrrqq--iinnffoo
+              Print information on the given certificate request.
+
+
+       ----nnoo--ccrrqq--eexxtteennssiioonnss
+              Do not use extensions in certificate requests.
+
+
+       ----pp1122--iinnffoo
+              Print information on a PKCS #12 structure.
+
+
+       ----pp1122--nnaammee=_s_t_r_i_n_g
+              The PKCS #12 friendly name to use.
+
+              The name to be used for the primary certificate and private key
+              in a PKCS #12 file.
+
+       ----pp77--iinnffoo
+              Print information on a PKCS #7 structure.
+
+
+       ----ssmmiimmee--ttoo--pp77
+              Convert S/MIME to PKCS #7 structure.
+
+
+       --kk, ----kkeeyy--iinnffoo
+              Print information on a private key.
+
+
+       ----ppggpp--kkeeyy--iinnffoo
+              Print information on an OpenPGP private key.
+
+
+       ----ppuubbkkeeyy--iinnffoo
+              Print information on a public key.
+
+              The option combined with --load-request, --load-pubkey, --load-
+              privkey and --load-certificate will extract the public key of
+              the object in question.
+
+       ----vv11   Generate an X.509 version 1 certificate (with no extensions).
+
+
+       ----ttoo--pp1122
+              Generate a PKCS #12 structure.  This option must appear in com-
+              bination with the following options: load-certificate.
+
+              It requires a certificate, a private key and possibly a CA cer-
+              tificate to be specified.
+
+       ----ttoo--pp88
+              Generate a PKCS #8 structure.
+
+
+       --88, ----ppkkccss88
+              Use PKCS #8 format for private keys.
+
+
+       ----rrssaa  Generate RSA key.
+
+              When combined with --generate-privkey generates an RSA private
+              key.
+
+       ----ddssaa  Generate DSA key.
+
+              When combined with --generate-privkey generates a DSA private
+              key.
+
+       ----eecccc  Generate ECC (ECDSA) key.
+
+              When combined with --generate-privkey generates an elliptic
+              curve private key to be used with ECDSA.
+
+       ----eeccddssaa
+              This is an alias for the _-_-_e_c_c option.
+
+       ----hhaasshh=_s_t_r_i_n_g
+              Hash algorithm to use for signing.
+
+              Available hash functions are SHA1, RMD160, SHA256, SHA384,
+              SHA512.
+
+       ----iinnddeerr, -- FFll --nnoo--iinnddeerr
+              Use DER format for input certificates, private keys, and DH
+              parameters .  The _n_o_-_i_n_d_e_r form will disable the option.
+
+              The input files will be assumed to be in DER or RAW format.
+              Unlike options that in PEM input would allow multiple input data
+              (e.g. multiple certificates), when reading in DER format a sin-
+              gle data structure is read.
+
+       ----iinnrraaww
+              This is an alias for the _-_-_i_n_d_e_r option.
+
+       ----oouuttddeerr, -- FFll --nnoo--oouuttddeerr
+              Use DER format for output certificates, private keys, and DH
+              parameters.  The _n_o_-_o_u_t_d_e_r form will disable the option.
+
+              The output will be in DER or RAW format.
+
+       ----oouuttrraaww
+              This is an alias for the _-_-_o_u_t_d_e_r option.
+
+       ----bbiittss=_n_u_m_b_e_r
+              Specify the number of bits for key generate.  This option takes
+              an integer number as its argument.
+
+
+       ----ccuurrvvee=_s_t_r_i_n_g
+              Specify the curve used for EC key generation.
+
+
+       ----sseecc--ppaarraamm=_s_e_c_u_r_i_t_y _p_a_r_a_m_e_t_e_r
+              Specify the security level [low, legacy, medium, high, ultra].
+
+              This is alternative to the bits option.
+
+       ----ddiissaabbllee--qquuiicckk--rraannddoomm
+              No effect.
+
+
+       ----tteemmppllaattee=_s_t_r_i_n_g
+              Template file to use for non-interactive operation.
+
+
+       ----ssttddoouutt--iinnffoo
+              Print information to stdout instead of stderr.
+
+
+       ----aasskk--ppaassss
+              Enable interaction for entering password when in batch mode..
+
+              This option will enable interaction to enter password when in
+              batch mode. That is useful when the template option has been
+              specified.
+
+       ----ppkkccss--cciipphheerr=_c_i_p_h_e_r
+              Cipher to use for PKCS #8 and #12 operations.
+
+              Cipher may be one of 3des, 3des-pkcs12, aes-128, aes-192,
+              aes-256, rc2-40, arcfour.
+
+       ----pprroovviiddeerr=_s_t_r_i_n_g
+              Specify the PKCS #11 provider library.
+
+              This will override the default options in
+              /etc/gnutls/pkcs11.conf
+
+       --hh, ----hheellpp
+              Display usage information and exit.
+
+       --!!, ----mmoorree--hheellpp
+              Pass the extended usage information through a pager.
+
+       --vv [{_v_|_c_|_n ----vveerrssiioonn [{_v_|_c_|_n}]}]
+              Output version of program and exit.  The default mode is `v', a
+              simple version.  The `c' mode will print copyright information
+              and `n' will print the full copyright notice.
+
+FFIILLEESS
+       CCeerrttttooooll''ss tteemmppllaattee ffiillee ffoorrmmaatt
+       A template file can be used to avoid the interactive questions of cert-
+       tool. Initially create a file named 'cert.cfg' that contains the infor-
+       mation about the certificate. The template can be used as below:
+
+           $ certtool --generate-certificate --load-privkey key.pem     --template cert.cfg --outfile cert.pem    --load-ca-certificate ca-cert.pem --load-ca-privkey ca-key.pem
+
+       An example certtool template file that can be used to generate a cer-
+       tificate request or a self signed certificate follows.
+
+           # X.509 Certificate options
+           #
+           # DN options
+
+           # The organization of the subject.
+           organization = "Koko inc."
+
+           # The organizational unit of the subject.
+           unit = "sleeping dept."
+
+           # The locality of the subject.
+           # locality =
+
+           # The state of the certificate owner.
+           state = "Attiki"
+
+           # The country of the subject. Two letter code.
+           country = GR
+
+           # The common name of the certificate owner.
+           cn = "Cindy Lauper"
+
+           # A user id of the certificate owner.
+           #uid = "clauper"
+
+           # Set domain components
+           #dc = "name"
+           #dc = "domain"
+
+           # If the supported DN OIDs are not adequate you can set
+           # any OID here.
+           # For example set the X.520 Title and the X.520 Pseudonym
+           # by using OID and string pairs.
+           #dn_oid = 2.5.4.12 Dr.
+           #dn_oid = 2.5.4.65 jackal
+
+           # This is deprecated and should not be used in new
+           # certificates.
+           # pkcs9_email = "none@none.org"
+
+           # An alternative way to set the certificate's distinguished name directly
+           # is with the "dn" option. The attribute names allowed are:
+           # C (country), street, O (organization), OU (unit), title, CN (common name),
+           # L (locality), ST (state), placeOfBirth, gender, countryOfCitizenship,
+           # countryOfResidence, serialNumber, telephoneNumber, surName, initials,
+           # generationQualifier, givenName, pseudonym, dnQualifier, postalCode, name,
+           # businessCategory, DC, UID, jurisdictionOfIncorporationLocalityName,
+           # jurisdictionOfIncorporationStateOrProvinceName,
+           # jurisdictionOfIncorporationCountryName, XmppAddr, and numeric OIDs.
+
+           #dn = "cn=Nik,st=Attiki,C=GR,surName=Mavrogiannopoulos,2.5.4.9=Arkadias"
+
+           # The serial number of the certificate
+           # Comment the field for a time-based serial number.
+           serial = 007
+
+           # In how many days, counting from today, this certificate will expire.
+           # Use -1 if there is no expiration date.
+           expiration_days = 700
+
+           # Alternatively you may set concrete dates and time. The GNU date string
+           # formats are accepted. See:
+           # http://www.gnu.org/software/tar/manual/html_node/Date-input-formats.html
+
+           #activation_date = "2004-02-29 16:21:42"
+           #expiration_date = "2025-02-29 16:24:41"
+
+           # X.509 v3 extensions
+
+           # A dnsname in case of a WWW server.
+           #dns_name = "www.none.org"
+           #dns_name = "www.morethanone.org"
+
+           # A subject alternative name URI
+           #uri = "http://www.example.com"
+
+           # An IP address in case of a server.
+           #ip_address = "192.168.1.1"
+
+           # An email in case of a person
+           email = "none@none.org"
+
+           # Challenge password used in certificate requests
+           challenge_password = 123456
+
+           # Password when encrypting a private key
+           #password = secret
+
+           # An URL that has CRLs (certificate revocation lists)
+           # available. Needed in CA certificates.
+           #crl_dist_points = "http://www.getcrl.crl/getcrl/"
+
+           # Whether this is a CA certificate or not
+           #ca
+
+           # for microsoft smart card logon
+           # key_purpose_oid = 1.3.6.1.4.1.311.20.2.2
+
+           ### Other predefined key purpose OIDs
+
+           # Whether this certificate will be used for a TLS client
+           #tls_www_client
+
+           # Whether this certificate will be used for a TLS server
+           #tls_www_server
+
+           # Whether this certificate will be used to sign data (needed
+           # in TLS DHE ciphersuites).
+           signing_key
+
+           # Whether this certificate will be used to encrypt data (needed
+           # in TLS RSA ciphersuites). Note that it is preferred to use different
+           # keys for encryption and signing.
+           encryption_key
+
+           # Whether this key will be used to sign other certificates.
+           #cert_signing_key
+
+           # Whether this key will be used to sign CRLs.
+           #crl_signing_key
+
+           # Whether this key will be used to sign code.
+           #code_signing_key
+
+           # Whether this key will be used to sign OCSP data.
+           #ocsp_signing_key
+
+           # Whether this key will be used for time stamping.
+           #time_stamping_key
+
+           # Whether this key will be used for IPsec IKE operations.
+           #ipsec_ike_key
+
+           ### end of key purpose OIDs
+
+           # When generating a certificate from a certificate
+           # request, then honor the extensions stored in the request
+           # and store them in the real certificate.
+           #honor_crq_extensions
+
+           # Path length contraint. Sets the maximum number of
+           # certificates that can be used to certify this certificate.
+           # (i.e. the certificate chain length)
+           #path_len = -1
+           #path_len = 2
+
+           # OCSP URI
+           # ocsp_uri = http://my.ocsp.server/ocsp
+
+           # CA issuers URI
+           # ca_issuers_uri = http://my.ca.issuer
+
+           # Certificate policies
+           #policy1 = 1.3.6.1.4.1.5484.1.10.99.1.0
+           #policy1_txt = "This is a long policy to summarize"
+           #policy1_url = http://www.example.com/a-policy-to-read
+
+           #policy2 = 1.3.6.1.4.1.5484.1.10.99.1.1
+           #policy2_txt = "This is a short policy"
+           #policy2_url = http://www.example.com/another-policy-to-read
+
+           # Name constraints
+
+           # DNS
+           #nc_permit_dns = example.com
+           #nc_exclude_dns = test.example.com
+
+           # EMAIL
+           #nc_permit_email = "nmav@ex.net"
+
+           # Exclude subdomains of example.com
+           #nc_exclude_email = .example.com
+
+           # Exclude all e-mail addresses of example.com
+           #nc_exclude_email = example.com
+
+
+           # Options for proxy certificates
+           #proxy_policy_language = 1.3.6.1.5.5.7.21.1
+
+
+           # Options for generating a CRL
+
+           # The number of days the next CRL update will be due.
+           # next CRL update will be in 43 days
+           #crl_next_update = 43
+
+           # this is the 5th CRL by this CA
+           # Comment the field for a time-based number.
+           #crl_number = 5
+
+
+
+EEXXAAMMPPLLEESS
+       GGeenneerraattiinngg pprriivvaattee kkeeyyss
+       To create an RSA private key, run:
+           $ certtool --generate-privkey --outfile key.pem --rsa
+
+       To create a DSA or elliptic curves (ECDSA) private key use the above
+       command combined with 'dsa' or 'ecc' options.
+
+       GGeenneerraattiinngg cceerrttiiffiiccaattee rreeqquueessttss
+       To create a certificate request (needed when the certificate is  issued
+       by another party), run:
+           certtool --generate-request --load-privkey key.pem    --outfile request.pem
+
+       If the private key is stored in a smart card you can generate a request
+       by specifying the private key object URL.
+           $ ./certtool --generate-request --load-privkey "pkcs11:..."   --load-pubkey "pkcs11:..." --outfile request.pem
+
+
+       GGeenneerraattiinngg aa sseellff--ssiiggnneedd cceerrttiiffiiccaattee
+       To create a self signed certificate, use the command:
+           $ certtool --generate-privkey --outfile ca-key.pem
+           $ certtool --generate-self-signed --load-privkey ca-key.pem    --outfile ca-cert.pem
+
+       Note that a self-signed certificate usually belongs to a certificate
+       authority, that signs other certificates.
+
+       GGeenneerraattiinngg aa cceerrttiiffiiccaattee
+       To generate a certificate using the previous request, use the command:
+           $ certtool --generate-certificate --load-request request.pem    --outfile cert.pem --load-ca-certificate ca-cert.pem    --load-ca-privkey ca-key.pem
+
+       To generate a certificate using the private key only, use the command:
+           $ certtool --generate-certificate --load-privkey key.pem    --outfile cert.pem --load-ca-certificate ca-cert.pem    --load-ca-privkey ca-key.pem
+
+       CCeerrttiiffiiccaattee iinnffoorrmmaattiioonn
+       To view the certificate information, use:
+           $ certtool --certificate-info --infile cert.pem
+
+       PPKKCCSS ##1122 ssttrruuccttuurree ggeenneerraattiioonn
+       To generate a PKCS #12 structure using the previous key and certifi-
+       cate, use the command:
+           $ certtool --load-certificate cert.pem --load-privkey key.pem    --to-p12 --outder --outfile key.p12
+
+       Some tools (reportedly web browsers) have problems with that file
+       because it does not contain the CA certificate for the certificate.  To
+       work around that problem in the tool, you can use the --load-ca-cer-
+       tificate parameter as follows:
+
+           $ certtool --load-ca-certificate ca.pem   --load-certificate cert.pem --load-privkey key.pem   --to-p12 --outder --outfile key.p12
+
+       DDiiffffiiee--HHeellllmmaann ppaarraammeetteerr ggeenneerraattiioonn
+       To generate parameters for Diffie-Hellman key exchange, use the com-
+       mand:
+           $ certtool --generate-dh-params --outfile dh.pem --sec-param medium
+
+       PPrrooxxyy cceerrttiiffiiccaattee ggeenneerraattiioonn
+       Proxy certificate can be used to delegate your credential to a tempo-
+       rary, typically short-lived, certificate.  To create one from the pre-
+       viously created certificate, first create a temporary key and then gen-
+       erate a proxy certificate for it, using the commands:
+
+           $ certtool --generate-privkey > proxy-key.pem
+           $ certtool --generate-proxy --load-ca-privkey key.pem   --load-privkey proxy-key.pem --load-certificate cert.pem   --outfile proxy-cert.pem
+
+       CCeerrttiiffiiccaattee rreevvooccaattiioonn lliisstt ggeenneerraattiioonn
+       To create an empty Certificate Revocation List (CRL) do:
+
+           $ certtool --generate-crl --load-ca-privkey x509-ca-key.pem            --load-ca-certificate x509-ca.pem
+
+       To create a CRL that contains some revoked certificates, place the cer-
+       tificates in a file and use ----llooaadd--cceerrttiiffiiccaattee as follows:
+
+           $ certtool --generate-crl --load-ca-privkey x509-ca-key.pem   --load-ca-certificate x509-ca.pem --load-certificate revoked-certs.pem
+
+       To verify a Certificate Revocation List (CRL) do:
+
+           $ certtool --verify-crl --load-ca-certificate x509-ca.pem < crl.pem
+
+EEXXIITT SSTTAATTUUSS
+       One of the following exit values will be returned:
+
+       0  (EXIT_SUCCESS)
+              Successful program execution.
+
+       1  (EXIT_FAILURE)
+              The operation failed or the command syntax was not valid.
+
+       70  (EX_SOFTWARE)
+              libopts had an internal operational error.  Please report it to
+              autogen-users@lists.sourceforge.net.  Thank you.
+
+SSEEEE AALLSSOO
+           p11tool (1)
+
+AAUUTTHHOORRSS
+       Nikos Mavrogiannopoulos, Simon Josefsson and others; see
+       /usr/share/doc/gnutls/AUTHORS for a complete list.
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2000-2014 Free Software Foundation, and others all rights
+       reserved.  This program is released under the terms of the GNU General
+       Public License, version 3 or later.
+
+BBUUGGSS
+       Please send bug reports to: bugs@gnutls.org
+
+NNOOTTEESS
+       This manual page was _A_u_t_o_G_e_n-erated from the cceerrttttooooll option defini-
+       tions.
+
+
+
+3.3.11                            11 Dec 2014                      certtool(1)

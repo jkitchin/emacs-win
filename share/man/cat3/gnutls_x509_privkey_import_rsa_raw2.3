@@ -1,0 +1,72 @@
+gnutls_x509_privkey_import_rsa_raw2(3g)nutlgsnutls_x509_privkey_import_rsa_raw2(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_privkey_import_rsa_raw2 - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt    ggnnuuttllss__xx550099__pprriivvkkeeyy__iimmppoorrtt__rrssaa__rraaww22((ggnnuuttllss__xx550099__pprriivvkkeeyy__tt   _k_e_y,,
+       ccoonnsstt  ggnnuuttllss__ddaattuumm__tt  **   _m,,   ccoonnsstt   ggnnuuttllss__ddaattuumm__tt   **   _e,,   ccoonnsstt
+       ggnnuuttllss__ddaattuumm__tt ** _d,, ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _p,, ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _q,,
+       ccoonnsstt  ggnnuuttllss__ddaattuumm__tt  **  _u,,   ccoonnsstt   ggnnuuttllss__ddaattuumm__tt   **   _e_1,,   ccoonnsstt
+       ggnnuuttllss__ddaattuumm__tt ** _e_2));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_privkey_t key
+                   The structure to store the parsed key
+
+       const gnutls_datum_t * m
+                   holds the modulus
+
+       const gnutls_datum_t * e
+                   holds the public exponent
+
+       const gnutls_datum_t * d
+                   holds the private exponent
+
+       const gnutls_datum_t * p
+                   holds the first prime (p)
+
+       const gnutls_datum_t * q
+                   holds the second prime (q)
+
+       const gnutls_datum_t * u
+                   holds the coefficient (optional)
+
+       const gnutls_datum_t * e1
+                   holds e1 = d mod (p-1) (optional)
+
+       const gnutls_datum_t * e2
+                   holds e2 = d mod (q-1) (optional)
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function  will convert the given RSA raw parameters to the native
+       ggnnuuttllss__xx550099__pprriivvkkeeyy__tt format.  The output will be stored in
+        _k_e_y .
+
+RREETTUURRNNSS
+       On success, GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0)  is  returned,  otherwise  a  negative
+       error value.
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.1g0nutls_x509_privkey_import_rsa_raw2(3)

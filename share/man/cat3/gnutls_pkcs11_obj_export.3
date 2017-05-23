@@ -1,0 +1,59 @@
+gnutls_pkcs11_obj_export(3)         gnutls         gnutls_pkcs11_obj_export(3)
+
+
+
+NNAAMMEE
+       gnutls_pkcs11_obj_export - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ppkkccss1111..hh>>
+
+       iinntt   ggnnuuttllss__ppkkccss1111__oobbjj__eexxppoorrtt((ggnnuuttllss__ppkkccss1111__oobbjj__tt  _o_b_j,,  vvooiidd  **  _o_u_t_-
+       _p_u_t___d_a_t_a,, ssiizzee__tt ** _o_u_t_p_u_t___d_a_t_a___s_i_z_e));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_pkcs11_obj_t obj
+                   Holds the object
+
+       void * output_data
+                   will contain the object data
+
+       size_t * output_data_size
+                   holds the size of output_data (and will be replaced by  the
+                   actual size of parameters)
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function  will  export  the PKCS11 object data.  It is normal for
+       data to be inaccesible and in that case  GGNNUUTTLLSS__EE__IINNVVAALLIIDD__RREEQQUUEESSTT  will
+       be returned.
+
+       If  the  buffer  provided  is  not long enough to hold the output, then
+       *output_data_size is updated and GNUTLS_E_SHORT_MEMORY_BUFFER  will  be
+       returned.
+
+RREETTUURRNNSS
+       In  case  of  failure  a  negative  error  code  will  be returned, and
+       GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0) on success.
+
+SSIINNCCEE
+       2.12.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10         gnutls_pkcs11_obj_export(3)

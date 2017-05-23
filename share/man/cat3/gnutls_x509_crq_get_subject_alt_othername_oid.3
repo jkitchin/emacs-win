@@ -1,0 +1,68 @@
+gnutls_x509_crq_get_subject_altg_noutthlesrg_nnxau5mt0el9_s_ocirdq(_3g)et_subject_alt_othername_oid(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_crq_get_subject_alt_othername_oid - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt     ggnnuuttllss__xx550099__ccrrqq__ggeett__ssuubbjjeecctt__aalltt__ootthheerrnnaammee__ooiidd((ggnnuuttllss__xx550099__ccrrqq__tt
+       _c_r_q,, uunnssiiggnneedd iinntt _s_e_q,, vvooiidd ** _r_e_t,, ssiizzee__tt ** _r_e_t___s_i_z_e));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_crq_t crq
+                   should contain a ggnnuuttllss__xx550099__ccrrqq__tt structure
+
+       unsigned int seq
+                   specifies the sequence number of the alt name  (0  for  the
+                   first one, 1 for the second etc.)
+
+       void * ret  is the place where the otherName OID will be copied to
+
+       size_t * ret_size
+                   holds the size of ret.
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function will extract the type OID of an otherName Subject Alter-
+       native Name, contained in the given certificate, and return the type as
+       an enumerated element.
+
+       This  function is only useful if ggnnuuttllss__xx550099__ccrrqq__ggeett__ssuubbjjeecctt__aalltt__nnaammee(())
+       returned GGNNUUTTLLSS__SSAANN__OOTTHHEERRNNAAMMEE.
+
+RREETTUURRNNSS
+       the alternative subject name type on success,  one  of  the  enumerated
+       gnutls_x509_subject_alt_name_t.  For supported OIDs, it will return one
+       of the virtual (GNUTLS_SAN_OTHERNAME_*) types,  e.g.  GGNNUUTTLLSS__SSAANN__OOTTHHEERR--
+       NNAAMMEE__XXMMPPPP,  and  GGNNUUTTLLSS__SSAANN__OOTTHHEERRNNAAMMEE for unknown OIDs.  It will return
+       GGNNUUTTLLSS__EE__SSHHOORRTT__MMEEMMOORRYY__BBUUFFFFEERR if
+        _r_e_t___s_i_z_e is not large enough to hold the value.  In that case
+        _r_e_t___s_i_z_e will be updated with the required size.  If  the  certificate
+       does  not  have  an Alternative name with the specified sequence number
+       and with the otherName type then  GGNNUUTTLLSS__EE__RREEQQUUEESSTTEEDD__DDAATTAA__NNOOTT__AAVVAAIILLAABBLLEE
+       is returned.
+
+SSIINNCCEE
+       2.8.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                        gnutls3_.x35.0190_crq_get_subject_alt_othername_oid(3)

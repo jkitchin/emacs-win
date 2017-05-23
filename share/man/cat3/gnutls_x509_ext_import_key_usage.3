@@ -1,0 +1,56 @@
+gnutls_x509_ext_import_key_usage(3) gnutls gnutls_x509_ext_import_key_usage(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_ext_import_key_usage - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099--eexxtt..hh>>
+
+       iinntt   ggnnuuttllss__xx550099__eexxtt__iimmppoorrtt__kkeeyy__uussaaggee((ccoonnsstt   ggnnuuttllss__ddaattuumm__tt   **  _e_x_t,,
+       uunnssiiggnneedd iinntt ** _k_e_y___u_s_a_g_e));;
+
+AARRGGUUMMEENNTTSS
+       const gnutls_datum_t * ext
+                   the DER encoded extension data
+
+       unsigned int * key_usage
+                   where the key usage bits will be stored
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will return certificate's key usage, by reading  the  DER
+       data  of  the keyUsage X.509 extension (2.5.29.15). The key usage value
+       will    ORed    values    of     the:     GGNNUUTTLLSS__KKEEYY__DDIIGGIITTAALL__SSIIGGNNAATTUURREE,
+       GGNNUUTTLLSS__KKEEYY__NNOONN__RREEPPUUDDIIAATTIIOONN,                GGNNUUTTLLSS__KKEEYY__KKEEYY__EENNCCIIPPHHEERRMMEENNTT,
+       GGNNUUTTLLSS__KKEEYY__DDAATTAA__EENNCCIIPPHHEERRMMEENNTT,                 GGNNUUTTLLSS__KKEEYY__KKEEYY__AAGGRREEEEMMEENNTT,
+       GGNNUUTTLLSS__KKEEYY__KKEEYY__CCEERRTT__SSIIGGNN,     GGNNUUTTLLSS__KKEEYY__CCRRLL__SSIIGGNN,     GGNNUUTTLLSS__KKEEYY__EENNCCII--
+       PPHHEERR__OONNLLYY, GGNNUUTTLLSS__KKEEYY__DDEECCIIPPHHEERR__OONNLLYY.
+
+RREETTUURRNNSS
+       the certificate key usage, or a negative error code in case of  parsing
+       error.   If  the  certificate  does  not contain the keyUsage extension
+       GGNNUUTTLLSS__EE__RREEQQUUEESSTTEEDD__DDAATTAA__NNOOTT__AAVVAAIILLAABBLLEE will be returned.
+
+SSIINNCCEE
+       3.3.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10 gnutls_x509_ext_import_key_usage(3)

@@ -1,0 +1,60 @@
+gnutls_certificate_get_crt_raw(3)   gnutls   gnutls_certificate_get_crt_raw(3)
+
+
+
+NNAAMMEE
+       gnutls_certificate_get_crt_raw - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ggnnuuttllss..hh>>
+
+       iinntt ggnnuuttllss__cceerrttiiffiiccaattee__ggeett__ccrrtt__rraaww((ggnnuuttllss__cceerrttiiffiiccaattee__ccrreeddeennttiiaallss__tt _s_c,,
+       uunnssiiggnneedd _i_d_x_1,, uunnssiiggnneedd _i_d_x_2,, ggnnuuttllss__ddaattuumm__tt ** _c_e_r_t));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_certificate_credentials_t sc
+                   is a ggnnuuttllss__cceerrttiiffiiccaattee__ccrreeddeennttiiaallss__tt structure.
+
+       unsigned idx1
+                   the index of the certificate if multiple are present
+
+       unsigned idx2
+                   the index in the certificate list. Zero gives the  server's
+                   certificate.
+
+       gnutls_datum_t * cert
+                   Will hold the DER encoded certificate.
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function will return the DER encoded certificate of the server or
+       any other certificate on its certificate chain (based on  _i_d_x_2 ).   The
+       returned  data should be treated as constant and only accessible during
+       the lifetime of  _s_c .
+
+RREETTUURRNNSS
+       On success, GGNNUUTTLLSS__EE__SSUUCCCCEESSSS (0)  is  returned,  otherwise  a  negative
+       error    value.    In    case   the   indexes   are   out   of   bounds
+       GGNNUUTTLLSS__EE__RREEQQUUEESSTTEEDD__DDAATTAA__NNOOTT__AAVVAAIILLAABBLLEE is returned.
+
+SSIINNCCEE
+       3.2.5
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying and distribution of this file, with  or  without  modification,
+       are  permitted  in  any  medium  without royalty provided the copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The full documentation for ggnnuuttllss is maintained as  a  Texinfo  manual.
+       If  the /usr/share/doc/gnutls/ directory does not contain the HTML form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10   gnutls_certificate_get_crt_raw(3)

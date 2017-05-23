@@ -1,0 +1,48 @@
+gnutls_rnd(3)                       gnutls                       gnutls_rnd(3)
+
+
+
+NNAAMMEE
+       gnutls_rnd - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ccrryyppttoo..hh>>
+
+       iinntt ggnnuuttllss__rrnndd((ggnnuuttllss__rrnndd__lleevveell__tt _l_e_v_e_l,, vvooiidd ** _d_a_t_a,, ssiizzee__tt _l_e_n));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_rnd_level_t level
+                   a security level
+
+       void * data place to store random bytes
+
+       size_t len  The requested size
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will generate random data and store it to output buffer.
+
+RREETTUURRNNSS
+       Zero or a negative error code on error.
+
+SSIINNCCEE
+       2.12.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10                       gnutls_rnd(3)

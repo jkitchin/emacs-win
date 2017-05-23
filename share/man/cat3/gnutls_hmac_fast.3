@@ -1,0 +1,61 @@
+gnutls_hmac_fast(3)                 gnutls                 gnutls_hmac_fast(3)
+
+
+
+NNAAMMEE
+       gnutls_hmac_fast - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//ccrryyppttoo..hh>>
+
+       iinntt  ggnnuuttllss__hhmmaacc__ffaasstt((ggnnuuttllss__mmaacc__aallggoorriitthhmm__tt  _a_l_g_o_r_i_t_h_m,,  ccoonnsstt  vvooiidd **
+       _k_e_y,, ssiizzee__tt _k_e_y_l_e_n,, ccoonnsstt vvooiidd ** _t_e_x_t,, ssiizzee__tt _t_e_x_t_l_e_n,, vvooiidd ** _d_i_g_e_s_t));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_mac_algorithm_t algorithm
+                   the hash algorithm to use
+
+       const void * key
+                   the key to use
+
+       size_t keylen
+                   The length of the key
+
+       const void * text
+                   the data to hash
+
+       size_t textlen
+                   The length of data to hash
+
+       void * digest
+                   is the output value of the hash
+
+DDEESSCCRRIIPPTTIIOONN
+       This convenience function will hash the given data and return output on
+       a single call.
+
+RREETTUURRNNSS
+       Zero or a negative error code on error.
+
+SSIINNCCEE
+       2.10.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10                 gnutls_hmac_fast(3)

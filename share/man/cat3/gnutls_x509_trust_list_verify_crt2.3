@@ -1,0 +1,91 @@
+gnutls_x509_trust_list_verify_crt2(3)gnutlsgnutls_x509_trust_list_verify_crt2(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_trust_list_verify_crt2 - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt  ggnnuuttllss__xx550099__ttrruusstt__lliisstt__vveerriiffyy__ccrrtt22((ggnnuuttllss__xx550099__ttrruusstt__lliisstt__tt  _l_i_s_t,,
+       ggnnuuttllss__xx550099__ccrrtt__tt   **   _c_e_r_t___l_i_s_t,,   uunnssiiggnneedd    iinntt    _c_e_r_t___l_i_s_t___s_i_z_e,,
+       ggnnuuttllss__ttyyppeedd__vvddaattaa__sstt  **  _d_a_t_a,,  uunnssiiggnneedd  iinntt  _e_l_e_m_e_n_t_s,,  uunnssiiggnneedd iinntt
+       _f_l_a_g_s,, uunnssiiggnneedd iinntt ** _v_o_u_t_p_u_t,, ggnnuuttllss__vveerriiffyy__oouuttppuutt__ffuunnccttiioonn _f_u_n_c));;
+
+AARRGGUUMMEENNTTSS
+       gnutls_x509_trust_list_t list
+                   The structure of the list
+
+       gnutls_x509_crt_t * cert_list
+                   is the certificate list to be verified
+
+       unsigned int cert_list_size
+                   is the certificate list size
+
+       gnutls_typed_vdata_st * data
+                   an array of typed data
+
+       unsigned int elements
+                   the number of data elements
+
+       unsigned int flags
+                   Flags that may be used to  change  the  verification  algo-
+                   rithm.  Use  OR of the gnutls_certificate_verify_flags enu-
+                   merations.
+
+       unsigned int * voutput
+                   will hold the certificate verification output.
+
+       gnutls_verify_output_function func
+                   If non-null will be called on each chain element  verifica-
+                   tion with the output.
+
+DDEESSCCRRIIPPTTIIOONN
+       This  function  will try to verify the given certificate and return its
+       status.  The   _v_e_r_i_f_y  parameter  will  hold  an  OR'ed   sequence   of
+       ggnnuuttllss__cceerrttiiffiiccaattee__ssttaattuuss__tt flags.
+
+       Additionally  a  certificate verification profile can be specified from
+       the ones in  ggnnuuttllss__cceerrttiiffiiccaattee__vveerriiffiiccaattiioonn__pprrooffiilleess__tt  by  ORing  the
+       result of GGNNUUTTLLSS__PPRROOFFIILLEE__TTOO__VVFFLLAAGGSS(()) to the verification flags.
+
+       The    acceptable     _d_a_t_a   types   are   GGNNUUTTLLSS__DDTT__DDNNSS__HHOOSSTTNNAAMMEE   and
+       GGNNUUTTLLSS__DDTT__KKEEYY__PPUURRPPOOSSEE__OOIIDD.  The former accepts as  data  a  null-termi-
+       nated  hostname,  and  the  latter  a null-terminated object identifier
+       (e.g., GGNNUUTTLLSS__KKPP__TTLLSS__WWWWWW__SSEERRVVEERR).  If a DNS hostname is  provided  then
+       this  function will compare the hostname in the certificate against the
+       given. If names do not match  the  GGNNUUTTLLSS__CCEERRTT__UUNNEEXXPPEECCTTEEDD__OOWWNNEERR  status
+       flag  will  be  set.  If a key purpose OID is provided and the end-cer-
+       tificate contains the extended key usage PKIX  extension,  it  will  be
+       required  to be have the provided key purpose or be marked for any pur-
+       pose, otherwise verification  will  fail  with  GGNNUUTTLLSS__CCEERRTT__SSIIGGNNEERR__CCOONN--
+       SSTTRRAAIINNTTSS__FFAAIILLUURREE status.
+
+RREETTUURRNNSS
+       On  success,  GGNNUUTTLLSS__EE__SSUUCCCCEESSSS  (0)  is  returned, otherwise a negative
+       error value. Note that verification failure will not result to an error
+       code, only  _v_o_u_t_p_u_t will be updated.
+
+SSIINNCCEE
+       3.3.8
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10gnutls_x509_trust_list_verify_crt2(3)

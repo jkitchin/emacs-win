@@ -1,0 +1,55 @@
+gnutls_x509_rdn_get_oid(3)          gnutls          gnutls_x509_rdn_get_oid(3)
+
+
+
+NNAAMMEE
+       gnutls_x509_rdn_get_oid - API function
+
+SSYYNNOOPPSSIISS
+       ##iinncclluuddee <<ggnnuuttllss//xx550099..hh>>
+
+       iinntt  ggnnuuttllss__xx550099__rrddnn__ggeett__ooiidd((ccoonnsstt ggnnuuttllss__ddaattuumm__tt ** _i_d_n,, iinntt _i_n_d_x,, vvooiidd
+       ** _b_u_f,, ssiizzee__tt ** _b_u_f___s_i_z_e));;
+
+AARRGGUUMMEENNTTSS
+       const gnutls_datum_t * idn
+                   should contain a DER encoded RDN sequence
+
+       int indx    Indicates which OID to return. Use 0 for the first one.
+
+       void * buf  a pointer to a structure to hold the peer's name OID
+
+       size_t * buf_size
+                   holds the size of  _b_u_f
+
+DDEESSCCRRIIPPTTIIOONN
+       This function will return the specified Object identifier, of  the  RDN
+       sequence.
+
+RREETTUURRNNSS
+       On  success,  GGNNUUTTLLSS__EE__SSUUCCCCEESSSS  (0) is returned, or GGNNUUTTLLSS__EE__SSHHOORRTT__MMEEMM--
+       OORRYY__BBUUFFFFEERR is returned and * _b_u_f___s_i_z_e is updated if the provided buffer
+       is not long enough, otherwise a negative error value.
+
+SSIINNCCEE
+       2.4.0
+
+RREEPPOORRTTIINNGG BBUUGGSS
+       Report bugs to <bugs@gnutls.org>.
+       Home page: http://www.gnutls.org
+
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (C) 2001-2014 Free Software Foundation, Inc..
+       Copying  and  distribution  of this file, with or without modification,
+       are permitted in any medium  without  royalty  provided  the  copyright
+       notice and this notice are preserved.
+
+SSEEEE AALLSSOO
+       The  full  documentation  for ggnnuuttllss is maintained as a Texinfo manual.
+       If the /usr/share/doc/gnutls/ directory does not contain the HTML  form
+       visit
+
+       hhttttpp::////wwwwww..ggnnuuttllss..oorrgg//mmaannuuaall//
+
+gnutls                              3.3.10          gnutls_x509_rdn_get_oid(3)
