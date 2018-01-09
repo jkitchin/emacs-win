@@ -1,3 +1,5 @@
 #+TITLE: Emacs 25.2
 
 This is a full copy of Emacs 25.2 for Windows from https://sourceforge.net/projects/emacsbinw64/. It is intended to be used as a submodule in [[https://github.com/jkitchin/scimax]].
+
+It also has hunspell installed in it from https://sourceforge.net/projects/ezwinports/?source=typ_redirect.
